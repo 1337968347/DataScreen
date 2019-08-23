@@ -1,0 +1,50 @@
+/* Document Level Styles */
+
+/*
+  The imports below are needed to include our light dom css for global styles such as fonts and colors.
+  You can comment out any of these imports if you do not need that css. For example, if you have your own
+  global font family css then you can comment out the typography.css import.
+*/
+
+/** Core CSS required for ionic components to work property */
+@import "~@ionic/core/css/core.css";
+
+/** Basic CSS for apps built with Ionic */
+@import "~@ionic/core/css/normalize.css";
+@import "~@ionic/core/css/structure.css";
+@import "~@ionic/core/css/typography.css";
+
+@import "theme.css";
+
+:root {
+  --header-height: 120px;
+}
+
+ion-toolbar {
+  --min-height: var(--header-height);
+}
+
+html {
+  font-size: 18px;
+}
+
+ion-toggle {
+  --background-checked: var(--ion-text-color, #ffffff)
+}
+
+cy-draggable {
+  --color: var(--ion-color-primary-contrast);
+  --background: transparent;
+  --border-color: var(--ion-color-primary);
+  --menu-hover-color: var(--ion-color-primary)
+}
+
+a {
+  color: var(--ion-color-primary-contrast)
+}
+
+/* popover */
+.add-chart-popover .popover-content {
+  width: 400px;
+  max-width: 100%;
+}

@@ -1,0 +1,99 @@
+:host {
+    --color: #ffffff;
+    --background: transparent;
+    --border-color: rgb(27, 70, 117, 0.5);
+    --box-shadow: var(--border-color);
+    --menu-hover-color: #3880ff;
+    --border-width: 1px;
+    --padding: 10px;
+    --overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
+    position: relative;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.sacleBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: var(--padding);
+    background: var(--background);
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    overflow: var(--overflow);
+}
+
+.draggable_over {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: move; 
+    z-index: 1;
+    border-width: var(--border-width);
+    border-style: solid;
+    border-color: var(--border-color);
+    box-shadow: 0 0.25em 0.575em var(--box-shadow), 0 0.275em 0.5em var(--box-shadow);
+    transition: 0.5s all ease;
+}
+
+.hiddlen {
+    visibility: hidden;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.draggable_menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    z-index: 100;
+}
+
+.draggable_menu ion-icon {
+    cursor: pointer;
+}
+
+.draggable_menu ion-icon:hover:hover {
+    background: var(--menu-hover-color);
+}
+
+.drag_tag {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: 999;
+    border-radius: 50%;
+    background: var(--border-color);
+}
+
+.drag_tag_right {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    cursor: ew-resize;
+}
+
+.drag_tag_bottom {
+    right: 50%;
+    bottom: 0;
+    transform: translate(50%, 50%);
+    cursor: ns-resize;
+}
+
+.drag_tag_rightbottom {
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 50%);
+    cursor: nwse-resize;
+}

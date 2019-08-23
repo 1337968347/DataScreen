@@ -1,0 +1,25 @@
+{
+  "name": "data-screen",
+  "private": true,
+  "version": "0.0.1",
+  "description": "data-screen",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@ionic/core": "^4.8.0",
+    "echarts": "4.2.1"
+  },
+  "devDependencies": {
+    "@stencil/core": "^1.3.0",
+    "@stencil/sass": "^1.0.1"
+  }
+}

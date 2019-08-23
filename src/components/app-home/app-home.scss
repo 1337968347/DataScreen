@@ -1,0 +1,65 @@
+app-home {
+
+    .header-buttons {
+        ion-button + ion-button{
+            margin-left: 5px;
+        }
+
+        .header-btn {
+            height: 100%;
+            --border-width: 0px;
+          
+            .btn-container {
+                text-align: center;
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                width: 100px;
+                height: calc(0.75 * var(--header-height));
+                font-size: 20px;
+                
+                span{
+                    color:  #ffffff;
+                    margin-bottom: 3px;
+                }
+                ion-icon {
+                    font-size: calc(0.5 * var(--header-height));
+                    margin-bottom: 2px;
+                }
+            }
+        }
+
+    }
+
+
+    .datascreen-box{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .datascreen-edit-box{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .datascreen-edit-footer {
+            height: 80px;
+            box-shadow:  0 4px 16px var(--ion-color-primary-shade)
+        }
+        .datascreen-edit-container {
+            flex: 1;
+            padding: 5%;
+            background: url(../../assets/image/data-screen-bg.jpeg);
+            background-size: 100% 100%;
+        }
+    }
+
+    .datascreen-setting-box{
+        min-width: 500px;
+        width: 35%;
+        max-width: 50%;
+    }
+}
