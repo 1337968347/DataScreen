@@ -1,0 +1,17 @@
+cy-datascreen-setting {
+
+    ion-toolbar {
+        --min-height: 50px;
+    }
+
+    ion-content{
+        --background: var(--ion-color-primary-tint)
+    }
+    .header-box {
+        width: 100%;
+        height: 55px;
+        text-align: center;
+        line-height: 55px;
+        font-size: 23px;
+    }
+}

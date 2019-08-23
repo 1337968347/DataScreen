@@ -119,7 +119,6 @@ export class AppHome {
         this.popover.emit({ component: 'popover-theme' });
     }
 
-
     render() {
         return [
             <ion-header>
@@ -175,7 +174,7 @@ export class AppHome {
                 <div class="datascreen-box">
                     <div class="datascreen-edit-box">
                         <div class="datascreen-edit-container">
-                            <cy-draggable-canvas  style={{transform: "scale(1)"}}>
+                            <cy-draggable-canvas style={{ transform: "scale(1)" }}>
                                 {this.mockData.map((chartDarggable) =>
                                     <cy-draggable-chart
                                         chartDraggableoption={chartDarggable}
@@ -189,7 +188,7 @@ export class AppHome {
                         </div>
                     </div>
                     <div class="datascreen-setting-box">
-
+                        <cy-datascreen-setting></cy-datascreen-setting>
                     </div>
                 </div>
             </ion-content>

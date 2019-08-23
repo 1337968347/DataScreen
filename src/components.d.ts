@@ -13,6 +13,7 @@ import {
 export namespace Components {
   interface AppHome {}
   interface AppRoot {}
+  interface CyDatascreenSetting {}
   interface CyDraggable {
     'boxZindex': number;
     'canModify': boolean;
@@ -38,6 +39,12 @@ declare global {
   var HTMLAppRootElement: {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
+  };
+
+  interface HTMLCyDatascreenSettingElement extends Components.CyDatascreenSetting, HTMLStencilElement {}
+  var HTMLCyDatascreenSettingElement: {
+    prototype: HTMLCyDatascreenSettingElement;
+    new (): HTMLCyDatascreenSettingElement;
   };
 
   interface HTMLCyDraggableElement extends Components.CyDraggable, HTMLStencilElement {}
@@ -66,6 +73,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement;
     'app-root': HTMLAppRootElement;
+    'cy-datascreen-setting': HTMLCyDatascreenSettingElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
     'cy-draggable-chart': HTMLCyDraggableChartElement;
@@ -80,6 +88,7 @@ declare namespace LocalJSX {
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
+  interface CyDatascreenSetting extends JSXBase.HTMLAttributes<HTMLCyDatascreenSettingElement> {}
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
     'boxZindex'?: number;
     'canModify'?: boolean;
@@ -102,6 +111,7 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'app-home': AppHome;
     'app-root': AppRoot;
+    'cy-datascreen-setting': CyDatascreenSetting;
     'cy-draggable': CyDraggable;
     'cy-draggable-canvas': CyDraggableCanvas;
     'cy-draggable-chart': CyDraggableChart;
