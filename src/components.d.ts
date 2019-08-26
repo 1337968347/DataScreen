@@ -7,8 +7,8 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
-  ChartDraggAble,
-} from './type/chartDraggAble';
+  ComDraggAble,
+} from './types/comDraggAble';
 
 export namespace Components {
   interface AppHome {}
@@ -19,9 +19,9 @@ export namespace Components {
     'canModify': boolean;
   }
   interface CyDraggableCanvas {}
-  interface CyDraggableChart {
+  interface CyDraggableComponent {
     'canModify': boolean;
-    'chartDraggableoption': ChartDraggAble;
+    'comDraggableoption': ComDraggAble;
   }
   interface PopoverTheme {}
 }
@@ -59,10 +59,10 @@ declare global {
     new (): HTMLCyDraggableCanvasElement;
   };
 
-  interface HTMLCyDraggableChartElement extends Components.CyDraggableChart, HTMLStencilElement {}
-  var HTMLCyDraggableChartElement: {
-    prototype: HTMLCyDraggableChartElement;
-    new (): HTMLCyDraggableChartElement;
+  interface HTMLCyDraggableComponentElement extends Components.CyDraggableComponent, HTMLStencilElement {}
+  var HTMLCyDraggableComponentElement: {
+    prototype: HTMLCyDraggableComponentElement;
+    new (): HTMLCyDraggableComponentElement;
   };
 
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
@@ -76,7 +76,7 @@ declare global {
     'cy-datascreen-setting': HTMLCyDatascreenSettingElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
-    'cy-draggable-chart': HTMLCyDraggableChartElement;
+    'cy-draggable-component': HTMLCyDraggableComponentElement;
     'popover-theme': HTMLPopoverThemeElement;
   }
 }
@@ -92,17 +92,15 @@ declare namespace LocalJSX {
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
     'boxZindex'?: number;
     'canModify'?: boolean;
-    'onCyClose'?: (event: CustomEvent<any>) => void;
     'onCyDrag'?: (event: CustomEvent<any>) => void;
     'onCyScale'?: (event: CustomEvent<any>) => void;
   }
   interface CyDraggableCanvas extends JSXBase.HTMLAttributes<HTMLCyDraggableCanvasElement> {
-    'onAddChart'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
-  interface CyDraggableChart extends JSXBase.HTMLAttributes<HTMLCyDraggableChartElement> {
+  interface CyDraggableComponent extends JSXBase.HTMLAttributes<HTMLCyDraggableComponentElement> {
     'canModify'?: boolean;
-    'chartDraggableoption'?: ChartDraggAble;
+    'comDraggableoption'?: ComDraggAble;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
@@ -114,7 +112,7 @@ declare namespace LocalJSX {
     'cy-datascreen-setting': CyDatascreenSetting;
     'cy-draggable': CyDraggable;
     'cy-draggable-canvas': CyDraggableCanvas;
-    'cy-draggable-chart': CyDraggableChart;
+    'cy-draggable-component': CyDraggableComponent;
     'popover-theme': PopoverTheme;
   }
 }

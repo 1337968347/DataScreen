@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter,h } from '@stencil/core';
+import { Component,Event, EventEmitter,h } from '@stencil/core';
 
 @Component({
     tag: 'cy-draggable-canvas',
@@ -6,12 +6,10 @@ import { Component, Event, EventEmitter,h } from '@stencil/core';
     shadow: true
 })
 export class CyDraggableCanvas {
-    @Event() addChart: EventEmitter;
     @Event() popover: EventEmitter;
 
     handleContentMenuClick(e) {
         e.preventDefault();
-        console.log("right-Click")
     }
 
     render() {

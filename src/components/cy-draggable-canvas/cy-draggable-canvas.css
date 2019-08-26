@@ -1,5 +1,5 @@
 :host{
-    --box-shadow:  0 4px 16px var(--ion-color-primary-shade);
+    --box-shadow:  var(--ion-color-primary-shade)  0 0 30px 0;
    --background: var(--ion-background-color);
     display: block;
     width: 100%;

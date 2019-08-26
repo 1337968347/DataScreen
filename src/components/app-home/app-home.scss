@@ -8,7 +8,10 @@ app-home {
         .header-btn {
             height: 100%;
             --border-width: 0px;
-          
+            
+            ion-button + ion-button{
+                margin-left: 10px;
+            }
             .btn-container {
                 text-align: center;
                 font-weight: bold;
@@ -17,16 +20,17 @@ app-home {
                 justify-content: space-between;
                 align-items: center;
                 width: 100px;
-                height: calc(0.75 * var(--header-height));
-                font-size: 20px;
-                
+                height: calc(0.65 * var(--header-height));
+                font-size: 16px;
+                padding: 5%;
+
                 span{
-                    color:  #ffffff;
-                    margin-bottom: 3px;
+                    color: var(--ion-text-color, #ffffff);
+                    margin-bottom: 4px;
                 }
                 ion-icon {
-                    font-size: calc(0.5 * var(--header-height));
-                    margin-bottom: 2px;
+                    font-size: calc(0.4 * var(--header-height));
+                    margin-bottom: 6px;
                 }
             }
         }
@@ -61,8 +65,8 @@ app-home {
 
     .datascreen-setting-box{
         min-width: 400px;
-        width: 30%;
-        max-width: 40%;
+        width: 25%;
+        max-width: 30%;
         margin-left: 16px;
         overflow: hidden;
         position: relative;

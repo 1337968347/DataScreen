@@ -1,4 +1,4 @@
-import { Component, State, Element, Event, EventEmitter, Prop,h } from '@stencil/core';
+import { Component, State, Element, Event, EventEmitter, Prop, h } from '@stencil/core';
 // 组件定义
 // 可以拖拽缩放
 @Component({
@@ -17,8 +17,6 @@ export class CyDraggable {
     @State() isDomFoucs: boolean = false;
     // 是否被拖拽放大缩小拖动
     @State() isDomDrag: boolean = false;
-    // 关闭方法
-    @Event() cyClose: EventEmitter;
     // 拖拽方法
     @Event() cyScale: EventEmitter;
     // 拖动方法
@@ -30,11 +28,6 @@ export class CyDraggable {
         if (!this.el.style.zIndex) {
             this.el.style.zIndex = this.boxZindex + "";
         }
-    }
-
-    // 删除按钮点击事件
-    closeLayerFunc(e) {
-        this.cyClose.emit(e);
     }
 
     // type 拖放的类型
@@ -50,6 +43,7 @@ export class CyDraggable {
             e1.stopPropagation();
             this.onDragScaleMove(e1, type, boxOffsetLeft, boxOffsetTop);
         }
+
         // 释放鼠标
         document.onmouseup = () => {
             this.isDomDrag = false;
@@ -68,13 +62,13 @@ export class CyDraggable {
 
                 break;
             case "ver":
-                if (e.clientY  > boxOffsetTop) {
+                if (e.clientY > boxOffsetTop) {
                     this.el.style.height = e.clientY - boxOffsetTop + "px";
                 }
                 break;
 
             case "all":
-                if (e.clientX  > boxOffsetLeft) {
+                if (e.clientX > boxOffsetLeft) {
                     this.el.style.width = e.clientX - boxOffsetLeft + "px";
                 }
                 if (e.clientY > boxOffsetTop) {
@@ -92,8 +86,9 @@ export class CyDraggable {
         e.stopPropagation();
         this.isDomDrag = true;
         // 距离点击当前box左上角的距离
-        var boxOffsetLeft = e.clientX - this.el.offsetLeft;
-        var boxOffsetTop = e.clientY - this.el.offsetTop;
+        var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
+        var boxOffsetLeft = e.clientX - (elAdress&& parseInt(elAdress[0]) || 0);
+        var boxOffsetTop = e.clientY -  (elAdress&& parseInt(elAdress[1]) || 0);
         document.onmousemove = (e1) => {
             e1.stopPropagation();
             this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop);
@@ -125,8 +120,7 @@ export class CyDraggable {
         } else if (top > maxH) {
             top = maxH;
         }
-        this.el.style.left = left + 'px';
-        this.el.style.top = top + 'px';
+        this.el.style.transform = `translate(${left}px, ${top}px)`;
     }
 
     // 改变当前dom是否：hover
@@ -159,7 +153,6 @@ export class CyDraggable {
                     <div class="drag_tag drag_tag_right" onMouseDown={(e) => { this.onDragScaleDown(e, 'hor') }}></div>
                     <div class="drag_tag drag_tag_bottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'ver') }}></div>
                     <div class="drag_tag drag_tag_rightbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'all') }}></div>
-                    <div class="draggable_menu"><ion-icon name="close" onClick={(e) => { this.closeLayerFunc(e) }}></ion-icon></div>
                 </div>
 
                 {/* 一直显示的dom */}
