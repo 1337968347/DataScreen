@@ -1,5 +1,4 @@
 import { Component, Prop, Event, EventEmitter, Element,h } from '@stencil/core';
-import { ComDraggAble } from "../../types/comDraggAble"
 import * as echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/bar'
@@ -12,7 +11,7 @@ import 'echarts/lib/component/legend'
     styleUrl: 'cy-draggable-component.css'
 })
 export class CyDraggableComponent {
-    @Prop() comDraggableoption: ComDraggAble;
+    @Prop() comDraggableoption: any;
     @Prop() canModify: boolean = false;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;

@@ -1,43 +1,4 @@
 app-home {
-
-    .header-buttons {
-        ion-button + ion-button{
-            margin-left: 5px;
-        }
-
-        .header-btn {
-            height: 100%;
-            --border-width: 0px;
-            
-            ion-button + ion-button{
-                margin-left: 10px;
-            }
-            .btn-container {
-                text-align: center;
-                font-weight: bold;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                width: 100px;
-                height: calc(0.65 * var(--header-height));
-                font-size: 16px;
-                padding: 5%;
-
-                span{
-                    color: var(--ion-text-color, #ffffff);
-                    margin-bottom: 4px;
-                }
-                ion-icon {
-                    font-size: calc(0.4 * var(--header-height));
-                    margin-bottom: 6px;
-                }
-            }
-        }
-
-    }
-
-
     .datascreen-box{
         display: flex;
         flex-direction: row;
@@ -51,11 +12,11 @@ app-home {
         flex-direction: column;
         height: 100%;
         .datascreen-edit-footer {
-            height: 80px;
+            height: 40px;
             z-index: 1;
             margin-right: 0px;
             background: var(--ion-background-color);
-            box-shadow:  2px 2px 8px var(--ion-color-primary-shade)
+            box-shadow:  2px 2px 8px var(--ion-background-shade, #1c1c1c)
         }
         .datascreen-edit-container {
             flex: 1;
@@ -63,12 +24,4 @@ app-home {
         }
     }
 
-    .datascreen-setting-box{
-        min-width: 400px;
-        width: 25%;
-        max-width: 30%;
-        margin-left: 16px;
-        overflow: hidden;
-        position: relative;
-    }
 }

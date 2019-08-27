@@ -2,10 +2,10 @@ import { Component, h } from '@stencil/core';
 
 
 @Component({
-    tag: 'cy-datascreen-setting',
-    styleUrl: 'cy-datascreen-setting.scss'
+    tag: 'datascreen-setting',
+    styleUrl: 'datascreen-setting.scss'
 })
-export class CyDatascreenSetting {
+export class DatascreenSetting {
 
     render() {
         return [

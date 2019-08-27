@@ -1,0 +1,25 @@
+datascreen-header{
+    ion-toolbar{
+        --ion-color-base: var(--ion-background-contrast);
+    }
+    .header-buttons {
+        
+        ion-button{
+            width: 50px;
+            height: 30px!important;
+        }
+
+        ion-button + ion-button{
+            margin-left: 5px;
+        }
+
+        .header-btn {
+            height: 100%;
+            
+            ion-button + ion-button{
+                margin-left: 10px;
+            }
+        }
+
+    }
+}
