@@ -1,0 +1,23 @@
+datascreen-component{
+    width:233px;
+    overflow: hidden;
+    margin-left: 3px;
+    position: relative;
+    transition: width .25s ease-in-out;
+    font-size: calc(0.8 * var(--font-size));
+
+    ion-header{
+        width: 233px;
+    }
+
+    ion-content {
+        width: 233px;
+    }
+
+    ion-toolbar {
+        --min-height: 35px;
+    }
+    ion-title{
+        font-size: calc(0.8 * var(--font-size));
+    }
+}

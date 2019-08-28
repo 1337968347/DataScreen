@@ -134,9 +134,11 @@
 
 :root .black-theme {
     --ion-text-color: #ffffff;
+    --ion-toolbar-background: #282830;
     --ion-background-color: #282830;
     --ion-background-contrast: #1c1c1c;
     --ion-background-shade: #0a0a0a;
+    --datascreen-canvas-bg: #0d2a43;
 
     --ion-color-primary: #3880ff;
     --ion-color-primary-rgb: 56,128,255;

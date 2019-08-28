@@ -1,15 +1,22 @@
 datascreen-setting {
     width:310px;
-    max-width: 30%;
     margin-left: 10px;
     overflow: hidden;
     position: relative;
+    transition: width .25s ease-in-out;
     font-size: calc(0.8 * var(--font-size));
 
     ion-toolbar {
         --min-height: 35px;
     }
+    
+    ion-header{
+        width: 332px;
+    }
 
+    ion-content {
+        width: 332px;
+    }
     .header-box {
         width: 100%;
         text-align: center;

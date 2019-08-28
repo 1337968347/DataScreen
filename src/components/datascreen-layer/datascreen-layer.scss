@@ -1,0 +1,22 @@
+datascreen-layer{
+    width:200px;
+    overflow: hidden;
+    position: relative;
+    transition: width .25s ease-in-out;
+    font-size: calc(0.8 * var(--font-size));
+
+    ion-header{
+        width: 200px;
+    }
+
+    ion-content {
+        width: 200px;
+    }
+
+    ion-toolbar {
+        --min-height: 35px;
+    }
+    ion-title{
+        font-size: calc(0.8 * var(--font-size));
+    }
+}

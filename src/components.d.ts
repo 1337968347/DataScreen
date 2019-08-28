@@ -22,9 +22,12 @@ export namespace Components {
     'canModify': boolean;
     'comDraggableoption': any;
   }
+  interface DatascreenComponent {}
+  interface DatascreenEditMain {}
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
   }
+  interface DatascreenLayer {}
   interface DatascreenSetting {}
   interface PopoverTheme {}
 }
@@ -62,10 +65,28 @@ declare global {
     new (): HTMLCyDraggableComponentElement;
   };
 
+  interface HTMLDatascreenComponentElement extends Components.DatascreenComponent, HTMLStencilElement {}
+  var HTMLDatascreenComponentElement: {
+    prototype: HTMLDatascreenComponentElement;
+    new (): HTMLDatascreenComponentElement;
+  };
+
+  interface HTMLDatascreenEditMainElement extends Components.DatascreenEditMain, HTMLStencilElement {}
+  var HTMLDatascreenEditMainElement: {
+    prototype: HTMLDatascreenEditMainElement;
+    new (): HTMLDatascreenEditMainElement;
+  };
+
   interface HTMLDatascreenHeaderElement extends Components.DatascreenHeader, HTMLStencilElement {}
   var HTMLDatascreenHeaderElement: {
     prototype: HTMLDatascreenHeaderElement;
     new (): HTMLDatascreenHeaderElement;
+  };
+
+  interface HTMLDatascreenLayerElement extends Components.DatascreenLayer, HTMLStencilElement {}
+  var HTMLDatascreenLayerElement: {
+    prototype: HTMLDatascreenLayerElement;
+    new (): HTMLDatascreenLayerElement;
   };
 
   interface HTMLDatascreenSettingElement extends Components.DatascreenSetting, HTMLStencilElement {}
@@ -85,7 +106,10 @@ declare global {
     'cy-draggable': HTMLCyDraggableElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
     'cy-draggable-component': HTMLCyDraggableComponentElement;
+    'datascreen-component': HTMLDatascreenComponentElement;
+    'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
+    'datascreen-layer': HTMLDatascreenLayerElement;
     'datascreen-setting': HTMLDatascreenSettingElement;
     'popover-theme': HTMLPopoverThemeElement;
   }
@@ -113,10 +137,17 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
+  interface DatascreenComponent extends JSXBase.HTMLAttributes<HTMLDatascreenComponentElement> {
+    'onCheckMenu'?: (event: CustomEvent<any>) => void;
+  }
+  interface DatascreenEditMain extends JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement> {}
   interface DatascreenHeader extends JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement> {
     'checkMenuControl'?: boolean[];
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
+  }
+  interface DatascreenLayer extends JSXBase.HTMLAttributes<HTMLDatascreenLayerElement> {
+    'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenSetting extends JSXBase.HTMLAttributes<HTMLDatascreenSettingElement> {}
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
@@ -127,7 +158,10 @@ declare namespace LocalJSX {
     'cy-draggable': CyDraggable;
     'cy-draggable-canvas': CyDraggableCanvas;
     'cy-draggable-component': CyDraggableComponent;
+    'datascreen-component': DatascreenComponent;
+    'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;
+    'datascreen-layer': DatascreenLayer;
     'datascreen-setting': DatascreenSetting;
     'popover-theme': PopoverTheme;
   }

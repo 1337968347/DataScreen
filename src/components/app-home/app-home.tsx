@@ -1,5 +1,4 @@
 import { Component, State, Event, EventEmitter, h } from '@stencil/core';
-import { ComType } from "../../interfaces"
 
 @Component({
     tag: 'app-home',
@@ -9,7 +8,6 @@ export class AppHome {
     @State() showMenuControl: boolean[] = [false, false, false];
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
-    @State() mockData: ComType[] = []
 
     componentDidLoad() {
     }
@@ -24,16 +22,10 @@ export class AppHome {
             <datascreen-header checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>,
             <ion-content>
                 <div class="datascreen-box">
-                    <div class="datascreen-edit-box">
-                        <div class="datascreen-edit-container">
-                            <cy-draggable-canvas style={{ transform: "scale(1)" }} comOptionList={this.mockData}>
-                            </cy-draggable-canvas>
-                        </div>
-                        <div class="datascreen-edit-footer">
-
-                        </div>
-                    </div>
-                    <datascreen-setting></datascreen-setting>
+                    <datascreen-layer style={{width: this.showMenuControl[0]? "200px":"0"}} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>
+                    <datascreen-component  style={{width: this.showMenuControl[1]? "233px":"0"}} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-component>
+                    <datascreen-edit-main></datascreen-edit-main>
+                    <datascreen-setting  style={{width: this.showMenuControl[2]? "332px":"0"}}></datascreen-setting>
                 </div>
             </ion-content>
         ];

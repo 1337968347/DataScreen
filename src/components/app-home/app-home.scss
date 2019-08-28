@@ -6,22 +6,4 @@ app-home {
         background: url(../../assets/image/data-screen-bg.png) repeat;
     }
 
-    .datascreen-edit-box{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        .datascreen-edit-footer {
-            height: 40px;
-            z-index: 1;
-            margin-right: 0px;
-            background: var(--ion-background-color);
-            box-shadow:  2px 2px 8px var(--ion-background-shade, #1c1c1c)
-        }
-        .datascreen-edit-container {
-            flex: 1;
-            padding: 5%;
-        }
-    }
-
 }
