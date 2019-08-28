@@ -3,15 +3,45 @@ datascreen-edit-main{
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: scroll;
+    contain: content;
     .datascreen-edit-footer {
         height: 40px;
-        z-index: 1;
         margin-right: 0px;
         background: var(--ion-background-color);
-        box-shadow:  2px 2px 8px var(--ion-background-shade, #1c1c1c)
+        box-shadow:  2px 2px 8px var(--ion-background-shade, #1c1c1c);
+        z-index: 2;
+        display: flex;
+        justify-content: flex-end;
+
+        .right-range-control{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        ion-range{
+            padding-inline-start: 0px;
+            padding-inline-end: 0px;
+            padding-top: 0px;
+            height: 40px;
+        }
     }
     .datascreen-edit-container {
         flex: 1;
         padding: 5%;
+        overflow: scroll;
+        contain: content;
+        position: relative;
+
+        cy-draggable-canvas{
+            width: 1920px;
+            height: 1080px;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
     }
 }
