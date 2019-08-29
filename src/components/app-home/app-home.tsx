@@ -1,4 +1,5 @@
 import { Component, State, Event, EventEmitter, h } from '@stencil/core';
+import { updateComponentsData } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-home',
@@ -10,6 +11,7 @@ export class AppHome {
     @Event() toast: EventEmitter;
 
     componentDidLoad() {
+        updateComponentsData([])
     }
 
     handleMenuChoose(e: CustomEvent) {

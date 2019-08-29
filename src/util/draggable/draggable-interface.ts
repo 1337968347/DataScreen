@@ -1,6 +1,7 @@
 export interface ComType {
     data: DragComOption;
-    key: string;
+    comType: string;
+    id: string;
 }
 
 export interface DragComOption {
