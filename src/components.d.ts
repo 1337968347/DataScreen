@@ -6,21 +6,22 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  ComType,
+} from './interfaces';
 
 export namespace Components {
   interface AppHome {}
   interface AppRoot {}
   interface CyDraggable {
-    'boxZindex': number;
     'canModify': boolean;
+    'isChoose': boolean;
+  }
+  interface CyDraggableAdapter {
+    'comOptionData': ComType;
   }
   interface CyDraggableCanvas {
-    'comOptionList': any[];
-  }
-  interface CyDraggableComponent {
-    'canModify': boolean;
-    'comDraggableoption': any;
+    'mapComDatasToState': (comList: ComType[]) => Promise<void>;
   }
   interface DatascreenComPanel {}
   interface DatascreenEditMain {}
@@ -53,16 +54,16 @@ declare global {
     new (): HTMLCyDraggableElement;
   };
 
+  interface HTMLCyDraggableAdapterElement extends Components.CyDraggableAdapter, HTMLStencilElement {}
+  var HTMLCyDraggableAdapterElement: {
+    prototype: HTMLCyDraggableAdapterElement;
+    new (): HTMLCyDraggableAdapterElement;
+  };
+
   interface HTMLCyDraggableCanvasElement extends Components.CyDraggableCanvas, HTMLStencilElement {}
   var HTMLCyDraggableCanvasElement: {
     prototype: HTMLCyDraggableCanvasElement;
     new (): HTMLCyDraggableCanvasElement;
-  };
-
-  interface HTMLCyDraggableComponentElement extends Components.CyDraggableComponent, HTMLStencilElement {}
-  var HTMLCyDraggableComponentElement: {
-    prototype: HTMLCyDraggableComponentElement;
-    new (): HTMLCyDraggableComponentElement;
   };
 
   interface HTMLDatascreenComPanelElement extends Components.DatascreenComPanel, HTMLStencilElement {}
@@ -104,8 +105,8 @@ declare global {
     'app-home': HTMLAppHomeElement;
     'app-root': HTMLAppRootElement;
     'cy-draggable': HTMLCyDraggableElement;
+    'cy-draggable-adapter': HTMLCyDraggableAdapterElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
-    'cy-draggable-component': HTMLCyDraggableComponentElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
@@ -122,20 +123,19 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
-    'boxZindex'?: number;
     'canModify'?: boolean;
+    'isChoose'?: boolean;
+    'onChoose'?: (event: CustomEvent<any>) => void;
     'onCyDrag'?: (event: CustomEvent<any>) => void;
     'onCyScale'?: (event: CustomEvent<any>) => void;
   }
-  interface CyDraggableCanvas extends JSXBase.HTMLAttributes<HTMLCyDraggableCanvasElement> {
-    'comOptionList'?: any[];
-    'onPopover'?: (event: CustomEvent<any>) => void;
-  }
-  interface CyDraggableComponent extends JSXBase.HTMLAttributes<HTMLCyDraggableComponentElement> {
-    'canModify'?: boolean;
-    'comDraggableoption'?: any;
+  interface CyDraggableAdapter extends JSXBase.HTMLAttributes<HTMLCyDraggableAdapterElement> {
+    'comOptionData'?: ComType;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
+  }
+  interface CyDraggableCanvas extends JSXBase.HTMLAttributes<HTMLCyDraggableCanvasElement> {
+    'onPopover'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
@@ -156,8 +156,8 @@ declare namespace LocalJSX {
     'app-home': AppHome;
     'app-root': AppRoot;
     'cy-draggable': CyDraggable;
+    'cy-draggable-adapter': CyDraggableAdapter;
     'cy-draggable-canvas': CyDraggableCanvas;
-    'cy-draggable-component': CyDraggableComponent;
     'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;

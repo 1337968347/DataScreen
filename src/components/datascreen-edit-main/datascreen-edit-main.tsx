@@ -1,5 +1,4 @@
 import { Component, State, h } from '@stencil/core';
-import { ComType } from "../../interfaces"
 
 @Component({
     tag: 'datascreen-edit-main',
@@ -7,7 +6,6 @@ import { ComType } from "../../interfaces"
 })
 export class DatascreenEditMain {
     @State() scaleRange: number = 55;
-    @State() mockData: ComType[] = []
     rangeStep: number = 5;
     minRange: number = 10;
     maxRange: number = 200;
@@ -29,7 +27,7 @@ export class DatascreenEditMain {
     render() {
         return [
             <div class="datascreen-edit-container">
-                <cy-draggable-canvas style={{ transform: `scale(${this.scaleRange / 100})` }} comOptionList={this.mockData}>
+                <cy-draggable-canvas style={{ transform: `scale(${this.scaleRange / 100})` }}>
                 </cy-draggable-canvas>
             </div>,
             <div class="datascreen-edit-footer">
