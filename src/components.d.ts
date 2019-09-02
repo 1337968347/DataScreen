@@ -22,7 +22,7 @@ export namespace Components {
     'canModify': boolean;
     'comDraggableoption': any;
   }
-  interface DatascreenComponent {}
+  interface DatascreenComPanel {}
   interface DatascreenEditMain {}
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
@@ -65,10 +65,10 @@ declare global {
     new (): HTMLCyDraggableComponentElement;
   };
 
-  interface HTMLDatascreenComponentElement extends Components.DatascreenComponent, HTMLStencilElement {}
-  var HTMLDatascreenComponentElement: {
-    prototype: HTMLDatascreenComponentElement;
-    new (): HTMLDatascreenComponentElement;
+  interface HTMLDatascreenComPanelElement extends Components.DatascreenComPanel, HTMLStencilElement {}
+  var HTMLDatascreenComPanelElement: {
+    prototype: HTMLDatascreenComPanelElement;
+    new (): HTMLDatascreenComPanelElement;
   };
 
   interface HTMLDatascreenEditMainElement extends Components.DatascreenEditMain, HTMLStencilElement {}
@@ -106,7 +106,7 @@ declare global {
     'cy-draggable': HTMLCyDraggableElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
     'cy-draggable-component': HTMLCyDraggableComponentElement;
-    'datascreen-component': HTMLDatascreenComponentElement;
+    'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
     'datascreen-layer': HTMLDatascreenLayerElement;
@@ -137,7 +137,7 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenComponent extends JSXBase.HTMLAttributes<HTMLDatascreenComponentElement> {
+  interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenEditMain extends JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement> {}
@@ -158,7 +158,7 @@ declare namespace LocalJSX {
     'cy-draggable': CyDraggable;
     'cy-draggable-canvas': CyDraggableCanvas;
     'cy-draggable-component': CyDraggableComponent;
-    'datascreen-component': DatascreenComponent;
+    'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;
     'datascreen-layer': DatascreenLayer;

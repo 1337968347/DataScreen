@@ -1,0 +1,59 @@
+datascreen-com-panel {
+    width: 233px;
+    overflow: hidden;
+    margin-left: 3px;
+    position: relative;
+    transition: width .25s ease-in-out;
+    font-size: calc(0.8 * var(--font-size));
+
+    ion-header {
+        width: 233px;
+    }
+
+    ion-content {
+        width: 233px;
+    }
+
+    ion-segment-button {
+        color: var(--ion-text-color)
+    }
+
+    ion-toolbar {
+        --min-height: 35px;
+    }
+
+    ion-title {
+        font-size: calc(0.8 * var(--font-size));
+    }
+
+    .com-box{
+        display: flex;
+        flex-wrap: nowrap;
+
+        .com-item{
+            width: 80px;
+            height: 80px;
+            padding: 5px;
+            justify-content: space-between;
+            text-align: center;
+            cursor: pointer;
+
+            .com-img{
+                background-clip: content-box;
+                background-size: 70% 70%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: var(--ion-color-secondary);
+                height: 60px;
+                border-radius: 3px;
+                filter:drop-shadow(0 0 var(--ion-color-primary));
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+            }
+        }
+        .com-item:hover .com-img {
+            border-color: var( --ion-color-primary-shade);
+        }
+    }
+}

@@ -6,7 +6,7 @@ import { ComType } from "../../interfaces"
     styleUrl: 'datascreen-edit-main.scss'
 })
 export class DatascreenEditMain {
-    @State() scaleRange: number = 100;
+    @State() scaleRange: number = 55;
     @State() mockData: ComType[] = []
     rangeStep: number = 5;
     minRange: number = 10;

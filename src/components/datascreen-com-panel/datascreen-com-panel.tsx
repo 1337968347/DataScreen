@@ -1,11 +1,11 @@
 import { Component, Event, EventEmitter, h } from '@stencil/core';
-
+import { componentDefaultDataMap } from "../../util/component/component-defaultdata";
 
 @Component({
-    tag: 'datascreen-component',
-    styleUrl: 'datascreen-component.scss'
+    tag: 'datascreen-com-panel',
+    styleUrl: 'datascreen-com-panel.scss'
 })
-export class DatascreenComponent {
+export class DatascreenComPanel {
     @Event() checkMenu: EventEmitter;
 
     closeThisPage() {
@@ -33,6 +33,14 @@ export class DatascreenComponent {
                         <ion-label>Enemies</ion-label>
                     </ion-segment-button>
                 </ion-segment>
+                <div class="com-box">
+                    {Object.keys(componentDefaultDataMap).map((com) =>
+                        <div class="com-item"> 
+                            <div style={{ "background-image": `url(${"../../" + componentDefaultDataMap[com].icon})`}} class="com-img"></div>
+                            <div>{componentDefaultDataMap[com].comName}</div>
+                        </div>
+                    )}
+                </div>
             </ion-content>
         ];
     }
