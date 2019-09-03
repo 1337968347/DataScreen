@@ -1,5 +1,7 @@
 import { Component, State, h } from '@stencil/core';
 
+import { changeChooseComponent } from "../../util/datascreen-controller";
+
 @Component({
     tag: 'datascreen-edit-main',
     styleUrl: 'datascreen-edit-main.scss'
@@ -26,10 +28,10 @@ export class DatascreenEditMain {
 
     render() {
         return [
-            <div class="datascreen-edit-container">
+            <cy-fast-click class="datascreen-edit-container" onFastClick={()=>{changeChooseComponent("")}}>
                 <cy-draggable-canvas style={{ transform: `scale(${this.scaleRange / 100})` }}>
                 </cy-draggable-canvas>
-            </div>,
+            </cy-fast-click>,
             <div class="datascreen-edit-footer">
                 <div class="right-range-control">
                     <ion-label>{this.scaleRange}&nbsp;&nbsp;&nbsp;</ion-label>

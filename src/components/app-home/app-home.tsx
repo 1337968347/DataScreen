@@ -10,14 +10,25 @@ export class AppHome {
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
 
-    componentDidLoad() {
+    componentWillLoad() {
         setComponentDatas([])
+        if(localStorage.getItem("show_menu_control")){
+            this.showMenuControl =  [...JSON.parse(localStorage.getItem("show_menu_control"))]; 
+        }else{
+            this.saveMenuControlToLocal(this.showMenuControl);
+        }
     }
 
     handleMenuChoose(e: CustomEvent) {
         this.showMenuControl[e.detail] = !!!this.showMenuControl[e.detail];
         this.showMenuControl = [...this.showMenuControl];
+        this.saveMenuControlToLocal(this.showMenuControl);
     }
+
+    saveMenuControlToLocal(showMenu: boolean[]){
+        localStorage.setItem("show_menu_control",JSON.stringify(showMenu));
+    }   
+
 
     render() {
         return [

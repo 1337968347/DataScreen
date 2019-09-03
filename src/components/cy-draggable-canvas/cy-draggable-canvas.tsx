@@ -1,13 +1,13 @@
 import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
 import { ComType } from "../../interfaces";
-import { getComponentDatas } from "../../util/datascreen-controller"
+import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'cy-draggable-canvas',
     styleUrl: 'cy-draggable-canvas.css',
 })
 export class CyDraggableCanvas {
-    @State() chooseComId: string ="";
+    @State() chooseComId: string = "";
     @State() comOptionList: ComType[] = [];
     @Event() popover: EventEmitter;
 
@@ -20,20 +20,21 @@ export class CyDraggableCanvas {
     }
 
     @Method()
-    mapComDatasToState(comList: ComType[]) {
+    async mapComDatasToState(comList: ComType[]) {
         this.comOptionList = comList;
-        console.log(this.comOptionList)
     }
 
-    handleChooseCom(comId){
+    @Method()
+    async chooseCurrentComponent(comId) {
         this.chooseComId = comId;
+        changeChooseComponent(comId)
     }
 
     render() {
         return (
             <div class="drag_container" onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
                 {this.comOptionList.map((comDarggable) =>
-                    <cy-draggable key={comDarggable.id} isChoose={this.chooseComId ==comDarggable.id} canModify={true} onChoose={()=>{this.handleChooseCom(comDarggable.id)}}
+                    <cy-draggable key={comDarggable.id} isChoose={this.chooseComId == comDarggable.id} canModify={true} onChoose={() => { this.chooseCurrentComponent(comDarggable.id) }}
                         style={{
                             "position": "absolute",
                             "top": comDarggable.data.view.y, "left": comDarggable.data.view.x,

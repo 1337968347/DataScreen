@@ -49,7 +49,7 @@ export class DatascreenComPanel {
                 <div class="com-box">
                     {Object.keys(componentDefaultDataMap).map((com) =>
                         <div class="com-item" onClick={()=>{this.addComToCanvas(com,componentDefaultDataMap[com] )}}> 
-                            <div style={{ "background-image": `url(${"../../" + componentDefaultDataMap[com].icon})`}} class="com-img"></div>
+                            <div style={{ "background-image": `url(${ componentDefaultDataMap[com].icon})`}} class="com-img"></div>
                             <div>{componentDefaultDataMap[com].comName}</div>
                         </div>
                     )}

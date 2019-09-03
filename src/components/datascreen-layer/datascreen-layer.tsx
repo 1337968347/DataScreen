@@ -1,20 +1,34 @@
-import { Component,Event, EventEmitter, h } from '@stencil/core';
+import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
 
+import { ComType } from "../../interfaces";
+import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-layer',
     styleUrl: 'datascreen-layer.scss'
 })
 export class DatascreenLayer {
+    @State() chooseComId: string = "";
+    @State() comOptionList: ComType[] = [];
     @Event() checkMenu: EventEmitter;
 
-    handleMoveLayer(detail) {
-        console.log(detail)
-        detail.complete();
+    componentWillLoad() {
+        this.mapComDatasToState(getComponentDatas())
     }
 
-    closeThisPage(){
-        this.checkMenu.emit(0);
+    @Method()
+    async mapComDatasToState(comList: ComType[]) {
+        this.comOptionList = comList;
+    }
+
+    @Method()
+    async chooseCurrentComponent(comId) {
+        this.chooseComId = comId;
+        changeChooseComponent(comId)
+    }
+
+    handleMoveLayer(detail) {
+        detail.complete();
     }
 
     render() {
@@ -23,35 +37,29 @@ export class DatascreenLayer {
                 <ion-toolbar color="secondary">
                     <ion-title>图层</ion-title>
                     <ion-buttons slot="end">
-                        <ion-button onClick={()=>{this.closeThisPage()}}>
+                        <ion-button onClick={() => { this.checkMenu.emit(0); }}>
                             <ion-icon mode="ios" name="arrow-back"></ion-icon>
                         </ion-button>
                     </ion-buttons>
                 </ion-toolbar>
             </ion-header>,
-            <ion-content>
+            <ion-content onClick={() => { changeChooseComponent("") }}>
                 <ion-reorder-group disabled={false} onIonItemReorder={(e) => { this.handleMoveLayer(e.detail) }}>
-                    <ion-reorder>
-                        <ion-item>
-                            <ion-thumbnail slot="start">
-                                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                            </ion-thumbnail>
-                            <ion-label>
-                                echart图表
-                            </ion-label>
-                        </ion-item>
-                    </ion-reorder>
+                    {this.comOptionList.map((com) =>
+                        <ion-reorder>
+                            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseCurrentComponent(com.id) }}>
+                                <ion-item button color={this.chooseComId == com.id ? "primary" : ""}>
+                                    <ion-thumbnail slot="start">
+                                        <img src={com.data.icon} />
+                                    </ion-thumbnail>
+                                    <ion-label>
+                                        {com.data.nickName || com.data.comName || ""}
+                                    </ion-label>
+                                </ion-item>
+                            </cy-fast-click>
 
-                    <ion-reorder>
-                        <ion-item>
-                            <ion-thumbnail slot="start">
-                                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                            </ion-thumbnail>
-                            <ion-label>
-                                echart Line
-                            </ion-label>
-                        </ion-item>
-                    </ion-reorder>
+                        </ion-reorder>
+                    )}
                 </ion-reorder-group>
             </ion-content>
         ];

@@ -79,6 +79,7 @@
     z-index: 999;
     border-radius: 50%;
     background: var(--border-color);
+    transition: 0.5s all ease;
 }
 
 .drag_tag_right {

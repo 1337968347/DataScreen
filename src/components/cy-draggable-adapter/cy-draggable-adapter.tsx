@@ -21,7 +21,6 @@ export class CyDraggableComponent {
     chartDemo: any;
 
     componentDidLoad() {
-        console.log(this.comOptionData)
     }
 
     // 初始化echarts

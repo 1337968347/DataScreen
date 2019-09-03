@@ -1,11 +1,20 @@
-import { Component, h } from '@stencil/core';
-
+import { Component, State, Method, h } from '@stencil/core';
+import { ComType } from "../../interfaces";
+import { getComponentDataById } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-setting',
     styleUrl: 'datascreen-setting.scss'
 })
 export class DatascreenSetting {
+    @State() chooseComId: string ="";
+    @State() comTypeData: ComType;
+
+    @Method()
+    async setCurrentComponentId(comId) {
+        this.chooseComId = comId;
+        this.comTypeData =getComponentDataById(comId)
+    }
 
     render() {
         return [

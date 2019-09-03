@@ -21,15 +21,22 @@ export namespace Components {
     'comOptionData': ComType;
   }
   interface CyDraggableCanvas {
+    'chooseCurrentComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
   }
+  interface CyFastClick {}
   interface DatascreenComPanel {}
   interface DatascreenEditMain {}
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
   }
-  interface DatascreenLayer {}
-  interface DatascreenSetting {}
+  interface DatascreenLayer {
+    'chooseCurrentComponent': (comId: any) => Promise<void>;
+    'mapComDatasToState': (comList: ComType[]) => Promise<void>;
+  }
+  interface DatascreenSetting {
+    'setCurrentComponentId': (comId: any) => Promise<void>;
+  }
   interface PopoverTheme {}
 }
 
@@ -64,6 +71,12 @@ declare global {
   var HTMLCyDraggableCanvasElement: {
     prototype: HTMLCyDraggableCanvasElement;
     new (): HTMLCyDraggableCanvasElement;
+  };
+
+  interface HTMLCyFastClickElement extends Components.CyFastClick, HTMLStencilElement {}
+  var HTMLCyFastClickElement: {
+    prototype: HTMLCyFastClickElement;
+    new (): HTMLCyFastClickElement;
   };
 
   interface HTMLDatascreenComPanelElement extends Components.DatascreenComPanel, HTMLStencilElement {}
@@ -107,6 +120,7 @@ declare global {
     'cy-draggable': HTMLCyDraggableElement;
     'cy-draggable-adapter': HTMLCyDraggableAdapterElement;
     'cy-draggable-canvas': HTMLCyDraggableCanvasElement;
+    'cy-fast-click': HTMLCyFastClickElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
@@ -137,6 +151,9 @@ declare namespace LocalJSX {
   interface CyDraggableCanvas extends JSXBase.HTMLAttributes<HTMLCyDraggableCanvasElement> {
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
+  interface CyFastClick extends JSXBase.HTMLAttributes<HTMLCyFastClickElement> {
+    'onFastClick'?: (event: CustomEvent<any>) => void;
+  }
   interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
@@ -158,6 +175,7 @@ declare namespace LocalJSX {
     'cy-draggable': CyDraggable;
     'cy-draggable-adapter': CyDraggableAdapter;
     'cy-draggable-canvas': CyDraggableCanvas;
+    'cy-fast-click': CyFastClick;
     'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;

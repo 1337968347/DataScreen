@@ -3,15 +3,18 @@ import { ComType } from "../interfaces"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
+let chooseComId: string = "";
 
 let canvasCompoennt = null;
+let layerComponent = null;
+let settingComponent = null;
 
 // 图层组件
-let layerComponent: any = document.querySelector('datascreen-layer');
+let getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
 // canvas组件 
 let getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("cy-draggable-canvas")) };
 // 设置面板组件
-let settingComponent: any = document.querySelector("datascreen-setting");
+let getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting")) };
 
 /**
  * 更新组件列表数据都要通过这个方法
@@ -22,6 +25,7 @@ export const setComponentDatas = (comList: ComType[]) => {
     componentDatas = comList;
     // 分发到各个组件中去
     getCanvasComponent() && canvasCompoennt.mapComDatasToState(comList);
+    getLayerComponent() && layerComponent.mapComDatasToState(comList);
 }
 
 export const getComponentDatas = (): ComType[] => {
@@ -34,7 +38,7 @@ export const getComponentDatas = (): ComType[] => {
  */
 export const addComponentData = (com: ComType) => {
     setComponentDatas([...componentDatas, com])
-    // changeChooseComponent(com.id);
+    changeChooseComponent(com.id);
 }
 
 // 更新hover组件的id
@@ -45,14 +49,17 @@ export const changeHoverComponent = (comId: string) => {
 
 // 更新选中的组件id
 export const changeChooseComponent = (comId: string) => {
-    layerComponent && layerComponent.setCurrentComponent(comId, false)
-    canvasCompoennt && canvasCompoennt.setCurrentComponent(comId, false);
-    settingComponent && settingComponent.setCurrentComponentData(getComponentDataById(comId))
+    if (chooseComId !== comId) {
+        chooseComId =comId;
+        getLayerComponent() && layerComponent.chooseCurrentComponent(comId)
+        getCanvasComponent() && canvasCompoennt.chooseCurrentComponent(comId);
+        getSettingComponent() && settingComponent.setCurrentComponentId(comId)
+    }
 }
 
 // 根据id获取当前component的数据
-const getComponentDataById = (comId: string) => {
+export const getComponentDataById = (comId: string) => {
     return componentDatas.filter((item: ComType) => {
         return item.id == comId;
-    })
+    })[0] || null
 }
