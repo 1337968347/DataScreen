@@ -1,19 +1,15 @@
-import { Component, State, Method, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 import { ComType } from "../../interfaces";
-import { getComponentDataById } from "../../util/datascreen-controller"
 
 @Component({
-    tag: 'datascreen-setting',
-    styleUrl: 'datascreen-setting.scss'
+    tag: 'setting-canvas-option',
+    styleUrl: 'setting-canvas-option.css'
 })
-export class DatascreenSetting {
-    @State() chooseComId: string ="";
-    @State() comTypeData: ComType;
+export class SettingCanvasOption {
+    @Prop() canvasOption: ComType;
 
-    @Method()
-    async setCurrentComponentId(comId) {
-        this.chooseComId = comId;
-        this.comTypeData =getComponentDataById(comId)
+    componentWillLoad() {
+        console.log(this.canvasOption)
     }
 
     render() {

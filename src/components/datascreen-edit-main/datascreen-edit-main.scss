@@ -31,12 +31,11 @@ datascreen-edit-main{
     }
     .datascreen-edit-container {
         flex: 1;
-        padding: 5%;
         overflow: scroll;
         contain: content;
         position: relative;
 
-        cy-draggable-canvas{
+        datascreen-canvas{
             width: 1920px;
             height: 1080px;
             position: absolute;

@@ -1,4 +1,4 @@
-cy-draggable-canvas{
+datascreen-canvas{
     --box-shadow:  var(--ion-background-shade, #1c1c1c)  0 0 30px 0;
    --background: var(--datascreen-canvas-bg, #282830);
     display: block;
@@ -7,7 +7,7 @@ cy-draggable-canvas{
     transform-origin: 0 0;
     transition: .2s all ease-in-out;
 }
-cy-draggable-canvas .drag_container {
+datascreen-canvas .drag_container {
     width: 100%;
     height: 100%;
     box-shadow: var(--box-shadow);

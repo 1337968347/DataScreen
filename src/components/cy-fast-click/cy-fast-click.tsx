@@ -27,7 +27,7 @@ export class CyFastClick {
 
     render() {
         return (
-            <div style={{ "display": "inherit" }}
+            <div style={{ "display": "inherit", "width": "100%", "height": "100%" }}
                 onMouseDown={(e) => { this.touchStart(e); }} onMouseUp={(e) => { this.touchEnd(e) }}>
                 <slot></slot>
             </div >

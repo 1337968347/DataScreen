@@ -109,8 +109,8 @@ export class CyDraggable {
     onDragBoxMove(e, boxOffsetLeft: number, boxOffsetTop: number) {
         var left = e.clientX - boxOffsetLeft,
             top = e.clientY - boxOffsetTop,
-            winW = this.el.closest("cy-draggable-canvas").querySelector(".drag_container").clientWidth,
-            winH = this.el.closest("cy-draggable-canvas").querySelector(".drag_container").clientHeight,
+            winW = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientWidth,
+            winH = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientHeight,
             maxW = winW - this.el.offsetWidth - 10,
             maxH = winH - this.el.offsetHeight;
         if (left < 0) {

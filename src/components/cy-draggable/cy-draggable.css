@@ -2,8 +2,6 @@
     --color: #ffffff;
     --background: transparent;
     --border-color: rgb(27, 70, 117, 0.5);
-    --box-shadow: var(--border-color);
-    --menu-hover-color: #3880ff;
     --border-width: 1px;
     --padding: 10px;
     --overflow: hidden;
@@ -45,31 +43,13 @@
     z-index: 1;
     border-width: var(--border-width);
     border-style: solid;
-    border-color: transparent;
-    box-shadow: 0 0.25em 0.575em var(--box-shadow), 0 0.275em 0.5em var(--box-shadow);
+    border-color: var(--border-color);
     transition: 0.5s all ease;
 }
-
 
 .hiddlen {
     visibility: hidden;
     box-shadow: none;
-}
-
-.draggable_menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 16px;
-    z-index: 100;
-}
-
-.draggable_menu ion-icon {
-    cursor: pointer;
-}
-
-.draggable_menu ion-icon:hover:hover {
-    background: var(--menu-hover-color);
 }
 
 .drag_tag {

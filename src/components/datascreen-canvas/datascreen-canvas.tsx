@@ -3,10 +3,10 @@ import { ComType } from "../../interfaces";
 import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-controller"
 
 @Component({
-    tag: 'cy-draggable-canvas',
-    styleUrl: 'cy-draggable-canvas.css',
+    tag: 'datascreen-canvas',
+    styleUrl: 'datascreen-canvas.css',
 })
-export class CyDraggableCanvas {
+export class DatascreenCanvas {
     @State() chooseComId: string = "";
     @State() comOptionList: ComType[] = [];
     @Event() popover: EventEmitter;

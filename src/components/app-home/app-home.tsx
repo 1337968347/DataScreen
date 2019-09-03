@@ -38,7 +38,7 @@ export class AppHome {
                     <datascreen-layer style={{width: this.showMenuControl[0]? "200px":"0"}} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>
                     <datascreen-com-panel  style={{width: this.showMenuControl[1]? "233px":"0"}} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-com-panel>
                     <datascreen-edit-main></datascreen-edit-main>
-                    <datascreen-setting  style={{width: this.showMenuControl[2]? "332px":"0"}}></datascreen-setting>
+                    <datascreen-setting-panel  style={{width: this.showMenuControl[2]? "332px":"0"}}></datascreen-setting-panel>
                 </div>
             </ion-content>
         ];

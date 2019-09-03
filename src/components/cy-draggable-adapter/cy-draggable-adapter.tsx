@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element,h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
 
 // import * as echarts from 'echarts/lib/echarts'
 // import 'echarts/lib/chart/line'
@@ -32,10 +32,10 @@ export class CyDraggableComponent {
 
     render() {
         return (
-                <div id="chartDemo">
-                    <img src={this.comOptionData.data.icon} alt=""/>
-                    {this.comOptionData.comType}
-                </div>
+            <img style={{
+                width: "100%",
+                height: "100%"
+            }} src={this.comOptionData.data.icon} alt="" />
         );
     }
 }

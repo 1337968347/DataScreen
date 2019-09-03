@@ -7,7 +7,7 @@ import { changeChooseComponent } from "../../util/datascreen-controller";
     styleUrl: 'datascreen-edit-main.scss'
 })
 export class DatascreenEditMain {
-    @State() scaleRange: number = 55;
+    @State() scaleRange: number = 35;
     rangeStep: number = 5;
     minRange: number = 10;
     maxRange: number = 200;
@@ -29,8 +29,8 @@ export class DatascreenEditMain {
     render() {
         return [
             <cy-fast-click class="datascreen-edit-container" onFastClick={()=>{changeChooseComponent("")}}>
-                <cy-draggable-canvas style={{ transform: `scale(${this.scaleRange / 100})` }}>
-                </cy-draggable-canvas>
+                <datascreen-canvas style={{ transform: `scale(${this.scaleRange / 100})` }}>
+                </datascreen-canvas>
             </cy-fast-click>,
             <div class="datascreen-edit-footer">
                 <div class="right-range-control">

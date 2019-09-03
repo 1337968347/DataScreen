@@ -12,9 +12,9 @@ let settingComponent = null;
 // 图层组件
 let getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
 // canvas组件 
-let getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("cy-draggable-canvas")) };
+let getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("datascreen-canvas")) };
 // 设置面板组件
-let getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting")) };
+let getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting-panel")) };
 
 /**
  * 更新组件列表数据都要通过这个方法
