@@ -1,5 +1,5 @@
-import { ComType } from "../interfaces"
-// 负责几个组件之间的数据共享
+import { ComType, CanvasConfig } from "../interfaces"
+import { canvasDefaultConfig } from "../util/canvas/canvas-defaultdata"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
@@ -9,12 +9,19 @@ let canvasCompoennt = null;
 let layerComponent = null;
 let settingComponent = null;
 
+let canvasConfig: CanvasConfig = null;
+
 // 图层组件
 let getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
 // canvas组件 
 let getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("datascreen-canvas")) };
-// 设置面板组件
+// get面板组件
 let getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting-panel")) };
+
+/**
+ * 获取画布的设置
+ */
+export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || (canvasConfig = canvasDefaultConfig) }
 
 /**
  * 更新组件列表数据都要通过这个方法
@@ -50,7 +57,7 @@ export const changeHoverComponent = (comId: string) => {
 // 更新选中的组件id
 export const changeChooseComponent = (comId: string) => {
     if (chooseComId !== comId) {
-        chooseComId =comId;
+        chooseComId = comId;
         getLayerComponent() && layerComponent.chooseCurrentComponent(comId)
         getCanvasComponent() && canvasCompoennt.chooseCurrentComponent(comId);
         getSettingComponent() && settingComponent.setCurrentComponentId(comId)
@@ -62,4 +69,9 @@ export const getComponentDataById = (comId: string) => {
     return componentDatas.filter((item: ComType) => {
         return item.id == comId;
     })[0] || null
+}
+
+export const setCanvasConfig = (config:CanvasConfig) => {
+    canvasConfig = config;
+    getCanvasComponent() && canvasCompoennt.updateComConfig(config);
 }

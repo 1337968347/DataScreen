@@ -17,6 +17,7 @@
   "dependencies": {
     "@ionic/core": "^4.8.0",
     "echarts": "4.2.1",
+    "html2canvas": "^1.0.0-rc.3",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

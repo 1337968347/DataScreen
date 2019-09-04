@@ -1,5 +1,5 @@
 datascreen-setting-panel {
-    width:310px;
+    width: 310px;
     overflow: hidden;
     position: relative;
     transition: width .25s ease-in-out;
@@ -8,16 +8,29 @@ datascreen-setting-panel {
     ion-toolbar {
         --min-height: 35px;
     }
-    
-    ion-header{
+
+    ion-header {
         width: 332px;
     }
 
     ion-content {
         width: 332px;
     }
+
     .header-box {
         width: 100%;
         text-align: center;
+    }
+
+    ion-segment {
+        background-color: var(--ion-color-secondary);
+
+        ion-segment-button {
+            min-height: 30px;
+            line-height: 35px;
+            ion-icon {
+                margin: 0 !important;
+            }
+        }
     }
 }

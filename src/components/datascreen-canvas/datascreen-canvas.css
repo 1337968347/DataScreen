@@ -8,9 +8,11 @@ datascreen-canvas{
     transition: .2s all ease-in-out;
 }
 datascreen-canvas .drag_container {
-    width: 100%;
-    height: 100%;
-    box-shadow: var(--box-shadow);
-    position: relative;
-    background-color: var(--background)
+    position: absolute;
+    transform-origin: 0 0;
+    transition: .2s all ease-in-out;
+    background-size: cover,contain;
+    background-position: center,right bottom;
+    background-repeat: no-repeat,no-repeat;
+    box-shadow: rgba(0,0,0,.5) 0 0 30px 0;
 }

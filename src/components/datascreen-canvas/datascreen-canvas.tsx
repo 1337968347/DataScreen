@@ -1,17 +1,25 @@
-import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
-import { ComType } from "../../interfaces";
-import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-controller"
+import { Component,Watch,  State, Method,Element, Event, EventEmitter, h } from '@stencil/core';
+import { ComType,CanvasConfig } from "../../interfaces";
+import { getComponentDatas, changeChooseComponent,getCanvasConfig } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-canvas',
     styleUrl: 'datascreen-canvas.css',
 })
 export class DatascreenCanvas {
+    @Element() el :HTMLElement;
     @State() chooseComId: string = "";
+    @State() canvasOption: CanvasConfig;
     @State() comOptionList: ComType[] = [];
     @Event() popover: EventEmitter;
 
+    @Watch('comOptionList')
+    watchHandler(newValue) {
+        console.log('The value of myProp is: ', newValue);
+    }
+
     componentWillLoad() {
+        this.canvasOption = getCanvasConfig();
         this.mapComDatasToState(getComponentDatas())
     }
 
@@ -30,9 +38,20 @@ export class DatascreenCanvas {
         changeChooseComponent(comId)
     }
 
+    @Method() 
+    async updateComConfig(config:CanvasConfig){
+        this.canvasOption =config;
+    }
+
     render() {
         return (
-            <div class="drag_container" onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
+            <div class="drag_container" style={{
+                "width": this.canvasOption.w+"px", 
+                "height": this.canvasOption.h+"px",
+                "background-color": this.canvasOption.bgc+"",
+                "background-image": this.canvasOption.bgi? `url(${this.canvasOption.bgi})`:""
+        }}  
+            onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
                 {this.comOptionList.map((comDarggable) =>
                     <cy-draggable key={comDarggable.id} isChoose={this.chooseComId == comDarggable.id} canModify={true} onChoose={() => { this.chooseCurrentComponent(comDarggable.id) }}
                         style={{

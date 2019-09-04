@@ -1,0 +1,16 @@
+setting-canvas-option{
+    ion-grid{
+       
+        ion-col{
+            display: flex;
+            align-items: center;
+
+            ion-button{
+                --border-radius: 0;
+            }
+            ion-input{
+                --background:  var(--ion-color-secondary)!important;
+            }
+        }
+    }
+}

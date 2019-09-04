@@ -13,23 +13,24 @@ export class DatascreenSettingPanel {
     @Method()
     async setCurrentComponentId(comId) {
         this.comTypeData = getComponentDataById(comId)
+        console.log(this.comTypeData)
         this.chooseComId = comId;
     }
 
     render() {
         if (this.chooseComId == "") {
             return (
-                <setting-canvas-option canvasOption={this.comTypeData}></setting-canvas-option>
+                <setting-canvas-option></setting-canvas-option>
             )
         } else {
             return [
                 <ion-header>
-                    <ion-segment value="friends">
+                    <ion-segment color="primary" value="friends">
                         <ion-segment-button value="friends">
-                            <ion-label>Friends</ion-label>
+                            <ion-icon name="options"></ion-icon>
                         </ion-segment-button>
                         <ion-segment-button value="enemies">
-                            <ion-label>Enemies</ion-label>
+                            <ion-icon name="link"></ion-icon>
                         </ion-segment-button>
                     </ion-segment>
                 </ion-header>,

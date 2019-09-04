@@ -7,6 +7,7 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  CanvasConfig,
   ComType,
 } from './interfaces';
 
@@ -24,6 +25,7 @@ export namespace Components {
   interface DatascreenCanvas {
     'chooseCurrentComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
+    'updateComConfig': (config: CanvasConfig) => Promise<void>;
   }
   interface DatascreenComPanel {}
   interface DatascreenEditMain {}
@@ -38,9 +40,7 @@ export namespace Components {
     'setCurrentComponentId': (comId: any) => Promise<void>;
   }
   interface PopoverTheme {}
-  interface SettingCanvasOption {
-    'canvasOption': ComType;
-  }
+  interface SettingCanvasOption {}
 }
 
 declare global {
@@ -178,9 +178,7 @@ declare namespace LocalJSX {
   }
   interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {}
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
-  interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {
-    'canvasOption'?: ComType;
-  }
+  interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
   interface IntrinsicElements {
     'app-home': AppHome;
