@@ -34,13 +34,12 @@ datascreen-edit-main{
         overflow: scroll;
         contain: content;
         position: relative;
+        padding: 20px;
 
         datascreen-canvas{
             width: 1920px;
             height: 1080px;
             position: absolute;
-            left: 20px;
-            top: 20px;
         }
     }
 }

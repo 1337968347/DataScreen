@@ -56,14 +56,13 @@ export class DatascreenCanvas {
                     <cy-draggable key={comDarggable.id} isChoose={this.chooseComId == comDarggable.id} canModify={true} onChoose={() => { this.chooseCurrentComponent(comDarggable.id) }}
                         style={{
                             "position": "absolute",
-                            "top": comDarggable.data.view.y, "left": comDarggable.data.view.x,
-                            "width": comDarggable.data.view.w, "height": comDarggable.data.view.h,
-                            "opacity": comDarggable.data.view.opacity + "",
-                            "transform": `rotate(${comDarggable.data.view.deg}deg)`
+                            "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`, 
+                            "width": comDarggable.data.view.w+"px", "height": comDarggable.data.view.h+"px",
+                            "--opacity": comDarggable.data.view.opacity + ""
                         }}>
-                        <cy-draggable-adapter
+                        <draggable-adapter
                             comOptionData={comDarggable}
-                        ></cy-draggable-adapter>
+                        ></draggable-adapter>
                     </cy-draggable>
                 )}
             </div>

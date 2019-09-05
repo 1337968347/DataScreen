@@ -8,12 +8,12 @@ const componentDefaultDataMap: ComponentInitalMap = {
         icon: "assets/com-icon/img-icon.png",
         comName: "单张图片",
         view: {
-            x: "0px",
-            y: "0px",
-            w: "200px",
-            h: "150px",
-            opacity: 1,
-            deg: 0
+            x: "200",
+            y: "100",
+            w: "200",
+            h: "150",
+            opacity: 0.8,
+            deg: 60
         }
     }
 }

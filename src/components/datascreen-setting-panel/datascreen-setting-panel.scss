@@ -13,10 +13,6 @@ datascreen-setting-panel {
         width: 332px;
     }
 
-    ion-content {
-        width: 332px;
-    }
-
     .header-box {
         width: 100%;
         text-align: center;
@@ -30,6 +26,39 @@ datascreen-setting-panel {
             line-height: 35px;
             ion-icon {
                 margin: 0 !important;
+            }
+        }
+    }
+
+    ion-content {
+        width: 332px;
+
+        ion-toolbar{
+            --min-height: 60px;
+            margin-top: 2px;
+        }
+
+        ion-title{
+            font-size: var(--font-size);
+        }
+
+        ion-grid{
+       
+            ion-col{
+                display: flex;
+                align-items: center;
+
+                ion-range{
+                    padding-inline-start: 0px;
+                    padding-inline-end: 0px;
+                }
+
+                ion-button{
+                    --border-radius: 0;
+                }
+                ion-input{
+                    --background:  var(--ion-color-secondary)!important;
+                }
             }
         }
     }

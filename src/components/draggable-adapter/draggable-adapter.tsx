@@ -10,10 +10,10 @@ import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core'
 import { ComType } from "../../interfaces"
 
 @Component({
-    tag: 'cy-draggable-adapter',
-    styleUrl: 'cy-draggable-adapter.css'
+    tag: 'draggable-adapter',
+    styleUrl: 'draggable-adapter.css'
 })
-export class CyDraggableComponent {
+export class DraggableComponent {
     @Prop() comOptionData: ComType;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
@@ -21,13 +21,6 @@ export class CyDraggableComponent {
     chartDemo: any;
 
     componentDidLoad() {
-    }
-
-    // 初始化echarts
-    initEchart() {
-        // this.chartDemo = echarts.init(this.el.querySelector('#chartDemo'));
-        // this.chartDemo.setOption(this.dragComoption.echartData);
-        // this.chartDemo.resize({ width: this.dragComoption.width, height:  this.dragComoption.height });
     }
 
     render() {

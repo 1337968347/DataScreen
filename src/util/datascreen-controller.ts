@@ -12,11 +12,11 @@ let settingComponent = null;
 let canvasConfig: CanvasConfig = null;
 
 // 图层组件
-let getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
+const getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
 // canvas组件 
-let getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("datascreen-canvas")) };
+export const getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("datascreen-canvas")) };
 // get面板组件
-let getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting-panel")) };
+const getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting-panel")) };
 
 /**
  * 获取画布的设置
@@ -29,10 +29,10 @@ export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || (can
  * @param comList 
  */
 export const setComponentDatas = (comList: ComType[]) => {
-    componentDatas = comList;
+    componentDatas = [...comList];
     // 分发到各个组件中去
-    getCanvasComponent() && canvasCompoennt.mapComDatasToState(comList);
-    getLayerComponent() && layerComponent.mapComDatasToState(comList);
+    getCanvasComponent() && canvasCompoennt.mapComDatasToState([...comList]);
+    getLayerComponent() && layerComponent.mapComDatasToState([...comList]);
 }
 
 export const getComponentDatas = (): ComType[] => {
@@ -60,18 +60,29 @@ export const changeChooseComponent = (comId: string) => {
         chooseComId = comId;
         getLayerComponent() && layerComponent.chooseCurrentComponent(comId)
         getCanvasComponent() && canvasCompoennt.chooseCurrentComponent(comId);
-        getSettingComponent() && settingComponent.setCurrentComponentId(comId)
+        getSettingComponent() && settingComponent.setCurrentComponentData(getComponentDataById(comId))
     }
 }
 
 // 根据id获取当前component的数据
 export const getComponentDataById = (comId: string) => {
-    return componentDatas.filter((item: ComType) => {
+    return (componentDatas.filter((item: ComType) => {
         return item.id == comId;
-    })[0] || null
+    })[0] || null);
 }
 
-export const setCanvasConfig = (config:CanvasConfig) => {
+export const saveCanvasConfig = (config: CanvasConfig) => {
     canvasConfig = config;
     getCanvasComponent() && canvasCompoennt.updateComConfig(config);
+}
+
+export const saveComData = (comDataItem: ComType) => {
+    let comDatas= componentDatas.map((comData) => {
+        if (comData.id == comDataItem.id) {
+            return comDataItem
+        } else {
+            return comData
+        }
+    })
+    setComponentDatas(comDatas)
 }

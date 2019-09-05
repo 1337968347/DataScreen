@@ -18,9 +18,6 @@ export namespace Components {
     'canModify': boolean;
     'isChoose': boolean;
   }
-  interface CyDraggableAdapter {
-    'comOptionData': ComType;
-  }
   interface CyFastClick {}
   interface DatascreenCanvas {
     'chooseCurrentComponent': (comId: any) => Promise<void>;
@@ -37,7 +34,10 @@ export namespace Components {
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
   }
   interface DatascreenSettingPanel {
-    'setCurrentComponentId': (comId: any) => Promise<void>;
+    'setCurrentComponentData': (comData: any) => Promise<void>;
+  }
+  interface DraggableAdapter {
+    'comOptionData': ComType;
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
@@ -62,12 +62,6 @@ declare global {
   var HTMLCyDraggableElement: {
     prototype: HTMLCyDraggableElement;
     new (): HTMLCyDraggableElement;
-  };
-
-  interface HTMLCyDraggableAdapterElement extends Components.CyDraggableAdapter, HTMLStencilElement {}
-  var HTMLCyDraggableAdapterElement: {
-    prototype: HTMLCyDraggableAdapterElement;
-    new (): HTMLCyDraggableAdapterElement;
   };
 
   interface HTMLCyFastClickElement extends Components.CyFastClick, HTMLStencilElement {}
@@ -112,6 +106,12 @@ declare global {
     new (): HTMLDatascreenSettingPanelElement;
   };
 
+  interface HTMLDraggableAdapterElement extends Components.DraggableAdapter, HTMLStencilElement {}
+  var HTMLDraggableAdapterElement: {
+    prototype: HTMLDraggableAdapterElement;
+    new (): HTMLDraggableAdapterElement;
+  };
+
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
   var HTMLPopoverThemeElement: {
     prototype: HTMLPopoverThemeElement;
@@ -127,7 +127,6 @@ declare global {
     'app-home': HTMLAppHomeElement;
     'app-root': HTMLAppRootElement;
     'cy-draggable': HTMLCyDraggableElement;
-    'cy-draggable-adapter': HTMLCyDraggableAdapterElement;
     'cy-fast-click': HTMLCyFastClickElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
@@ -135,6 +134,7 @@ declare global {
     'datascreen-header': HTMLDatascreenHeaderElement;
     'datascreen-layer': HTMLDatascreenLayerElement;
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
+    'draggable-adapter': HTMLDraggableAdapterElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
   }
@@ -152,11 +152,6 @@ declare namespace LocalJSX {
     'onChoose'?: (event: CustomEvent<any>) => void;
     'onCyDrag'?: (event: CustomEvent<any>) => void;
     'onCyScale'?: (event: CustomEvent<any>) => void;
-  }
-  interface CyDraggableAdapter extends JSXBase.HTMLAttributes<HTMLCyDraggableAdapterElement> {
-    'comOptionData'?: ComType;
-    'onAlert'?: (event: CustomEvent<any>) => void;
-    'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface CyFastClick extends JSXBase.HTMLAttributes<HTMLCyFastClickElement> {
     'onFastClick'?: (event: CustomEvent<any>) => void;
@@ -177,6 +172,11 @@ declare namespace LocalJSX {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {}
+  interface DraggableAdapter extends JSXBase.HTMLAttributes<HTMLDraggableAdapterElement> {
+    'comOptionData'?: ComType;
+    'onAlert'?: (event: CustomEvent<any>) => void;
+    'onToast'?: (event: CustomEvent<any>) => void;
+  }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
@@ -184,7 +184,6 @@ declare namespace LocalJSX {
     'app-home': AppHome;
     'app-root': AppRoot;
     'cy-draggable': CyDraggable;
-    'cy-draggable-adapter': CyDraggableAdapter;
     'cy-fast-click': CyFastClick;
     'datascreen-canvas': DatascreenCanvas;
     'datascreen-com-panel': DatascreenComPanel;
@@ -192,6 +191,7 @@ declare namespace LocalJSX {
     'datascreen-header': DatascreenHeader;
     'datascreen-layer': DatascreenLayer;
     'datascreen-setting-panel': DatascreenSettingPanel;
+    'draggable-adapter': DraggableAdapter;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
   }

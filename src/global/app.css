@@ -29,6 +29,10 @@ html {
   font-size: var(--font-size);
 }
 
+ion-range{
+  --knob-background: var( --ion-text-color , #ffffff)
+}
+
 ion-toggle {
   --background-checked: var(--ion-text-color, #ffffff)
 }

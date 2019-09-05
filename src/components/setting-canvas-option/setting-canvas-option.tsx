@@ -2,7 +2,7 @@ import { Component, State, h } from '@stencil/core';
 import html2canvas from "html2canvas"
 
 import { CanvasConfig } from "../../interfaces";
-import { getCanvasConfig } from "../../util/datascreen-controller";
+import { getCanvasConfig, getCanvasComponent,saveCanvasConfig } from "../../util/datascreen-controller";
 import { canvasDefaultConfig } from "../../util/canvas/canvas-defaultdata";
 
 @Component({
@@ -20,11 +20,15 @@ export class SettingCanvasOption {
     handleCanvasChange(name: string, value) {
         this.canvasOption[name] = value;
         this.canvasOption = { ...this.canvasOption };
-        document.querySelector("datascreen-canvas").updateComConfig(this.canvasOption)
+        saveCanvasConfig(this.canvasOption)
     }
 
     getCanvasToImg() {
-        html2canvas(document.querySelector(".drag_container"),{removeContainer: false}).then(canvas => {
+        //TODO  
+        var canvasComponent = getCanvasComponent();
+        html2canvas(canvasComponent,{
+            useCORS: true,
+        }).then(canvas => {
             this.imgAdress = canvas.toDataURL();
         });
     }
@@ -106,7 +110,7 @@ export class SettingCanvasOption {
                             <ion-col size="4">
                             </ion-col>
                             <ion-col size="8" id="canvasBox">
-                                <ion-img style={{ "height": "100px", "object-fit": "cover" }} src={this.imgAdress}></ion-img>
+                                <img style={{ "height": "100px", "object-fit": "cover" }} src={this.imgAdress}></img>
                             </ion-col>
                         </ion-row>
                         : null

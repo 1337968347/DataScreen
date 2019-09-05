@@ -123,7 +123,7 @@ export class CyDraggable {
         } else if (top > maxH) {
             top = maxH;
         }
-        this.el.style.transform = `translate(${left}px, ${top}px)`;
+        this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${left}px, ${top}px`)  ;
     }
 
     
