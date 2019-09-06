@@ -17,11 +17,13 @@ export namespace Components {
   interface CyDraggable {
     'canModify': boolean;
     'isChoose': boolean;
+    'scale': number;
   }
   interface CyFastClick {}
   interface DatascreenCanvas {
     'chooseCurrentComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
+    'scale': number;
     'updateComConfig': (config: CanvasConfig) => Promise<void>;
   }
   interface DatascreenComPanel {}
@@ -152,12 +154,14 @@ declare namespace LocalJSX {
     'onChoose'?: (event: CustomEvent<any>) => void;
     'onCyDrag'?: (event: CustomEvent<any>) => void;
     'onCyScale'?: (event: CustomEvent<any>) => void;
+    'scale'?: number;
   }
   interface CyFastClick extends JSXBase.HTMLAttributes<HTMLCyFastClickElement> {
     'onFastClick'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
     'onPopover'?: (event: CustomEvent<any>) => void;
+    'scale'?: number;
   }
   interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;

@@ -29,7 +29,7 @@ export class DatascreenEditMain {
     render() {
         return [
             <cy-fast-click class="datascreen-edit-container" onFastClick={()=>{changeChooseComponent("")}}>
-                <datascreen-canvas style={{ transform: `scale(${this.scaleRange / 100})` }}>
+                <datascreen-canvas scale={this.scaleRange}>
                 </datascreen-canvas>
             </cy-fast-click>,
             <div class="datascreen-edit-footer">

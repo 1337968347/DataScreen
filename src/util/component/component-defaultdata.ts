@@ -13,7 +13,7 @@ const componentDefaultDataMap: ComponentInitalMap = {
             w: "200",
             h: "150",
             opacity: 0.8,
-            deg: 60
+            deg: 0
         }
     }
 }

@@ -6,10 +6,13 @@
     --padding: 10px;
     --overflow: hidden;
     --opacity: 1;
+    --point-size: 20px;
     padding: 0 !important;
     margin: 0 !important;
     display: block;
     position: relative;
+    will-change: transform;
+    transform-origin: 50% 50%;
 }
 
 * {
@@ -24,7 +27,7 @@
     background: var(--background);
 }
 
-.border{
+.border {
     border: 1px solid var(--border-color);
 }
 
@@ -41,7 +44,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    cursor: move; 
+    cursor: move;
     z-index: 1;
     border-width: var(--border-width);
     border-style: solid;
@@ -56,31 +59,73 @@
 
 .drag_tag {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: var(--point-size);
+    height: var(--point-size);
     z-index: 999;
-    border-radius: 50%;
-    background: var(--border-color);
     transition: 0.5s all ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drag_tag::before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    width: calc(0.3 * var(--point-size));
+    height: calc(0.3 * var(--point-size));
+    border-radius: 50%;
+    ;
 }
 
 .drag_tag_right {
-    top: 50%;
-    right: 0;
-    transform: translate(50%, -50%);
-    cursor: ew-resize;
+    top: calc(50% - calc(0.5* var(--point-size)));
+    right: calc(-1 * calc(0.5* var(--point-size)));
+    cursor: move;
 }
 
 .drag_tag_bottom {
-    right: 50%;
-    bottom: 0;
-    transform: translate(50%, 50%);
-    cursor: ns-resize;
+    right: calc(50% - calc(0.5 * var(--point-size)));
+    bottom: calc(-1 * calc(0.5* var(--point-size)));
+    cursor: move;
 }
 
 .drag_tag_rightbottom {
     right: 0;
     bottom: 0;
-    transform: translate(50%, 50%);
-    cursor: nwse-resize;
+    transform-origin: 25% 25%;
+    cursor: move;
+}
+
+.drag_tag_righttop {
+    top: 0;
+    right: 0;
+    transform-origin: 25% 75%;
+    cursor: move;
+}
+
+.drag_tag_leftbottom {
+    left: 0;
+    bottom: 0;
+    transform-origin: 75% 25%;
+    cursor: move;
+}
+
+.drag_tag_left {
+    top: calc(50% - calc(0.5* var(--point-size)));
+    left: calc(-1 * calc(0.5* var(--point-size)));
+    cursor: move;
+}
+
+.drag_tag_lefttop {
+    left: 0;
+    top: 0;
+    transform-origin: 75% 75%;
+    cursor: move;
+}
+
+.drag_tag_top {
+    top: calc(-1 * calc(0.5* var(--point-size)));
+    left: calc(50% - calc(0.5* var(--point-size)));
+    cursor: move;
 }
