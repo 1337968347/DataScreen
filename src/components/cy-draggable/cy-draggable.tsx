@@ -36,22 +36,24 @@ export class CyDraggable {
         this.changeZIndexByChoose(this.isChoose);
     }
 
-
-
     // type 拖放的类型
     // 拖动缩放方法
-    onDragScaleDown(e, type) {
+    onDragScaleDown(e: MouseEvent, type, offsetX: number, offserY: number) {
         e.preventDefault()
         e.stopPropagation();
-        console.log(e)
         this.isDomDrag = true;
         var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
+
         // div左上角距离最左边的距离
-        var boxOffsetLeft = e.clientX - (elAdress && parseInt(elAdress[0]) * this.scale || 0);
-        var boxOffsetTop = e.clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0);
+        var boxOffsetLeft = Math.floor(e.clientX - (elAdress && parseInt(elAdress[0]) * this.scale || 0) - offsetX * this.scale);
+        var boxOffsetTop = Math.floor(e.clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0) - offserY * this.scale);
+        var startClientWidth = this.el.clientWidth;
+        var startClientHeight = this.el.clientHeight;
+        var startClientX = elAdress[0];
+        var startClientY = elAdress[1];
         document.onmousemove = (e1) => {
             e1.stopPropagation();
-            this.onDragScaleMove(e1, type, Math.floor(boxOffsetLeft - e.layerX* this.scale) , Math.floor(boxOffsetTop- e.layerY* this.scale) );
+            this.onDragScaleMove(e1, type, boxOffsetLeft, boxOffsetTop, startClientWidth, startClientHeight, parseInt(startClientX), parseInt(startClientY));
         }
 
         // 释放鼠标
@@ -63,39 +65,40 @@ export class CyDraggable {
         }
     }
 
-    onDragScaleMove(e, type: string, boxOffsetLeft: number, boxOffsetTop: number) {
-        console.log(boxOffsetTop)
-        var elAdress: string[] = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g);
-        // var clientHeight = this.el.clientHeight;
+    onDragScaleMove(e, type: string, boxOffsetLeft: number, boxOffsetTop: number, startClientWIdth: number, startClientHeight: number, startClientX: number, startClientY: number) {
         switch (type) {
-            case "top":
-                this.el.style.height = parseInt(elAdress[1])  - Math.floor((e.clientY - boxOffsetTop) / this.scale) + "px";
-                // this.el.style.transform = this.el.style.transforsm.replace(/translate(.*px, .*px)/g, `translate(${elAdress[0]}px, ${Math.floor((e.clientY - boxOffsetTop) / this.scale)}px`);
-                break;
-            case "bottom":
-                    this.el.style.height = Math.floor(e.clientY - Math.floor(parseInt(elAdress[1]) * this.scale))   + "px";
-                break;
             case "righttop":
-                if (e.clientX > boxOffsetLeft) {
-                    this.el.style.width = e.clientX - boxOffsetLeft + "px";
-                }
-                if (e.clientY > boxOffsetTop) {
-                    this.el.style.height = e.clientY - boxOffsetTop + "px";
-                }
+                this.el.style.width = Math.floor((e.clientX - boxOffsetLeft) / this.scale) - startClientX + "px";
+                var elementHeight = Math.floor((startClientHeight + startClientY) * this.scale + boxOffsetTop - e.clientY) / this.scale;
+                this.el.style.height = elementHeight > 0 ? elementHeight + "px" : 0 + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${startClientX}px, ${(e.clientY - boxOffsetTop) / this.scale}px`);
                 break;
-            case "ver":
-                if (e.clientY > boxOffsetTop) {
-                    this.el.style.height = e.clientY - boxOffsetTop + "px";
-                }
+            case "lefttop":
+                var elementWidth = Math.floor((startClientWIdth + startClientX) * this.scale + boxOffsetLeft - e.clientX) / this.scale;
+                this.el.style.width = elementWidth > 0 ? elementWidth + "px" : 0 + "px";
+                var elementHeight = Math.floor((startClientHeight + startClientY) * this.scale + boxOffsetTop - e.clientY) / this.scale;
+                this.el.style.height = elementHeight > 0 ? elementHeight + "px" : 0 + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${(e.clientY - boxOffsetTop) / this.scale}px`);
                 break;
-
-            case "all":
-                if (e.clientX > boxOffsetLeft) {
-                    this.el.style.width = e.clientX - boxOffsetLeft + "px";
-                }
-                if (e.clientY > boxOffsetTop) {
-                    this.el.style.height = e.clientY - boxOffsetTop + "px";
-                }
+            case "leftbottom":
+                var elementWidth = Math.floor((startClientWIdth + startClientX) * this.scale + boxOffsetLeft - e.clientX) / this.scale;
+                this.el.style.width = elementWidth > 0 ? elementWidth + "px" : 0 + "px";
+                this.el.style.height = Math.floor((e.clientY - boxOffsetTop) / this.scale) - startClientY + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${startClientY}px`);
+                break;
+            case "rightbottom":
+                this.el.style.width = Math.floor((e.clientX - boxOffsetLeft) / this.scale) - startClientX + "px";
+                this.el.style.height = Math.floor((e.clientY - boxOffsetTop) / this.scale) - startClientY + "px";
+                break;
+            case "top":
+                var elementHeight = Math.floor((startClientHeight + startClientY) * this.scale + boxOffsetTop - e.clientY) / this.scale;
+                this.el.style.height = elementHeight > 0 ? elementHeight + "px" : 0 + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${startClientWIdth}px, ${(e.clientY - boxOffsetTop) / this.scale}px`);
+                break;
+                case "left":
+                        var elementWidth = Math.floor((startClientWIdth + startClientX) * this.scale + boxOffsetLeft - e.clientX) / this.scale;
+                        this.el.style.width = elementWidth > 0 ? elementWidth + "px" : 0 + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${startClientHeight}px`);
                 break;
             default:
                 break;
@@ -172,14 +175,15 @@ export class CyDraggable {
                 {/* 拖拽box的背景元素 */}
                 {/* 悬浮上去才显示dom 操作 */}
                 <div class={this.canModify && this.isChoose || this.isDomDrag ? "draggable_over" : "draggable_over hiddlen"}>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_righttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'righttop') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_right" onMouseDown={(e) => { this.onDragScaleDown(e, 'right') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_rightbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'rightbottom') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_bottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'bottom') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_leftbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'leftbottom') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_left" onMouseDown={(e) => { this.onDragScaleDown(e, 'left') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_lefttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'lefttop') }}></i>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_top" onMouseDown={(e) => { this.onDragScaleDown(e, 'top') }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_righttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'righttop', this.el.clientWidth, 0) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_rightbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'rightbottom', this.el.clientWidth, this.el.clientHeight) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_leftbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'leftbottom', 0, this.el.clientHeight) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_lefttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'lefttop', 0, 0) }}></i>
+
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_right" onMouseDown={(e) => { this.onDragScaleDown(e, 'right', this.el.clientWidth, Math.floor(this.el.clientHeight * 0.5)) }}></i> */}
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_bottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'bottom', Math.floor(this.el.clientWidth * 0.5), this.el.clientHeight) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_left" onMouseDown={(e) => { this.onDragScaleDown(e, 'left', 0, Math.floor(0.5 * this.el.clientHeight)) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_top" onMouseDown={(e) => { this.onDragScaleDown(e, 'top', Math.floor(0.5 * this.el.clientWidth), 0) }}></i>
                 </div>
 
                 {/* 一直显示的dom */}

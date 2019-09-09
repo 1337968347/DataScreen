@@ -2,11 +2,11 @@
     --color: #ffffff;
     --background: transparent;
     --border-color: rgb(27, 70, 117, 0.5);
-    --border-width: 1px;
     --padding: 10px;
     --overflow: hidden;
     --opacity: 1;
     --point-size: 20px;
+    --border-width: calc(0.3 * --point-size );
     padding: 0 !important;
     margin: 0 !important;
     display: block;
