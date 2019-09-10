@@ -34,7 +34,7 @@ datascreen-setting-panel {
         width: 332px;
 
         ion-toolbar{
-            --min-height: 60px;
+            --min-height: 50px;
             margin-top: 2px;
         }
 
@@ -50,6 +50,8 @@ datascreen-setting-panel {
 
                 ion-range{
                     padding-inline-start: 0px;
+                    padding-top: 0;
+                    padding-bottom: 0;
                     padding-inline-end: 0px;
                 }
 

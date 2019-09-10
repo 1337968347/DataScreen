@@ -84,6 +84,7 @@ export class AppRoot {
       <ion-app>
         <ion-router useHash={false}>
           <ion-route url="/" component="app-home" />
+          <ion-route url="/preview" component= "app-preview"></ion-route>
         </ion-router>
         <ion-nav />
       </ion-app>

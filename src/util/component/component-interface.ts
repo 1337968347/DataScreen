@@ -1,8 +1,9 @@
 import {DraggableView} from "../../interfaces";
+
+
 export interface ComponentInitalMap{
     [keyName: string]: DragComOption;
 }
-
 
 export interface ComType {
     data: DragComOption;

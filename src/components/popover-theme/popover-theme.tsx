@@ -7,7 +7,7 @@ import { Component, State,h } from '@stencil/core';
 })
 export class PopoverTheme {
 
-    @State() themeList = [{ name: "默认", value: "default-theme", isCheck: false }, { name: "中国红", value: "red-theme", isCheck: false }, { name: "黑夜", value: "black-theme", isCheck: false }]
+    @State() themeList = [{ name: "默认", value: "default-theme", isCheck: false }, { name: "紫色", value: "purple-theme", isCheck: false }, { name: "黑夜", value: "black-theme", isCheck: false }]
 
 
     componentWillLoad() {

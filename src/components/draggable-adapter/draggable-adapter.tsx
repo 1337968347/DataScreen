@@ -1,12 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
-
-// import * as echarts from 'echarts/lib/echarts'
-// import 'echarts/lib/chart/line'
-// import 'echarts/lib/chart/bar'
-// import 'echarts/lib/component/tooltip'
-// import 'echarts/lib/component/title'
-// import 'echarts/lib/component/legend'
-
+import { Component, Prop,Event, EventEmitter, Element, h } from '@stencil/core';
 import { ComType } from "../../interfaces"
 
 @Component({
@@ -24,11 +16,19 @@ export class DraggableComponent {
     }
 
     render() {
-        return (
-            <img style={{
-                width: "100%",
-                height: "100%"
-            }} src={this.comOptionData.data.icon} alt="" />
-        );
+        let comType = this.comOptionData.comType || "";
+        switch (comType) {
+            case "media-basic-img":
+                return (
+                    <media-basic-img comData={this.comOptionData}></media-basic-img>
+                );
+            case "chart-base-line":
+                return (
+                    <chart-basic-line comData={this.comOptionData}></chart-basic-line>
+                )
+            default:
+                break;
+        }
+
     }
 }

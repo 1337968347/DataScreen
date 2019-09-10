@@ -6,7 +6,7 @@
     --overflow: hidden;
     --opacity: 1;
     --point-size: 20px;
-    --border-width: calc(0.3 * --point-size );
+    --border-width: calc(0.3 * --point-size);
     padding: 0 !important;
     margin: 0 !important;
     display: block;
@@ -44,7 +44,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    cursor: move;
+    cursor: grab;
     z-index: 1;
     border-width: var(--border-width);
     border-style: solid;
@@ -75,39 +75,36 @@
     width: calc(0.3 * var(--point-size));
     height: calc(0.3 * var(--point-size));
     border-radius: 50%;
-    ;
 }
 
 .drag_tag_right {
-    top: calc(50% - calc(0.5* var(--point-size)));
-    right: calc(-1 * calc(0.5* var(--point-size)));
+    top: calc(50% - calc(0.5 * var(--point-size)));
+    right: calc(-1 * calc(0.5 * var(--point-size)));
     cursor: move;
 }
 
 .drag_tag_bottom {
     right: calc(50% - calc(0.5 * var(--point-size)));
-    bottom: calc(-1 * calc(0.5* var(--point-size)));
+    bottom: calc(-1 * calc(0.5 * var(--point-size)));
     cursor: move;
 }
 
 .drag_tag_rightbottom {
-    right: 0;
-    bottom: 0;
-    transform-origin: 25% 25%;
+    right: calc(-1 * calc(0.5 * var(--point-size)));
+    bottom: calc(-1 * calc(0.5 * var(--point-size)));
     cursor: move;
 }
 
 .drag_tag_righttop {
-    top: 0;
     right: 0;
-    transform-origin: 25% 75%;
+    right: calc(-1 * calc(0.5 * var(--point-size)));
+    top: calc(-1 * calc(0.5 * var(--point-size)));
     cursor: move;
 }
 
 .drag_tag_leftbottom {
-    left: 0;
-    bottom: 0;
-    transform-origin: 75% 25%;
+    left: calc(-1 * calc(0.5 * var(--point-size)));;
+    bottom: calc(-1 * calc(0.5 * var(--point-size)));;
     cursor: move;
 }
 
@@ -118,9 +115,8 @@
 }
 
 .drag_tag_lefttop {
-    left: 0;
-    top: 0;
-    transform-origin: 75% 75%;
+    left: calc(-1 * calc(0.5 * var(--point-size)));;
+    top: calc(-1 * calc(0.5 * var(--point-size)));;
     cursor: move;
 }
 

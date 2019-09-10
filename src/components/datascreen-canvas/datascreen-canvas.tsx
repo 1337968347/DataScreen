@@ -1,6 +1,6 @@
-import { Component, State, Method,Element, Event, EventEmitter, h, Prop } from '@stencil/core';
-import { ComType,CanvasConfig } from "../../interfaces";
-import { getComponentDatas, changeChooseComponent,getCanvasConfig } from "../../util/datascreen-controller"
+import { Component, State, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
+import { ComType, CanvasConfig } from "../../interfaces";
+import { getComponentDatas, changeChooseComponent, getCanvasConfig, updateChooseComConfig } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-canvas',
@@ -8,7 +8,7 @@ import { getComponentDatas, changeChooseComponent,getCanvasConfig } from "../../
 })
 export class DatascreenCanvas {
     @Prop() scale: number = 100;
-    @Element() el :HTMLElement;
+    @Element() el: HTMLElement;
     @State() chooseComId: string = "";
     @State() canvasOption: CanvasConfig;
     @State() comOptionList: ComType[] = [];
@@ -29,37 +29,51 @@ export class DatascreenCanvas {
     }
 
     @Method()
-    async chooseCurrentComponent(comId) {
+    async chooseComponent(comId) {
         this.chooseComId = comId;
         changeChooseComponent(comId)
     }
 
-    @Method() 
-    async updateComConfig(config:CanvasConfig){
-        this.canvasOption =config;
+    @Method()
+    async updateCanvasConfig(config: CanvasConfig) {
+        this.canvasOption = config;
+    }
+
+    handleDraggableDrag(e:CustomEvent, changeComponentData: ComType) {
+        // 引用地址类型
+        changeComponentData.data.view.x = e.detail.x;
+        changeComponentData.data.view.y = e.detail.y;
+        updateChooseComConfig(changeComponentData)
+    }
+
+    handleDraggableScale(e:CustomEvent, changeComponentData: ComType) {
+        changeComponentData.data.view.w = e.detail.w;
+        changeComponentData.data.view.h = e.detail.h;
+        updateChooseComConfig(changeComponentData)
     }
 
     render() {
         return (
-            <div class="drag_container" style={{ 
+            <div class="drag_container" style={{
                 "transform": `scale(${this.scale / 100})`,
-                "width": this.canvasOption.w+"px", 
-                "height": this.canvasOption.h+"px",
-                "background-color": this.canvasOption.bgc+"",
-                "background-image": this.canvasOption.bgi? `url(${this.canvasOption.bgi})`:""
-        }}  
-            onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
+                "width": this.canvasOption.w + "px",
+                "height": this.canvasOption.h + "px",
+                "background-color": this.canvasOption.bgc + "",
+                "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : ""
+            }} onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
                 {this.comOptionList.map((comDarggable) =>
-                    <cy-draggable key={comDarggable.id} 
-                    isChoose={this.chooseComId == comDarggable.id} canModify={true} scale={Math.round(this.scale) / 100}
-                    onChoose={() => { this.chooseCurrentComponent(comDarggable.id) }}
+                    <cy-draggable key={comDarggable.id}
+                        isChoose={this.chooseComId == comDarggable.id} canModify={true} scale={Math.round(this.scale) / 100}
+                        onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
+                        onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
+                        onChoose={() => { this.chooseComponent(comDarggable.id) }}
                         style={{
                             "position": "absolute",
-                            "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`, 
-                            "width": comDarggable.data.view.w+"px", "height": comDarggable.data.view.h+"px",
+                            "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`,
+                            "width": comDarggable.data.view.w + "px", "height": comDarggable.data.view.h + "px",
                             "--opacity": comDarggable.data.view.opacity + ""
                         }}>
-                        <draggable-adapter 
+                        <draggable-adapter
                             key={comDarggable.id}
                             comOptionData={comDarggable}
                         ></draggable-adapter>

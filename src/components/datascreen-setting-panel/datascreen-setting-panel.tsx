@@ -1,6 +1,6 @@
 import { Component, State, Method, h } from '@stencil/core';
 import { ComType } from "../../interfaces";
-import { saveComData } from "../../util/datascreen-controller"
+import { setComConfigData } from "../../util/datascreen-controller"
 import { deepCopy } from "../../util/helper"
 
 @Component({
@@ -12,14 +12,14 @@ export class DatascreenSettingPanel {
     @State() comTypeData: ComType;
 
     @Method()
-    async setCurrentComponentData(comData) {
+    async setComponentConfigData(comData) {
         this.comTypeData = deepCopy({},comData);
     }
 
     handleComConfigChange(type: string, name: string, value: any) {
         this.comTypeData.data[type][name] = value;
         this.comTypeData = { ...this.comTypeData };
-        saveComData(this.comTypeData);
+        setComConfigData(this.comTypeData);
     }
 
     handleSegChange(e) {
@@ -88,7 +88,7 @@ export class DatascreenSettingPanel {
                                     透明度
                                 </ion-col>
                                 <ion-col size="4">
-                                    <ion-range  value={comData.view.opacity} onIonChange={(e) => { this.handleComConfigChange("view", "opacity", e.detail.value) }} min={0} pin={true} max={1} step={0.05}>
+                                    <ion-range  value={ comData.view.opacity} onIonChange={(e) => { this.handleComConfigChange("view", "opacity",  (e.detail.value as number).toFixed(2) )}} min={0} max={1} step={0.05}>
                                 </ion-range>
                                 </ion-col>
                                 <ion-col size="4">

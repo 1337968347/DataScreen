@@ -2,7 +2,8 @@ import { Component, State, Event, EventEmitter, h } from '@stencil/core';
 
 
 @Component({
-    tag: 'cy-fast-click'
+    tag: 'cy-fast-click',
+    shadow: true
 })
 export class CyFastClick {
     // 移动端用来模拟点击的东东

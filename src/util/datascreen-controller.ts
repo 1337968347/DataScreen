@@ -1,5 +1,6 @@
 import { ComType, CanvasConfig } from "../interfaces"
 import { canvasDefaultConfig } from "../util/canvas/canvas-defaultdata"
+import{deepCopy} from "./helper"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
@@ -44,23 +45,23 @@ export const getComponentDatas = (): ComType[] => {
  * @param com 
  */
 export const addComponentData = (com: ComType) => {
-    setComponentDatas([...componentDatas, com])
+    setComponentDatas([...componentDatas, deepCopy({},com)])
     changeChooseComponent(com.id);
 }
 
-// 更新hover组件的id
-export const changeHoverComponent = (comId: string) => {
-    layerComponent && layerComponent.setCurrentComponent(comId, false)
-    canvasCompoennt && canvasCompoennt.setCurrentComponent(comId, false);
-}
+// // 更新hover组件的id
+// export const changeHoverComponent = (comId: string) => {
+//     layerComponent && layerComponent.setCurrentComponent(comId, false)
+//     canvasCompoennt && canvasCompoennt.setCurrentComponent(comId, false);
+// }
 
 // 更新选中的组件id
 export const changeChooseComponent = (comId: string) => {
     if (chooseComId !== comId) {
         chooseComId = comId;
-        getLayerComponent() && layerComponent.chooseCurrentComponent(comId)
-        getCanvasComponent() && canvasCompoennt.chooseCurrentComponent(comId);
-        getSettingComponent() && settingComponent.setCurrentComponentData(getComponentDataById(comId))
+        getLayerComponent() && layerComponent.chooseComponent(comId)
+        getCanvasComponent() && canvasCompoennt.chooseComponent(comId);
+        getSettingComponent() && settingComponent.setComponentConfigData(getComponentDataById(comId))
     }
 }
 
@@ -73,11 +74,11 @@ export const getComponentDataById = (comId: string) => {
 
 export const saveCanvasConfig = (config: CanvasConfig) => {
     canvasConfig = config;
-    getCanvasComponent() && canvasCompoennt.updateComConfig(config);
+    getCanvasComponent() && canvasCompoennt.updateCanvasConfig(config);
 }
 
-export const saveComData = (comDataItem: ComType) => {
-    let comDatas= componentDatas.map((comData) => {
+export const setComConfigData = (comDataItem: ComType) => {
+    let comDatas = componentDatas.map((comData) => {
         if (comData.id == comDataItem.id) {
             return comDataItem
         } else {
@@ -85,4 +86,9 @@ export const saveComData = (comDataItem: ComType) => {
         }
     })
     setComponentDatas(comDatas)
+}
+
+export const updateChooseComConfig = (comDataItem: ComType) => {
+    setComConfigData(comDataItem);
+    getSettingComponent() && settingComponent.setComponentConfigData(comDataItem);
 }

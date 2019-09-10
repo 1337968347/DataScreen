@@ -22,7 +22,7 @@ export class DatascreenLayer {
     }
 
     @Method()
-    async chooseCurrentComponent(comId) {
+    async chooseComponent(comId) {
         this.chooseComId = comId;
         changeChooseComponent(comId)
     }
@@ -47,7 +47,7 @@ export class DatascreenLayer {
                 <ion-reorder-group disabled={false} onIonItemReorder={(e) => { this.handleMoveLayer(e.detail) }}>
                     {this.comOptionList.map((com) =>
                         <ion-reorder>
-                            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseCurrentComponent(com.id) }}>
+                            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(com.id) }}>
                                 <ion-item button color={this.chooseComId == com.id ? "primary" : ""}>
                                     <ion-thumbnail slot="start">
                                         <img src={com.data.icon} />

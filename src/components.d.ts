@@ -13,7 +13,14 @@ import {
 
 export namespace Components {
   interface AppHome {}
+  interface AppPreview {
+    'canvasOption': CanvasConfig;
+    'comOptionList': ComType[];
+  }
   interface AppRoot {}
+  interface ChartBasicLine {
+    'comData': ComType;
+  }
   interface CyDraggable {
     'canModify': boolean;
     'isChoose': boolean;
@@ -21,10 +28,10 @@ export namespace Components {
   }
   interface CyFastClick {}
   interface DatascreenCanvas {
-    'chooseCurrentComponent': (comId: any) => Promise<void>;
+    'chooseComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
     'scale': number;
-    'updateComConfig': (config: CanvasConfig) => Promise<void>;
+    'updateCanvasConfig': (config: CanvasConfig) => Promise<void>;
   }
   interface DatascreenComPanel {}
   interface DatascreenEditMain {}
@@ -32,14 +39,17 @@ export namespace Components {
     'checkMenuControl': boolean[];
   }
   interface DatascreenLayer {
-    'chooseCurrentComponent': (comId: any) => Promise<void>;
+    'chooseComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
   }
   interface DatascreenSettingPanel {
-    'setCurrentComponentData': (comData: any) => Promise<void>;
+    'setComponentConfigData': (comData: any) => Promise<void>;
   }
   interface DraggableAdapter {
     'comOptionData': ComType;
+  }
+  interface MediaBasicImg {
+    'comData': ComType;
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
@@ -54,10 +64,22 @@ declare global {
     new (): HTMLAppHomeElement;
   };
 
+  interface HTMLAppPreviewElement extends Components.AppPreview, HTMLStencilElement {}
+  var HTMLAppPreviewElement: {
+    prototype: HTMLAppPreviewElement;
+    new (): HTMLAppPreviewElement;
+  };
+
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
   var HTMLAppRootElement: {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
+  };
+
+  interface HTMLChartBasicLineElement extends Components.ChartBasicLine, HTMLStencilElement {}
+  var HTMLChartBasicLineElement: {
+    prototype: HTMLChartBasicLineElement;
+    new (): HTMLChartBasicLineElement;
   };
 
   interface HTMLCyDraggableElement extends Components.CyDraggable, HTMLStencilElement {}
@@ -114,6 +136,12 @@ declare global {
     new (): HTMLDraggableAdapterElement;
   };
 
+  interface HTMLMediaBasicImgElement extends Components.MediaBasicImg, HTMLStencilElement {}
+  var HTMLMediaBasicImgElement: {
+    prototype: HTMLMediaBasicImgElement;
+    new (): HTMLMediaBasicImgElement;
+  };
+
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
   var HTMLPopoverThemeElement: {
     prototype: HTMLPopoverThemeElement;
@@ -127,7 +155,9 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement;
+    'app-preview': HTMLAppPreviewElement;
     'app-root': HTMLAppRootElement;
+    'chart-basic-line': HTMLChartBasicLineElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
@@ -137,6 +167,7 @@ declare global {
     'datascreen-layer': HTMLDatascreenLayerElement;
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
     'draggable-adapter': HTMLDraggableAdapterElement;
+    'media-basic-img': HTMLMediaBasicImgElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
   }
@@ -147,7 +178,14 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
+  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
+    'canvasOption'?: CanvasConfig;
+    'comOptionList'?: ComType[];
+  }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
+  interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
+    'comData'?: ComType;
+  }
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
     'canModify'?: boolean;
     'isChoose'?: boolean;
@@ -181,12 +219,17 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
+  interface MediaBasicImg extends JSXBase.HTMLAttributes<HTMLMediaBasicImgElement> {
+    'comData'?: ComType;
+  }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
   interface IntrinsicElements {
     'app-home': AppHome;
+    'app-preview': AppPreview;
     'app-root': AppRoot;
+    'chart-basic-line': ChartBasicLine;
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
     'datascreen-canvas': DatascreenCanvas;
@@ -196,6 +239,7 @@ declare namespace LocalJSX {
     'datascreen-layer': DatascreenLayer;
     'datascreen-setting-panel': DatascreenSettingPanel;
     'draggable-adapter': DraggableAdapter;
+    'media-basic-img': MediaBasicImg;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
   }

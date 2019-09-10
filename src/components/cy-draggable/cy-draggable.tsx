@@ -61,7 +61,12 @@ export class CyDraggable {
             this.isDomDrag = false;
             document.onmousemove = null;
             document.onmouseup = null;
-            this.cyScale.emit(this.el.shadowRoot.querySelector(".container"));
+            this.cyScale.emit( {
+                w: parseInt(this.el.clientWidth+""),
+                h: parseInt(this.el.clientHeight+""),
+                x:  parseInt(elAdress[0]),
+                y: parseInt(elAdress[1])
+            });
         }
     }
 
@@ -93,12 +98,18 @@ export class CyDraggable {
             case "top":
                 var elementHeight = Math.floor((startClientHeight + startClientY) * this.scale + boxOffsetTop - e.clientY) / this.scale;
                 this.el.style.height = elementHeight > 0 ? elementHeight + "px" : 0 + "px";
-                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${startClientWIdth}px, ${(e.clientY - boxOffsetTop) / this.scale}px`);
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${startClientX}px, ${(e.clientY - boxOffsetTop) / this.scale}px`);
                 break;
-                case "left":
-                        var elementWidth = Math.floor((startClientWIdth + startClientX) * this.scale + boxOffsetLeft - e.clientX) / this.scale;
-                        this.el.style.width = elementWidth > 0 ? elementWidth + "px" : 0 + "px";
-                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${startClientHeight}px`);
+            case "left":
+                var elementWidth = Math.floor((startClientWIdth + startClientX) * this.scale + boxOffsetLeft - e.clientX) / this.scale;
+                this.el.style.width = elementWidth > 0 ? elementWidth + "px" : 0 + "px";
+                this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${startClientY}px`);
+                break;
+            case "bottom":
+                this.el.style.height =  Math.floor((e.clientY - boxOffsetTop) / this.scale) - startClientY + "px"
+                break;
+            case "right":
+                this.el.style.width =  Math.floor((e.clientX - boxOffsetLeft) / this.scale) - startClientX + "px"
                 break;
             default:
                 break;
@@ -123,7 +134,15 @@ export class CyDraggable {
             this.isDomDrag = false;
             document.onmousemove = null;
             document.onmouseup = null;
-            this.cyDrag.emit(this.el);
+            var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g);
+            this.cyDrag.emit(
+                {
+                    w: parseInt(this.el.clientWidth+""),
+                    h: parseInt(this.el.clientHeight+""),
+                    x:  parseInt(elAdress[0]),
+                    y: parseInt(elAdress[1])
+                }
+            );
         }
     }
 
@@ -166,7 +185,7 @@ export class CyDraggable {
 
     render() {
         return (
-            <div class={this.isHover && !this.isChoose ? "sacleBox border" : "sacleBox"}
+            <div class={this.isHover&&this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
                 onMouseEnter={() => { this.isHover = true }}
                 onMouseLeave={() => { this.isHover = false }}
                 onClick={(e) => { this.canModify && this.handleDomChoose(e) }}
@@ -180,7 +199,7 @@ export class CyDraggable {
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_leftbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'leftbottom', 0, this.el.clientHeight) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_lefttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'lefttop', 0, 0) }}></i>
 
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_right" onMouseDown={(e) => { this.onDragScaleDown(e, 'right', this.el.clientWidth, Math.floor(this.el.clientHeight * 0.5)) }}></i> */}
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_right" onMouseDown={(e) => { this.onDragScaleDown(e, 'right', this.el.clientWidth, Math.floor(this.el.clientHeight * 0.5)) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_bottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'bottom', Math.floor(this.el.clientWidth * 0.5), this.el.clientHeight) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_left" onMouseDown={(e) => { this.onDragScaleDown(e, 'left', 0, Math.floor(0.5 * this.el.clientHeight)) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_top" onMouseDown={(e) => { this.onDragScaleDown(e, 'top', Math.floor(0.5 * this.el.clientWidth), 0) }}></i>
