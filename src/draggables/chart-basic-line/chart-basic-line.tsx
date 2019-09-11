@@ -9,8 +9,7 @@ import 'echarts/lib/component/legend'
 import { ComType } from "../../interfaces";
 
 @Component({
-    tag: 'chart-basic-line',
-    styleUrl: 'chart-basic-line.css'
+    tag: 'chart-basic-line'
 })
 export class ChartBasicLine {
     @Element() el :HTMLElement;
