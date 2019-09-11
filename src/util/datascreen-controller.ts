@@ -22,7 +22,16 @@ const getSettingComponent = () => { return settingComponent || (settingComponent
 /**
  * 获取画布的设置
  */
-export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || (canvasConfig = canvasDefaultConfig) }
+export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || saveCanvasConfig(canvasDefaultConfig) }
+
+
+export const saveCanvasConfig = (config: CanvasConfig) => {
+    canvasConfig = config;
+    // 随改随保存
+    localStorage.setItem("canvasConfig", JSON.stringify(canvasConfig));
+    getCanvasComponent() && canvasCompoennt.updateCanvasConfig(config);
+    return canvasConfig;
+}
 
 /**
  * 更新组件列表数据都要通过这个方法
@@ -30,7 +39,10 @@ export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || (can
  * @param comList 
  */
 export const setComponentDatas = (comList: ComType[]) => {
-    componentDatas = [...comList];
+    componentDatas = deepCopy([],comList);
+    // 随改随保存
+    localStorage.setItem("comList",JSON.stringify(componentDatas))
+    debugger;
     // 分发到各个组件中去
     getCanvasComponent() && canvasCompoennt.mapComDatasToState([...comList]);
     getLayerComponent() && layerComponent.mapComDatasToState([...comList]);
@@ -49,12 +61,6 @@ export const addComponentData = (com: ComType) => {
     changeChooseComponent(com.id);
 }
 
-// // 更新hover组件的id
-// export const changeHoverComponent = (comId: string) => {
-//     layerComponent && layerComponent.setCurrentComponent(comId, false)
-//     canvasCompoennt && canvasCompoennt.setCurrentComponent(comId, false);
-// }
-
 // 更新选中的组件id
 export const changeChooseComponent = (comId: string) => {
     if (chooseComId !== comId) {
@@ -72,10 +78,6 @@ export const getComponentDataById = (comId: string) => {
     })[0] || null);
 }
 
-export const saveCanvasConfig = (config: CanvasConfig) => {
-    canvasConfig = config;
-    getCanvasComponent() && canvasCompoennt.updateCanvasConfig(config);
-}
 
 export const setComConfigData = (comDataItem: ComType) => {
     let comDatas = componentDatas.map((comData) => {

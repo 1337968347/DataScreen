@@ -1,4 +1,4 @@
-import { Component,h, Prop } from '@stencil/core';
+import { Component,h, State } from '@stencil/core';
 
 import { ComType, CanvasConfig } from "../../interfaces";
 
@@ -7,8 +7,13 @@ import { ComType, CanvasConfig } from "../../interfaces";
     styleUrl: 'app-preview.scss'
 })
 export class AppPreview {
-    @Prop() canvasOption: CanvasConfig;
-    @Prop() comOptionList: ComType[];
+    @State() canvasOption: CanvasConfig;
+    @State() comOptionList: ComType[] = [];
+
+    componentWillLoad() {
+        this.canvasOption = JSON.parse(localStorage.getItem("canvasConfig"));
+        this.comOptionList = JSON.parse(localStorage.getItem("comList"));
+    }
 
     render() {
         return (

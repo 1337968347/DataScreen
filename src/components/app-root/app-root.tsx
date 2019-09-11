@@ -86,7 +86,7 @@ export class AppRoot {
           <ion-route url="/" component="app-home" />
           <ion-route url="/preview" component= "app-preview"></ion-route>
         </ion-router>
-        <ion-nav />
+        <ion-nav animated={false} />
       </ion-app>
     );
   }

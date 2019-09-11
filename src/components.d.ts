@@ -13,10 +13,7 @@ import {
 
 export namespace Components {
   interface AppHome {}
-  interface AppPreview {
-    'canvasOption': CanvasConfig;
-    'comOptionList': ComType[];
-  }
+  interface AppPreview {}
   interface AppRoot {}
   interface ChartBasicLine {
     'comData': ComType;
@@ -178,10 +175,7 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
-    'canvasOption'?: CanvasConfig;
-    'comOptionList'?: ComType[];
-  }
+  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
     'comData'?: ComType;
