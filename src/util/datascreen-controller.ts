@@ -42,7 +42,6 @@ export const setComponentDatas = (comList: ComType[]) => {
     componentDatas = deepCopy([],comList);
     // 随改随保存
     localStorage.setItem("comList",JSON.stringify(componentDatas))
-    debugger;
     // 分发到各个组件中去
     getCanvasComponent() && canvasCompoennt.mapComDatasToState([...comList]);
     getLayerComponent() && layerComponent.mapComDatasToState([...comList]);

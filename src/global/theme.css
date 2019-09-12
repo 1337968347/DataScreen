@@ -49,7 +49,7 @@
 :root .black-theme {
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: rgb(255,255,255);
-    --ion-toolbar-background: #282830;
+    --ion-toolbar-background: #1C1c1c;
     --ion-background-color: #282830;
     --ion-background-contrast: #1c1c1c;
     --ion-background-shade: #0a0a0a;

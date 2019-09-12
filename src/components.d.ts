@@ -24,6 +24,12 @@ export namespace Components {
     'scale': number;
   }
   interface CyFastClick {}
+  interface CyLazyImg {
+    'alt': string;
+    'defaultImg': string;
+    'isLazy': boolean;
+    'src': string;
+  }
   interface DatascreenCanvas {
     'chooseComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
@@ -47,6 +53,9 @@ export namespace Components {
   }
   interface MediaBasicImg {
     'comData': ComType;
+  }
+  interface MediaBasicImgConfig {
+    'draggableConfig': any;
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
@@ -89,6 +98,12 @@ declare global {
   var HTMLCyFastClickElement: {
     prototype: HTMLCyFastClickElement;
     new (): HTMLCyFastClickElement;
+  };
+
+  interface HTMLCyLazyImgElement extends Components.CyLazyImg, HTMLStencilElement {}
+  var HTMLCyLazyImgElement: {
+    prototype: HTMLCyLazyImgElement;
+    new (): HTMLCyLazyImgElement;
   };
 
   interface HTMLDatascreenCanvasElement extends Components.DatascreenCanvas, HTMLStencilElement {}
@@ -139,6 +154,12 @@ declare global {
     new (): HTMLMediaBasicImgElement;
   };
 
+  interface HTMLMediaBasicImgConfigElement extends Components.MediaBasicImgConfig, HTMLStencilElement {}
+  var HTMLMediaBasicImgConfigElement: {
+    prototype: HTMLMediaBasicImgConfigElement;
+    new (): HTMLMediaBasicImgConfigElement;
+  };
+
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
   var HTMLPopoverThemeElement: {
     prototype: HTMLPopoverThemeElement;
@@ -157,6 +178,7 @@ declare global {
     'chart-basic-line': HTMLChartBasicLineElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
+    'cy-lazy-img': HTMLCyLazyImgElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
@@ -165,6 +187,7 @@ declare global {
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
     'draggable-adapter': HTMLDraggableAdapterElement;
     'media-basic-img': HTMLMediaBasicImgElement;
+    'media-basic-img-config': HTMLMediaBasicImgConfigElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
   }
@@ -191,6 +214,12 @@ declare namespace LocalJSX {
   interface CyFastClick extends JSXBase.HTMLAttributes<HTMLCyFastClickElement> {
     'onFastClick'?: (event: CustomEvent<any>) => void;
   }
+  interface CyLazyImg extends JSXBase.HTMLAttributes<HTMLCyLazyImgElement> {
+    'alt'?: string;
+    'defaultImg'?: string;
+    'isLazy'?: boolean;
+    'src'?: string;
+  }
   interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
     'onPopover'?: (event: CustomEvent<any>) => void;
     'scale'?: number;
@@ -216,6 +245,10 @@ declare namespace LocalJSX {
   interface MediaBasicImg extends JSXBase.HTMLAttributes<HTMLMediaBasicImgElement> {
     'comData'?: ComType;
   }
+  interface MediaBasicImgConfig extends JSXBase.HTMLAttributes<HTMLMediaBasicImgConfigElement> {
+    'draggableConfig'?: any;
+    'onConfigChange'?: (event: CustomEvent<any>) => void;
+  }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
@@ -226,6 +259,7 @@ declare namespace LocalJSX {
     'chart-basic-line': ChartBasicLine;
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
+    'cy-lazy-img': CyLazyImg;
     'datascreen-canvas': DatascreenCanvas;
     'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
@@ -234,6 +268,7 @@ declare namespace LocalJSX {
     'datascreen-setting-panel': DatascreenSettingPanel;
     'draggable-adapter': DraggableAdapter;
     'media-basic-img': MediaBasicImg;
+    'media-basic-img-config': MediaBasicImgConfig;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
   }

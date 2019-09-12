@@ -32,7 +32,8 @@ datascreen-setting-panel {
 
     ion-content {
         width: 332px;
-
+        --padding-start: 10px;
+        --padding-end: 8px;
         ion-toolbar{
             --min-height: 50px;
             margin-top: 2px;
@@ -41,9 +42,10 @@ datascreen-setting-panel {
         ion-title{
             font-size: var(--font-size);
         }
-
+        ion-grid + ion-grid{
+            border-top: 1px solid var(--ion-background-contrast);
+        }
         ion-grid{
-       
             ion-col{
                 display: flex;
                 align-items: center;

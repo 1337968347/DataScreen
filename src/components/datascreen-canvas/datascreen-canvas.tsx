@@ -49,6 +49,8 @@ export class DatascreenCanvas {
     handleDraggableScale(e:CustomEvent, changeComponentData: ComType) {
         changeComponentData.data.view.w = e.detail.w;
         changeComponentData.data.view.h = e.detail.h;
+        changeComponentData.data.view.x = e.detail.x;
+        changeComponentData.data.view.y = e.detail.y;
         updateChooseComConfig(changeComponentData)
     }
 

@@ -9,10 +9,15 @@ export class MediaBasicImg {
 
     render() {
         return (
-            <img style={{
+            <div style={{
                 width: "100%",
-                height: "100%"
-            }} src={this.comData.data.icon} alt="" />
+                height: "100%",
+                "background-repeat": "no-repeat",
+                "background-size": "100% 100%",
+                "image-rendering": "auto",
+                "background-image": `url(${this.comData.data.config.bgi|| "assets/image/img-default.png"})`}}>
+
+            </div>
         );
     }
 }
