@@ -8,6 +8,7 @@ import { getComponentDatas, changeChooseComponent, getCanvasConfig, updateChoose
 })
 export class DatascreenCanvas {
     @Prop() scale: number = 100;
+    @Prop() canModify: boolean = true;
     @Element() el: HTMLElement;
     @State() chooseComId: string = "";
     @State() canvasOption: CanvasConfig;
@@ -39,19 +40,23 @@ export class DatascreenCanvas {
         this.canvasOption = config;
     }
 
-    handleDraggableDrag(e:CustomEvent, changeComponentData: ComType) {
-        // 引用地址类型
-        changeComponentData.data.view.x = e.detail.x;
-        changeComponentData.data.view.y = e.detail.y;
-        updateChooseComConfig(changeComponentData)
+    handleDraggableDrag(e: CustomEvent, changeComponentData: ComType) {
+        if (changeComponentData.data.view.x !== e.detail.x || changeComponentData.data.view.y !== e.detail.y) {
+            // 引用地址类型
+            changeComponentData.data.view.x = e.detail.x;
+            changeComponentData.data.view.y = e.detail.y;
+            updateChooseComConfig(changeComponentData)
+        }
     }
 
-    handleDraggableScale(e:CustomEvent, changeComponentData: ComType) {
-        changeComponentData.data.view.w = e.detail.w;
-        changeComponentData.data.view.h = e.detail.h;
-        changeComponentData.data.view.x = e.detail.x;
-        changeComponentData.data.view.y = e.detail.y;
-        updateChooseComConfig(changeComponentData)
+    handleDraggableScale(e: CustomEvent, changeComponentData: ComType) {
+        if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
+            changeComponentData.data.view.w = e.detail.w;
+            changeComponentData.data.view.h = e.detail.h;
+            changeComponentData.data.view.x = e.detail.x;
+            changeComponentData.data.view.y = e.detail.y;
+            updateChooseComConfig(changeComponentData)
+        }
     }
 
     render() {
@@ -61,11 +66,12 @@ export class DatascreenCanvas {
                 "width": this.canvasOption.w + "px",
                 "height": this.canvasOption.h + "px",
                 "background-color": this.canvasOption.bgc + "",
-                "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : ""
+                "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : "",
+                "overflow": this.canModify ? "inherit" : "hidden"
             }} onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
                 {this.comOptionList.map((comDarggable) =>
                     <cy-draggable key={comDarggable.id}
-                        isChoose={this.chooseComId == comDarggable.id} canModify={true} scale={Math.round(this.scale) / 100}
+                        isChoose={this.chooseComId == comDarggable.id} canModify={this.canModify} scale={Math.round(this.scale) / 100}
                         onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
                         onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
                         onChoose={() => { this.chooseComponent(comDarggable.id) }}

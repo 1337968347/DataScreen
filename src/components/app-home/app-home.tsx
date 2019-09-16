@@ -11,7 +11,7 @@ export class AppHome {
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
-        setComponentDatas([])
+        setComponentDatas(JSON.parse(localStorage.getItem("comList")),true,true)
         if(localStorage.getItem("show_menu_control")){
             this.showMenuControl =  [...JSON.parse(localStorage.getItem("show_menu_control"))]; 
         }else{

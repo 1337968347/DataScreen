@@ -38,7 +38,6 @@ export class CyLazyImg {
   }
 
   handleImage() {
-    console.log(this.src)
     const image: HTMLImageElement = this.el.shadowRoot.querySelector('img');
     image.setAttribute('src', this.src);
     image.onerror = () => {

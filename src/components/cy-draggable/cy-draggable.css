@@ -45,7 +45,7 @@
     left: 0;
     right: 0;
     cursor: grab;
-    z-index: 1;
+    z-index: 999;
     border-width: var(--border-width);
     border-style: solid;
     border-color: var(--border-color);

@@ -1,4 +1,4 @@
-import { Component, Watch, State, Element, Event, EventEmitter, Prop, h } from '@stencil/core';
+import { Component, State, Element, Event, EventEmitter, Prop, h } from '@stencil/core';
 // 组件定义
 // 可以拖拽缩放
 @Component({
@@ -25,15 +25,9 @@ export class CyDraggable {
 
     @Event() choose: EventEmitter;
 
-    @Watch('isChoose')
-    watchHandler(newValue) {
-        this.changeZIndexByChoose(newValue);
-    }
-
     componentDidLoad() {
         // 如果是修改模式 添加css类
         this.el.oncontextmenu = function () { return false };
-        this.changeZIndexByChoose(this.isChoose);
     }
 
     // type 拖放的类型
@@ -171,17 +165,9 @@ export class CyDraggable {
     handleDomChoose(e) {
         e.preventDefault()
         e.stopPropagation();
-        this.changeZIndexByChoose(true)
         this.choose.emit()
     }
 
-    changeZIndexByChoose(isChoose: boolean) {
-        if (isChoose) {
-            this.el.style.zIndex = 999 + "";
-        } else {
-            this.el.style.zIndex = 1 + "";
-        }
-    }
 
     render() {
         return (

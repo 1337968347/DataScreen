@@ -14,13 +14,13 @@ export class DatascreenSettingPanel {
     @Method()
     async setComponentConfigData(comData) {
         this.comTypeData = deepCopy({}, comData);
+        this.chooseSeg = "config";
     }
 
     handleComConfigChange(type: string, name: string, value: any) {
         this.comTypeData.data[type][name] = value;
         this.comTypeData = { ...this.comTypeData };
         setComConfigData(this.comTypeData);
-        this.chooseSeg = "config";
     }
 
     handleSegChange(e) {

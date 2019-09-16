@@ -1,6 +1,6 @@
 import { ComType, CanvasConfig } from "../interfaces"
 import { canvasDefaultConfig } from "../util/canvas/canvas-defaultdata"
-import{deepCopy} from "./helper"
+import { deepCopy } from "./helper"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
@@ -38,13 +38,16 @@ export const saveCanvasConfig = (config: CanvasConfig) => {
  * 通过全局状态管理的方式管理数据
  * @param comList 
  */
-export const setComponentDatas = (comList: ComType[]) => {
-    componentDatas = deepCopy([],comList);
-    // 随改随保存
-    localStorage.setItem("comList",JSON.stringify(componentDatas))
-    // 分发到各个组件中去
-    getCanvasComponent() && canvasCompoennt.mapComDatasToState([...comList]);
-    getLayerComponent() && layerComponent.mapComDatasToState([...comList]);
+export const setComponentDatas = (comList: ComType[], isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true) => {
+    componentDatas = deepCopy([], comList);
+    localStorage.setItem("comList", JSON.stringify(componentDatas))
+    if (isCanvasUpdate) {
+        getCanvasComponent() && canvasCompoennt.mapComDatasToState(comList);
+    }
+    if (isLayerUpdate) {
+        let comIdsList = componentDatas.map((item) => { return item.id });
+        getLayerComponent() && layerComponent.mapComIdsToState(comIdsList);
+    }
 }
 
 export const getComponentDatas = (): ComType[] => {
@@ -56,7 +59,7 @@ export const getComponentDatas = (): ComType[] => {
  * @param com 
  */
 export const addComponentData = (com: ComType) => {
-    setComponentDatas([...componentDatas, deepCopy({},com)])
+    setComponentDatas([...componentDatas, deepCopy({}, com)], true, true)
     changeChooseComponent(com.id);
 }
 
@@ -77,6 +80,18 @@ export const getComponentDataById = (comId: string) => {
     })[0] || null);
 }
 
+export const updateLayerMove = (from: number, to: number) => {
+    let comOptionTemp = componentDatas[from];
+    componentDatas.splice(from, 1);
+    componentDatas.splice(to, 0, comOptionTemp);
+    // 随改随保存
+    localStorage.setItem("comList", JSON.stringify(componentDatas))
+    let comIdsList = componentDatas.map((item) => { return item.id });
+    // 分发到各个组件中去
+    getCanvasComponent() && canvasCompoennt.mapComDatasToState(componentDatas);
+    getLayerComponent() && layerComponent.mapComIdsToState(comIdsList);
+}
+
 
 export const setComConfigData = (comDataItem: ComType) => {
     let comDatas = componentDatas.map((comData) => {
@@ -86,7 +101,7 @@ export const setComConfigData = (comDataItem: ComType) => {
             return comData
         }
     })
-    setComponentDatas(comDatas)
+    setComponentDatas(comDatas, true, false)
 }
 
 export const updateChooseComConfig = (comDataItem: ComType) => {

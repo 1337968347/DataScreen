@@ -36,7 +36,7 @@ export const isPlainObject = (obj) => {
     return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
 };
 
-export const deepCopy = (targetArg: any, copyArg: any) => {
+export const deepCopy = <T>(targetArg: any, copyArg: T):T=> {
     var name, src, copyIsArray, clone,
         target = targetArg, copy = copyArg;
 

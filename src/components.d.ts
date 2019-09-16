@@ -31,6 +31,7 @@ export namespace Components {
     'src': string;
   }
   interface DatascreenCanvas {
+    'canModify': boolean;
     'chooseComponent': (comId: any) => Promise<void>;
     'mapComDatasToState': (comList: ComType[]) => Promise<void>;
     'scale': number;
@@ -43,7 +44,7 @@ export namespace Components {
   }
   interface DatascreenLayer {
     'chooseComponent': (comId: any) => Promise<void>;
-    'mapComDatasToState': (comList: ComType[]) => Promise<void>;
+    'mapComIdsToState': (newComIdList: string[]) => Promise<void>;
   }
   interface DatascreenSettingPanel {
     'setComponentConfigData': (comData: any) => Promise<void>;
@@ -221,6 +222,7 @@ declare namespace LocalJSX {
     'src'?: string;
   }
   interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
+    'canModify'?: boolean;
     'onPopover'?: (event: CustomEvent<any>) => void;
     'scale'?: number;
   }

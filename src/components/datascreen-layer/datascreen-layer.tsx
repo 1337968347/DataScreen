@@ -1,7 +1,6 @@
 import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
 
-import { ComType } from "../../interfaces";
-import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-controller"
+import { changeChooseComponent, getComponentDataById,updateLayerMove } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'datascreen-layer',
@@ -9,16 +8,15 @@ import { getComponentDatas, changeChooseComponent } from "../../util/datascreen-
 })
 export class DatascreenLayer {
     @State() chooseComId: string = "";
-    @State() comOptionList: ComType[] = [];
+    @State() comIdList: string[] = [];
     @Event() checkMenu: EventEmitter;
 
     componentWillLoad() {
-        this.mapComDatasToState(getComponentDatas())
     }
 
     @Method()
-    async mapComDatasToState(comList: ComType[]) {
-        this.comOptionList = comList;
+    async mapComIdsToState(newComIdList: string[]) {
+        this.comIdList = [...newComIdList];
     }
 
     @Method()
@@ -28,7 +26,24 @@ export class DatascreenLayer {
     }
 
     handleMoveLayer(detail) {
+        updateLayerMove(detail.from, detail.to);
         detail.complete();
+    }
+
+    renderRender(id) {
+        let comOption = getComponentDataById(id);
+        return (
+            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(id) }}>
+                <ion-item button color={this.chooseComId == id ? "primary" : ""}>
+                    <ion-thumbnail slot="start">
+                        <img src={comOption.data.icon} />
+                    </ion-thumbnail>
+                    <ion-label>
+                        {comOption.data.nickName || comOption.data.comName || ""}
+                    </ion-label>
+                </ion-item>
+            </cy-fast-click>
+        )
     }
 
     render() {
@@ -45,19 +60,9 @@ export class DatascreenLayer {
             </ion-header>,
             <ion-content onClick={() => { changeChooseComponent("") }}>
                 <ion-reorder-group disabled={false} onIonItemReorder={(e) => { this.handleMoveLayer(e.detail) }}>
-                    {this.comOptionList.map((com) =>
+                    {this.comIdList.map((id) =>
                         <ion-reorder>
-                            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(com.id) }}>
-                                <ion-item button color={this.chooseComId == com.id ? "primary" : ""}>
-                                    <ion-thumbnail slot="start">
-                                        <img src={com.data.icon} />
-                                    </ion-thumbnail>
-                                    <ion-label>
-                                        {com.data.nickName || com.data.comName || ""}
-                                    </ion-label>
-                                </ion-item>
-                            </cy-fast-click>
-
+                            {this.renderRender(id)}
                         </ion-reorder>
                     )}
                 </ion-reorder-group>
