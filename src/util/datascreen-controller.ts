@@ -52,11 +52,7 @@ export const setComponentDatas = (comList: ComType[], isCanvasUpdate: boolean = 
 
 export const setComDataChange = (comDataItem: ComType, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
     let comDatas = componentDatas.map((comData) => {
-        if (comData.id == comDataItem.id) {
-            return comDataItem
-        } else {
-            return comData
-        }
+        return (comData.id == comDataItem.id) ? comDataItem : comData
     })
     setComponentDatas(comDatas, isCanvasUpdate, false);
     isSettingUpdate && getSettingComponent() && settingComponent.setComponentConfigData(comDataItem);
@@ -96,12 +92,7 @@ export const updateLayerMove = (from: number, to: number) => {
     let comOptionTemp = componentDatas[from];
     componentDatas.splice(from, 1);
     componentDatas.splice(to, 0, comOptionTemp);
-    // 随改随保存
-    localStorage.setItem("comList", JSON.stringify(componentDatas))
-    let comIdsList = componentDatas.map((item) => { return item.id });
-    // 分发到各个组件中去
-    getCanvasComponent() && canvasCompoennt.mapComDatasToState(componentDatas);
-    getLayerComponent() && layerComponent.mapComIdsToState(comIdsList);
+    setComponentDatas(componentDatas, false, false)
 }
 
 

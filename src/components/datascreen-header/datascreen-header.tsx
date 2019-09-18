@@ -22,6 +22,14 @@ export class DatascreenHeader {
         this.checkMenu.emit(index);
     }
 
+    talkIsCheapShowMeTheCode(){
+        this.popover.emit({
+            component: 'popover-code-view',
+            translucent: true,
+            cssClass: "code-view-popover"
+          })
+    }
+
     render() {
         return (
             <ion-header>
@@ -41,6 +49,9 @@ export class DatascreenHeader {
 
                     </ion-buttons>
                     <ion-buttons slot="end" class="header-buttons">
+                        <ion-button title="数据" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.talkIsCheapShowMeTheCode() }}>
+                            <ion-icon name="code"></ion-icon>
+                        </ion-button>
 
                         <ion-button title="预览" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.previewCanvas() }}>
                             <ion-icon slot="icon-only" name="easel"></ion-icon>

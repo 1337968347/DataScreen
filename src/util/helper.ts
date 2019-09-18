@@ -90,6 +90,6 @@ export const reduceFrequency = (key: string, callback: Function, delay?: number)
      let timerId = setTimeout(()=>{
         callback() 
         keyCallbackMap.delete(key)
-    }, delay || 200);
+    }, delay || 300);
     keyCallbackMap.set(key, timerId);
 }

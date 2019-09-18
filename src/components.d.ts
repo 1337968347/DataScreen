@@ -58,6 +58,7 @@ export namespace Components {
   interface MediaBasicImgConfig {
     'draggableConfig': any;
   }
+  interface PopoverCodeView {}
   interface PopoverTheme {}
   interface SettingCanvasOption {}
 }
@@ -161,6 +162,12 @@ declare global {
     new (): HTMLMediaBasicImgConfigElement;
   };
 
+  interface HTMLPopoverCodeViewElement extends Components.PopoverCodeView, HTMLStencilElement {}
+  var HTMLPopoverCodeViewElement: {
+    prototype: HTMLPopoverCodeViewElement;
+    new (): HTMLPopoverCodeViewElement;
+  };
+
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
   var HTMLPopoverThemeElement: {
     prototype: HTMLPopoverThemeElement;
@@ -189,6 +196,7 @@ declare global {
     'draggable-adapter': HTMLDraggableAdapterElement;
     'media-basic-img': HTMLMediaBasicImgElement;
     'media-basic-img-config': HTMLMediaBasicImgConfigElement;
+    'popover-code-view': HTMLPopoverCodeViewElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
   }
@@ -251,6 +259,9 @@ declare namespace LocalJSX {
     'draggableConfig'?: any;
     'onConfigChange'?: (event: CustomEvent<any>) => void;
   }
+  interface PopoverCodeView extends JSXBase.HTMLAttributes<HTMLPopoverCodeViewElement> {
+    'onToast'?: (event: CustomEvent<any>) => void;
+  }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
@@ -271,6 +282,7 @@ declare namespace LocalJSX {
     'draggable-adapter': DraggableAdapter;
     'media-basic-img': MediaBasicImg;
     'media-basic-img-config': MediaBasicImgConfig;
+    'popover-code-view': PopoverCodeView;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
   }

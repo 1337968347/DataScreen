@@ -1,5 +1,5 @@
 import { Component, State, Event, EventEmitter, h } from '@stencil/core';
-import { setComponentDatas } from "../../util/datascreen-controller";
+import { setComponentDatas,saveCanvasConfig } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-home',
@@ -11,7 +11,12 @@ export class AppHome {
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
+       this.initDataFromLocal();
+    }
+
+    initDataFromLocal(){
         setComponentDatas(JSON.parse(localStorage.getItem("comList")),true,true)
+        saveCanvasConfig(JSON.parse(localStorage.getItem("canvasConfig")));
         if(localStorage.getItem("show_menu_control")){
             this.showMenuControl =  [...JSON.parse(localStorage.getItem("show_menu_control"))]; 
         }else{

@@ -43,10 +43,10 @@ export class DatascreenSettingPanel {
                         </ion-segment-button>
                     </ion-segment>
                 </ion-header>,
+                <ion-toolbar color="secondary">
+                    <ion-title>{comData.comName || ""}</ion-title>
+                </ion-toolbar>,
                 <ion-content>
-                    <ion-toolbar color="secondary">
-                        <ion-title>{comData.comName || ""}</ion-title>
-                    </ion-toolbar>
                     {this.chooseSeg == "config" ?
                         <div>
                             {/* basic config */}
@@ -98,8 +98,8 @@ export class DatascreenSettingPanel {
                                 </ion-row>
 
                             </ion-grid>
-                            {this.comTypeData.comType=="media-basic-img"?
-                            <media-basic-img-config draggableConfig={comData.config} onConfigChange={(e)=>{this.handleComConfigChange("config", e.detail.name, e.detail.value)}}></media-basic-img-config>: null
+                            {this.comTypeData.comType == "media-basic-img" ?
+                                <media-basic-img-config draggableConfig={comData.config} onConfigChange={(e) => { this.handleComConfigChange("config", e.detail.name, e.detail.value) }}></media-basic-img-config> : null
                             }
                         </div>
                         : null

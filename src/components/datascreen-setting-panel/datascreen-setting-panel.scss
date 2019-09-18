@@ -29,15 +29,15 @@ datascreen-setting-panel {
             }
         }
     }
-
+    ion-toolbar{
+        --min-height: 50px;
+        margin-top: 2px;
+    }
     ion-content {
         width: 332px;
         --padding-start: 10px;
         --padding-end: 8px;
-        ion-toolbar{
-            --min-height: 50px;
-            margin-top: 2px;
-        }
+        
 
         ion-title{
             font-size: var(--font-size);

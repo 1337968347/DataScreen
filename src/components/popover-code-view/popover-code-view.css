@@ -1,0 +1,3 @@
+ion-textarea{
+    font-size: calc(1.4 * var(--font-size))!important;
+}
