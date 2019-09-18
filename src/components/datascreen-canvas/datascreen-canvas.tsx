@@ -1,6 +1,6 @@
 import { Component, State, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
 import { ComType, CanvasConfig } from "../../interfaces";
-import { getComponentDatas, changeChooseComponent, getCanvasConfig, updateChooseComConfig } from "../../util/datascreen-controller"
+import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-canvas',
@@ -43,19 +43,19 @@ export class DatascreenCanvas {
     handleDraggableDrag(e: CustomEvent, changeComponentData: ComType) {
         if (changeComponentData.data.view.x !== e.detail.x || changeComponentData.data.view.y !== e.detail.y) {
             // 引用地址类型
-            changeComponentData.data.view.x = e.detail.x;
-            changeComponentData.data.view.y = e.detail.y;
-            updateChooseComConfig(changeComponentData)
+            changeComponentData.data.view.x = e.detail.x+"";
+            changeComponentData.data.view.y = e.detail.y+"";
+            setComDataChange(changeComponentData, true, true)
         }
     }
 
     handleDraggableScale(e: CustomEvent, changeComponentData: ComType) {
-        if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
+        if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h ) {
             changeComponentData.data.view.w = e.detail.w;
             changeComponentData.data.view.h = e.detail.h;
-            changeComponentData.data.view.x = e.detail.x;
-            changeComponentData.data.view.y = e.detail.y;
-            updateChooseComConfig(changeComponentData)
+            changeComponentData.data.view.x = e.detail.x+"";
+            changeComponentData.data.view.y = e.detail.y+"";
+            setComDataChange(changeComponentData, true, true)
         }
     }
 

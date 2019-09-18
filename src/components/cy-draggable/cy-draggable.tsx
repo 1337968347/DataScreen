@@ -55,6 +55,7 @@ export class CyDraggable {
             this.isDomDrag = false;
             document.onmousemove = null;
             document.onmouseup = null;
+            var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
             this.cyScale.emit( {
                 w: parseInt(this.el.clientWidth+""),
                 h: parseInt(this.el.clientHeight+""),

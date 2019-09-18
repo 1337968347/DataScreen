@@ -1,6 +1,6 @@
 import { ComType, CanvasConfig } from "../interfaces"
 import { canvasDefaultConfig } from "../util/canvas/canvas-defaultdata"
-import { deepCopy } from "./helper"
+import { deepCopy, reduceFrequency } from "./helper"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
@@ -41,13 +41,25 @@ export const saveCanvasConfig = (config: CanvasConfig) => {
 export const setComponentDatas = (comList: ComType[], isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true) => {
     componentDatas = deepCopy([], comList);
     localStorage.setItem("comList", JSON.stringify(componentDatas))
-    if (isCanvasUpdate) {
-        getCanvasComponent() && canvasCompoennt.mapComDatasToState(comList);
-    }
-    if (isLayerUpdate) {
+    isCanvasUpdate && reduceFrequency("canvasDataCallback", () => {
+        getCanvasComponent() && canvasCompoennt.mapComDatasToState(componentDatas)
+    })
+    isLayerUpdate && reduceFrequency("layerDataCallback", () => {
         let comIdsList = componentDatas.map((item) => { return item.id });
         getLayerComponent() && layerComponent.mapComIdsToState(comIdsList);
-    }
+    })
+}
+
+export const setComDataChange = (comDataItem: ComType, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
+    let comDatas = componentDatas.map((comData) => {
+        if (comData.id == comDataItem.id) {
+            return comDataItem
+        } else {
+            return comData
+        }
+    })
+    setComponentDatas(comDatas, isCanvasUpdate, false);
+    isSettingUpdate && getSettingComponent() && settingComponent.setComponentConfigData(comDataItem);
 }
 
 export const getComponentDatas = (): ComType[] => {
@@ -93,18 +105,4 @@ export const updateLayerMove = (from: number, to: number) => {
 }
 
 
-export const setComConfigData = (comDataItem: ComType) => {
-    let comDatas = componentDatas.map((comData) => {
-        if (comData.id == comDataItem.id) {
-            return comDataItem
-        } else {
-            return comData
-        }
-    })
-    setComponentDatas(comDatas, true, false)
-}
 
-export const updateChooseComConfig = (comDataItem: ComType) => {
-    setComConfigData(comDataItem);
-    getSettingComponent() && settingComponent.setComponentConfigData(comDataItem);
-}

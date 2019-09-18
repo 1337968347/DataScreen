@@ -1,6 +1,6 @@
 import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
 
-import { changeChooseComponent, getComponentDataById,updateLayerMove } from "../../util/datascreen-controller";
+import { changeChooseComponent, getComponentDataById, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'datascreen-layer',
@@ -12,6 +12,8 @@ export class DatascreenLayer {
     @Event() checkMenu: EventEmitter;
 
     componentWillLoad() {
+        let comIdsList = getComponentDatas().map((item) => { return item.id });
+        this.mapComIdsToState(comIdsList)
     }
 
     @Method()

@@ -1,6 +1,6 @@
 import { Component, State, Method, h } from '@stencil/core';
 import { ComType } from "../../interfaces";
-import { setComConfigData } from "../../util/datascreen-controller"
+import { setComDataChange } from "../../util/datascreen-controller"
 import { deepCopy } from "../../util/helper"
 
 @Component({
@@ -20,7 +20,7 @@ export class DatascreenSettingPanel {
     handleComConfigChange(type: string, name: string, value: any) {
         this.comTypeData.data[type][name] = value;
         this.comTypeData = { ...this.comTypeData };
-        setComConfigData(this.comTypeData);
+        setComDataChange(this.comTypeData, true, false);
     }
 
     handleSegChange(e) {

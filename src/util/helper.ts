@@ -4,7 +4,7 @@ var hasOwn = class2type.hasOwnProperty;
 
 var fnToString = hasOwn.toString;
 
-var ObjectFunctionString = fnToString.call( Object );
+var ObjectFunctionString = fnToString.call(Object);
 
 export const isFunction = (obj) => {
 
@@ -20,23 +20,23 @@ export const isPlainObject = (obj) => {
 
     // Detect obvious negatives
     // Use toString instead of jQuery.type to catch host objects
-    if ( !obj || toString.call( obj ) !== "[object Object]" ) {
+    if (!obj || toString.call(obj) !== "[object Object]") {
         return false;
     }
 
-    proto = getProto( obj );
+    proto = getProto(obj);
 
     // Objects with no prototype (e.g., `Object.create( null )`) are plain
-    if ( !proto ) {
+    if (!proto) {
         return true;
     }
 
     // Objects with prototype are plain iff they were constructed by a global Object function
-    Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
-    return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
+    Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+    return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
 };
 
-export const deepCopy = <T>(targetArg: any, copyArg: T):T=> {
+export const deepCopy = <T>(targetArg: any, copyArg: T): T => {
     var name, src, copyIsArray, clone,
         target = targetArg, copy = copyArg;
 
@@ -82,3 +82,14 @@ export const deepCopy = <T>(targetArg: any, copyArg: T):T=> {
     // Return the modified object
     return target;
 };
+
+
+let keyCallbackMap = new Map();
+export const reduceFrequency = (key: string, callback: Function, delay?: number) => {
+     keyCallbackMap.has(key)&&clearTimeout(keyCallbackMap.get(key));
+     let timerId = setTimeout(()=>{
+        callback() 
+        keyCallbackMap.delete(key)
+    }, delay || 200);
+    keyCallbackMap.set(key, timerId);
+}
