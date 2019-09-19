@@ -15,7 +15,7 @@ export class MediaBasicImg {
                 "background-repeat": "no-repeat",
                 "background-size": "100% 100%",
                 "image-rendering": "auto",
-                "background-image": `url(${this.comData.data.config.bgi|| "assets/image/img-default.png"})`}}>
+                "background-image": `url(${this.comData.data.config.bgi|| "../../assets/image/img-default.png"})`}}>
 
             </div>
         );

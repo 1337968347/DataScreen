@@ -13,6 +13,7 @@ import {
 
 export namespace Components {
   interface AppHome {}
+  interface AppManage {}
   interface AppPreview {}
   interface AppRoot {}
   interface ChartBasicLine {
@@ -70,6 +71,12 @@ declare global {
   var HTMLAppHomeElement: {
     prototype: HTMLAppHomeElement;
     new (): HTMLAppHomeElement;
+  };
+
+  interface HTMLAppManageElement extends Components.AppManage, HTMLStencilElement {}
+  var HTMLAppManageElement: {
+    prototype: HTMLAppManageElement;
+    new (): HTMLAppManageElement;
   };
 
   interface HTMLAppPreviewElement extends Components.AppPreview, HTMLStencilElement {}
@@ -181,6 +188,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement;
+    'app-manage': HTMLAppManageElement;
     'app-preview': HTMLAppPreviewElement;
     'app-root': HTMLAppRootElement;
     'chart-basic-line': HTMLChartBasicLineElement;
@@ -207,6 +215,7 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
+  interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {}
   interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
@@ -267,6 +276,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'app-home': AppHome;
+    'app-manage': AppManage;
     'app-preview': AppPreview;
     'app-root': AppRoot;
     'chart-basic-line': ChartBasicLine;

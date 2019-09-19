@@ -1,5 +1,5 @@
 import { Component, State,h } from '@stencil/core';
-
+import {popoverController} from "@ionic/core"
 
 @Component({
     tag: 'popover-theme',
@@ -8,7 +8,6 @@ import { Component, State,h } from '@stencil/core';
 export class PopoverTheme {
 
     @State() themeList = [{ name: "默认", value: "default-theme", isCheck: false }, { name: "紫色", value: "purple-theme", isCheck: false }, { name: "黑夜", value: "black-theme", isCheck: false }]
-
 
     componentWillLoad() {
         var themeStr = localStorage.getItem("theme") || "";
@@ -29,7 +28,6 @@ export class PopoverTheme {
     }
 
     popoverDisMiss = async () => {
-        const popoverController = document.querySelector('ion-popover-controller');
         popoverController.dismiss();
     }
     render() {

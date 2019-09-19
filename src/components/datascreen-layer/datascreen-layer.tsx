@@ -38,7 +38,7 @@ export class DatascreenLayer {
             <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(id) }}>
                 <ion-item button color={this.chooseComId == id ? "primary" : ""}>
                     <ion-thumbnail slot="start">
-                        <img src={comOption.data.icon} />
+                        <img src={"../../"+comOption.data.icon} />
                     </ion-thumbnail>
                     <ion-label>
                         {comOption.data.nickName || comOption.data.comName || ""}

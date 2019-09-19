@@ -24,7 +24,6 @@ const getSettingComponent = () => { return settingComponent || (settingComponent
  */
 export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || saveCanvasConfig(canvasDefaultConfig) }
 
-
 export const saveCanvasConfig = (config: CanvasConfig) => {
     canvasConfig = config;
     // 随改随保存
@@ -92,7 +91,7 @@ export const updateLayerMove = (from: number, to: number) => {
     let comOptionTemp = componentDatas[from];
     componentDatas.splice(from, 1);
     componentDatas.splice(to, 0, comOptionTemp);
-    setComponentDatas(componentDatas, false, false)
+    setComponentDatas(componentDatas, true, false)
 }
 
 

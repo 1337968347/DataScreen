@@ -31,7 +31,7 @@ export class MediaBasicImgConfig {
                     <ion-col size="4">
                     </ion-col>
                     <ion-col size="8">
-                        <cy-lazy-img isLazy={false} defaultImg="assets/image/img-default.png" style={{ "height": "100px", "object-fit": "cover" }} src={this.draggableConfig.bgi}></cy-lazy-img>
+                        <cy-lazy-img isLazy={false} defaultImg="../../assets/image/img-default.png" style={{ "height": "100px", "object-fit": "cover" }} src={this.draggableConfig.bgi}></cy-lazy-img>
                     </ion-col>
                 </ion-row>
             </ion-grid>
