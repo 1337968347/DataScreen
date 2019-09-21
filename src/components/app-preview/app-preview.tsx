@@ -1,4 +1,4 @@
-import { Component,h, State } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
 
 import { ComType, CanvasConfig } from "../../interfaces";
 import { get } from "../../providers/storage";
@@ -16,7 +16,7 @@ export class AppPreview {
         this.initCanvasOption();
     }
 
-    async initCanvasOption(){
+    async initCanvasOption() {
         let componentDatas = await get<ComType[]>("comList");
         let canvasConfig = await get<CanvasConfig>("canvasConfig");
         initDataScreenController({
@@ -26,9 +26,7 @@ export class AppPreview {
     }
     render() {
         return (
-            <ion-content>
-                <datascreen-canvas canModify={false}></datascreen-canvas>
-            </ion-content>
+            <datascreen-canvas canModify={false}></datascreen-canvas>
         );
     }
 }

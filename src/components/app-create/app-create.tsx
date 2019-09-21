@@ -1,13 +1,35 @@
-import { Component, h } from '@stencil/core';
+import { Component, Element, h } from '@stencil/core';
+
+import { ComType, CanvasConfig } from "../../interfaces"
+import { initCanvasComponent, saveCanvasConfig, setComponentDatas, initDataScreenController } from "../../util/datascreen-controller";
 import { canvasTemplateList } from "../../util/canvas/canvas-templatedata";
+import { deepCopy } from "../../util/helper"
 
 @Component({
     tag: 'app-create',
     styleUrl: 'app-create.scss'
 })
 export class AppCreate {
-    componentWillLoad() {
-        console.log(canvasTemplateList)
+    @Element() el: HTMLElement;
+
+    componentDidLoad() {
+        initCanvasComponent(this.el.querySelector("datascreen-canvas"));
+    }
+
+    handleChooseTemplate(template: CanvasConfig) {
+        let chooseTemplate = deepCopy({}, template)
+        initDataScreenController({
+            componentDatas: []
+        })
+        console.log(chooseTemplate)
+        let comsData: ComType[] = chooseTemplate.componentsData;
+        setComponentDatas(comsData);
+        delete chooseTemplate.componentsData;
+        saveCanvasConfig(chooseTemplate)
+    }
+
+    jumpToEdit(){
+        this.el.closest("ion-nav").push("app-home");
     }
 
     render() {
@@ -33,7 +55,7 @@ export class AppCreate {
                         </ion-item>
 
                         {canvasTemplateList.map((canvasTemplate) =>
-                            <ion-item button>
+                            <ion-item button onClick={() => { this.handleChooseTemplate(canvasTemplate) }}>
                                 {canvasTemplate.scaleImg ?
                                     <ion-thumbnail slot="start">
                                         <img src={canvasTemplate.scaleImg} />
@@ -49,8 +71,9 @@ export class AppCreate {
 
                     <div class="canvas-preview">
                         <h2>选择模板</h2>
-                                
-                        </div>
+                        <datascreen-canvas onClick={()=>{this.jumpToEdit()}} scale={35} canModify={false}>
+                        </datascreen-canvas>
+                    </div>
                 </div>
             </ion-content>
         ];

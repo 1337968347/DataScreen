@@ -17,6 +17,10 @@ export class AppManage {
         this.el.closest("ion-nav").push("app-create");
     }
 
+    jumpToCanvasEdit(){
+        this.el.closest("ion-nav").push("app-home")
+    }
+
     render() {
         return (
             <ion-content>
@@ -45,7 +49,7 @@ export class AppManage {
                             </div>
                         </ion-card>
 
-                        <ion-card button>
+                        <ion-card button onClick={()=>{ this.jumpToCanvasEdit() }}>
                             <div style={{"background-image": `url(${"../../assets/image/default-canvas.png"})`}} class="canvas-preivew"></div>
                             <ion-card-content>
                                 Keep close to Nature's heart... and break clear away, once in awhile

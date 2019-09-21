@@ -1,6 +1,7 @@
 import { Component, State, Element, h } from '@stencil/core';
 
-import { changeChooseComponent, initCanvasComponent } from "../../util/datascreen-controller";
+import { changeChooseComponent, initCanvasComponent, getCanvasConfig } from "../../util/datascreen-controller";
+import { CanvasConfig } from "../../interfaces"
 
 @Component({
     tag: 'datascreen-edit-main',
@@ -13,15 +14,32 @@ export class DatascreenEditMain {
     minRange: number = 10;
     maxRange: number = 200;
 
-    componentWillLoad() {
-
-    }
 
     componentDidLoad() {
+        this.initResize();
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
     }
 
+    initResize(){
+        let canvasOption = getCanvasConfig();
+        this.resizeSCale(canvasOption);
+        window.onresize = () => {
+            this.resizeSCale(canvasOption)
+        }
+    }
 
+    resizeSCale(canvasOption: CanvasConfig) {
+        let canShowBoxWidth = this.el.querySelector("datascreen-canvas").clientWidth;
+        let canShowBoxHeight = this.el.querySelector("datascreen-canvas").clientHeight;
+        let scale = this.scaleRange;
+        if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
+            scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
+        } else {
+            scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
+        }
+        this.scaleRange = scale > this.minRange ? scale : this.minRange;
+        this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
+    }
 
     changeRangeValue(value) {
         if (value >= this.minRange && value <= this.maxRange) {

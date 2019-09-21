@@ -37,7 +37,8 @@ app-manage {
     .canvas-box {
         display: flex;
         flex-wrap: wrap;
-        align-content: flex-start;
+        align-content: flex-start; 
+        justify-content: center;
         padding-top: 8px;
         user-select: none;
         padding-bottom: 50px;
@@ -45,7 +46,8 @@ app-manage {
 
         ion-card {
             margin: 16px;
-            width: 380px;
+            width: 380px;    
+            height: 288px;
             --color: var(--ion-text-color);
             --background: var(--ion-background-contrast);
             button{

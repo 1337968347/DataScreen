@@ -2,7 +2,7 @@ import { Component, State, Event, EventEmitter, Element, h } from '@stencil/core
 
 import { ComType, CanvasConfig } from "../../interfaces"
 import { get, set } from "../../providers/storage";
-import { initLayerComponent,initSettingComponent,initDataScreenController } from "../../util/datascreen-controller";
+import { initLayerComponent,initSettingComponent,initDataScreenController} from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-home',
@@ -15,6 +15,7 @@ export class AppHome {
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
+       
         this.initMenuControl()
         this.initCanvasOption()
     }

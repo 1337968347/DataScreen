@@ -18,7 +18,14 @@
 
 :root {
   --header-height: 50px;
-  --font-size: 16px;
+  --font-size: 18px;
+}
+
+@media screen and (max-width: 450px) {
+  :root {
+    --header-height: 50px;
+    --font-size: 12px;
+  }
 }
 
 ion-toolbar {

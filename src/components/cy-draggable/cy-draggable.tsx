@@ -56,10 +56,10 @@ export class CyDraggable {
             document.onmousemove = null;
             document.onmouseup = null;
             var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
-            this.cyScale.emit( {
-                w: parseInt(this.el.clientWidth+""),
-                h: parseInt(this.el.clientHeight+""),
-                x:  parseInt(elAdress[0]),
+            this.cyScale.emit({
+                w: parseInt(this.el.clientWidth + ""),
+                h: parseInt(this.el.clientHeight + ""),
+                x: parseInt(elAdress[0]),
                 y: parseInt(elAdress[1])
             });
         }
@@ -101,10 +101,10 @@ export class CyDraggable {
                 this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${(e.clientX - boxOffsetLeft) / this.scale}px, ${startClientY}px`);
                 break;
             case "bottom":
-                this.el.style.height =  Math.floor((e.clientY - boxOffsetTop) / this.scale) - startClientY + "px"
+                this.el.style.height = Math.floor((e.clientY - boxOffsetTop) / this.scale) - startClientY + "px"
                 break;
             case "right":
-                this.el.style.width =  Math.floor((e.clientX - boxOffsetLeft) / this.scale) - startClientX + "px"
+                this.el.style.width = Math.floor((e.clientX - boxOffsetLeft) / this.scale) - startClientX + "px"
                 break;
             default:
                 break;
@@ -112,39 +112,66 @@ export class CyDraggable {
     }
 
     // 拖动box方法
-    onDragBoxDown(e) {
+    onDragBoxDown(e, isTouchEvent: boolean) {
         e.preventDefault()
         e.stopPropagation();
         this.isDomDrag = true;
+        let clientX = isTouchEvent? e.touches[0].clientX: e.clientX;
+        let clientY = isTouchEvent? e.touches[0].clientY: e.clientY;
         var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
         // 包括两段距离 1,div左上角距离最左边的距离 2,div质点距离div左边的距离
-        var boxOffsetLeft = e.clientX - (elAdress && parseInt(elAdress[0]) * this.scale || 0);
-        var boxOffsetTop = e.clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0);
-        document.onmousemove = (e1) => {
-            e1.stopPropagation();
-            this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop);
+        var boxOffsetLeft = clientX - (elAdress && parseInt(elAdress[0]) * this.scale || 0);
+        var boxOffsetTop =  clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0);
+        if(isTouchEvent){
+            document.ontouchmove = (e1) => {
+                e1.stopPropagation();
+                this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop, isTouchEvent);
+            }
+            // 释放鼠标
+            document.ontouchend = () => {
+                this.isDomDrag = false;
+                document.ontouchmove = null;
+                document.ontouchend = null;
+                var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g);
+                this.cyDrag.emit(
+                    {
+                        w: parseInt(this.el.clientWidth + ""),
+                        h: parseInt(this.el.clientHeight + ""),
+                        x: parseInt(elAdress[0]),
+                        y: parseInt(elAdress[1])
+                    }
+                );
+            }
+        }else{
+            document.onmousemove = (e1) => {
+                e1.stopPropagation();
+                this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop,isTouchEvent);
+            }
+            // 释放鼠标
+            document.onmouseup = () => {
+                this.isDomDrag = false;
+                document.onmousemove = null;
+                document.onmouseup = null;
+                var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g);
+                this.cyDrag.emit(
+                    {
+                        w: parseInt(this.el.clientWidth + ""),
+                        h: parseInt(this.el.clientHeight + ""),
+                        x: parseInt(elAdress[0]),
+                        y: parseInt(elAdress[1])
+                    }
+                );
+            }
         }
-        // 释放鼠标
-        document.onmouseup = () => {
-            this.isDomDrag = false;
-            document.onmousemove = null;
-            document.onmouseup = null;
-            var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g);
-            this.cyDrag.emit(
-                {
-                    w: parseInt(this.el.clientWidth+""),
-                    h: parseInt(this.el.clientHeight+""),
-                    x:  parseInt(elAdress[0]),
-                    y: parseInt(elAdress[1])
-                }
-            );
-        }
+        
     }
 
     // 拖动box方法
-    onDragBoxMove(e, boxOffsetLeft: number, boxOffsetTop: number) {
-        var left = (e.clientX - boxOffsetLeft) / this.scale,
-            top = (e.clientY - boxOffsetTop) / this.scale,
+    onDragBoxMove(e, boxOffsetLeft: number, boxOffsetTop: number, isTouchEvent: boolean) {
+        let clientX = isTouchEvent? e.touches[0].clientX: e.clientX;
+        let clientY = isTouchEvent? e.touches[0].clientY: e.clientY;
+        var left = (clientX - boxOffsetLeft) / this.scale,
+            top = (clientY - boxOffsetTop) / this.scale,
             winW = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientWidth,
             winH = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientHeight,
             maxW = winW - this.el.offsetWidth - 10,
@@ -172,16 +199,18 @@ export class CyDraggable {
 
     render() {
         return (
-            <div class={this.isHover&&this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
+            <div class={this.isHover && this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
                 onMouseEnter={() => { this.isHover = true }}
                 onMouseLeave={() => { this.isHover = false }}
                 onClick={(e) => { this.canModify && this.handleDomChoose(e) }}
-                onMouseDown={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e) }}>
+                onTouchStart={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e, true) }}
+                onMouseDown={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e,false) }}>
                 {/* 编辑才显示的dom */}
                 {/* 拖拽box的背景元素 */}
                 {/* 悬浮上去才显示dom 操作 */}
                 <div class={this.canModify && this.isChoose || this.isDomDrag ? "draggable_over" : "draggable_over hiddlen"}>
-                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_righttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'righttop', this.el.clientWidth, 0) }}></i>
+                    <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_righttop"
+                        onMouseDown={(e) => { this.onDragScaleDown(e, 'righttop', this.el.clientWidth, 0) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_rightbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'rightbottom', this.el.clientWidth, this.el.clientHeight) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_leftbottom" onMouseDown={(e) => { this.onDragScaleDown(e, 'leftbottom', 0, this.el.clientHeight) }}></i>
                     <i style={{ transform: `scale(${(1 / this.scale).toFixed(4)}, ${(1 / this.scale).toFixed(4)})` }} class="drag_tag drag_tag_lefttop" onMouseDown={(e) => { this.onDragScaleDown(e, 'lefttop', 0, 0) }}></i>

@@ -1,6 +1,7 @@
 import { ComType, CanvasConfig } from "../interfaces"
 import { canvasDefaultConfig } from "../util/canvas/canvas-defaultdata"
 import { deepCopy, reduceFrequency } from "./helper"
+import { set } from "../providers/storage"
 
 // 所有的拖拽组件的列表
 let componentDatas: ComType[] = []
@@ -20,7 +21,7 @@ export const initDataScreenController = (datascreenController: {
     layerComponent = null;
     settingComponent = null;
     componentDatas = datascreenController.componentDatas;
-    canvasConfig = datascreenController.canvasConfig || saveCanvasConfig(canvasDefaultConfig);
+    canvasConfig = datascreenController.canvasConfig;
 }
 
 export const initLayerComponent = (layerHTmlElement: HTMLElement) => { layerComponent = layerHTmlElement; }
@@ -36,13 +37,12 @@ export const getCanvasComponent = () => { return canvasCompoennt };
 // get面板组件
 const getSettingComponent = () => { return settingComponent };
 // 获取画布的设置
-export const getCanvasConfig = (): CanvasConfig => { return canvasConfig }
+export const getCanvasConfig =  (): CanvasConfig => { return canvasConfig || saveCanvasConfig(canvasDefaultConfig); }
 
-
-export const saveCanvasConfig = (config: CanvasConfig) => {
+export const  saveCanvasConfig = (config: CanvasConfig) => {
     canvasConfig = config;
     // 随改随保存
-    localStorage.setItem("canvasConfig", JSON.stringify(canvasConfig));
+    set("canvasConfig", canvasConfig)
     getCanvasComponent() && canvasCompoennt.updateCanvasConfig(config);
     return canvasConfig;
 }
@@ -52,9 +52,9 @@ export const saveCanvasConfig = (config: CanvasConfig) => {
  * 通过全局状态管理的方式管理数据
  * @param comList 
  */
-export const setComponentDatas = (comList: ComType[], isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true) => {
+export const setComponentDatas = async (comList: ComType[], isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true) => {
     componentDatas = deepCopy([], comList);
-    localStorage.setItem("comList", JSON.stringify(componentDatas))
+    await set("comList", componentDatas)
     isCanvasUpdate && reduceFrequency("canvasDataCallback", () => {
         getCanvasComponent() && canvasCompoennt.mapComDatasToState(componentDatas)
     })
@@ -64,11 +64,11 @@ export const setComponentDatas = (comList: ComType[], isCanvasUpdate: boolean = 
     })
 }
 
-export const setComDataChange = (comDataItem: ComType, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
+export const setComDataChange = async (comDataItem: ComType, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
     let comDatas = componentDatas.map((comData) => {
         return (comData.id == comDataItem.id) ? comDataItem : comData
     })
-    setComponentDatas(comDatas, isCanvasUpdate, false);
+    await setComponentDatas(comDatas, isCanvasUpdate, false);
     isSettingUpdate && getSettingComponent() && settingComponent.setComponentConfigData(comDataItem);
 }
 
@@ -80,8 +80,8 @@ export const getComponentDatas = (): ComType[] => {
  * 添加组件数据并且选中当前组件
  * @param com 
  */
-export const addComponentData = (com: ComType) => {
-    setComponentDatas([...componentDatas, deepCopy({}, com)], true, true)
+export const  addComponentData = async(com: ComType) => {
+    await setComponentDatas([...componentDatas, deepCopy({}, com)], true, true)
     changeChooseComponent(com.id);
 }
 
