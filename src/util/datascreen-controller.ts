@@ -12,17 +12,32 @@ let settingComponent = null;
 
 let canvasConfig: CanvasConfig = null;
 
-// 图层组件
-const getLayerComponent = () => { return layerComponent || (layerComponent = document.querySelector("datascreen-layer")) };
-// canvas组件 
-export const getCanvasComponent = () => { return canvasCompoennt || (canvasCompoennt = document.querySelector("datascreen-canvas")) };
-// get面板组件
-const getSettingComponent = () => { return settingComponent || (settingComponent = document.querySelector("datascreen-setting-panel")) };
+export const initDataScreenController = (datascreenController: {
+    componentDatas: ComType[],
+    canvasConfig?: CanvasConfig
+}) => {
+    chooseComId = ""
+    layerComponent = null;
+    settingComponent = null;
+    componentDatas = datascreenController.componentDatas;
+    canvasConfig = datascreenController.canvasConfig || saveCanvasConfig(canvasDefaultConfig);
+}
 
-/**
- * 获取画布的设置
- */
-export const getCanvasConfig = (): CanvasConfig => { return canvasConfig || saveCanvasConfig(canvasDefaultConfig) }
+export const initLayerComponent = (layerHTmlElement: HTMLElement) => { layerComponent = layerHTmlElement; }
+
+export const initSettingComponent = (settingHTmlElement: HTMLElement) => { settingComponent = settingHTmlElement; }
+
+export const initCanvasComponent = (canvasHTmlElement: HTMLElement) => { canvasCompoennt = canvasHTmlElement; }
+
+// 图层组件
+const getLayerComponent = () => { return layerComponent };
+// canvas组件 
+export const getCanvasComponent = () => { return canvasCompoennt };
+// get面板组件
+const getSettingComponent = () => { return settingComponent };
+// 获取画布的设置
+export const getCanvasConfig = (): CanvasConfig => { return canvasConfig }
+
 
 export const saveCanvasConfig = (config: CanvasConfig) => {
     canvasConfig = config;

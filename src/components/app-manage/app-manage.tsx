@@ -1,4 +1,4 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, State,Element, h } from '@stencil/core';
 import uuid from "uuid";
 
 @Component({
@@ -6,10 +6,15 @@ import uuid from "uuid";
     styleUrl: 'app-manage.scss'
 })
 export class AppManage {
+    @Element() el: HTMLElement;
     @State() chooseSeg: "my-canvas" | "my-component" | string = "my-canvas";
 
     componentWillLoad() {
         console.log(uuid.v1());
+    }
+
+    addNewCanvas(){
+        this.el.closest("ion-nav").push("app-create");
     }
 
     render() {
@@ -32,8 +37,7 @@ export class AppManage {
 
                 {this.chooseSeg == "my-canvas" ?
                     <div class="canvas-box">
-
-                        <ion-card button class="add-canvas">
+                        <ion-card onClick={()=>{this.addNewCanvas()}} button class="add-canvas">
                             <div class="add-card-content">
                                 <ion-icon name="add"></ion-icon>
                                 <br/>

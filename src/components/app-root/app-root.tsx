@@ -1,5 +1,5 @@
 import { Component,  Listen, h } from '@stencil/core';
-import { popoverController, toastController, alertController, actionSheetController, loadingController } from '@ionic/core';
+import { popoverController, toastController, alertController, actionSheetController, loadingController} from '@ionic/core';
 
 @Component({
   tag: 'app-root',
@@ -77,6 +77,7 @@ export class AppRoot {
       <ion-app>
         <ion-router useHash={false}>
           <ion-route url="/" component="app-manage"></ion-route>
+          <ion-route url="/create_canvas" component="app-create" />
           <ion-route url="/canvas/edit" component="app-home" />
           <ion-route url="/canvas/preview" component="app-preview"></ion-route>
         </ion-router>

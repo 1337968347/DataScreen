@@ -1,0 +1,43 @@
+app-create{
+    .canvas-box{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+    }
+
+    .canvas-template{
+        width: 350px;
+        min-width: 350px;
+        height: 100%;
+        overflow-y: scroll;
+        padding-top: 50px;
+        border-right: solid 1px var(--ion-background-shade);
+
+        ion-item{
+            --min-height:130px;
+
+            .blank-img{
+                width: 170px;
+                height: 110px;
+                box-shadow: inset 0 0 46px 0 var(--ion-background-contrast);
+            }
+            ion-thumbnail{
+                width: 170px;
+                height: 110px;
+            }
+        }
+    }
+
+    .canvas-preview{
+        flex: 1;
+        height: 100%;
+        width: 100%;
+        min-width: 740px;
+        display: flex;
+        flex-direction: column;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

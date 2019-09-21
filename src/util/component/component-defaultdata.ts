@@ -10,8 +10,8 @@ const componentDefaultDataMap: ComponentInitalMap = {
             y: "100",
             w: "200",
             h: "150",
-            opacity: 0.8,
-            deg: 0
+            opacity: "0.8",
+            deg: "0"
         }
     },
     "chart-base-line": {
@@ -36,8 +36,8 @@ const componentDefaultDataMap: ComponentInitalMap = {
             y: "0",
             w: "300",
             h: "200",
-            opacity: 1,
-            deg: 0
+            opacity: "1",
+            deg: "0"
         }
     }
 }

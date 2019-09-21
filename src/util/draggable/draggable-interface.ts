@@ -3,6 +3,6 @@ export interface DraggableView {
     y: string;
     w: string;
     h: string;
-    opacity: number;
-    deg: number;
+    opacity: string;
+    deg: string;
 }

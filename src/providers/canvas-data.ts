@@ -1,5 +1,4 @@
-import { get, remove, set } from './storage';
-import { ComType } from "../interfaces"
+import { get,} from './storage';
 
 export class canvasDataController {
 

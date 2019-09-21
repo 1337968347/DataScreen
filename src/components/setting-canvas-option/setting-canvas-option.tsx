@@ -72,7 +72,7 @@ export class SettingCanvasOption {
                         </ion-col>
                         <ion-col size="8">
                             {/* <ion-icon name="infinite"></ion-icon> */}
-                            <ion-input clearInput value={this.canvasOption.bgi} onIonChange={(e) => { this.handleCanvasChange("bgi", e.detail.value) }}>
+                            <ion-input debounce={500} clearInput value={this.canvasOption.bgi} onIonChange={(e) => { this.handleCanvasChange("bgi", e.detail.value) }}>
                             </ion-input>
                         </ion-col>
                     </ion-row>

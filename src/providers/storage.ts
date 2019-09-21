@@ -22,7 +22,7 @@ export function remove(key: string): Promise<void> {
   });
 }
 
-export function get(key: string): Promise<any> {
+export function get<T>(key: string): Promise<T> {
   return new Promise((resolve, reject) => {
     try {
       if (storage) {

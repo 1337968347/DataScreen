@@ -12,6 +12,7 @@ import {
 } from './interfaces';
 
 export namespace Components {
+  interface AppCreate {}
   interface AppHome {}
   interface AppManage {}
   interface AppPreview {}
@@ -66,6 +67,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLAppCreateElement extends Components.AppCreate, HTMLStencilElement {}
+  var HTMLAppCreateElement: {
+    prototype: HTMLAppCreateElement;
+    new (): HTMLAppCreateElement;
+  };
 
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
   var HTMLAppHomeElement: {
@@ -187,6 +194,7 @@ declare global {
     new (): HTMLSettingCanvasOptionElement;
   };
   interface HTMLElementTagNameMap {
+    'app-create': HTMLAppCreateElement;
     'app-home': HTMLAppHomeElement;
     'app-manage': HTMLAppManageElement;
     'app-preview': HTMLAppPreviewElement;
@@ -211,6 +219,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {}
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
@@ -275,6 +284,7 @@ declare namespace LocalJSX {
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
   interface IntrinsicElements {
+    'app-create': AppCreate;
     'app-home': AppHome;
     'app-manage': AppManage;
     'app-preview': AppPreview;
