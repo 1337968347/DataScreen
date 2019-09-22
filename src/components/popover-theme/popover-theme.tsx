@@ -7,7 +7,7 @@ import {popoverController} from "@ionic/core"
 })
 export class PopoverTheme {
 
-    @State() themeList = [{ name: "默认", value: "default-theme", isCheck: false }, { name: "紫色", value: "purple-theme", isCheck: false }, { name: "黑夜", value: "black-theme", isCheck: false }]
+    @State() themeList = [{ name: "默认", value: "default", isCheck: false }, { name: "紫色", value: "purple", isCheck: false }, { name: "黑夜", value: "black", isCheck: false }]
 
     componentWillLoad() {
         var themeStr = localStorage.getItem("theme") || "";

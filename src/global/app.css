@@ -17,7 +17,7 @@
 @import "theme.css";
 
 :root {
-  --header-height: 50px;
+  --header-height: 40px;
   --font-size: 18px;
 }
 
@@ -65,4 +65,7 @@ a {
   min-width: 40%;
   width: 700px;
   max-width: 100%;
+}
+.contextmenu-popover .popover-content {
+  max-width: 150px;
 }

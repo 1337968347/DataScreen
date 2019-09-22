@@ -1,10 +1,10 @@
-:root .default-theme {
-    /* --ion-text-color: #f4f5f8; */
-    /* --ion-text-color-rgb: rgb(244,244,244); */
+:root .default {
+    --ion-text-color: #000000;
+    --ion-text-color-rgb: 0,0,0;
     --ion-toolbar-color: #000000;
     --ion-toolbar-background: #ffffff;
-    --ion-background-color: #ffffff;
-    --ion-background-contrast: #f5f6f9;
+    --ion-background-color: #edf3f8;
+    --ion-background-contrast: #000000;
     --ion-background-shade: #d7d8da;
 
     --ion-color-primary: #3880ff;
@@ -14,15 +14,15 @@
     --ion-color-primary-shade: #3171e0;
     --ion-color-primary-tint: #4c8dff;
 
-    --ion-color-secondary: #0cd1e8;
-    --ion-color-secondary-rgb: 12, 209, 232;
+    --ion-color-secondary: #0000FF;
+    --ion-color-secondary-rgb: 0, 0, 255;
     --ion-color-secondary-contrast: #ffffff;
     --ion-color-secondary-contrast-rgb: 255, 255, 255;
-    --ion-color-secondary-shade: #0bb8cc;
-    --ion-color-secondary-tint: #24d6ea;
+    --ion-color-secondary-shade: #0000e0;
+    --ion-color-secondary-tint: #1a1aff;
 }
 
-:root .purple-theme {
+:root .purple {
     --ion-text-color: #000000;
     --ion-text-color-rgb: 0, 0, 0;
     --ion-toolbar-color: #ffffff;
@@ -48,14 +48,14 @@
 
 }
 
-:root .black-theme {
+:root .black {
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255, 255, 255;
     --ion-toolbar-color: #ffffff;
     --ion-toolbar-background: #1C1c1c;
     --ion-background-color: #282830;
     --ion-background-contrast: #1c1c1c;
-    --ion-background-shade: #0a0a0a;
+    --ion-background-shade: #5e5e5e;
 
     --ion-color-primary: #3880ff;
     --ion-color-primary-rgb: 56, 128, 255;

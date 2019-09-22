@@ -1,4 +1,4 @@
-import { Component, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, State,Host, Event, EventEmitter, h } from '@stencil/core';
 
 
 @Component({
@@ -28,10 +28,10 @@ export class CyFastClick {
 
     render() {
         return (
-            <div style={{ "display": "inherit", "width": "100%", "height": "100%" }}
+            <Host style={{ "display": "inherit", "width": "100%", "height": "100%" }}
                 onMouseDown={(e) => { this.touchStart(e); }} onMouseUp={(e) => { this.touchEnd(e) }}>
                 <slot></slot>
-            </div >
+            </Host>
         );
     }
 }

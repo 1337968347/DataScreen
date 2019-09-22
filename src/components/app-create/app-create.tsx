@@ -1,8 +1,8 @@
 import { Component, Element, h } from '@stencil/core';
 
-import { ComType, CanvasConfig } from "../../interfaces"
+import { ComType, DataScreen } from "../../interfaces"
 import { initCanvasComponent, saveCanvasConfig, setComponentDatas, initDataScreenController } from "../../util/datascreen-controller";
-import { canvasTemplateList } from "../../util/canvas/canvas-templatedata";
+import { dataScreenTemplateList } from "../../util/datascreen/datascreen-template";
 import { deepCopy } from "../../util/helper"
 
 @Component({
@@ -16,16 +16,15 @@ export class AppCreate {
         initCanvasComponent(this.el.querySelector("datascreen-canvas"));
     }
 
-    handleChooseTemplate(template: CanvasConfig) {
+    handleChooseTemplate(template: DataScreen) {
         let chooseTemplate = deepCopy({}, template)
         initDataScreenController({
             componentDatas: []
         })
-        console.log(chooseTemplate)
         let comsData: ComType[] = chooseTemplate.componentsData;
         setComponentDatas(comsData);
         delete chooseTemplate.componentsData;
-        saveCanvasConfig(chooseTemplate)
+        saveCanvasConfig(chooseTemplate.canvasOption)
     }
 
     jumpToEdit(){
@@ -54,16 +53,16 @@ export class AppCreate {
                             </ion-label>
                         </ion-item>
 
-                        {canvasTemplateList.map((canvasTemplate) =>
-                            <ion-item button onClick={() => { this.handleChooseTemplate(canvasTemplate) }}>
-                                {canvasTemplate.scaleImg ?
+                        {dataScreenTemplateList.map((dataScreentemplate) =>
+                            <ion-item button onClick={() => { this.handleChooseTemplate(dataScreentemplate) }}>
+                                {dataScreentemplate.scaleImg ?
                                     <ion-thumbnail slot="start">
-                                        <img src={canvasTemplate.scaleImg} />
+                                        <img src={dataScreentemplate.scaleImg} />
                                     </ion-thumbnail> : null
                                 }
                                 <ion-label>
-                                    <h2>{canvasTemplate.name}</h2>
-                                    <p>{`${canvasTemplate.w}px X ${canvasTemplate.h}px`}</p>
+                                    <h2>{dataScreentemplate.name}</h2>
+                                    <p>{`${dataScreentemplate.canvasOption.w}px X ${dataScreentemplate.canvasOption.h}px`}</p>
                                 </ion-label>
                             </ion-item>
                         )}

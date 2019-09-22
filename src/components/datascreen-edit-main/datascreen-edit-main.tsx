@@ -57,10 +57,10 @@ export class DatascreenEditMain {
 
     render() {
         return [
-            <cy-fast-click class="datascreen-edit-container" onFastClick={() => { changeChooseComponent("") }}>
+            <div class="datascreen-edit-container" onClick={() => { changeChooseComponent("") }}>
                 <datascreen-canvas scale={this.scaleRange}>
                 </datascreen-canvas>
-            </cy-fast-click>,
+            </div>,
             <div class="datascreen-edit-footer">
                 <div class="right-range-control">
                     <ion-label>{this.scaleRange}&nbsp;&nbsp;&nbsp;</ion-label>

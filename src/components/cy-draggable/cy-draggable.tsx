@@ -26,8 +26,6 @@ export class CyDraggable {
     @Event() choose: EventEmitter;
 
     componentDidLoad() {
-        // 如果是修改模式 添加css类
-        this.el.oncontextmenu = function () { return false };
     }
 
     // type 拖放的类型

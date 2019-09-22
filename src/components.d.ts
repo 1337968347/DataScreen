@@ -61,6 +61,9 @@ export namespace Components {
     'draggableConfig': any;
   }
   interface PopoverCodeView {}
+  interface PopoverDraggableContextmenu {
+    'comId': string;
+  }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
 }
@@ -182,6 +185,12 @@ declare global {
     new (): HTMLPopoverCodeViewElement;
   };
 
+  interface HTMLPopoverDraggableContextmenuElement extends Components.PopoverDraggableContextmenu, HTMLStencilElement {}
+  var HTMLPopoverDraggableContextmenuElement: {
+    prototype: HTMLPopoverDraggableContextmenuElement;
+    new (): HTMLPopoverDraggableContextmenuElement;
+  };
+
   interface HTMLPopoverThemeElement extends Components.PopoverTheme, HTMLStencilElement {}
   var HTMLPopoverThemeElement: {
     prototype: HTMLPopoverThemeElement;
@@ -213,6 +222,7 @@ declare global {
     'media-basic-img': HTMLMediaBasicImgElement;
     'media-basic-img-config': HTMLMediaBasicImgConfigElement;
     'popover-code-view': HTMLPopoverCodeViewElement;
+    'popover-draggable-contextmenu': HTMLPopoverDraggableContextmenuElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
   }
@@ -280,6 +290,9 @@ declare namespace LocalJSX {
   interface PopoverCodeView extends JSXBase.HTMLAttributes<HTMLPopoverCodeViewElement> {
     'onToast'?: (event: CustomEvent<any>) => void;
   }
+  interface PopoverDraggableContextmenu extends JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement> {
+    'comId'?: string;
+  }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
 
@@ -303,6 +316,7 @@ declare namespace LocalJSX {
     'media-basic-img': MediaBasicImg;
     'media-basic-img-config': MediaBasicImgConfig;
     'popover-code-view': PopoverCodeView;
+    'popover-draggable-contextmenu': PopoverDraggableContextmenu;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
   }

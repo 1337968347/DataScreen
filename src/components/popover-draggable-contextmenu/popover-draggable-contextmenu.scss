@@ -1,0 +1,12 @@
+popover-draggable-contextmenu{
+    ion-list{
+        padding: 0!important;
+    }
+    ion-item{
+        ion-img, ion-icon{
+            margin-inline-end: 12px;
+            width: 23px;
+            height: 23px;
+        }
+    }
+}

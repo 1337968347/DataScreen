@@ -2,11 +2,11 @@
     --color: #ffffff;
     --background: transparent;
     --border-color: rgb(27, 70, 117, 0.5);
-    --padding: 10px;
+    --padding: 0px;
     --overflow: hidden;
     --opacity: 1;
     --point-size: 30px;
-    --border-width: calc(0.3 * --point-size);
+    --border-width: 2px;
     padding: 0 !important;
     margin: 0 !important;
     display: block;
@@ -71,8 +71,8 @@
 
 .drag_tag::before {
     content: "";
-    position: absolute;
-    background: var(--color ,#ffffff);
+    position: relative;
+    background: var(--color, #ffffff);
     width: calc(0.3 * var(--point-size));
     height: calc(0.3 * var(--point-size));
     border-radius: 50%;
@@ -104,8 +104,10 @@
 }
 
 .drag_tag_leftbottom {
-    left: calc(-1 * calc(0.5 * var(--point-size)));;
-    bottom: calc(-1 * calc(0.5 * var(--point-size)));;
+    left: calc(-1 * calc(0.5 * var(--point-size)));
+    ;
+    bottom: calc(-1 * calc(0.5 * var(--point-size)));
+    ;
     cursor: move;
 }
 
@@ -116,8 +118,10 @@
 }
 
 .drag_tag_lefttop {
-    left: calc(-1 * calc(0.5 * var(--point-size)));;
-    top: calc(-1 * calc(0.5 * var(--point-size)));;
+    left: calc(-1 * calc(0.5 * var(--point-size)));
+    ;
+    top: calc(-1 * calc(0.5 * var(--point-size)));
+    ;
     cursor: move;
 }
 

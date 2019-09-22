@@ -20,10 +20,6 @@ export class DatascreenCanvas {
         this.mapComDatasToState(getComponentDatas())
     }
 
-    handleContentMenuClick(e) {
-        e.preventDefault();
-    }
-
     @Method()
     async mapComDatasToState(comList: ComType[]) {
         this.comOptionList = comList;
@@ -43,20 +39,35 @@ export class DatascreenCanvas {
     handleDraggableDrag(e: CustomEvent, changeComponentData: ComType) {
         if (changeComponentData.data.view.x !== e.detail.x || changeComponentData.data.view.y !== e.detail.y) {
             // 引用地址类型
-            changeComponentData.data.view.x = e.detail.x+"";
-            changeComponentData.data.view.y = e.detail.y+"";
+            changeComponentData.data.view.x = e.detail.x + "";
+            changeComponentData.data.view.y = e.detail.y + "";
             setComDataChange(changeComponentData, true, true)
         }
     }
 
     handleDraggableScale(e: CustomEvent, changeComponentData: ComType) {
-        if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h ) {
+        if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
             changeComponentData.data.view.w = e.detail.w;
             changeComponentData.data.view.h = e.detail.h;
-            changeComponentData.data.view.x = e.detail.x+"";
-            changeComponentData.data.view.y = e.detail.y+"";
+            changeComponentData.data.view.x = e.detail.x + "";
+            changeComponentData.data.view.y = e.detail.y + "";
             setComDataChange(changeComponentData, true, true)
         }
+    }
+
+    async popoverContextMenu(e: MouseEvent, onComId: string) {
+        e.preventDefault();
+        e.stopPropagation();
+        await this.chooseComponent(onComId);
+        this.popover.emit({
+            component: 'popover-draggable-contextmenu',
+            cssClass: "contextmenu-popover",
+            event: e,
+            showBackdrop: false,
+            componentProps: {
+                comId: onComId
+            }
+        })
     }
 
     render() {
@@ -68,9 +79,10 @@ export class DatascreenCanvas {
                 "background-color": this.canvasOption.bgc + "",
                 "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : "",
                 "overflow": this.canModify ? "inherit" : "hidden"
-            }} onContextMenu={(e) => { this.handleContentMenuClick(e) }}>
+            }}>
                 {this.comOptionList.map((comDarggable) =>
                     <cy-draggable key={comDarggable.id}
+                        onContextMenu={(e) => { this.canModify && this.popoverContextMenu(e, comDarggable.id) }}
                         isChoose={this.chooseComId == comDarggable.id} canModify={this.canModify} scale={Math.round(this.scale) / 100}
                         onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
                         onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
