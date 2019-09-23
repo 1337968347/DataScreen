@@ -1,12 +1,12 @@
 import { Component, Prop,Event, EventEmitter, Element, h } from '@stencil/core';
-import { ComType } from "../../interfaces"
+import { ComData } from "../../interfaces"
 
 @Component({
     tag: 'draggable-adapter',
     styleUrl: 'draggable-adapter.css'
 })
 export class DraggableComponent {
-    @Prop() comOptionData: ComType;
+    @Prop() comOptionData: ComData;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
     @Element() el: HTMLElement;
@@ -16,8 +16,8 @@ export class DraggableComponent {
     }
 
     render() {
-        let comType = this.comOptionData.comType || "";
-        switch (comType) {
+        let ComData = this.comOptionData.ComData || "";
+        switch (ComData) {
             case "media-basic-img":
                 return (
                     <media-basic-img comData={this.comOptionData}></media-basic-img>

@@ -50,7 +50,6 @@
     border-width: var(--border-width);
     border-style: solid;
     border-color: var(--border-color);
-    transition: 0.5s all ease;
 }
 
 .hiddlen {
@@ -63,7 +62,6 @@
     width: var(--point-size);
     height: var(--point-size);
     z-index: 999;
-    transition: 0.5s all ease;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,5 @@
 import { Component, State, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
-import { ComType, CanvasConfig } from "../../interfaces";
+import { ComData, CanvasConfig } from "../../interfaces";
 import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
 
 @Component({
@@ -12,7 +12,7 @@ export class DatascreenCanvas {
     @Element() el: HTMLElement;
     @State() chooseComId: string = "";
     @State() canvasOption: CanvasConfig;
-    @State() comOptionList: ComType[] = [];
+    @State() comOptionList: ComData[] = [];
     @Event() popover: EventEmitter;
 
     componentWillLoad() {
@@ -21,7 +21,7 @@ export class DatascreenCanvas {
     }
 
     @Method()
-    async mapComDatasToState(comList: ComType[]) {
+    async mapComDatasToState(comList: ComData[]) {
         this.comOptionList = comList;
     }
 
@@ -36,7 +36,7 @@ export class DatascreenCanvas {
         this.canvasOption = config;
     }
 
-    handleDraggableDrag(e: CustomEvent, changeComponentData: ComType) {
+    handleDraggableDrag(e: CustomEvent, changeComponentData: ComData) {
         if (changeComponentData.data.view.x !== e.detail.x || changeComponentData.data.view.y !== e.detail.y) {
             // 引用地址类型
             changeComponentData.data.view.x = e.detail.x + "";
@@ -45,7 +45,7 @@ export class DatascreenCanvas {
         }
     }
 
-    handleDraggableScale(e: CustomEvent, changeComponentData: ComType) {
+    handleDraggableScale(e: CustomEvent, changeComponentData: ComData) {
         if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
             changeComponentData.data.view.w = e.detail.w;
             changeComponentData.data.view.h = e.detail.h;

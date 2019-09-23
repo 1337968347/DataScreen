@@ -5,7 +5,7 @@ import {DragComOption} from "../../interfaces";
 import { componentDefaultDataMap } from "../../util/component/component-defaultdata";
 import {addComponentData} from "../../util/datascreen-controller"
 
-// ComType
+// ComData
 @Component({
     tag: 'datascreen-com-panel',
     styleUrl: 'datascreen-com-panel.scss'
@@ -17,10 +17,10 @@ export class DatascreenComPanel {
         this.checkMenu.emit(1);
     }
 
-    addComToCanvas(comType: string , comOption:DragComOption ){
+    addComToCanvas(ComData: string , comOption:DragComOption ){
         addComponentData({
             data: comOption,
-            comType: comType,
+            ComData: ComData,
             id: uuid.v1()
         })
     }

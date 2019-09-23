@@ -6,18 +6,18 @@ import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/legend'
 
-import { ComType } from "../../interfaces";
+import { ComData } from "../../interfaces";
 
 @Component({
     tag: 'chart-basic-line'
 })
 export class ChartBasicLine {
     @Element() el :HTMLElement;
-    @Prop() comData: ComType;
+    @Prop() comData: ComData;
     chartObj:any;
 
     @Watch('comData')
-    watchHandler(newValue:ComType,oldValue:ComType) {
+    watchHandler(newValue:ComData,oldValue:ComData) {
         if(newValue.data.view.w!==oldValue.data.view.w || newValue.data.view.w!==oldValue.data.view.w){
             this.chartObj.resize({ width: newValue.data.view.w, height:  newValue.data.view.h });
         }

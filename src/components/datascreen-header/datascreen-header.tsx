@@ -6,6 +6,7 @@ import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core'
 })
 export class DatascreenHeader {
     @Element() el: HTMLElement;
+    @Prop() dataScreenId: string;
     @Prop() checkMenuControl: boolean[] = [false, false, false];
     @Event() checkMenu: EventEmitter;
     @Event() popover: EventEmitter;
@@ -26,7 +27,10 @@ export class DatascreenHeader {
         this.popover.emit({
             component: 'popover-code-view',
             translucent: true,
-            cssClass: "code-view-popover"
+            cssClass: "code-view-popover",
+            componentProps:{
+                dataScreenId: this.dataScreenId
+            }
           })
     }
 

@@ -1,6 +1,6 @@
 import { Component, State, Method, h, Element } from '@stencil/core';
 
-import { ComType } from "../../interfaces";
+import { ComData } from "../../interfaces";
 import { setComDataChange } from "../../util/datascreen-controller"
 import { deepCopy } from "../../util/helper"
 
@@ -11,18 +11,18 @@ import { deepCopy } from "../../util/helper"
 export class DatascreenSettingPanel {
     @Element() el: HTMLElement;
     @State() chooseSeg: string = "config"
-    @State() comTypeData: ComType;
+    @State() ComDataData: ComData;
 
     @Method()
     async setComponentConfigData(comData) {
-        this.comTypeData = deepCopy({}, comData);
+        this.ComDataData = deepCopy({}, comData);
         this.chooseSeg = "config";
     }
 
     handleComConfigChange(type: string, name: string, value: any) {
-        this.comTypeData.data[type][name] = value;
-        this.comTypeData = { ...this.comTypeData };
-        setComDataChange(this.comTypeData, true, false);
+        this.ComDataData.data[type][name] = value;
+        this.ComDataData = { ...this.ComDataData };
+        setComDataChange(this.ComDataData, true, false);
     }
 
     handleSegChange(e) {
@@ -30,10 +30,10 @@ export class DatascreenSettingPanel {
     }
 
     render() {
-        if (!this.comTypeData || !this.comTypeData.id) {
+        if (!this.ComDataData || !this.ComDataData.id) {
             return (<setting-canvas-option></setting-canvas-option>)
         } else {
-            const comData = this.comTypeData.data;
+            const comData = this.ComDataData.data;
             return [
                 <ion-header>
                     <ion-segment onIonChange={(e) => { this.handleSegChange(e) }} value="config">
@@ -100,7 +100,7 @@ export class DatascreenSettingPanel {
                                 </ion-row>
 
                             </ion-grid>
-                            {this.comTypeData.comType == "media-basic-img" ?
+                            {this.ComDataData.ComData == "media-basic-img" ?
                                 <media-basic-img-config draggableConfig={comData.config} onConfigChange={(e) => { this.handleComConfigChange("config", e.detail.name, e.detail.value) }}></media-basic-img-config> : null
                             }
                         </div>

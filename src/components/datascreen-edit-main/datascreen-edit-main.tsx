@@ -1,6 +1,7 @@
 import { Component, State, Element, h } from '@stencil/core';
 
 import { changeChooseComponent, initCanvasComponent, getCanvasConfig } from "../../util/datascreen-controller";
+import { reduceFrequency } from"../../util/helper";
 import { CanvasConfig } from "../../interfaces"
 
 @Component({
@@ -20,17 +21,24 @@ export class DatascreenEditMain {
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
     }
 
+    componentDidUpdate(){
+        window.onresize = null;
+    }
+
     initResize(){
         let canvasOption = getCanvasConfig();
         this.resizeSCale(canvasOption);
         window.onresize = () => {
-            this.resizeSCale(canvasOption)
+            reduceFrequency("onresizeCanvas",()=>{
+                let canvasOption1 = getCanvasConfig();
+                this.resizeSCale(canvasOption1)
+            })
         }
     }
 
     resizeSCale(canvasOption: CanvasConfig) {
-        let canShowBoxWidth = this.el.querySelector("datascreen-canvas").clientWidth;
-        let canShowBoxHeight = this.el.querySelector("datascreen-canvas").clientHeight;
+        let canShowBoxWidth = this.el.querySelector(".datascreen-edit-container").clientWidth;
+        let canShowBoxHeight = this.el.querySelector(".datascreen-edit-container").clientHeight;
         let scale = this.scaleRange;
         if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
             scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)

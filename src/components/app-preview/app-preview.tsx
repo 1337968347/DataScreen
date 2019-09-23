@@ -1,28 +1,29 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, Prop,Element, h } from '@stencil/core';
 
-import { ComType, CanvasConfig } from "../../interfaces";
-import { get } from "../../providers/storage";
-import { initDataScreenController } from "../../util/datascreen-controller";
+import { initDataScreen, getDataScreen,initCanvasComponent } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-preview',
     styleUrl: 'app-preview.scss'
 })
 export class AppPreview {
-    @State() canvasOption: CanvasConfig;
-    @State() comOptionList: ComType[] = [];
+    @Element() el: HTMLElement;
+    @Prop() dataScreenId: string;
 
     componentWillLoad() {
-        this.initCanvasOption();
+        this.initDataScreenOption();
     }
 
-    async initCanvasOption() {
-        let componentDatas = await get<ComType[]>("comList");
-        let canvasConfig = await get<CanvasConfig>("canvasConfig");
-        initDataScreenController({
-            componentDatas: componentDatas,
-            canvasConfig: canvasConfig
-        })
+    componentDidLoad() {
+        initCanvasComponent(this.el.querySelector("datascreen-canvas"))
+    }
+
+    async initDataScreenOption() {
+        let dataScreenData = await getDataScreen(this.dataScreenId);
+        initDataScreen(this.dataScreenId, {
+            componentsData: dataScreenData.componentsData,
+            canvasOption: dataScreenData.canvasOption
+        }, false)
     }
     render() {
         return (

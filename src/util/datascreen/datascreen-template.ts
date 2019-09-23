@@ -1,5 +1,12 @@
 import { DataScreen } from "../../interfaces";
+import { canvasDefaultConfig } from "../canvas/canvas-defaultdata"
 const dataScreenTemplateList: DataScreen[] = [
+    {
+        scaleImg: "",
+        name: "空白",
+        canvasOption: canvasDefaultConfig,
+        componentsData: []
+    },
     {
 
         scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
@@ -56,7 +63,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
             },
             {
@@ -104,7 +111,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
             },
             {
@@ -122,7 +129,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "media-basic-img",
+                "ComData": "media-basic-img",
                 "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
             }
         ]
@@ -155,7 +162,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "media-basic-img",
+                "ComData": "media-basic-img",
                 "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
             },
             {
@@ -203,7 +210,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "5f5eb4b0-dc74-11e9-8c89-a32b8ca97c4a"
             },
             {
@@ -251,7 +258,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
             },
             {
@@ -299,7 +306,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
             }
         ]
@@ -332,7 +339,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "media-basic-img",
+                "ComData": "media-basic-img",
                 "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
             },
             {
@@ -380,7 +387,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "5f5eb4b0-dc74-11e9-8c89-a32b8ca97c4a"
             },
             {
@@ -428,7 +435,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
             },
             {
@@ -476,7 +483,7 @@ const dataScreenTemplateList: DataScreen[] = [
                         "deg": "0"
                     }
                 },
-                "comType": "chart-base-line",
+                "ComData": "chart-base-line",
                 "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
             }
         ]

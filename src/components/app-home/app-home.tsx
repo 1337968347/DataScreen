@@ -1,21 +1,20 @@
-import { Component, State, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h } from '@stencil/core';
 
-import { ComType, CanvasConfig } from "../../interfaces"
 import { get, set } from "../../providers/storage";
-import { initLayerComponent,initSettingComponent,initDataScreenController} from "../../util/datascreen-controller";
+import { initLayerComponent, initSettingComponent, initDataScreen, getDataScreen} from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-home',
     styleUrl: 'app-home.scss'
 })
 export class AppHome {
+    @Prop() dataScreenId: string;
     @Element() el: HTMLElement;
     @State() showMenuControl: boolean[] = [false, false, false];
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
-       
         this.initMenuControl()
         this.initCanvasOption()
     }
@@ -26,12 +25,11 @@ export class AppHome {
     }
 
     async initCanvasOption(){
-        let componentDatas = await get<ComType[]>("comList");
-        let canvasConfig = await get<CanvasConfig>("canvasConfig");
-        initDataScreenController({
-            componentDatas: componentDatas,
-            canvasConfig: canvasConfig
-        })
+        let dataScreenData = await getDataScreen(this.dataScreenId);
+        initDataScreen(this.dataScreenId,{
+            componentsData: dataScreenData.componentsData,
+            canvasOption: dataScreenData.canvasOption
+        },true)
     }
 
     async initMenuControl() {
@@ -50,7 +48,7 @@ export class AppHome {
 
     render() {
         return [
-            <datascreen-header checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>,
+            <datascreen-header dataScreenId={this.dataScreenId} checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>,
             <ion-content>
                 <div class="datascreen-box">
                     <datascreen-layer style={{ width: this.showMenuControl[0] ? "200px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>

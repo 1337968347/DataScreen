@@ -1,22 +1,28 @@
-import { Component, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component,Prop, State, Event, EventEmitter, h } from '@stencil/core';
 import { popoverController } from '@ionic/core';
 
-import { CanvasConfig } from "../../interfaces";
-import { getComponentDatas, getCanvasConfig, setComponentDatas,saveCanvasConfig } from "../../util/datascreen-controller";
-
+import { DataScreen } from "../../interfaces";
+import { getDataScreen, setDataScreen } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'popover-code-view',
     styleUrl: 'popover-code-view.css'
 })
 export class PopoverCodeView {
+    @Prop() dataScreenId: string;
     @State() codeAll: string;
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
-        let allOption = getCanvasConfig();
-        allOption.componentsData = getComponentDatas();
-        this.codeAll = JSON.stringify(allOption, null, 1)
+        this.initCodeAll()
+    }
+
+    async initCodeAll(){
+        let dataScreenOption = await getDataScreen(this.dataScreenId);
+        delete dataScreenOption.id;
+        delete dataScreenOption.name;
+        delete dataScreenOption.scaleImg;
+        this.codeAll = JSON.stringify(dataScreenOption, null, 1)
     }
 
     handleCodeChange(e) {
@@ -25,8 +31,8 @@ export class PopoverCodeView {
 
     checkDataOJBK(objStr: string) {
         try {
-            let parseObj: CanvasConfig = JSON.parse(objStr)
-            if (parseObj.w && parseObj.h && parseObj.bgc &&
+            let parseObj: DataScreen = JSON.parse(objStr)
+            if (parseObj.canvasOption.w && parseObj.canvasOption.h && parseObj.canvasOption.bgc &&
                 (Object.prototype.toString.call(parseObj.componentsData).indexOf('Array') !== -1)) {
                 return true;
             } else {
@@ -41,13 +47,15 @@ export class PopoverCodeView {
 
     }
 
-    saveComponentsData() {
+    async saveComponentsData() {
         if (this.checkDataOJBK(this.codeAll)) {
             console.log("success")
-            let canvasOption:CanvasConfig = JSON.parse(this.codeAll);
-            setComponentDatas(canvasOption.componentsData, true, true);
-            delete canvasOption.componentsData;
-            saveCanvasConfig(canvasOption);
+            let dataScreenOptionLocal: DataScreen = await getDataScreen(this.dataScreenId);
+            let dataScreenOptionModify: DataScreen = JSON.parse(this.codeAll);
+
+            dataScreenOptionLocal.canvasOption = dataScreenOptionModify.canvasOption;
+            dataScreenOptionLocal.componentsData = dataScreenOptionModify.componentsData;
+            setDataScreen(this.dataScreenId ,dataScreenOptionLocal);
             this.dismissPopover()
         }
     }

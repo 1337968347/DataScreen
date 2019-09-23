@@ -8,17 +8,21 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   CanvasConfig,
-  ComType,
+  ComData,
 } from './interfaces';
 
 export namespace Components {
   interface AppCreate {}
-  interface AppHome {}
+  interface AppHome {
+    'dataScreenId': string;
+  }
   interface AppManage {}
-  interface AppPreview {}
+  interface AppPreview {
+    'dataScreenId': string;
+  }
   interface AppRoot {}
   interface ChartBasicLine {
-    'comData': ComType;
+    'comData': ComData;
   }
   interface CyDraggable {
     'canModify': boolean;
@@ -35,7 +39,7 @@ export namespace Components {
   interface DatascreenCanvas {
     'canModify': boolean;
     'chooseComponent': (comId: any) => Promise<void>;
-    'mapComDatasToState': (comList: ComType[]) => Promise<void>;
+    'mapComDatasToState': (comList: ComData[]) => Promise<void>;
     'scale': number;
     'updateCanvasConfig': (config: CanvasConfig) => Promise<void>;
   }
@@ -43,6 +47,7 @@ export namespace Components {
   interface DatascreenEditMain {}
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
+    'dataScreenId': string;
   }
   interface DatascreenLayer {
     'chooseComponent': (comId: any) => Promise<void>;
@@ -52,15 +57,17 @@ export namespace Components {
     'setComponentConfigData': (comData: any) => Promise<void>;
   }
   interface DraggableAdapter {
-    'comOptionData': ComType;
+    'comOptionData': ComData;
   }
   interface MediaBasicImg {
-    'comData': ComType;
+    'comData': ComData;
   }
   interface MediaBasicImgConfig {
     'draggableConfig': any;
   }
-  interface PopoverCodeView {}
+  interface PopoverCodeView {
+    'dataScreenId': string;
+  }
   interface PopoverDraggableContextmenu {
     'comId': string;
   }
@@ -231,14 +238,17 @@ declare global {
 declare namespace LocalJSX {
   interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {}
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
+    'dataScreenId'?: string;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {}
-  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {}
+  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
+    'dataScreenId'?: string;
+  }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
-    'comData'?: ComType;
+    'comData'?: ComData;
   }
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
     'canModify'?: boolean;
@@ -268,6 +278,7 @@ declare namespace LocalJSX {
   interface DatascreenEditMain extends JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement> {}
   interface DatascreenHeader extends JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement> {
     'checkMenuControl'?: boolean[];
+    'dataScreenId'?: string;
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
@@ -276,18 +287,19 @@ declare namespace LocalJSX {
   }
   interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {}
   interface DraggableAdapter extends JSXBase.HTMLAttributes<HTMLDraggableAdapterElement> {
-    'comOptionData'?: ComType;
+    'comOptionData'?: ComData;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface MediaBasicImg extends JSXBase.HTMLAttributes<HTMLMediaBasicImgElement> {
-    'comData'?: ComType;
+    'comData'?: ComData;
   }
   interface MediaBasicImgConfig extends JSXBase.HTMLAttributes<HTMLMediaBasicImgConfigElement> {
     'draggableConfig'?: any;
     'onConfigChange'?: (event: CustomEvent<any>) => void;
   }
   interface PopoverCodeView extends JSXBase.HTMLAttributes<HTMLPopoverCodeViewElement> {
+    'dataScreenId'?: string;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface PopoverDraggableContextmenu extends JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement> {

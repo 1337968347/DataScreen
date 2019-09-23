@@ -5,9 +5,9 @@ export interface ComponentInitalMap{
     [keyName: string]: DragComOption;
 }
 
-export interface ComType {
+export interface ComData {
     data: DragComOption;
-    comType: string;
+    ComData: string;
     id: string;
 }
 

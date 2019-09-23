@@ -1,5 +1,7 @@
-import { Component, State,Element, h } from '@stencil/core';
-import uuid from "uuid";
+import { Component, State, Element, h } from '@stencil/core';
+
+import { DataScreen } from '../../interfaces';
+import { DataScreenData } from "../../providers/datascreen-data";
 
 @Component({
     tag: 'app-manage',
@@ -8,53 +10,69 @@ import uuid from "uuid";
 export class AppManage {
     @Element() el: HTMLElement;
     @State() chooseSeg: "my-canvas" | "my-component" | string = "my-canvas";
+    @State() dataScreenList: DataScreen[] = []
 
     componentWillLoad() {
-        console.log(uuid.v1());
+        this.getDataScreenListData()
     }
 
-    addNewCanvas(){
+    async getDataScreenListData() {
+        let dataScreenIds = await DataScreenData.getDataScreenIdList();
+        this.dataScreenList = await Promise.all(
+            dataScreenIds.map(async (id) => {
+                return await DataScreenData.getDataScreenById(id);
+            })
+        )
+    }
+
+    addNewCanvas() {
         this.el.closest("ion-nav").push("app-create");
     }
 
-    jumpToCanvasEdit(){
-        this.el.closest("ion-nav").push("app-home")
+    jumpToCanvasEdit(dataScreenId: string) {
+        this.el.closest("ion-nav").push("app-home", { dataScreenId: dataScreenId })
     }
 
     render() {
         return (
             <ion-content>
                 <div class="header-box">
-                    <h1><strong>震 惊！！！</strong><br /> 原来大屏还可以这么玩,隔壁小孩都会用了！ <br />SuperSuperDataV，简单粗暴易学。</h1>
+                    <h1><strong>震 惊！！！</strong><br /> 原来大屏还可以这么玩,隔壁小孩都会用了！</h1>
                 </div>
-
-                <ion-segment color="primary" value={this.chooseSeg} onIonChange={(e) => { this.chooseSeg = e.detail.value }}>
-                    <ion-segment-button value="my-canvas" layout="icon-start">
-                        <ion-icon name="logo-buffer"></ion-icon>
-                        <ion-label>我的可视化</ion-label>
-                    </ion-segment-button>
-                    <ion-segment-button value="my-component" layout="icon-start">
-                        <ion-icon name="cube"></ion-icon>
-                        <ion-label>我的组件</ion-label>
-                    </ion-segment-button>
-                </ion-segment>
+                <ion-header>
+                    <ion-segment value={this.chooseSeg} onIonChange={(e) => { this.chooseSeg = e.detail.value }}>
+                        <ion-segment-button value="my-canvas" layout="icon-start">
+                            <ion-icon name="logo-buffer"></ion-icon>
+                            <ion-label>我的可视化</ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="my-component" layout="icon-start">
+                            <ion-icon name="cube"></ion-icon>
+                            <ion-label>我的组件</ion-label>
+                        </ion-segment-button>
+                    </ion-segment>
+                </ion-header>
 
                 {this.chooseSeg == "my-canvas" ?
                     <div class="canvas-box">
-                        <ion-card onClick={()=>{this.addNewCanvas()}} button class="add-canvas">
+                        <ion-card button onClick={() => { this.addNewCanvas() }} class="add-canvas">
                             <div class="add-card-content">
                                 <ion-icon name="add"></ion-icon>
-                                <br/>
+                                <br />
                                 <span>新建大屏</span>
                             </div>
                         </ion-card>
-
-                        <ion-card button onClick={()=>{ this.jumpToCanvasEdit() }}>
-                            <div style={{"background-image": `url(${"../../assets/image/default-canvas.png"})`}} class="canvas-preivew"></div>
-                            <ion-card-content>
-                                Keep close to Nature's heart... and break clear away, once in awhile
-                            </ion-card-content>
-                        </ion-card>
+                        {this.dataScreenList.map((dataScreen: DataScreen) =>
+                            <ion-card onClick={() => { this.jumpToCanvasEdit(dataScreen.id) }}>
+                                <div style={{ "background-image": `url(${dataScreen.scaleImg || "../../assets/image/default-canvas.png"})` }} class="canvas-preivew"></div>
+                                <ion-card-content>
+                                    <ion-item onClick={(e) => { e.stopPropagation(); e.preventDefault() }} lines="none">
+                                        <ion-icon name="create" slot="start"></ion-icon>
+                                        <ion-input value={dataScreen.name}></ion-input>
+                                        <ion-button fill="outline" slot="end">View</ion-button>
+                                    </ion-item>
+                                </ion-card-content>
+                            </ion-card>
+                        )}
                     </div> : null
                 }
 

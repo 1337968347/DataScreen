@@ -78,8 +78,8 @@ export class AppRoot {
         <ion-router useHash={false}>
           <ion-route url="/" component="app-manage"></ion-route>
           <ion-route url="/create_canvas" component="app-create" />
-          <ion-route url="/canvas/edit" component="app-home" />
-          <ion-route url="/canvas/preview" component="app-preview"></ion-route>
+          <ion-route url="/canvas/:dataScreenId/edit" component="app-home" />
+          <ion-route url="/canvas/:dataScreenId/preview" component="app-preview"></ion-route>
         </ion-router>
         <ion-nav animated={false} />
       </ion-app>
