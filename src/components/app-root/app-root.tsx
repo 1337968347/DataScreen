@@ -75,7 +75,7 @@ export class AppRoot {
   render() {
     return (
       <ion-app>
-        <ion-router useHash={false}>
+        <ion-router useHash={true}>
           <ion-route url="/" component="app-manage"></ion-route>
           <ion-route url="/create_canvas" component="app-create" />
           <ion-route url="/canvas/:dataScreenId/edit" component="app-home" />
