@@ -10,6 +10,7 @@
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
+    "devWithSW": "stencil build --dev --service-worker --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watch",
     "generate": "stencil generate"
@@ -20,6 +21,7 @@
     "@stencil/sass": "^1.0.1",
     "echarts": "4.2.1",
     "html2canvas": "^1.0.0-rc.3",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "workbox-build": "4.3.1"
   }
 }

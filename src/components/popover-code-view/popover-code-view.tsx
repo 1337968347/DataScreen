@@ -19,9 +19,6 @@ export class PopoverCodeView {
 
     async initCodeAll(){
         let dataScreenOption = await getDataScreen(this.dataScreenId);
-        delete dataScreenOption.id;
-        delete dataScreenOption.name;
-        delete dataScreenOption.scaleImg;
         this.codeAll = JSON.stringify(dataScreenOption, null, 1)
     }
 

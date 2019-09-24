@@ -51,9 +51,6 @@ app-manage {
             ion-card-content{
                 padding-inline-start: 0; 
                 padding-inline-end: 0;
-                ion-item{
-                    // --background:transparent;
-                }
             }
             button{
                 height: 100%;
@@ -70,7 +67,7 @@ app-manage {
 
         .add-canvas{
             --color: var(--ion-color-primary-contrast);
-            --background: linear-gradient(-90deg,var(--ion-color-primary-rgb) 0,var(--ion-color-primary-shade) 100%);
+            --background: linear-gradient(-90deg,var(--ion-background-shade) 0,var(--ion-background-color) 100%);
             .add-card-content{
                 height: 100%;
                 width: 100%;

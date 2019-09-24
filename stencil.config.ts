@@ -6,10 +6,16 @@ export const config: Config = {
   plugins: [
     sass()
   ],
-  outputTargets: [{ 
+  outputTargets: [{
     type: 'www',
-    serviceWorker: null
+    serviceWorker: {
+      swSrc: 'src/sw.js',
+      globPatterns: [
+        '**/*.{img,icon,js,css,html}'
+      ]
+    }
   }],
+  enableCache: true,
   globalStyle: 'src/global/app.css',
   globalScript: 'src/global/app.ts'
 };

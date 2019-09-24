@@ -236,7 +236,10 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {}
+  interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {
+    'onAlert'?: (event: CustomEvent<any>) => void;
+    'onToast'?: (event: CustomEvent<any>) => void;
+  }
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
     'dataScreenId'?: string;
     'onAlert'?: (event: CustomEvent<any>) => void;

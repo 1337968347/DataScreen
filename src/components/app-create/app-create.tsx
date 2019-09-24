@@ -1,8 +1,9 @@
-import { Component, State, Element, h } from '@stencil/core';
+import { Component, State, Event, EventEmitter, Element, h } from '@stencil/core';
+import { menuController } from "@ionic/core"
 import uuid from "uuid";
 
 import { DataScreen, CanvasConfig } from "../../interfaces";
-import { DataScreenData } from "../../providers/datascreen-data";
+import { DataScreenData } from "../../providers/datascreen-data"
 import { initCanvasComponent, setDataScreen, getCanvasConfig } from "../../util/datascreen-controller";
 import { dataScreenTemplateList } from "../../util/datascreen/datascreen-template";
 import { deepCopy, reduceFrequency } from "../../util/helper"
@@ -14,6 +15,8 @@ import { deepCopy, reduceFrequency } from "../../util/helper"
 export class AppCreate {
     @Element() el: HTMLElement;
     @State() scaleRange: number = 35;
+    @Event() alert: EventEmitter;
+    @Event() toast: EventEmitter;
     chooseTemplate: DataScreen;
     minRange: number = 10;
     maxRange: number = 200;
@@ -27,10 +30,9 @@ export class AppCreate {
         this.initResize()
     }
 
-
     initResize() {
-        let canvasOption = getCanvasConfig();
-        this.resizeSCale(canvasOption);
+        let canvasOption1 = getCanvasConfig();
+        this.resizeSCale(canvasOption1);
         window.onresize = () => {
             reduceFrequency("onresizeCanvas", () => {
                 let canvasOption1 = getCanvasConfig();
@@ -40,18 +42,18 @@ export class AppCreate {
     }
 
     resizeSCale(canvasOption: CanvasConfig) {
-        let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
-        let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
-        let scale = this.scaleRange;
-        if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
-            scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
-        } else {
-            scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
+        if (this.el.querySelector(".canvas-container")) {
+            let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
+            let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
+            let scale = this.scaleRange;
+            if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
+                scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
+            } else {
+                scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
+            }
+            this.scaleRange = scale > this.minRange ? scale : this.minRange;
+            this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
         }
-        this.scaleRange = scale > this.minRange ? scale : this.minRange;
-        this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
-        console.log(this.scaleRange)
-
     }
 
     handleChooseTemplate(template: DataScreen) {
@@ -62,12 +64,43 @@ export class AppCreate {
             canvasOption: this.chooseTemplate.canvasOption
         }, false)
         let canvasOption1 = getCanvasConfig();
+        menuController.close();
         this.resizeSCale(canvasOption1)
     }
 
     async jumpToEdit() {
-        await DataScreenData.addDataScreen(this.chooseTemplate)
-        this.el.closest("ion-nav").push("app-home", { dataScreenId: this.chooseTemplate.id });
+        this.alert.emit({
+            header: "新建可视化",
+            inputs: [{
+                type: "text",
+                label: "name",
+                name: "name"
+            }],
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    }
+                }, {
+                    text: '确定',
+                    handler: (e) => {
+                        if (e.name == "") {
+                            this.toast.emit("请输入可视化名称!")
+                            return false;
+                        } else {
+                            this.chooseTemplate.name = e.name;
+                            DataScreenData.addDataScreen(this.chooseTemplate).then(()=>{
+                                this.el.closest("ion-nav").push("app-home", { dataScreenId: this.chooseTemplate.id });
+                            })
+                        }
+
+                    }
+                }
+            ]
+        })
+
     }
 
     render() {
@@ -97,29 +130,29 @@ export class AppCreate {
                         )}
                     </ion-content>
                 </ion-menu>
-
                 <div class="ion-page" id="menu-content">
                     <ion-header>
                         <ion-toolbar>
                             <ion-buttons slot="start">
                                 <ion-menu-button></ion-menu-button>
                             </ion-buttons>
+                            <ion-title>
+                                {this.chooseTemplate.name || ""}
+                            </ion-title>
                         </ion-toolbar>
                     </ion-header>
                     <ion-content>
-                        <div class="canvas-box">
-                            <h2>选择模板</h2>
+                        <div class="canvas-content">
                             <div class="canvas-container">
-                                <datascreen-canvas scale={this.scaleRange} canModify={false}>
-                                </datascreen-canvas>
+                                <div class="fit-box">
+                                    <datascreen-canvas scale={this.scaleRange} canModify={false}>
+                                    </datascreen-canvas>
+                                    <div class="top-oper-box">
+                                        <ion-button onClick={() => { this.jumpToEdit() }} color="primary">创 建</ion-button>
+                                    </div>
+                                </div>
                             </div>
-                            <ion-fab title="编辑" vertical="bottom" horizontal="end" slot="fixed">
-                                <ion-fab-button color="secondary" onClick={() => { this.jumpToEdit() }}>
-                                    <ion-icon name="create"></ion-icon>
-                                </ion-fab-button>
-                            </ion-fab>
                         </div>
-
                     </ion-content>
                 </div>
             </ion-split-pane>

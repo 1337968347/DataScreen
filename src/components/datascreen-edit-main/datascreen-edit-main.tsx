@@ -15,14 +15,9 @@ export class DatascreenEditMain {
     minRange: number = 10;
     maxRange: number = 200;
 
-
     componentDidLoad() {
         this.initResize();
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
-    }
-
-    componentDidUpdate(){
-        window.onresize = null;
     }
 
     initResize(){

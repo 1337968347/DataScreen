@@ -32,6 +32,10 @@ ion-toolbar {
   --min-height: var(--header-height);
 }
 
+ion-title{
+  text-align: center;
+}
+
 html {
   font-size: var(--font-size);
 }

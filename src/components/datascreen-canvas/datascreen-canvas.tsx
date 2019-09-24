@@ -1,4 +1,4 @@
-import { Component, State, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
+import { Component, State, Watch, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
 import { ComData, CanvasConfig } from "../../interfaces";
 import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
 
@@ -15,8 +15,20 @@ export class DatascreenCanvas {
     @State() comOptionList: ComData[] = [];
     @Event() popover: EventEmitter;
 
+    @Watch('scale')
+    watchHandler(newScaleValue) {
+        this.upDateElSize(this.canvasOption ,newScaleValue)
+    }
+
+    upDateElSize(canvasOption: CanvasConfig, scale: number) {
+        this.el.style.width = Math.floor((scale / 100) * parseInt(canvasOption.w)) + "px";
+        this.el.style.height = Math.floor((scale / 100) * parseInt(canvasOption.h)) + "px"
+    }
+
     componentWillLoad() {
         this.canvasOption = getCanvasConfig();
+        this.upDateElSize(this.canvasOption ,this.scale)
+
         this.mapComDatasToState(getComponentDatas())
     }
 
@@ -34,6 +46,7 @@ export class DatascreenCanvas {
     @Method()
     async updateCanvasConfig(config: CanvasConfig) {
         this.canvasOption = config;
+        this.upDateElSize(this.canvasOption ,this.scale)
     }
 
     handleDraggableDrag(e: CustomEvent, changeComponentData: ComData) {
