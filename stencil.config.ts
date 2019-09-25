@@ -11,7 +11,7 @@ export const config: Config = {
     serviceWorker: {
       swSrc: 'src/sw.js',
       globPatterns: [
-        '**/*.{img,icon,js,css,html}'
+        '**/*.{img,icon,icon,js,css,html}'
       ]
     }
   }],

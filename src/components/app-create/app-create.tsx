@@ -1,4 +1,5 @@
-import { Component, State, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
+import { RouterHistory } from "@stencil/router"
 import { menuController } from "@ionic/core"
 import uuid from "uuid";
 
@@ -13,6 +14,7 @@ import { deepCopy, reduceFrequency } from "../../util/helper"
     styleUrl: 'app-create.scss'
 })
 export class AppCreate {
+    @Prop() history: RouterHistory;
     @Element() el: HTMLElement;
     @State() scaleRange: number = 35;
     @Event() alert: EventEmitter;
@@ -22,7 +24,7 @@ export class AppCreate {
     maxRange: number = 200;
 
     componentWillLoad() {
-        this.handleChooseTemplate(dataScreenTemplateList[0]);
+        this.setChooseTemplate(dataScreenTemplateList[0]);
     }
 
     componentDidLoad() {
@@ -31,8 +33,11 @@ export class AppCreate {
     }
 
     initResize() {
-        let canvasOption1 = getCanvasConfig();
-        this.resizeSCale(canvasOption1);
+        setTimeout(()=>{
+            let canvasOption1 = getCanvasConfig();
+            this.resizeSCale(canvasOption1)
+        },300)
+        
         window.onresize = () => {
             reduceFrequency("onresizeCanvas", () => {
                 let canvasOption1 = getCanvasConfig();
@@ -42,30 +47,33 @@ export class AppCreate {
     }
 
     resizeSCale(canvasOption: CanvasConfig) {
-        if (this.el.querySelector(".canvas-container")) {
-            let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
-            let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
-            let scale = this.scaleRange;
-            if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
-                scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
-            } else {
-                scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
-            }
-            this.scaleRange = scale > this.minRange ? scale : this.minRange;
-            this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
+        let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
+        let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
+        console.log(this.el.querySelector(".canvas-container"))
+        let scale = this.scaleRange;
+        if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
+            scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
+        } else {
+            scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
         }
+        this.scaleRange = scale > this.minRange ? scale : this.minRange;
+        this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
     }
 
     handleChooseTemplate(template: DataScreen) {
+        this.setChooseTemplate(template);
+        menuController.close();
+        let canvasOption1 = getCanvasConfig();
+        this.resizeSCale(canvasOption1)
+    }
+
+    setChooseTemplate(template: DataScreen) {
         this.chooseTemplate = deepCopy({}, template)
         this.chooseTemplate.id = uuid.v1();
         setDataScreen(this.chooseTemplate.id, {
             componentsData: this.chooseTemplate.componentsData,
             canvasOption: this.chooseTemplate.canvasOption
         }, false)
-        let canvasOption1 = getCanvasConfig();
-        menuController.close();
-        this.resizeSCale(canvasOption1)
     }
 
     async jumpToEdit() {
@@ -91,8 +99,8 @@ export class AppCreate {
                             return false;
                         } else {
                             this.chooseTemplate.name = e.name;
-                            DataScreenData.addDataScreen(this.chooseTemplate).then(()=>{
-                                this.el.closest("ion-nav").push("app-home", { dataScreenId: this.chooseTemplate.id });
+                            DataScreenData.addDataScreen(this.chooseTemplate).then(() => {
+                                this.history.push(`canvas/${this.chooseTemplate.id}/edit`)
                             })
                         }
 
@@ -104,58 +112,60 @@ export class AppCreate {
     }
 
     render() {
-        return [
-            <ion-split-pane content-id="menu-content">
-                <ion-menu content-id="menu-content">
-                    <ion-header>
-                        <ion-toolbar>
-                            <ion-title>模板</ion-title>
-                        </ion-toolbar>
-                    </ion-header>
-                    <ion-content forceOverscroll={false}>
-                        {dataScreenTemplateList.map((dataScreentemplate) =>
-                            <ion-item button onClick={() => { this.handleChooseTemplate(dataScreentemplate) }}>
-                                {dataScreentemplate.scaleImg ?
-                                    <ion-thumbnail slot="start">
-                                        <img src={dataScreentemplate.scaleImg} />
-                                    </ion-thumbnail> :
-                                    <div slot="start" class="blank-img">
-                                    </div>
-                                }
-                                <ion-label>
-                                    <h2>{dataScreentemplate.name}</h2>
-                                    <p>{`${dataScreentemplate.canvasOption.w}px X ${dataScreentemplate.canvasOption.h}px`}</p>
-                                </ion-label>
-                            </ion-item>
-                        )}
-                    </ion-content>
-                </ion-menu>
-                <div class="ion-page" id="menu-content">
-                    <ion-header>
-                        <ion-toolbar>
-                            <ion-buttons slot="start">
-                                <ion-menu-button></ion-menu-button>
-                            </ion-buttons>
-                            <ion-title>
-                                {this.chooseTemplate.name || ""}
-                            </ion-title>
-                        </ion-toolbar>
-                    </ion-header>
-                    <ion-content>
-                        <div class="canvas-content">
-                            <div class="canvas-container">
-                                <div class="fit-box">
-                                    <datascreen-canvas scale={this.scaleRange} canModify={false}>
-                                    </datascreen-canvas>
-                                    <div class="top-oper-box">
-                                        <ion-button onClick={() => { this.jumpToEdit() }} color="primary">创 建</ion-button>
+        return (
+            <Host class="ion-page">
+                <ion-split-pane content-id="menu-content">
+                    <ion-menu content-id="menu-content">
+                        <ion-header>
+                            <ion-toolbar>
+                                <ion-title>模板</ion-title>
+                            </ion-toolbar>
+                        </ion-header>
+                        <ion-content forceOverscroll={false}>
+                            {dataScreenTemplateList.map((dataScreentemplate) =>
+                                <ion-item button onClick={() => { this.handleChooseTemplate(dataScreentemplate) }}>
+                                    {dataScreentemplate.scaleImg ?
+                                        <ion-thumbnail slot="start">
+                                            <img src={dataScreentemplate.scaleImg} />
+                                        </ion-thumbnail> :
+                                        <div slot="start" class="blank-img">
+                                        </div>
+                                    }
+                                    <ion-label>
+                                        <h2>{dataScreentemplate.name}</h2>
+                                        <p>{`${dataScreentemplate.canvasOption.w}px X ${dataScreentemplate.canvasOption.h}px`}</p>
+                                    </ion-label>
+                                </ion-item>
+                            )}
+                        </ion-content>
+                    </ion-menu>
+                    <div class="ion-page" id="menu-content">
+                        <ion-header>
+                            <ion-toolbar>
+                                <ion-buttons slot="start">
+                                    <ion-menu-button></ion-menu-button>
+                                </ion-buttons>
+                                <ion-title>
+                                    {this.chooseTemplate && this.chooseTemplate.name || ""}
+                                </ion-title>
+                            </ion-toolbar>
+                        </ion-header>
+                        <ion-content>
+                            <div class="canvas-content">
+                                <div class="canvas-container">
+                                    <div class="fit-box">
+                                        <datascreen-canvas scale={this.scaleRange} canModify={false}>
+                                        </datascreen-canvas>
+                                        <div class="top-oper-box">
+                                            <ion-button onClick={() => { this.jumpToEdit() }} color="primary">创 建</ion-button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </ion-content>
-                </div>
-            </ion-split-pane>
-        ];
+                        </ion-content>
+                    </div>
+                </ion-split-pane>
+            </Host>
+        );
     }
 }

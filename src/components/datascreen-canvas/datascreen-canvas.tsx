@@ -20,17 +20,18 @@ export class DatascreenCanvas {
         this.upDateElSize(this.canvasOption ,newScaleValue)
     }
 
+    componentDidLoad() {
+        this.canvasOption = getCanvasConfig();
+        this.upDateElSize(this.canvasOption ,this.scale)
+        this.mapComDatasToState(getComponentDatas())
+    }
+
     upDateElSize(canvasOption: CanvasConfig, scale: number) {
         this.el.style.width = Math.floor((scale / 100) * parseInt(canvasOption.w)) + "px";
         this.el.style.height = Math.floor((scale / 100) * parseInt(canvasOption.h)) + "px"
     }
 
-    componentWillLoad() {
-        this.canvasOption = getCanvasConfig();
-        this.upDateElSize(this.canvasOption ,this.scale)
-
-        this.mapComDatasToState(getComponentDatas())
-    }
+    
 
     @Method()
     async mapComDatasToState(comList: ComData[]) {
@@ -84,35 +85,41 @@ export class DatascreenCanvas {
     }
 
     render() {
-        return (
-            <div class="drag_container" style={{
-                "transform": `scale(${this.scale / 100})`,
-                "width": this.canvasOption.w + "px",
-                "height": this.canvasOption.h + "px",
-                "background-color": this.canvasOption.bgc + "",
-                "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : "",
-                "overflow": this.canModify ? "inherit" : "hidden"
-            }}>
-                {this.comOptionList.map((comDarggable) =>
-                    <cy-draggable key={comDarggable.id}
-                        onContextMenu={(e) => { this.canModify && this.popoverContextMenu(e, comDarggable.id) }}
-                        isChoose={this.chooseComId == comDarggable.id} canModify={this.canModify} scale={Math.round(this.scale) / 100}
-                        onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
-                        onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
-                        onChoose={() => { this.chooseComponent(comDarggable.id) }}
-                        style={{
-                            "position": "absolute",
-                            "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`,
-                            "width": comDarggable.data.view.w + "px", "height": comDarggable.data.view.h + "px",
-                            "--opacity": comDarggable.data.view.opacity + ""
-                        }}>
-                        <draggable-adapter
-                            key={comDarggable.id}
-                            comOptionData={comDarggable}
-                        ></draggable-adapter>
-                    </cy-draggable>
-                )}
-            </div>
-        );
+        if(this.canvasOption){
+            return (
+                <div class="drag_container" style={{
+                    "transform": `scale(${this.scale / 100})`,
+                    "width": this.canvasOption.w + "px",
+                    "height": this.canvasOption.h + "px",
+                    "background-color": this.canvasOption.bgc + "",
+                    "background-image": this.canvasOption.bgi ? `url(${this.canvasOption.bgi})` : "",
+                    "overflow": this.canModify ? "inherit" : "hidden"
+                }}>
+                    {this.comOptionList.map((comDarggable) =>
+                        <cy-draggable key={comDarggable.id}
+                            onContextMenu={(e) => { this.canModify && this.popoverContextMenu(e, comDarggable.id) }}
+                            isChoose={this.chooseComId == comDarggable.id} canModify={this.canModify} scale={Math.round(this.scale) / 100}
+                            onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
+                            onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
+                            onChoose={() => { this.chooseComponent(comDarggable.id) }}
+                            style={{
+                                "position": "absolute",
+                                "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`,
+                                "width": comDarggable.data.view.w + "px", "height": comDarggable.data.view.h + "px",
+                                "--opacity": comDarggable.data.view.opacity + ""
+                            }}>
+                            <draggable-adapter
+                                key={comDarggable.id}
+                                comOptionData={comDarggable}
+                            ></draggable-adapter>
+                        </cy-draggable>
+                    )}
+                </div>
+            );
+        }else{
+            // loading
+            return null;
+        }
+        
     }
 }

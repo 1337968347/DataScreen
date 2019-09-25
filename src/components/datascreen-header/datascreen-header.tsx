@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
+import { RouterHistory } from "@stencil/router";
 
 @Component({
     tag: 'datascreen-header',
@@ -6,6 +7,7 @@ import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core'
 })
 export class DatascreenHeader {
     @Element() el: HTMLElement;
+    @Prop() history: RouterHistory;
     @Prop() dataScreenId: string;
     @Prop() checkMenuControl: boolean[] = [false, false, false];
     @Event() checkMenu: EventEmitter;
@@ -16,7 +18,7 @@ export class DatascreenHeader {
     }
 
     previewCanvas() {
-        this.el.closest('ion-nav').push("app-preview")
+        this.history.push(`canvas/${this.dataScreenId}home/edit`)
     }
 
     handleMenuChoose(index: number) {

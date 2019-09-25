@@ -1,5 +1,5 @@
-import { Component,  Listen, h } from '@stencil/core';
-import { popoverController, toastController, alertController, actionSheetController, loadingController} from '@ionic/core';
+import { Component, Listen, h } from '@stencil/core';
+import { popoverController, toastController, alertController, actionSheetController, loadingController } from '@ionic/core';
 
 @Component({
   tag: 'app-root',
@@ -75,13 +75,19 @@ export class AppRoot {
   render() {
     return (
       <ion-app>
-        <ion-router useHash={true}>
-          <ion-route url="/" component="app-manage"></ion-route>
-          <ion-route url="/create_canvas" component="app-create" />
-          <ion-route url="/canvas/:dataScreenId/edit" component="app-home" />
-          <ion-route url="/canvas/:dataScreenId/preview" component="app-preview"></ion-route>
-        </ion-router>
-        <ion-nav animated={false} />
+        <main>
+          <stencil-router historyType="hash" scrollTopOffset={0}>
+            <stencil-route-switch>
+              <stencil-route url="/manage" component="app-manage" exact={true}></stencil-route>
+              <stencil-route url="/new" component="app-create"exact={true} />
+              <stencil-route url="/canvas/:dataScreenId/edit" component="app-home"exact={true} />
+              <stencil-route url="/canvas/:dataScreenId/preview" component="app-preview"exact={true}></stencil-route>
+              <stencil-router-redirect root="/"  url="/manage"></stencil-router-redirect>
+            
+            
+            </stencil-route-switch>
+          </stencil-router>
+        </main>
       </ion-app>
     );
   }

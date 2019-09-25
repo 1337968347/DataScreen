@@ -21,8 +21,10 @@ export class DatascreenEditMain {
     }
 
     initResize(){
-        let canvasOption = getCanvasConfig();
-        this.resizeSCale(canvasOption);
+        setTimeout(()=>{
+            let canvasOption1 = getCanvasConfig();
+            this.resizeSCale(canvasOption1)
+        },300)
         window.onresize = () => {
             reduceFrequency("onresizeCanvas",()=>{
                 let canvasOption1 = getCanvasConfig();
@@ -32,8 +34,8 @@ export class DatascreenEditMain {
     }
 
     resizeSCale(canvasOption: CanvasConfig) {
-        let canShowBoxWidth = this.el.querySelector(".datascreen-edit-container").clientWidth;
-        let canShowBoxHeight = this.el.querySelector(".datascreen-edit-container").clientHeight;
+        let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
+        let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
         let scale = this.scaleRange;
         if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
             scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
@@ -60,7 +62,7 @@ export class DatascreenEditMain {
 
     render() {
         return [
-            <div class="datascreen-edit-container" onClick={() => { changeChooseComponent("") }}>
+            <div class="canvas-container" onClick={() => { changeChooseComponent("") }}>
                 <datascreen-canvas scale={this.scaleRange}>
                 </datascreen-canvas>
             </div>,

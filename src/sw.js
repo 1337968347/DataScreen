@@ -8,10 +8,16 @@ self.workbox.setConfig({
 
 self.addEventListener("message", ({ data }) => {
     if (data === "skipWaiting") {
-        console.log("skipWaiting")
         self.skipWaiting();
     }
 });
 
+// svg photo
+workbox.routing.registerRoute(
+    new RegExp('.*\.svg'),
+    workbox.strategies.cacheFirst({
+        cacheName: 'svg',
+    })
+);
 
 self.workbox.precaching.precacheAndRoute([]);

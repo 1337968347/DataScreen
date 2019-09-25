@@ -7,16 +7,25 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  MatchResults,
+  RouterHistory,
+} from '@stencil/router';
+import {
   CanvasConfig,
   ComData,
 } from './interfaces';
 
 export namespace Components {
-  interface AppCreate {}
-  interface AppHome {
-    'dataScreenId': string;
+  interface AppCreate {
+    'history': RouterHistory;
   }
-  interface AppManage {}
+  interface AppHome {
+    'history': RouterHistory;
+    'match': MatchResults;
+  }
+  interface AppManage {
+    'history': RouterHistory;
+  }
   interface AppPreview {
     'dataScreenId': string;
   }
@@ -48,6 +57,7 @@ export namespace Components {
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
     'dataScreenId': string;
+    'history': RouterHistory;
   }
   interface DatascreenLayer {
     'chooseComponent': (comId: any) => Promise<void>;
@@ -237,15 +247,19 @@ declare global {
 
 declare namespace LocalJSX {
   interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {
+    'history'?: RouterHistory;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
-    'dataScreenId'?: string;
+    'history'?: RouterHistory;
+    'match'?: MatchResults;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {}
+  interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {
+    'history'?: RouterHistory;
+  }
   interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
     'dataScreenId'?: string;
   }
@@ -282,6 +296,7 @@ declare namespace LocalJSX {
   interface DatascreenHeader extends JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement> {
     'checkMenuControl'?: boolean[];
     'dataScreenId'?: string;
+    'history'?: RouterHistory;
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
