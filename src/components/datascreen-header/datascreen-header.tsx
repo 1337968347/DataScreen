@@ -13,12 +13,8 @@ export class DatascreenHeader {
     @Event() checkMenu: EventEmitter;
     @Event() popover: EventEmitter;
 
-    popoverThemeSelectBox() {
-        this.popover.emit({ component: 'popover-theme' });
-    }
-
     previewCanvas() {
-        this.history.push(`canvas/${this.dataScreenId}home/edit`)
+        this.history.push(`/canvas/${this.dataScreenId}/preview`)
     }
 
     handleMenuChoose(index: number) {
@@ -63,9 +59,7 @@ export class DatascreenHeader {
                             <ion-icon slot="icon-only" name="easel"></ion-icon>
                         </ion-button>
 
-                        <ion-button title="主题" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.popoverThemeSelectBox() }}>
-                            <ion-icon slot="icon-only" name="color-palette"></ion-icon>
-                        </ion-button>
+                        
                     </ion-buttons>
                 </ion-toolbar>
             </ion-header>

@@ -18,6 +18,10 @@ export class DataScreenDataController {
         return await get(`dataScreen-${dataScreenId}`)
     }
 
+    async setDataScreenById(dataScreenId: string, dataScreen: DataScreen): Promise<void> {
+        return await set(`dataScreen-${dataScreenId}`, dataScreen)
+    }
+
     // DataScreen ID
     async setDataScreenId(id: string) {
         let ids = await this.getDataScreenIdList();

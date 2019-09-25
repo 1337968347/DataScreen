@@ -1,4 +1,5 @@
-import { Component, Prop,Element, h } from '@stencil/core';
+import { Component,Prop, Element, h } from '@stencil/core';
+import { MatchResults }from "@stencil/router";
 
 import { initDataScreen, getDataScreen,initCanvasComponent } from "../../util/datascreen-controller";
 
@@ -7,8 +8,8 @@ import { initDataScreen, getDataScreen,initCanvasComponent } from "../../util/da
     styleUrl: 'app-preview.scss'
 })
 export class AppPreview {
+    @Prop() match: MatchResults;
     @Element() el: HTMLElement;
-    @Prop() dataScreenId: string;
 
     componentWillLoad() {
         this.initDataScreenOption();
@@ -19,8 +20,9 @@ export class AppPreview {
     }
 
     async initDataScreenOption() {
-        let dataScreenData = await getDataScreen(this.dataScreenId);
-        initDataScreen(this.dataScreenId, {
+        let dataScreenId= this.match.params.dataScreenId;
+        let dataScreenData = await getDataScreen(dataScreenId);
+        initDataScreen(dataScreenId, {
             componentsData: dataScreenData.componentsData,
             canvasOption: dataScreenData.canvasOption
         }, false)

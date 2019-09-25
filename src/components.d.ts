@@ -27,7 +27,7 @@ export namespace Components {
     'history': RouterHistory;
   }
   interface AppPreview {
-    'dataScreenId': string;
+    'match': MatchResults;
   }
   interface AppRoot {}
   interface ChartBasicLine {
@@ -48,9 +48,15 @@ export namespace Components {
   interface DatascreenCanvas {
     'canModify': boolean;
     'chooseComponent': (comId: any) => Promise<void>;
+    'getCanvasSize': () => Promise<{ w: number; h: number; }>;
     'mapComDatasToState': (comList: ComData[]) => Promise<void>;
     'scale': number;
     'updateCanvasConfig': (config: CanvasConfig) => Promise<void>;
+  }
+  interface DatascreenCanvasContent {
+    'maxCanvasSCale': number;
+    'minCanvasScale': number;
+    'resizeSCale': () => Promise<void>;
   }
   interface DatascreenComPanel {}
   interface DatascreenEditMain {}
@@ -148,6 +154,12 @@ declare global {
     new (): HTMLDatascreenCanvasElement;
   };
 
+  interface HTMLDatascreenCanvasContentElement extends Components.DatascreenCanvasContent, HTMLStencilElement {}
+  var HTMLDatascreenCanvasContentElement: {
+    prototype: HTMLDatascreenCanvasContentElement;
+    new (): HTMLDatascreenCanvasContentElement;
+  };
+
   interface HTMLDatascreenComPanelElement extends Components.DatascreenComPanel, HTMLStencilElement {}
   var HTMLDatascreenComPanelElement: {
     prototype: HTMLDatascreenComPanelElement;
@@ -230,6 +242,7 @@ declare global {
     'cy-fast-click': HTMLCyFastClickElement;
     'cy-lazy-img': HTMLCyLazyImgElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
+    'datascreen-canvas-content': HTMLDatascreenCanvasContentElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
@@ -259,9 +272,10 @@ declare namespace LocalJSX {
   }
   interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {
     'history'?: RouterHistory;
+    'onPopover'?: (event: CustomEvent<any>) => void;
   }
   interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
-    'dataScreenId'?: string;
+    'match'?: MatchResults;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
@@ -286,8 +300,13 @@ declare namespace LocalJSX {
   }
   interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
     'canModify'?: boolean;
+    'onCanvasChange'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
     'scale'?: number;
+  }
+  interface DatascreenCanvasContent extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasContentElement> {
+    'maxCanvasSCale'?: number;
+    'minCanvasScale'?: number;
   }
   interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
@@ -337,6 +356,7 @@ declare namespace LocalJSX {
     'cy-fast-click': CyFastClick;
     'cy-lazy-img': CyLazyImg;
     'datascreen-canvas': DatascreenCanvas;
+    'datascreen-canvas-content': DatascreenCanvasContent;
     'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;

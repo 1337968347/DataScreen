@@ -36,7 +36,7 @@ export class DatascreenSettingPanel {
             const comData = this.ComDataData.data;
             return [
                 <ion-header>
-                    <ion-segment onIonChange={(e) => { this.handleSegChange(e) }} value="config">
+                    <ion-segment onIonChange={(e) => { this.handleSegChange(e) }} value={this.chooseSeg}>
                         <ion-segment-button title="配置" value="config">
                             <ion-icon name="options"></ion-icon>
                         </ion-segment-button>

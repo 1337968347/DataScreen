@@ -22,7 +22,7 @@ export const initDataScreen = (DataScreenId: string, dataScreen: DataScreen, isL
     dataScreenId = DataScreenId;
     layerComponent = null;
     settingComponent = null;
-    setComponentDatas( dataScreen.componentsData, false, false, isLocalUpDate);
+    setComponentDatas(dataScreen.componentsData, false, false, isLocalUpDate);
     saveCanvasConfig(dataScreen.canvasOption, isLocalUpDate);
 }
 
@@ -36,7 +36,7 @@ export const setDataScreen = (DataScreenId: string, dataScreen: DataScreen, isLo
     chooseComId = ""
     dataScreenId = DataScreenId;
     setComponentDatas(dataScreen.componentsData, true, true, isLocalUpDate);
-    saveCanvasConfig(dataScreen.canvasOption,isLocalUpDate);
+    saveCanvasConfig(dataScreen.canvasOption, isLocalUpDate);
 }
 
 export const getDataScreen = async (id: string): Promise<DataScreen> => {
@@ -77,21 +77,21 @@ export const saveCanvasConfig = (config: CanvasConfig, isLocalUpdate: boolean = 
 export const setComponentDatas = async (comList: ComData[],
     isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true, isLocalUpDate: boolean = true) => {
     componentDatas = deepCopy([], comList);
-    isCanvasUpdate && reduceFrequency("canvasDataCallback", () => {
+    isCanvasUpdate && reduceFrequency("canvasDataCallback", async () => {
         getCanvasComponent() && canvasCompoennt.mapComDatasToState(componentDatas)
     })
-    isLayerUpdate && reduceFrequency("layerDataCallback", () => {
+    isLayerUpdate && reduceFrequency("layerDataCallback", async () => {
         let comIdsList = componentDatas.map((item) => { return item.id });
-        getLayerComponent() && layerComponent.mapComIdsToState(comIdsList);
+        getLayerComponent() && await layerComponent.mapComIdsToState(comIdsList);
     })
     isLocalUpDate && DataScreenData.setDataScreenComData(dataScreenId, componentDatas)
 }
 
-export const getComponentDatas =  ():ComData[]=>{
-        return componentDatas;
+export const getComponentDatas = (): ComData[] => {
+    return componentDatas;
 }
 
-export const setComDataChange = async ( comDataItem: ComData, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
+export const setComDataChange = async (comDataItem: ComData, isCanvasUpdate: boolean = true, isSettingUpdate: boolean = true) => {
     let comDatas = componentDatas.map((comData) => {
         return (comData.id == comDataItem.id) ? comDataItem : comData
     })
@@ -108,13 +108,23 @@ export const addComponentData = async (comData: ComData) => {
     changeChooseComponent(comData.id);
 }
 
+export const removeComponentData = async (comId: string) => {
+    // 删除当前选中的组件
+    if (comId == chooseComId) {
+        await changeChooseComponent("")
+    }
+    await setComponentDatas(deepCopy([], componentDatas.filter((comItem) => {
+        return comId !== comItem.id;
+    })))
+}
+
 // 更新选中的组件id
-export const changeChooseComponent = (comId: string) => {
+export const changeChooseComponent = async (comId: string) => {
     if (chooseComId !== comId) {
         chooseComId = comId;
-        getLayerComponent() && layerComponent.chooseComponent(comId)
-        getCanvasComponent() && canvasCompoennt.chooseComponent(comId);
-        getSettingComponent() && settingComponent.setComponentConfigData(getComponentDataById(comId))
+        getLayerComponent() && await layerComponent.chooseComponent(comId)
+        getCanvasComponent() && await canvasCompoennt.chooseComponent(comId);
+        getSettingComponent() && await settingComponent.setComponentConfigData(getComponentDataById(comId))
     }
 }
 
@@ -125,7 +135,7 @@ export const getComponentDataById = (comId: string) => {
     })[0] || null);
 }
 
-export const updateLayerMove = ( from: number, to: number) => {
+export const updateLayerMove = (from: number, to: number) => {
     let comOptionTemp = componentDatas[from];
     componentDatas.splice(from, 1);
     componentDatas.splice(to, 0, comOptionTemp);

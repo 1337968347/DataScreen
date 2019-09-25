@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Host, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
 import { RouterHistory } from "@stencil/router"
 
 import { DataScreen } from '../../interfaces';
@@ -13,6 +13,7 @@ export class AppManage {
     @Element() el: HTMLElement;
     @State() chooseSeg: "my-canvas" | "my-component" | string = "my-canvas";
     @State() dataScreenList: DataScreen[] = []
+    @Event() popover: EventEmitter;
 
     componentWillLoad() {
         this.getDataScreenListData()
@@ -35,20 +36,40 @@ export class AppManage {
         this.history.push(`canvas/${dataScreenId}/edit`)
     }
 
+    jumpTOCanvasPreview(dataScreenId: string) {
+        this.history.push(`canvas/${dataScreenId}/preview`)
+    }
+
+
+    popoverThemeSelectBox() {
+        this.popover.emit({ component: 'popover-theme' });
+    }
+
+    handleDataSCreenChange(dataScreen: DataScreen, name: string, value: string){
+        dataScreen[name]=value;
+        this.dataScreenList= [...this.dataScreenList];
+        DataScreenData.setDataScreenById(dataScreen.id,dataScreen)
+    }   
+
     render() {
         return (
             <Host class="ion-page">
                 <ion-header>
-                    <ion-segment value={this.chooseSeg} onIonChange={(e) => { this.chooseSeg = e.detail.value }}>
-                        <ion-segment-button value="my-canvas" layout="icon-start">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                            <ion-label>我的可视化</ion-label>
-                        </ion-segment-button>
-                        <ion-segment-button value="my-component" layout="icon-start">
-                            <ion-icon name="cube"></ion-icon>
-                            <ion-label>我的组件</ion-label>
-                        </ion-segment-button>
-                    </ion-segment>
+                    <ion-toolbar>
+                        <ion-segment value={this.chooseSeg} onIonChange={(e) => { this.chooseSeg = e.detail.value }}>
+                            <ion-segment-button value="my-canvas" layout="icon-start">
+                                <ion-icon name="logo-buffer"></ion-icon>
+                                <ion-label>我的可视化</ion-label>
+                            </ion-segment-button>
+                            <ion-segment-button value="my-component" layout="icon-start">
+                                <ion-icon name="cube"></ion-icon>
+                                <ion-label>我的组件</ion-label>
+                            </ion-segment-button>
+                        </ion-segment>
+                        <ion-button slot="end" title="主题" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.popoverThemeSelectBox() }}>
+                            <ion-icon slot="icon-only" name="color-palette"></ion-icon>
+                        </ion-button>
+                    </ion-toolbar>
                 </ion-header>
                 <ion-content>
                     {this.chooseSeg == "my-canvas" ?
@@ -66,15 +87,16 @@ export class AppManage {
                                     <ion-card-content>
                                         <ion-item onClick={(e) => { e.stopPropagation(); e.preventDefault() }} lines="none">
                                             <ion-icon name="create" slot="start"></ion-icon>
-                                            <ion-input value={dataScreen.name}></ion-input>
-                                            <ion-button fill="outline" slot="end">View</ion-button>
+                                            <ion-input debounce={500} onIonChange={(e)=>{this.handleDataSCreenChange(dataScreen,"name", e.detail.value)}} value={dataScreen.name}></ion-input>
+                                            <ion-button onClick={() => { this.jumpTOCanvasPreview(dataScreen.id) }} title="预览" fill="outline" slot="end">
+                                                <ion-icon slot="icon-only" name="easel"></ion-icon>
+                                            </ion-button>
                                         </ion-item>
                                     </ion-card-content>
                                 </ion-card>
                             )}
                         </div> : null
                     }
-
                 </ion-content>
             </Host>
         )

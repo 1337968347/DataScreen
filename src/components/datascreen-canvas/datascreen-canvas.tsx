@@ -14,14 +14,18 @@ export class DatascreenCanvas {
     @State() canvasOption: CanvasConfig;
     @State() comOptionList: ComData[] = [];
     @Event() popover: EventEmitter;
+    @Event() canvasChange: EventEmitter;
 
     @Watch('scale')
     watchHandler(newScaleValue) {
         this.upDateElSize(this.canvasOption ,newScaleValue)
     }
-
+ 
     componentDidLoad() {
         this.canvasOption = getCanvasConfig();
+        setTimeout(()=>{
+            this.canvasChange.emit();
+        },400)
         this.upDateElSize(this.canvasOption ,this.scale)
         this.mapComDatasToState(getComponentDatas())
     }
@@ -31,7 +35,13 @@ export class DatascreenCanvas {
         this.el.style.height = Math.floor((scale / 100) * parseInt(canvasOption.h)) + "px"
     }
 
-    
+    @Method()
+    async getCanvasSize(){
+        return {
+           w: parseInt(this.canvasOption.w) ,
+           h: parseInt(this.canvasOption.h)
+        }
+    }
 
     @Method()
     async mapComDatasToState(comList: ComData[]) {
@@ -41,12 +51,13 @@ export class DatascreenCanvas {
     @Method()
     async chooseComponent(comId) {
         this.chooseComId = comId;
-        changeChooseComponent(comId)
+        await changeChooseComponent(comId)
     }
 
     @Method()
     async updateCanvasConfig(config: CanvasConfig) {
         this.canvasOption = config;
+        this.canvasChange.emit();
         this.upDateElSize(this.canvasOption ,this.scale)
     }
 

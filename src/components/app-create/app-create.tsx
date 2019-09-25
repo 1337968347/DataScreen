@@ -3,11 +3,11 @@ import { RouterHistory } from "@stencil/router"
 import { menuController } from "@ionic/core"
 import uuid from "uuid";
 
-import { DataScreen, CanvasConfig } from "../../interfaces";
+import { DataScreen } from "../../interfaces";
 import { DataScreenData } from "../../providers/datascreen-data"
-import { initCanvasComponent, setDataScreen, getCanvasConfig } from "../../util/datascreen-controller";
+import { initCanvasComponent, setDataScreen } from "../../util/datascreen-controller";
 import { dataScreenTemplateList } from "../../util/datascreen/datascreen-template";
-import { deepCopy, reduceFrequency } from "../../util/helper"
+import { deepCopy } from "../../util/helper"
 
 @Component({
     tag: 'app-create',
@@ -29,42 +29,11 @@ export class AppCreate {
 
     componentDidLoad() {
         initCanvasComponent(this.el.querySelector("datascreen-canvas"));
-        this.initResize()
-    }
-
-    initResize() {
-        setTimeout(()=>{
-            let canvasOption1 = getCanvasConfig();
-            this.resizeSCale(canvasOption1)
-        },300)
-        
-        window.onresize = () => {
-            reduceFrequency("onresizeCanvas", () => {
-                let canvasOption1 = getCanvasConfig();
-                this.resizeSCale(canvasOption1)
-            })
-        }
-    }
-
-    resizeSCale(canvasOption: CanvasConfig) {
-        let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
-        let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
-        console.log(this.el.querySelector(".canvas-container"))
-        let scale = this.scaleRange;
-        if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
-            scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
-        } else {
-            scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
-        }
-        this.scaleRange = scale > this.minRange ? scale : this.minRange;
-        this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
     }
 
     handleChooseTemplate(template: DataScreen) {
         this.setChooseTemplate(template);
         menuController.close();
-        let canvasOption1 = getCanvasConfig();
-        this.resizeSCale(canvasOption1)
     }
 
     setChooseTemplate(template: DataScreen) {
@@ -152,7 +121,7 @@ export class AppCreate {
                         </ion-header>
                         <ion-content>
                             <div class="canvas-content">
-                                <div class="canvas-container">
+                                <datascreen-canvas-content>
                                     <div class="fit-box">
                                         <datascreen-canvas scale={this.scaleRange} canModify={false}>
                                         </datascreen-canvas>
@@ -160,7 +129,7 @@ export class AppCreate {
                                             <ion-button onClick={() => { this.jumpToEdit() }} color="primary">创 建</ion-button>
                                         </div>
                                     </div>
-                                </div>
+                                </datascreen-canvas-content>
                             </div>
                         </ion-content>
                     </div>

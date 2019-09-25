@@ -1,4 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
+import { popoverController } from "@ionic/core"
+import { removeComponentData } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'popover-draggable-contextmenu',
@@ -8,6 +10,11 @@ export class PopoverDraggableContextmenu {
     @Prop() comId: string;
 
     componentWillLoad() {
+    }
+
+    async deletecomponentData() {
+        await removeComponentData(this.comId);
+        popoverController.dismiss()
     }
 
     render() {
@@ -37,7 +44,7 @@ export class PopoverDraggableContextmenu {
                         下移一层
                     </ion-label>
                 </ion-item>
-                <ion-item button color="secondary">
+                <ion-item button onClick={()=>{this.deletecomponentData()}} color="secondary">
                     <ion-icon name="trash" slot="start"></ion-icon>
                     <ion-label>
                         删除

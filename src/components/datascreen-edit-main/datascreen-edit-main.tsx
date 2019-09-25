@@ -1,8 +1,6 @@
 import { Component, State, Element, h } from '@stencil/core';
 
-import { changeChooseComponent, initCanvasComponent, getCanvasConfig } from "../../util/datascreen-controller";
-import { reduceFrequency } from"../../util/helper";
-import { CanvasConfig } from "../../interfaces"
+import { changeChooseComponent, initCanvasComponent } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'datascreen-edit-main',
@@ -16,35 +14,9 @@ export class DatascreenEditMain {
     maxRange: number = 200;
 
     componentDidLoad() {
-        this.initResize();
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
     }
 
-    initResize(){
-        setTimeout(()=>{
-            let canvasOption1 = getCanvasConfig();
-            this.resizeSCale(canvasOption1)
-        },300)
-        window.onresize = () => {
-            reduceFrequency("onresizeCanvas",()=>{
-                let canvasOption1 = getCanvasConfig();
-                this.resizeSCale(canvasOption1)
-            })
-        }
-    }
-
-    resizeSCale(canvasOption: CanvasConfig) {
-        let canShowBoxWidth = this.el.querySelector(".canvas-container").clientWidth;
-        let canShowBoxHeight = this.el.querySelector(".canvas-container").clientHeight;
-        let scale = this.scaleRange;
-        if ((parseFloat(canvasOption.w) / parseFloat(canvasOption.h)) > (canShowBoxWidth / canShowBoxHeight)) {
-            scale = Math.floor((canShowBoxWidth / parseFloat(canvasOption.w)) * 100)
-        } else {
-            scale = Math.floor((canShowBoxHeight / parseFloat(canvasOption.h)) * 100)
-        }
-        this.scaleRange = scale > this.minRange ? scale : this.minRange;
-        this.scaleRange = scale > this.maxRange ? this.maxRange : scale;
-    }
 
     changeRangeValue(value) {
         if (value >= this.minRange && value <= this.maxRange) {
@@ -62,9 +34,11 @@ export class DatascreenEditMain {
 
     render() {
         return [
-            <div class="canvas-container" onClick={() => { changeChooseComponent("") }}>
-                <datascreen-canvas scale={this.scaleRange}>
-                </datascreen-canvas>
+            <div class="canvas-box" onClick={() => { changeChooseComponent("") }}>
+                <datascreen-canvas-content>
+                    <datascreen-canvas scale={this.scaleRange}>
+                    </datascreen-canvas>
+                </datascreen-canvas-content>
             </div>,
             <div class="datascreen-edit-footer">
                 <div class="right-range-control">
