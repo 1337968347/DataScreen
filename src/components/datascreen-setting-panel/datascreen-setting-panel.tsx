@@ -58,10 +58,10 @@ export class DatascreenSettingPanel {
                                         图标尺寸
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input type="number" placeholder="宽度" onIonChange={(e) => { this.handleComConfigChange("view", "w", e.detail.value) }} value={comData.view.w}></ion-input>
+                                        <ion-input debounce={500} type="number" placeholder="宽度" onIonChange={(e) => { this.handleComConfigChange("view", "w", e.detail.value) }} value={comData.view.w}></ion-input>
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input type="number" placeholder="高度" onIonChange={(e) => { this.handleComConfigChange("view", "h", e.detail.value) }} value={comData.view.h}></ion-input>
+                                        <ion-input debounce={500}  type="number" placeholder="高度" onIonChange={(e) => { this.handleComConfigChange("view", "h", e.detail.value) }} value={comData.view.h}></ion-input>
                                     </ion-col>
                                 </ion-row>
 
@@ -70,10 +70,10 @@ export class DatascreenSettingPanel {
                                         图表位置
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input type="number" placeholder="top" onIonChange={(e) => { this.handleComConfigChange("view", "x", e.detail.value) }} value={comData.view.x}></ion-input>
+                                        <ion-input debounce={500}  type="number" placeholder="top" onIonChange={(e) => { this.handleComConfigChange("view", "x", e.detail.value) }} value={comData.view.x}></ion-input>
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input type="number" placeholder="left" onIonChange={(e) => { this.handleComConfigChange("view", "y", e.detail.value) }} value={comData.view.y}></ion-input>
+                                        <ion-input debounce={500}  type="number" placeholder="left" onIonChange={(e) => { this.handleComConfigChange("view", "y", e.detail.value) }} value={comData.view.y}></ion-input>
                                     </ion-col>
                                 </ion-row>
 
@@ -82,7 +82,7 @@ export class DatascreenSettingPanel {
                                         旋转角度
                                     </ion-col>
                                     <ion-col size="4">
-                                        <ion-input type="number" onIonChange={(e) => { this.handleComConfigChange("view", "deg", e.detail.value) }} value={comData.view.deg + ""}></ion-input>
+                                        <ion-input debounce={500}  type="number" onIonChange={(e) => { this.handleComConfigChange("view", "deg", e.detail.value) }} value={comData.view.deg + ""}></ion-input>
                                     </ion-col>
                                 </ion-row>
 
@@ -91,11 +91,11 @@ export class DatascreenSettingPanel {
                                         透明度
                                     </ion-col>
                                     <ion-col size="4">
-                                        <ion-range value={parseFloat(comData.view.opacity)} onIonChange={(e) => { this.handleComConfigChange("view", "opacity", (e.detail.value as number).toFixed(2)) }} min={0} max={1} step={0.05}>
+                                        <ion-range debounce={500}  value={parseFloat(comData.view.opacity)} onIonChange={(e) => { this.handleComConfigChange("view", "opacity", (e.detail.value as number).toFixed(2)) }} min={0} max={1} step={0.05}>
                                         </ion-range>
                                     </ion-col>
                                     <ion-col size="4">
-                                        <ion-input type="number" onIonChange={(e) => { this.handleComConfigChange("view", "opacity", e.detail.value) }} value={comData.view.opacity + ""}></ion-input>
+                                        <ion-input debounce={500}  type="number" onIonChange={(e) => { this.handleComConfigChange("view", "opacity", e.detail.value) }} value={comData.view.opacity + ""}></ion-input>
                                     </ion-col>
                                 </ion-row>
 

@@ -1,1 +1,1 @@
-export type echartType = 'default' | 'purple' | 'black';
+export type themeType = 'default' | 'purple' | 'black';

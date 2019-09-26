@@ -1,7 +1,6 @@
-import { Component, Prop, Host,Method,Listen, Element, h } from '@stencil/core';
+import { Component, Prop, Host,Method,Event,EventEmitter, Listen, Element, h } from '@stencil/core';
 
 // import { CanvasConfig } from "../../interfaces";
-import { reduceFrequency } from "../../util/helper"
 
 @Component({
     tag: 'datascreen-canvas-content',
@@ -11,20 +10,14 @@ export class DatascreenCanvasContent {
     @Element() el: HTMLElement;
     @Prop() minCanvasScale: number = 10;
     @Prop() maxCanvasSCale: number = 200;
+    @Event() canvasScaleChange: EventEmitter;
 
     @Listen('canvasChange')
     customEventHandler() {
         this.resizeSCale()
     }
 
-    componentWillLoad() {
-        window.onresize = () => {
-            reduceFrequency("onresizeCanvas", () => {
-                this.resizeSCale()
-            })
-        }
-    }
-
+    @Listen('resize', { target: 'window' })
     @Method()
     async resizeSCale() {
         let dataScreenCanvasEl = this.el.querySelector("datascreen-canvas");
@@ -41,6 +34,7 @@ export class DatascreenCanvasContent {
                 }
                 scale = scale > this.minCanvasScale ? scale : this.minCanvasScale;
                 scale = scale > this.maxCanvasSCale ? this.maxCanvasSCale : scale;
+                this.canvasScaleChange.emit(scale)
                 dataScreenCanvasEl.scale = scale ;
             }
         }

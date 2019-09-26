@@ -1,4 +1,4 @@
-{
+export default{
     "color": [
         "#2ec7c9",
         "#b6a2de",

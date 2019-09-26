@@ -1,13 +1,18 @@
 import { Component, State, Watch, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
+import * as echarts from 'echarts/lib/echarts'
+
 import { ComData, CanvasConfig } from "../../interfaces";
 import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
+import dark from "../../util/theme/dark"
+import purple from "../../util/theme/purple"
+import common from "../../util/theme/default"
 
 @Component({
     tag: 'datascreen-canvas',
     styleUrl: 'datascreen-canvas.css',
 })
 export class DatascreenCanvas {
-    @Prop() scale: number = 100;
+    @Prop() scale: number = 35;
     @Prop() canModify: boolean = true;
     @Element() el: HTMLElement;
     @State() chooseComId: string = "";
@@ -21,6 +26,12 @@ export class DatascreenCanvas {
         this.upDateElSize(this.canvasOption ,newScaleValue)
     }
  
+    componentWillLoad() {
+        echarts.registerTheme('dark', dark);
+        echarts.registerTheme('purple', purple);
+        echarts.registerTheme('default', common);
+    }
+
     componentDidLoad() {
         this.canvasOption = getCanvasConfig();
         setTimeout(()=>{
@@ -56,7 +67,8 @@ export class DatascreenCanvas {
 
     @Method()
     async updateCanvasConfig(config: CanvasConfig) {
-        this.canvasOption = config;
+        this.canvasOption = {...config};
+        console.log(config)
         this.canvasChange.emit();
         this.upDateElSize(this.canvasOption ,this.scale)
     }
@@ -122,6 +134,7 @@ export class DatascreenCanvas {
                             <draggable-adapter
                                 key={comDarggable.id}
                                 comOptionData={comDarggable}
+                                theme= {this.canvasOption.theme}
                             ></draggable-adapter>
                         </cy-draggable>
                     )}

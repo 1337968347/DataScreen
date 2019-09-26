@@ -16,48 +16,60 @@ datascreen-setting-panel {
 
     ion-segment {
         background-color: var(--ion-background-color);
-        --color: var(--ion-toolbar-color)!important;
+        --color: var(--ion-toolbar-color) !important;
+
         ion-segment-button {
             min-height: 30px;
             line-height: 35px;
+
             ion-icon {
                 margin: 0 !important;
             }
         }
     }
-    ion-toolbar{
+
+    ion-toolbar {
         margin: 2px 0;
         --background: var(--ion-background-shade)
     }
+
     ion-content {
         width: 332px;
         --padding-start: 10px;
         --padding-end: 8px;
-        
 
-        ion-title{
+
+        ion-title {
             font-size: var(--font-size);
         }
-        ion-grid + ion-grid{
+
+        ion-grid+ion-grid {
             border-top: 1px solid var(--ion-background-contrast);
         }
-        ion-grid{
-            ion-col{
+
+        ion-grid {
+            ion-col {
                 display: flex;
                 align-items: center;
 
-                ion-range{
+                ion-range {
                     padding-inline-start: 0px;
                     padding-top: 0;
                     padding-bottom: 0;
                     padding-inline-end: 0px;
                 }
 
-                ion-button{
+                ion-button {
                     --border-radius: 0;
                 }
-                ion-input{
-                    --background:  var(--ion-background-shade)!important;
+
+                ion-input {
+                    --background: var(--ion-background-shade) !important;
+                }
+
+                ion-select {
+                    width: 100%;
+                    background: var(--ion-background-shade) !important;
                 }
             }
         }

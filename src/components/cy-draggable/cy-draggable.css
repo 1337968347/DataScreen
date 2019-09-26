@@ -1,7 +1,7 @@
 :host {
     --color: #ffffff;
     --background: transparent;
-    --border-color: rgb(27, 70, 117, 0.5);
+    --choose-background: rgb(27, 70, 117, 0.5);
     --padding: 0px;
     --overflow: hidden;
     --opacity: 1;
@@ -24,7 +24,6 @@
     height: 100%;
     position: relative;
     padding: var(--padding);
-    background: var(--background);
 }
 
 .border {
@@ -50,6 +49,7 @@
     border-width: var(--border-width);
     border-style: solid;
     border-color: var(--border-color);
+    background: var(--choose-background);
 }
 
 .hiddlen {

@@ -1,5 +1,6 @@
-import { Component, Prop,Event, EventEmitter, Element, h } from '@stencil/core';
-import { ComData } from "../../interfaces"
+import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
+
+import { ComData, themeType } from "../../interfaces"
 
 @Component({
     tag: 'draggable-adapter',
@@ -7,6 +8,7 @@ import { ComData } from "../../interfaces"
 })
 export class DraggableComponent {
     @Prop() comOptionData: ComData;
+    @Prop() theme: themeType = "default";
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
     @Element() el: HTMLElement;
@@ -24,7 +26,7 @@ export class DraggableComponent {
                 );
             case "chart-base-line":
                 return (
-                    <chart-basic-line comData={this.comOptionData}></chart-basic-line>
+                    <chart-basic-line comData={this.comOptionData} theme={this.theme}></chart-basic-line>
                 )
             default:
                 break;

@@ -6,7 +6,7 @@ import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/legend'
 
-import { ComData } from "../../interfaces";
+import { ComData,themeType } from "../../interfaces";
 
 @Component({
     tag: 'chart-basic-line'
@@ -17,19 +17,26 @@ export class ChartBasicLine {
     chartObj:any;
 
     @Watch('comData')
-    watchHandler(newValue:ComData,oldValue:ComData) {
+    watchHandlerComData(newValue:ComData,oldValue:ComData) {
         if(newValue.data.view.w!==oldValue.data.view.w || newValue.data.view.w!==oldValue.data.view.w){
             this.chartObj.resize({ width: newValue.data.view.w, height:  newValue.data.view.h });
         }
     }
+    
+    @Prop() theme: themeType = "default";
+    @Watch('theme')
+    watchHandlerTheme() {
+        this.chartObj.dispose();
+        this.initChart();
+    }
+    
     componentDidLoad() {
         this.initChart();
     }
 
     initChart(){
-        this.chartObj = echarts.init(this.el.querySelector('#chartId'));
+        this.chartObj = echarts.init(this.el.querySelector('#chartId'),this.theme , { width: this.comData.data.view.w, height:  this.comData.data.view.h });
         this.chartObj.setOption(this.comData.data.config);
-        this.chartObj.resize({ width: this.comData.data.view.w, height:  this.comData.data.view.h });
     }
 
     render() {

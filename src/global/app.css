@@ -55,7 +55,7 @@ ion-toggle {
 
 cy-draggable {
   --color: var(--ion-color-primary-contrast);
-  --background: transparent;
+  --choose-background: rgba(var(--ion-color-primary-rgb),0.2);
   --border-color: var(--ion-color-primary);
   --menu-hover-color: var(--ion-color-primary)
 }

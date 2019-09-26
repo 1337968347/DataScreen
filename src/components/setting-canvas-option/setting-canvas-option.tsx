@@ -2,7 +2,7 @@ import { Component, State, h } from '@stencil/core';
 import html2canvas from "html2canvas"
 
 import { CanvasConfig } from "../../interfaces";
-import { getCanvasConfig, getCanvasComponent,saveCanvasConfig } from "../../util/datascreen-controller";
+import { getCanvasConfig, getCanvasComponent, saveCanvasConfig } from "../../util/datascreen-controller";
 import { canvasDefaultConfig } from "../../util/canvas/canvas-defaultdata";
 
 @Component({
@@ -26,7 +26,7 @@ export class SettingCanvasOption {
     getCanvasToImg() {
         //TODO  
         var canvasComponent = getCanvasComponent();
-        html2canvas(canvasComponent,{
+        html2canvas(canvasComponent, {
             useCORS: true,
         }).then(canvas => {
             this.imgAdress = canvas.toDataURL();
@@ -74,6 +74,21 @@ export class SettingCanvasOption {
                             {/* <ion-icon name="infinite"></ion-icon> */}
                             <ion-input debounce={500} clearInput value={this.canvasOption.bgi} onIonChange={(e) => { this.handleCanvasChange("bgi", e.detail.value) }}>
                             </ion-input>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col size="4">
+                            主题
+                        </ion-col>
+                        <ion-col size="8">
+                            {/* <ion-icon name="infinite"></ion-icon> */}
+                            <ion-select value={this.canvasOption.theme} interface="popover" onIonChange={(e) => { this.handleCanvasChange("theme", e.detail.value) }}>
+                                <ion-select-option value="default">默认</ion-select-option>
+                                <ion-select-option value="blank">黑夜</ion-select-option>
+                                <ion-select-option value="purple">紫色</ion-select-option>
+                            </ion-select>
+
                         </ion-col>
                     </ion-row>
 

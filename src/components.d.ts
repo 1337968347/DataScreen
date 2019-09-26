@@ -13,6 +13,7 @@ import {
 import {
   CanvasConfig,
   ComData,
+  themeType,
 } from './interfaces';
 
 export namespace Components {
@@ -32,6 +33,7 @@ export namespace Components {
   interface AppRoot {}
   interface ChartBasicLine {
     'comData': ComData;
+    'theme': themeType;
   }
   interface CyDraggable {
     'canModify': boolean;
@@ -74,6 +76,7 @@ export namespace Components {
   }
   interface DraggableAdapter {
     'comOptionData': ComData;
+    'theme': themeType;
   }
   interface MediaBasicImg {
     'comData': ComData;
@@ -282,6 +285,7 @@ declare namespace LocalJSX {
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
     'comData'?: ComData;
+    'theme'?: themeType;
   }
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
     'canModify'?: boolean;
@@ -309,6 +313,7 @@ declare namespace LocalJSX {
   interface DatascreenCanvasContent extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasContentElement> {
     'maxCanvasSCale'?: number;
     'minCanvasScale'?: number;
+    'onCanvasScaleChange'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
@@ -329,6 +334,7 @@ declare namespace LocalJSX {
     'comOptionData'?: ComData;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
+    'theme'?: themeType;
   }
   interface MediaBasicImg extends JSXBase.HTMLAttributes<HTMLMediaBasicImgElement> {
     'comData'?: ComData;

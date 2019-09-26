@@ -1,4 +1,5 @@
 import { Component, Listen, h } from '@stencil/core';
+import '@stencil/router';
 import { popoverController, toastController, alertController, actionSheetController, loadingController } from '@ionic/core';
 
 @Component({

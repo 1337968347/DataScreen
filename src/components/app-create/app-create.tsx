@@ -16,12 +16,9 @@ import { deepCopy } from "../../util/helper"
 export class AppCreate {
     @Prop() history: RouterHistory;
     @Element() el: HTMLElement;
-    @State() scaleRange: number = 35;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
     chooseTemplate: DataScreen;
-    minRange: number = 10;
-    maxRange: number = 200;
 
     componentWillLoad() {
         this.setChooseTemplate(dataScreenTemplateList[0]);
@@ -123,7 +120,7 @@ export class AppCreate {
                             <div class="canvas-content">
                                 <datascreen-canvas-content>
                                     <div class="fit-box">
-                                        <datascreen-canvas scale={this.scaleRange} canModify={false}>
+                                        <datascreen-canvas  canModify={false}>
                                         </datascreen-canvas>
                                         <div class="top-oper-box">
                                             <ion-button onClick={() => { this.jumpToEdit() }} color="primary">创 建</ion-button>

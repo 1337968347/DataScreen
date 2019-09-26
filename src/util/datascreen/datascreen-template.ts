@@ -12,6 +12,7 @@ const dataScreenTemplateList: DataScreen[] = [
         scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
         name: "pcDemo",
         canvasOption: {
+            theme: "dark",
             w: "1920",
             h: "1080",
             bgc: "#0d2111",
@@ -139,6 +140,7 @@ const dataScreenTemplateList: DataScreen[] = [
         scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
         name: "mobileDemo",
         canvasOption: {
+            theme: "purple",
             w: "375",
             h: "812",
             bgc: "#0b4c84",
@@ -316,6 +318,7 @@ const dataScreenTemplateList: DataScreen[] = [
         scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
         name: "pcDemo2",
         canvasOption: {
+            theme: "default",
             "w": "375",
             "h": "812",
             "bgc": "#25fc0d",
