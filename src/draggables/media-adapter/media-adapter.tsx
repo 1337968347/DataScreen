@@ -2,9 +2,9 @@ import { Component,Prop, h } from '@stencil/core';
 import { ComData } from "../../interfaces";
 
 @Component({
-    tag: 'media-basic-img'
+    tag: 'media-adapter'
 })
-export class MediaBasicImg {
+export class MediaAdapter {
     @Prop() comData: ComData;
 
     render() {

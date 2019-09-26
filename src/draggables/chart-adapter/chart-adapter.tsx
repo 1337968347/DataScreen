@@ -1,17 +1,12 @@
 import { Component,Prop,Watch, Element,h} from '@stencil/core';
-import * as echarts from 'echarts/lib/echarts'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/title'
-import 'echarts/lib/component/legend'
+import echarts from 'echarts'
 
 import { ComData,themeType } from "../../interfaces";
 
 @Component({
-    tag: 'chart-basic-line'
+    tag: 'chart-adapter'
 })
-export class ChartBasicLine {
+export class ChartAdapter {
     @Element() el :HTMLElement;
     @Prop() comData: ComData;
     chartObj:any;

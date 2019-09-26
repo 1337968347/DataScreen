@@ -18,15 +18,19 @@ export class DraggableComponent {
     }
 
     render() {
-        let ComData = this.comOptionData.ComData || "";
-        switch (ComData) {
-            case "media-basic-img":
+        let comType = this.comOptionData.comName.split("-")[0] || "";
+        switch (comType) {
+            case "media":
                 return (
-                    <media-basic-img comData={this.comOptionData}></media-basic-img>
+                    <media-adapter comData={this.comOptionData}></media-adapter>
                 );
-            case "chart-base-line":
+            case "chart":
                 return (
-                    <chart-basic-line comData={this.comOptionData} theme={this.theme}></chart-basic-line>
+                    <chart-adapter comData={this.comOptionData} theme={this.theme}></chart-adapter>
+                )
+            case "text":
+                return (
+                    <text-adapter comData={this.comOptionData}></text-adapter>
                 )
             default:
                 break;

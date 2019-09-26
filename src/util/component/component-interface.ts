@@ -7,7 +7,7 @@ export interface ComponentInitalMap{
 
 export interface ComData {
     data: DragComOption;
-    ComData: string;
+    comName: string;
     id: string;
 }
 

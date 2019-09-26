@@ -100,7 +100,7 @@ export class DatascreenSettingPanel {
                                 </ion-row>
 
                             </ion-grid>
-                            {this.ComDataData.ComData == "media-basic-img" ?
+                            {this.ComDataData.comName == "media-basic-img" ?
                                 <media-basic-img-config draggableConfig={comData.config} onConfigChange={(e) => { this.handleComConfigChange("config", e.detail.name, e.detail.value) }}></media-basic-img-config> : null
                             }
                         </div>

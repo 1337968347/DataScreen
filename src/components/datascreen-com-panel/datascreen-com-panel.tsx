@@ -1,9 +1,9 @@
 import { Component, Event, EventEmitter, h } from '@stencil/core';
 
 import uuid from "uuid";
-import {DragComOption} from "../../interfaces"; 
+import { DragComOption } from "../../interfaces";
 import { componentDefaultDataMap } from "../../util/component/component-defaultdata";
-import {addComponentData} from "../../util/datascreen-controller"
+import { addComponentData } from "../../util/datascreen-controller"
 
 // ComData
 @Component({
@@ -17,10 +17,10 @@ export class DatascreenComPanel {
         this.checkMenu.emit(1);
     }
 
-    addComToCanvas(ComData: string , comOption:DragComOption ){
+    addComToCanvas(ComData: string, comOption: DragComOption) {
         addComponentData({
             data: comOption,
-            ComData: ComData,
+            comName: ComData,
             id: uuid.v1()
         })
     }
@@ -48,8 +48,8 @@ export class DatascreenComPanel {
                 </ion-segment>
                 <div class="com-box">
                     {Object.keys(componentDefaultDataMap).map((com) =>
-                        <div class="com-item" onClick={()=>{this.addComToCanvas(com,componentDefaultDataMap[com] )}}> 
-                            <div style={{ "background-image": `url(../../${ componentDefaultDataMap[com].icon})`}} class="com-img"></div>
+                        <div class="com-item" onClick={() => { this.addComToCanvas(com, componentDefaultDataMap[com]) }}>
+                            <div style={{ "background-image": `url(../../${componentDefaultDataMap[com].icon})` }} class="com-img"></div>
                             <div>{componentDefaultDataMap[com].comName}</div>
                         </div>
                     )}

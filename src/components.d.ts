@@ -31,7 +31,7 @@ export namespace Components {
     'match': MatchResults;
   }
   interface AppRoot {}
-  interface ChartBasicLine {
+  interface ChartAdapter {
     'comData': ComData;
     'theme': themeType;
   }
@@ -78,7 +78,7 @@ export namespace Components {
     'comOptionData': ComData;
     'theme': themeType;
   }
-  interface MediaBasicImg {
+  interface MediaAdapter {
     'comData': ComData;
   }
   interface MediaBasicImgConfig {
@@ -93,6 +93,9 @@ export namespace Components {
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
+  interface TextAdapter {
+    'comData': ComData;
+  }
 }
 
 declare global {
@@ -128,10 +131,10 @@ declare global {
     new (): HTMLAppRootElement;
   };
 
-  interface HTMLChartBasicLineElement extends Components.ChartBasicLine, HTMLStencilElement {}
-  var HTMLChartBasicLineElement: {
-    prototype: HTMLChartBasicLineElement;
-    new (): HTMLChartBasicLineElement;
+  interface HTMLChartAdapterElement extends Components.ChartAdapter, HTMLStencilElement {}
+  var HTMLChartAdapterElement: {
+    prototype: HTMLChartAdapterElement;
+    new (): HTMLChartAdapterElement;
   };
 
   interface HTMLCyDraggableElement extends Components.CyDraggable, HTMLStencilElement {}
@@ -200,10 +203,10 @@ declare global {
     new (): HTMLDraggableAdapterElement;
   };
 
-  interface HTMLMediaBasicImgElement extends Components.MediaBasicImg, HTMLStencilElement {}
-  var HTMLMediaBasicImgElement: {
-    prototype: HTMLMediaBasicImgElement;
-    new (): HTMLMediaBasicImgElement;
+  interface HTMLMediaAdapterElement extends Components.MediaAdapter, HTMLStencilElement {}
+  var HTMLMediaAdapterElement: {
+    prototype: HTMLMediaAdapterElement;
+    new (): HTMLMediaAdapterElement;
   };
 
   interface HTMLMediaBasicImgConfigElement extends Components.MediaBasicImgConfig, HTMLStencilElement {}
@@ -235,13 +238,19 @@ declare global {
     prototype: HTMLSettingCanvasOptionElement;
     new (): HTMLSettingCanvasOptionElement;
   };
+
+  interface HTMLTextAdapterElement extends Components.TextAdapter, HTMLStencilElement {}
+  var HTMLTextAdapterElement: {
+    prototype: HTMLTextAdapterElement;
+    new (): HTMLTextAdapterElement;
+  };
   interface HTMLElementTagNameMap {
     'app-create': HTMLAppCreateElement;
     'app-home': HTMLAppHomeElement;
     'app-manage': HTMLAppManageElement;
     'app-preview': HTMLAppPreviewElement;
     'app-root': HTMLAppRootElement;
-    'chart-basic-line': HTMLChartBasicLineElement;
+    'chart-adapter': HTMLChartAdapterElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
     'cy-lazy-img': HTMLCyLazyImgElement;
@@ -253,12 +262,13 @@ declare global {
     'datascreen-layer': HTMLDatascreenLayerElement;
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
     'draggable-adapter': HTMLDraggableAdapterElement;
-    'media-basic-img': HTMLMediaBasicImgElement;
+    'media-adapter': HTMLMediaAdapterElement;
     'media-basic-img-config': HTMLMediaBasicImgConfigElement;
     'popover-code-modify': HTMLPopoverCodeModifyElement;
     'popover-draggable-contextmenu': HTMLPopoverDraggableContextmenuElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
+    'text-adapter': HTMLTextAdapterElement;
   }
 }
 
@@ -283,7 +293,7 @@ declare namespace LocalJSX {
     'match'?: MatchResults;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
-  interface ChartBasicLine extends JSXBase.HTMLAttributes<HTMLChartBasicLineElement> {
+  interface ChartAdapter extends JSXBase.HTMLAttributes<HTMLChartAdapterElement> {
     'comData'?: ComData;
     'theme'?: themeType;
   }
@@ -336,7 +346,7 @@ declare namespace LocalJSX {
     'onToast'?: (event: CustomEvent<any>) => void;
     'theme'?: themeType;
   }
-  interface MediaBasicImg extends JSXBase.HTMLAttributes<HTMLMediaBasicImgElement> {
+  interface MediaAdapter extends JSXBase.HTMLAttributes<HTMLMediaAdapterElement> {
     'comData'?: ComData;
   }
   interface MediaBasicImgConfig extends JSXBase.HTMLAttributes<HTMLMediaBasicImgConfigElement> {
@@ -354,6 +364,9 @@ declare namespace LocalJSX {
   }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
+  interface TextAdapter extends JSXBase.HTMLAttributes<HTMLTextAdapterElement> {
+    'comData'?: ComData;
+  }
 
   interface IntrinsicElements {
     'app-create': AppCreate;
@@ -361,7 +374,7 @@ declare namespace LocalJSX {
     'app-manage': AppManage;
     'app-preview': AppPreview;
     'app-root': AppRoot;
-    'chart-basic-line': ChartBasicLine;
+    'chart-adapter': ChartAdapter;
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
     'cy-lazy-img': CyLazyImg;
@@ -373,12 +386,13 @@ declare namespace LocalJSX {
     'datascreen-layer': DatascreenLayer;
     'datascreen-setting-panel': DatascreenSettingPanel;
     'draggable-adapter': DraggableAdapter;
-    'media-basic-img': MediaBasicImg;
+    'media-adapter': MediaAdapter;
     'media-basic-img-config': MediaBasicImgConfig;
     'popover-code-modify': PopoverCodeModify;
     'popover-draggable-contextmenu': PopoverDraggableContextmenu;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
+    'text-adapter': TextAdapter;
   }
 }
 

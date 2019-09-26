@@ -28,12 +28,13 @@ datascreen-com-panel {
 
     .com-box{
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .com-item{
             width: 80px;
             height: 80px;
-            padding: 5px;
+            margin: 4px;
             justify-content: space-between;
             text-align: center;
             cursor: pointer;

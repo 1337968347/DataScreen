@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, Element, Host, h } from '@stencil/core';
 import { RouterHistory } from "@stencil/router"
 import { menuController } from "@ionic/core"
 import uuid from "uuid";

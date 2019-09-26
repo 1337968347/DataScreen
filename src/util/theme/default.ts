@@ -426,7 +426,7 @@ export default{
     },
     "legend": {
         "textStyle": {
-            "color": "#333333"
+            "color": "#ffffff"
         }
     },
     "tooltip": {

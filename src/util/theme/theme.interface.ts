@@ -1,1 +1,1 @@
-export type themeType = 'default' | 'purple' | 'black';
+export type themeType = 'default' | 'purple' | 'dark';
