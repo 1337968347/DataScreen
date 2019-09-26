@@ -1,6 +1,6 @@
 import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
 
-import { changeChooseComponent, getComponentDataById, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
+import { changeChooseComponent, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'datascreen-layer',
@@ -24,7 +24,7 @@ export class DatascreenLayer {
     @Method()
     async chooseComponent(comId) {
         this.chooseComId = comId;
-        changeChooseComponent(comId)
+        await changeChooseComponent(comId)
     }
 
     handleMoveLayer(detail) {
@@ -32,16 +32,15 @@ export class DatascreenLayer {
         detail.complete();
     }
 
-    renderRender(id) {
-        let comOption = getComponentDataById(id);
+    renderRender(comData) {
         return (
-            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(id) }}>
-                <ion-item button color={this.chooseComId == id ? "primary" : ""}>
+            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(comData.id) }}>
+                <ion-item button color={this.chooseComId == comData.id ? "primary" : ""}>
                     <ion-thumbnail slot="start">
-                        <img src={"../../"+comOption.data.icon} />
+                        <img src={"../../"+comData.data.icon} />
                     </ion-thumbnail>
                     <ion-label>
-                        {comOption.data.nickName || comOption.data.comName || ""}
+                        {comData.data.nickName || comData.data.comName || ""}
                     </ion-label>
                 </ion-item>
             </cy-fast-click>
@@ -49,6 +48,7 @@ export class DatascreenLayer {
     }
 
     render() {
+        let comDatas = getComponentDatas();
         return [
             <ion-header>
                 <ion-toolbar color="secondary">
@@ -62,9 +62,9 @@ export class DatascreenLayer {
             </ion-header>,
             <ion-content onClick={() => { changeChooseComponent("") }}>
                 <ion-reorder-group disabled={false} onIonItemReorder={(e) => { this.handleMoveLayer(e.detail) }}>
-                    {this.comIdList.map((id) =>
+                    {comDatas.map((comData) =>
                         <ion-reorder>
-                            {this.renderRender(id)}
+                            {this.renderRender(comData)}
                         </ion-reorder>
                     )}
                 </ion-reorder-group>

@@ -1,7 +1,7 @@
-import { Component,Prop, Element, h } from '@stencil/core';
-import { MatchResults }from "@stencil/router";
+import { Component, Prop, Element, h } from '@stencil/core';
+import { MatchResults } from "@stencil/router";
 
-import { initDataScreen, getDataScreen,initCanvasComponent } from "../../util/datascreen-controller";
+import { initDataScreen, getDataScreen, initCanvasComponent } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-preview',
@@ -20,7 +20,7 @@ export class AppPreview {
     }
 
     async initDataScreenOption() {
-        let dataScreenId= this.match.params.dataScreenId;
+        let dataScreenId = this.match.params.dataScreenId;
         let dataScreenData = await getDataScreen(dataScreenId);
         initDataScreen(dataScreenId, {
             componentsData: dataScreenData.componentsData,
@@ -29,7 +29,10 @@ export class AppPreview {
     }
     render() {
         return (
-            <datascreen-canvas canModify={false}></datascreen-canvas>
+            <datascreen-canvas-content>
+                <datascreen-canvas canModify={false}>
+                </datascreen-canvas>
+            </datascreen-canvas-content>
         );
     }
 }

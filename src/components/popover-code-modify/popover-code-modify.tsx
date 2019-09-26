@@ -1,25 +1,30 @@
-import { Component,Prop, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, h } from '@stencil/core';
 import { popoverController } from '@ionic/core';
+import uuid from "uuid";
 
 import { DataScreen } from "../../interfaces";
-import { getDataScreen, setDataScreen } from "../../util/datascreen-controller";
+import { DataScreenData } from "../../providers/datascreen-data";
 
 @Component({
-    tag: 'popover-code-view',
-    styleUrl: 'popover-code-view.css'
+    tag: 'popover-code-modify',
+    styleUrl: 'popover-code-modify.css'
 })
-export class PopoverCodeView {
+export class PopoverCodeModify {
     @Prop() dataScreenId: string;
-    @State() codeAll: string;
+    @Prop() dismissCallBack?: Function;
+    @State() codeAll: string = "";
     @Event() toast: EventEmitter;
 
     componentWillLoad() {
         this.initCodeAll()
     }
 
-    async initCodeAll(){
-        let dataScreenOption = await getDataScreen(this.dataScreenId);
-        this.codeAll = JSON.stringify(dataScreenOption, null, 1)
+    async initCodeAll() {
+        if (this.dataScreenId) {
+            let dataScreenOption = await DataScreenData.getDataScreen(this.dataScreenId);
+            delete dataScreenOption.id;
+            this.codeAll = JSON.stringify(dataScreenOption, null, 1)
+        }
     }
 
     handleCodeChange(e) {
@@ -41,23 +46,30 @@ export class PopoverCodeView {
             this.toast.emit("数据格式错误!");
             return false;
         }
-
     }
 
     async saveComponentsData() {
         if (this.checkDataOJBK(this.codeAll)) {
-            console.log("success")
-            let dataScreenOptionLocal: DataScreen = await getDataScreen(this.dataScreenId);
             let dataScreenOptionModify: DataScreen = JSON.parse(this.codeAll);
-
-            dataScreenOptionLocal.canvasOption = dataScreenOptionModify.canvasOption;
-            dataScreenOptionLocal.componentsData = dataScreenOptionModify.componentsData;
-            setDataScreen(this.dataScreenId ,dataScreenOptionLocal);
-            this.dismissPopover()
+            // modify
+            if (this.dataScreenId) {
+                let dataScreenOptionLocal: DataScreen = await DataScreenData.getDataScreen(this.dataScreenId);
+                dataScreenOptionModify.id = dataScreenOptionLocal.id;
+                await DataScreenData.setDataScreenById(dataScreenOptionLocal.id, dataScreenOptionModify);
+            } else {
+                dataScreenOptionModify.id = uuid.v4()
+                await DataScreenData.addDataScreen(dataScreenOptionModify);
+            }
+            this.closePopover(dataScreenOptionModify.id);
         }
     }
 
-    dismissPopover() {
+    cancelModify() {
+        this.closePopover("")
+    }
+
+    closePopover(id: string) {
+        this.dismissCallBack && this.dismissCallBack(id);
         popoverController.dismiss()
     }
 
@@ -69,11 +81,11 @@ export class PopoverCodeView {
                 </ion-toolbar>
                 <ion-list>
                     <ion-item>
-                        <ion-textarea debounce={300} rows={18} wrap="soft" onIonChange={(e) => { this.handleCodeChange(e) }} value={this.codeAll}></ion-textarea>
+                        <ion-textarea placeholder="复制大屏数据到这导入" debounce={300} rows={18} wrap="soft" onIonChange={(e) => { this.handleCodeChange(e) }} value={this.codeAll}></ion-textarea>
                     </ion-item>
                     <ion-row>
                         <ion-col><ion-button onClick={() => { this.saveComponentsData() }} color="primary" expand="block">保存</ion-button></ion-col>
-                        <ion-col><ion-button onClick={() => { this.dismissPopover() }} color="primary" fill="outline" expand="block">取消</ion-button></ion-col>
+                        <ion-col><ion-button onClick={() => { this.cancelModify() }} color="primary" fill="outline" expand="block">取消</ion-button></ion-col>
                     </ion-row>
                 </ion-list>
             </ion-content>

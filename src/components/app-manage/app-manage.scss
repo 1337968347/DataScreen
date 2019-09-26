@@ -1,29 +1,11 @@
 app-manage {
-    .header-box {
-        height: 400px;
-        background-image: url("../../assets/image/manage-header-bg.jpeg");
-        background-size: 100% 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        h1 {
-            font-size: calc(2 * var(--font-size));
-            font-weight: bold;
-            margin: 0;
-            color: white;
-            text-align: center;
-            line-height: 1.5;
-
-            strong {
-                font-size: calc(2.5 * var(--font-size));
-            }
-        }
+    ion-toolbar ion-button {
+        height: var(--min-height)!important;
     }
 
     ion-segment {
         background-color: var(--ion-background-color);
-        --color: var(--ion-toolbar-color)!important;
+        --color: var(--ion-toolbar-color) !important;
         justify-content: flex-start !important;
 
         ion-label {
@@ -34,25 +16,26 @@ app-manage {
     .canvas-box {
         display: flex;
         flex-wrap: wrap;
-        align-content: flex-start; 
+        align-content: flex-start;
         justify-content: flex-start;
         padding-top: 8px;
         user-select: none;
         padding-bottom: 50px;
-        padding-left: 4px;  
+        padding-left: 4px;
 
         ion-card {
             margin: 16px;
-            width: 380px;    
+            width: 380px;
             height: 281px;
             --color: var(--ion-text-color);
             --background: var(--ion-background-contrast);
 
-            ion-card-content{
-                padding-inline-start: 0; 
+            ion-card-content {
+                padding-inline-start: 0;
                 padding-inline-end: 0;
             }
-            button{
+
+            button {
                 height: 100%;
             }
 
@@ -65,21 +48,24 @@ app-manage {
             }
         }
 
-        .add-canvas{
-            --color: var(--ion-color-primary-contrast);
-            --background: linear-gradient(-90deg,var(--ion-background-shade) 0,var(--ion-background-color) 100%);
-            .add-card-content{
+        .add-canvas {
+            --color: var(--ion-background-contrast);
+            --background: linear-gradient(-90deg, var(--ion-background-shade) 0, var(--ion-background-color) 100%);
+            color: var(--color);
+            .add-card-content {
                 height: 100%;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                ion-icon{
+
+                ion-icon {
                     width: 45px;
                     height: 45px;
                 }
-                span{
+
+                span {
                     font-size: calc(1.5 * var(--font-size));
                 }
             }

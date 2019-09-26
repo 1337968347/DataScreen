@@ -1,6 +1,8 @@
 import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
 import { RouterHistory } from "@stencil/router";
 
+import { getDataScreen, setDataScreen } from "../../util/datascreen-controller";
+
 @Component({
     tag: 'datascreen-header',
     styleUrl: 'datascreen-header.scss'
@@ -21,15 +23,25 @@ export class DatascreenHeader {
         this.checkMenu.emit(index);
     }
 
-    talkIsCheapShowMeTheCode(){
+    talkIsCheapShowMeTheCode() {
         this.popover.emit({
-            component: 'popover-code-view',
+            component: 'popover-code-modify',
             translucent: true,
             cssClass: "code-view-popover",
-            componentProps:{
-                dataScreenId: this.dataScreenId
+            componentProps: {
+                dataScreenId: this.dataScreenId,
+                dismissCallBack: (dataScreenId) => {
+                    if(dataScreenId){
+                        getDataScreen(dataScreenId).then((dataScreenData)=>{
+                            setDataScreen(dataScreenId, {
+                                componentsData: dataScreenData.componentsData,
+                                canvasOption: dataScreenData.canvasOption
+                            }, false)
+                        });
+                    }
+                }
             }
-          })
+        })
     }
 
     render() {
@@ -59,7 +71,6 @@ export class DatascreenHeader {
                             <ion-icon slot="icon-only" name="easel"></ion-icon>
                         </ion-button>
 
-                        
                     </ion-buttons>
                 </ion-toolbar>
             </ion-header>

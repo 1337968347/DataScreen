@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop,Event,EventEmitter, h } from '@stencil/core';
 import { popoverController } from "@ionic/core"
 import { removeComponentData } from "../../util/datascreen-controller"
 
@@ -8,12 +8,14 @@ import { removeComponentData } from "../../util/datascreen-controller"
 })
 export class PopoverDraggableContextmenu {
     @Prop() comId: string;
+    @Event() toast: EventEmitter;
 
     componentWillLoad() {
     }
 
     async deletecomponentData() {
         await removeComponentData(this.comId);
+        this.toast.emit("删除成功!");
         popoverController.dismiss()
     }
 

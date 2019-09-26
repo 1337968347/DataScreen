@@ -28,7 +28,7 @@
     --ion-toolbar-color: #ffffff;
     --ion-toolbar-background: #6d2dc2;
     --ion-background-color: #c8a4f8;
-    --ion-background-contrast: #b78dee;
+    --ion-background-contrast: #000000;
     --ion-background-shade: #b090da;
 
     --ion-color-primary: #6500eb;
@@ -54,7 +54,7 @@
     --ion-toolbar-color: #ffffff;
     --ion-toolbar-background: #1C1c1c;
     --ion-background-color: #282830;
-    --ion-background-contrast: #1c1c1c;
+    --ion-background-contrast: #ffffff;
     --ion-background-shade: #5e5e5e;
 
     --ion-color-primary: #3880ff;

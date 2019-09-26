@@ -81,8 +81,9 @@ export namespace Components {
   interface MediaBasicImgConfig {
     'draggableConfig': any;
   }
-  interface PopoverCodeView {
+  interface PopoverCodeModify {
     'dataScreenId': string;
+    'dismissCallBack'?: Function;
   }
   interface PopoverDraggableContextmenu {
     'comId': string;
@@ -208,10 +209,10 @@ declare global {
     new (): HTMLMediaBasicImgConfigElement;
   };
 
-  interface HTMLPopoverCodeViewElement extends Components.PopoverCodeView, HTMLStencilElement {}
-  var HTMLPopoverCodeViewElement: {
-    prototype: HTMLPopoverCodeViewElement;
-    new (): HTMLPopoverCodeViewElement;
+  interface HTMLPopoverCodeModifyElement extends Components.PopoverCodeModify, HTMLStencilElement {}
+  var HTMLPopoverCodeModifyElement: {
+    prototype: HTMLPopoverCodeModifyElement;
+    new (): HTMLPopoverCodeModifyElement;
   };
 
   interface HTMLPopoverDraggableContextmenuElement extends Components.PopoverDraggableContextmenu, HTMLStencilElement {}
@@ -251,7 +252,7 @@ declare global {
     'draggable-adapter': HTMLDraggableAdapterElement;
     'media-basic-img': HTMLMediaBasicImgElement;
     'media-basic-img-config': HTMLMediaBasicImgConfigElement;
-    'popover-code-view': HTMLPopoverCodeViewElement;
+    'popover-code-modify': HTMLPopoverCodeModifyElement;
     'popover-draggable-contextmenu': HTMLPopoverDraggableContextmenuElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
@@ -272,6 +273,7 @@ declare namespace LocalJSX {
   }
   interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {
     'history'?: RouterHistory;
+    'onAlert'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
   interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
@@ -335,12 +337,14 @@ declare namespace LocalJSX {
     'draggableConfig'?: any;
     'onConfigChange'?: (event: CustomEvent<any>) => void;
   }
-  interface PopoverCodeView extends JSXBase.HTMLAttributes<HTMLPopoverCodeViewElement> {
+  interface PopoverCodeModify extends JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement> {
     'dataScreenId'?: string;
+    'dismissCallBack'?: Function;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface PopoverDraggableContextmenu extends JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement> {
     'comId'?: string;
+    'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
@@ -365,7 +369,7 @@ declare namespace LocalJSX {
     'draggable-adapter': DraggableAdapter;
     'media-basic-img': MediaBasicImg;
     'media-basic-img-config': MediaBasicImgConfig;
-    'popover-code-view': PopoverCodeView;
+    'popover-code-modify': PopoverCodeModify;
     'popover-draggable-contextmenu': PopoverDraggableContextmenu;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
