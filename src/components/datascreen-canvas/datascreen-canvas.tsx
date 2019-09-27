@@ -12,7 +12,7 @@ import common from "../../util/theme/default"
     styleUrl: 'datascreen-canvas.css',
 })
 export class DatascreenCanvas {
-    @Prop() scale: number = 35;
+    @Prop() scale: number = 35.0;
     @Prop() canModify: boolean = true;
     @Element() el: HTMLElement;
     @State() chooseComId: string = "";
@@ -34,9 +34,6 @@ export class DatascreenCanvas {
 
     componentDidLoad() {
         this.canvasOption = getCanvasConfig();
-        setTimeout(()=>{
-            this.canvasChange.emit();
-        },400)
         this.upDateElSize(this.canvasOption ,this.scale)
         this.mapComDatasToState(getComponentDatas())
     }
@@ -68,7 +65,6 @@ export class DatascreenCanvas {
     @Method()
     async updateCanvasConfig(config: CanvasConfig) {
         this.canvasOption = {...config};
-        console.log(config)
         this.canvasChange.emit();
         this.upDateElSize(this.canvasOption ,this.scale)
     }

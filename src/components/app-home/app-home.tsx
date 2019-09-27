@@ -17,10 +17,10 @@ export class AppHome {
     @Event() toast: EventEmitter;
     @State() dataScreenId: string;
 
-    componentWillLoad() {
+    async componentWillLoad() {
         this.dataScreenId = this.match.params.dataScreenId;
         this.initMenuControl()
-        this.initCanvasOption()
+        await this.initCanvasOption()
     }
 
     componentDidLoad() {

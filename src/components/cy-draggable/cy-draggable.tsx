@@ -1,4 +1,4 @@
-import { Component, State, Element, Event, EventEmitter, Prop, h } from '@stencil/core';
+import { Component, State, Element, Event, EventEmitter, Prop, Watch, h } from '@stencil/core';
 // 组件定义
 // 可以拖拽缩放
 @Component({
@@ -25,7 +25,17 @@ export class CyDraggable {
 
     @Event() choose: EventEmitter;
 
+    @Watch('isChoose')
+    watchHandler(newValue) {
+        this.setZindexByChoose(newValue)
+    }
+
     componentDidLoad() {
+        this.setZindexByChoose(this.isChoose);
+    }
+
+    setZindexByChoose(isChoose: boolean) {
+        this.el.style.zIndex = isChoose ? "999" : "";
     }
 
     // type 拖放的类型
@@ -114,13 +124,13 @@ export class CyDraggable {
         e.preventDefault()
         e.stopPropagation();
         this.isDomDrag = true;
-        let clientX = isTouchEvent? e.touches[0].clientX: e.clientX;
-        let clientY = isTouchEvent? e.touches[0].clientY: e.clientY;
+        let clientX = isTouchEvent ? e.touches[0].clientX : e.clientX;
+        let clientY = isTouchEvent ? e.touches[0].clientY : e.clientY;
         var elAdress = this.el.style.transform.match(/\-?[0-9]+\.?[0-9]*/g)
         // 包括两段距离 1,div左上角距离最左边的距离 2,div质点距离div左边的距离
         var boxOffsetLeft = clientX - (elAdress && parseInt(elAdress[0]) * this.scale || 0);
-        var boxOffsetTop =  clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0);
-        if(isTouchEvent){
+        var boxOffsetTop = clientY - (elAdress && parseInt(elAdress[1]) * this.scale || 0);
+        if (isTouchEvent) {
             document.ontouchmove = (e1) => {
                 e1.stopPropagation();
                 this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop, isTouchEvent);
@@ -140,10 +150,10 @@ export class CyDraggable {
                     }
                 );
             }
-        }else{
+        } else {
             document.onmousemove = (e1) => {
                 e1.stopPropagation();
-                this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop,isTouchEvent);
+                this.onDragBoxMove(e1, boxOffsetLeft, boxOffsetTop, isTouchEvent);
             }
             // 释放鼠标
             document.onmouseup = () => {
@@ -161,13 +171,13 @@ export class CyDraggable {
                 );
             }
         }
-        
+
     }
 
     // 拖动box方法
     onDragBoxMove(e, boxOffsetLeft: number, boxOffsetTop: number, isTouchEvent: boolean) {
-        let clientX = isTouchEvent? e.touches[0].clientX: e.clientX;
-        let clientY = isTouchEvent? e.touches[0].clientY: e.clientY;
+        let clientX = isTouchEvent ? e.touches[0].clientX : e.clientX;
+        let clientY = isTouchEvent ? e.touches[0].clientY : e.clientY;
         var left = (clientX - boxOffsetLeft) / this.scale,
             top = (clientY - boxOffsetTop) / this.scale,
             winW = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientWidth,
@@ -202,7 +212,7 @@ export class CyDraggable {
                 onMouseLeave={() => { this.isHover = false }}
                 onClick={(e) => { this.canModify && this.handleDomChoose(e) }}
                 onTouchStart={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e, true) }}
-                onMouseDown={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e,false) }}>
+                onMouseDown={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e, false) }}>
                 {/* 编辑才显示的dom */}
                 {/* 拖拽box的背景元素 */}
                 {/* 悬浮上去才显示dom 操作 */}

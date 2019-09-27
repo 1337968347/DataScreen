@@ -11,12 +11,11 @@ export class DatascreenEditMain {
     @State() scaleRange: number = 35;
     rangeStep: number = 5;
     minRange: number = 10;
-    maxRange: number = 200;
+    maxRange: number = 300;
 
     componentDidLoad() {
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
     }
-
 
     changeRangeValue(value) {
         if (value >= this.minRange && value <= this.maxRange) {
