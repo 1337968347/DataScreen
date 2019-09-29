@@ -67,6 +67,11 @@ datascreen-setting-panel {
                     --background: var(--ion-background-shade) !important;
                 }
 
+                ion-input input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+                    width: 25px;
+                    height: 30px;
+                }
+
                 ion-select {
                     width: 100%;
                     background: var(--ion-background-shade) !important;

@@ -1,10 +1,11 @@
 import { ComponentInitalMap } from "../../interfaces";
-const componentDefaultDataMap: ComponentInitalMap = {
+const componentTemplateDataMap: ComponentInitalMap = {
     "media-basic-img": {
         nickName: "单张图片",
-        config: {},
+        config: {
+            
+        },
         icon: "assets/com-icon/img-icon.png",
-        comName: "单张图片",
         view: {
             x: "200",
             y: "100",
@@ -30,7 +31,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
             }]
         },
         icon: "assets/com-icon/chart-base-line.png",
-        comName: "基本折线图",
         view: {
             x: "0",
             y: "0",
@@ -105,7 +105,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
             ]
         },
         icon: "assets/com-icon/chart-base-line.png",
-        comName: "折线图堆叠",
         view: {
             x: "0",
             y: "0",
@@ -119,7 +118,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
     "chart-pie-custom": {
         nickName: "普通饼图",
         config: {
-
             title: {
                 text: 'Customized Pie',
                 left: 'center',
@@ -190,7 +188,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
             ]
         },
         icon: "assets/com-icon/chart-base-line.png",
-        comName: "普通饼图",
         view: {
             x: "0",
             y: "0",
@@ -216,7 +213,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
             }]
         },
         icon: "assets/com-icon/chart-base-line.png",
-        comName: "普通柱状图",
         view: {
             x: "0",
             y: "0",
@@ -227,7 +223,7 @@ const componentDefaultDataMap: ComponentInitalMap = {
         }
     },
     "text-common": {
-        nickName: "普通文字",
+        nickName: "文字",
         config: {
             fontSize: 25,
             fontContent: "content",
@@ -237,7 +233,6 @@ const componentDefaultDataMap: ComponentInitalMap = {
             textAlign: "center"
         },
         icon: "assets/com-icon/chart-base-line.png",
-        comName: "普通文字",
         view: {
             x: "0",
             y: "0",
@@ -249,4 +244,4 @@ const componentDefaultDataMap: ComponentInitalMap = {
     }
 }
 
-export { componentDefaultDataMap }
+export { componentTemplateDataMap }

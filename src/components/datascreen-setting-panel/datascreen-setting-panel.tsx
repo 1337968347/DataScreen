@@ -2,7 +2,9 @@ import { Component, State, Method, h, Element } from '@stencil/core';
 
 import { ComData } from "../../interfaces";
 import { setComDataChange } from "../../util/datascreen-controller"
+import { isComponentHasThisConfig } from "../../util/component/component-utils"
 import { deepCopy } from "../../util/helper"
+
 
 @Component({
     tag: 'datascreen-setting-panel',
@@ -46,63 +48,35 @@ export class DatascreenSettingPanel {
                     </ion-segment>
                 </ion-header>,
                 <ion-toolbar>
-                    <ion-title>{comData.comName || ""}</ion-title>
+                    <ion-title>{comData.nickName || ""}</ion-title>
                 </ion-toolbar>,
                 <ion-content>
                     {this.chooseSeg == "config" ?
                         <div>
-                            {/* basic config */}
+                            {/* common-config */}
+                            <setting-common-config comData={comData} onCyChange={(e) => { this.handleComConfigChange(e.detail.type, e.detail.name, e.detail.value) }}></setting-common-config>
+
+                            {/* media-config */}
                             <ion-grid>
-                                <ion-row>
-                                    <ion-col>
-                                        图标尺寸
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-input debounce={500} type="number" placeholder="宽度" onIonChange={(e) => { this.handleComConfigChange("view", "w", e.detail.value) }} value={comData.view.w}></ion-input>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-input debounce={500}  type="number" placeholder="高度" onIonChange={(e) => { this.handleComConfigChange("view", "h", e.detail.value) }} value={comData.view.h}></ion-input>
-                                    </ion-col>
-                                </ion-row>
-
-                                <ion-row>
-                                    <ion-col>
-                                        图表位置
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-input debounce={500}  type="number" placeholder="top" onIonChange={(e) => { this.handleComConfigChange("view", "x", e.detail.value) }} value={comData.view.x}></ion-input>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-input debounce={500}  type="number" placeholder="left" onIonChange={(e) => { this.handleComConfigChange("view", "y", e.detail.value) }} value={comData.view.y}></ion-input>
-                                    </ion-col>
-                                </ion-row>
-
-                                <ion-row>
-                                    <ion-col size="4">
-                                        旋转角度
-                                    </ion-col>
-                                    <ion-col size="4">
-                                        <ion-input debounce={500}  type="number" onIonChange={(e) => { this.handleComConfigChange("view", "deg", e.detail.value) }} value={comData.view.deg + ""}></ion-input>
-                                    </ion-col>
-                                </ion-row>
-
-                                <ion-row>
-                                    <ion-col size="4">
-                                        透明度
-                                    </ion-col>
-                                    <ion-col size="4">
-                                        <ion-range debounce={500}  value={parseFloat(comData.view.opacity)} onIonChange={(e) => { this.handleComConfigChange("view", "opacity", (e.detail.value as number).toFixed(2)) }} min={0} max={1} step={0.05}>
-                                        </ion-range>
-                                    </ion-col>
-                                    <ion-col size="4">
-                                        <ion-input debounce={500}  type="number" onIonChange={(e) => { this.handleComConfigChange("view", "opacity", e.detail.value) }} value={comData.view.opacity + ""}></ion-input>
-                                    </ion-col>
-                                </ion-row>
-
+                                {isComponentHasThisConfig(this.ComDataData.comName, "bgi") ?
+                                    [<ion-row>
+                                        <ion-col size="4">
+                                            背景图
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input clearInput value={comData.config.bgi} onChange={(e) => { this.handleComConfigChange("config", "bgi", e.target['value']) }}>
+                                            </ion-input>
+                                        </ion-col>
+                                    </ion-row>,
+                                    <ion-row>
+                                        <ion-col size="4">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <cy-lazy-img isLazy={false} defaultImg="../../assets/image/img-default.png" style={{ "height": "100px", "object-fit": "cover" }} src={comData.config.bgi}></cy-lazy-img>
+                                        </ion-col>
+                                    </ion-row>] : null
+                                }
                             </ion-grid>
-                            {this.ComDataData.comName == "media-basic-img" ?
-                                <media-basic-img-config draggableConfig={comData.config} onConfigChange={(e) => { this.handleComConfigChange("config", e.detail.name, e.detail.value) }}></media-basic-img-config> : null
-                            }
                         </div>
                         : null
                     }

@@ -11,9 +11,7 @@ export class DatascreenCanvasContent {
     @Event() canvasScaleChange: EventEmitter;
 
     componentDidLoad() {
-        setTimeout(() => {
-            this.resizeSCale()
-        }, 500)
+        this.resizeSCale()
     }
 
     @Listen('canvasChange')
@@ -30,12 +28,13 @@ export class DatascreenCanvasContent {
             let dataScreenCanvasSize = await dataScreenCanvasEl.getCanvasSize();
             if (dataScreenCanvasSize) {
                 if ((dataScreenCanvasSize.w / dataScreenCanvasSize.h) > (this.el.clientWidth / this.el.clientHeight)) {
-                    scale = parseFloat((this.el.clientWidth / dataScreenCanvasSize.w).toFixed(5)) * 100;
+                    scale = (this.el.clientWidth / dataScreenCanvasSize.w) * 100;
                 } else {
-                    scale = parseFloat((this.el.clientHeight / dataScreenCanvasSize.h).toFixed(5)) * 100;
+                    scale = (this.el.clientHeight / dataScreenCanvasSize.h) * 100;
                 }
                 scale = scale > this.minCanvasScale ? scale : this.minCanvasScale;
                 scale = scale > this.maxCanvasSCale ? this.maxCanvasSCale : scale;
+                scale= Math.ceil(scale*100)/100
                 this.canvasScaleChange.emit(scale)
                 dataScreenCanvasEl.scale = scale;
             }

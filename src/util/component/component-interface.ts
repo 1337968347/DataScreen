@@ -5,16 +5,18 @@ export interface ComponentInitalMap{
     [keyName: string]: DragComOption;
 }
 
+export declare type comType= 
+"media-basic-img" | "chart-base-line"|"chart-line-stack"|"chart-pie-custom"|"chart-bar-simple"|"text-common"
+
 export interface ComData {
     data: DragComOption;
-    comName: string;
+    comName: comType;
     id: string;
 }
 
 export interface DragComOption {
     api_data?: DraggableApiData;
     apis?: DraggableApi;
-    comName: string;
     nickName: string;
     config: DraggableConfig;
     icon: string;

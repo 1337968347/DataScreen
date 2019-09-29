@@ -54,7 +54,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "56",
                         "y": "52",
@@ -102,7 +101,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "1482",
                         "y": "648",
@@ -120,7 +118,6 @@ const dataScreenTemplateList: DataScreen[] = [
                     "nickName": "单张图片",
                     "config": {},
                     "icon": "assets/com-icon/img-icon.png",
-                    "comName": "单张图片",
                     "view": {
                         "x": "634",
                         "y": "340",
@@ -154,7 +151,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         "bgi": "https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg"
                     },
                     "icon": "assets/com-icon/img-icon.png",
-                    "comName": "单张图片",
                     "view": {
                         "x": "71",
                         "y": "0",
@@ -202,7 +198,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "19",
                         "y": "539",
@@ -250,7 +245,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "58",
                         "y": "106",
@@ -298,7 +292,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "36",
                         "y": "272",
@@ -332,7 +325,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         "bgi": "https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg"
                     },
                     "icon": "assets/com-icon/img-icon.png",
-                    "comName": "单张图片",
                     "view": {
                         "x": "51",
                         "y": "28",
@@ -380,7 +372,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "19",
                         "y": "539",
@@ -428,7 +419,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "58",
                         "y": "106",
@@ -476,7 +466,6 @@ const dataScreenTemplateList: DataScreen[] = [
                         ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
-                    "comName": "基本折线图",
                     "view": {
                         "x": "64",
                         "y": "269",
@@ -616,7 +605,6 @@ const dataScreenTemplateList: DataScreen[] = [
             ]
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "折线图堆叠",
            "view": {
             "x": "44",
             "y": "150",
@@ -719,7 +707,6 @@ const dataScreenTemplateList: DataScreen[] = [
             ]
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通饼图",
            "view": {
             "x": "208",
             "y": "770",
@@ -821,7 +808,6 @@ const dataScreenTemplateList: DataScreen[] = [
             ]
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通饼图",
            "view": {
             "x": "1177",
             "y": "290",
@@ -954,7 +940,6 @@ const dataScreenTemplateList: DataScreen[] = [
             ]
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "折线图堆叠",
            "view": {
             "x": "741",
             "y": "703",
@@ -972,7 +957,6 @@ const dataScreenTemplateList: DataScreen[] = [
            "nickName": "单张图片",
            "config": {},
            "icon": "assets/com-icon/img-icon.png",
-           "comName": "单张图片",
            "view": {
             "x": "1306",
             "y": "67",
@@ -1020,7 +1004,6 @@ const dataScreenTemplateList: DataScreen[] = [
             ]
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通柱状图",
            "view": {
             "x": "1510",
             "y": "94",
@@ -1045,7 +1028,6 @@ const dataScreenTemplateList: DataScreen[] = [
             "textAlign": "center"
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通文字",
            "view": {
             "x": "1290",
             "y": "662",
@@ -1070,7 +1052,6 @@ const dataScreenTemplateList: DataScreen[] = [
             "textAlign": "center"
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通文字",
            "view": {
             "x": "290",
             "y": "118",
@@ -1095,7 +1076,6 @@ const dataScreenTemplateList: DataScreen[] = [
             "textAlign": "center"
            },
            "icon": "assets/com-icon/chart-base-line.png",
-           "comName": "普通文字",
            "view": {
             "x": "715",
             "y": "0",

@@ -13,6 +13,7 @@ import {
 import {
   CanvasConfig,
   ComData,
+  DragComOption,
   themeType,
 } from './interfaces';
 
@@ -81,9 +82,6 @@ export namespace Components {
   interface MediaAdapter {
     'comData': ComData;
   }
-  interface MediaBasicImgConfig {
-    'draggableConfig': any;
-  }
   interface PopoverCodeModify {
     'dataScreenId': string;
     'dismissCallBack'?: Function;
@@ -93,6 +91,9 @@ export namespace Components {
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
+  interface SettingCommonConfig {
+    'comData': DragComOption;
+  }
   interface TextAdapter {
     'comData': ComData;
   }
@@ -209,12 +210,6 @@ declare global {
     new (): HTMLMediaAdapterElement;
   };
 
-  interface HTMLMediaBasicImgConfigElement extends Components.MediaBasicImgConfig, HTMLStencilElement {}
-  var HTMLMediaBasicImgConfigElement: {
-    prototype: HTMLMediaBasicImgConfigElement;
-    new (): HTMLMediaBasicImgConfigElement;
-  };
-
   interface HTMLPopoverCodeModifyElement extends Components.PopoverCodeModify, HTMLStencilElement {}
   var HTMLPopoverCodeModifyElement: {
     prototype: HTMLPopoverCodeModifyElement;
@@ -237,6 +232,12 @@ declare global {
   var HTMLSettingCanvasOptionElement: {
     prototype: HTMLSettingCanvasOptionElement;
     new (): HTMLSettingCanvasOptionElement;
+  };
+
+  interface HTMLSettingCommonConfigElement extends Components.SettingCommonConfig, HTMLStencilElement {}
+  var HTMLSettingCommonConfigElement: {
+    prototype: HTMLSettingCommonConfigElement;
+    new (): HTMLSettingCommonConfigElement;
   };
 
   interface HTMLTextAdapterElement extends Components.TextAdapter, HTMLStencilElement {}
@@ -263,11 +264,11 @@ declare global {
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
     'draggable-adapter': HTMLDraggableAdapterElement;
     'media-adapter': HTMLMediaAdapterElement;
-    'media-basic-img-config': HTMLMediaBasicImgConfigElement;
     'popover-code-modify': HTMLPopoverCodeModifyElement;
     'popover-draggable-contextmenu': HTMLPopoverDraggableContextmenuElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
+    'setting-common-config': HTMLSettingCommonConfigElement;
     'text-adapter': HTMLTextAdapterElement;
   }
 }
@@ -349,10 +350,6 @@ declare namespace LocalJSX {
   interface MediaAdapter extends JSXBase.HTMLAttributes<HTMLMediaAdapterElement> {
     'comData'?: ComData;
   }
-  interface MediaBasicImgConfig extends JSXBase.HTMLAttributes<HTMLMediaBasicImgConfigElement> {
-    'draggableConfig'?: any;
-    'onConfigChange'?: (event: CustomEvent<any>) => void;
-  }
   interface PopoverCodeModify extends JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement> {
     'dataScreenId'?: string;
     'dismissCallBack'?: Function;
@@ -364,6 +361,10 @@ declare namespace LocalJSX {
   }
   interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
   interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
+  interface SettingCommonConfig extends JSXBase.HTMLAttributes<HTMLSettingCommonConfigElement> {
+    'comData'?: DragComOption;
+    'onCyChange'?: (event: CustomEvent<any>) => void;
+  }
   interface TextAdapter extends JSXBase.HTMLAttributes<HTMLTextAdapterElement> {
     'comData'?: ComData;
   }
@@ -387,11 +388,11 @@ declare namespace LocalJSX {
     'datascreen-setting-panel': DatascreenSettingPanel;
     'draggable-adapter': DraggableAdapter;
     'media-adapter': MediaAdapter;
-    'media-basic-img-config': MediaBasicImgConfig;
     'popover-code-modify': PopoverCodeModify;
     'popover-draggable-contextmenu': PopoverDraggableContextmenu;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
+    'setting-common-config': SettingCommonConfig;
     'text-adapter': TextAdapter;
   }
 }
