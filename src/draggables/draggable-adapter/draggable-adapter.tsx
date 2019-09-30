@@ -32,6 +32,10 @@ export class DraggableComponent {
                 return (
                     <text-adapter comData={this.comOptionData}></text-adapter>
                 )
+            case "table":
+                return (
+                    <table-adapter comData={this.comOptionData}></table-adapter>
+                )
             default:
                 break;
         }

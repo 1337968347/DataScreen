@@ -114,7 +114,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
-
     "chart-pie-custom": {
         nickName: "普通饼图",
         config: {
@@ -238,6 +237,50 @@ const componentTemplateDataMap: ComponentInitalMap = {
             y: "0",
             w: "150",
             h: "80",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "table":{
+        nickName: "表格",
+        api_data:{
+            dataSource : [
+                {
+                  key: '1',
+                  name: '胡彦斌',
+                  age: 32,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '2',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+              ]
+        },
+        config: {
+            columns : [
+                {
+                  title: '姓名',
+                  dataIndex: 'name',
+                },
+                {
+                  title: '年龄',
+                  dataIndex: 'age',
+                },
+                {
+                  title: '住址',
+                  dataIndex: 'address',
+                },
+              ]
+        },
+        icon: "assets/com-icon/chart-base-line.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "300",
+            h: "200",
             opacity: "1",
             deg: "0"
         }

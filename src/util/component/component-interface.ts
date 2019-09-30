@@ -29,7 +29,7 @@ export interface DragComOption {
 }
 
 export interface DraggableApiData {
-    source: any[]
+    [sourceName: string]: any[]
 }
 
 export interface DraggableApi {

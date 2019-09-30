@@ -1,0 +1,28 @@
+:host{
+    --background:#ffffff;
+    --color: #000000;
+    --header-bg: #fafafa;
+    --border-width: 2px;
+    --border-color: #edf2f6;
+    width: 100%;
+}
+table{
+    width: 100%;
+    height: 100%;
+    color: var(--color);
+    background: var( --background)
+}
+
+thead{
+    background: var(--header-bg)
+}
+
+td, th{    
+    border-width: 0 var(--border-width) var(--border-width) 0;
+    border-collapse: collapse;
+    border-color: var(--border-color);
+    border-style: solid;
+    line-height: 1.5;
+    padding: 1em;
+    text-align: left;
+}

@@ -12,6 +12,7 @@ import {
 } from '@stencil/router';
 import {
   CanvasConfig,
+  Column,
   ComData,
   DragComOption,
   themeType,
@@ -47,6 +48,10 @@ export namespace Components {
     'defaultImg': string;
     'isLazy': boolean;
     'src': string;
+  }
+  interface CyTable {
+    'Columns': Column[];
+    'dataSource': any[];
   }
   interface DatascreenCanvas {
     'canModify': boolean;
@@ -93,6 +98,9 @@ export namespace Components {
   interface SettingCanvasOption {}
   interface SettingCommonConfig {
     'comData': DragComOption;
+  }
+  interface TableAdapter {
+    'comData': ComData;
   }
   interface TextAdapter {
     'comData': ComData;
@@ -154,6 +162,12 @@ declare global {
   var HTMLCyLazyImgElement: {
     prototype: HTMLCyLazyImgElement;
     new (): HTMLCyLazyImgElement;
+  };
+
+  interface HTMLCyTableElement extends Components.CyTable, HTMLStencilElement {}
+  var HTMLCyTableElement: {
+    prototype: HTMLCyTableElement;
+    new (): HTMLCyTableElement;
   };
 
   interface HTMLDatascreenCanvasElement extends Components.DatascreenCanvas, HTMLStencilElement {}
@@ -240,6 +254,12 @@ declare global {
     new (): HTMLSettingCommonConfigElement;
   };
 
+  interface HTMLTableAdapterElement extends Components.TableAdapter, HTMLStencilElement {}
+  var HTMLTableAdapterElement: {
+    prototype: HTMLTableAdapterElement;
+    new (): HTMLTableAdapterElement;
+  };
+
   interface HTMLTextAdapterElement extends Components.TextAdapter, HTMLStencilElement {}
   var HTMLTextAdapterElement: {
     prototype: HTMLTextAdapterElement;
@@ -255,6 +275,7 @@ declare global {
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
     'cy-lazy-img': HTMLCyLazyImgElement;
+    'cy-table': HTMLCyTableElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
     'datascreen-canvas-content': HTMLDatascreenCanvasContentElement;
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
@@ -269,6 +290,7 @@ declare global {
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
     'setting-common-config': HTMLSettingCommonConfigElement;
+    'table-adapter': HTMLTableAdapterElement;
     'text-adapter': HTMLTextAdapterElement;
   }
 }
@@ -314,6 +336,10 @@ declare namespace LocalJSX {
     'defaultImg'?: string;
     'isLazy'?: boolean;
     'src'?: string;
+  }
+  interface CyTable extends JSXBase.HTMLAttributes<HTMLCyTableElement> {
+    'Columns'?: Column[];
+    'dataSource'?: any[];
   }
   interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
     'canModify'?: boolean;
@@ -365,6 +391,9 @@ declare namespace LocalJSX {
     'comData'?: DragComOption;
     'onCyChange'?: (event: CustomEvent<any>) => void;
   }
+  interface TableAdapter extends JSXBase.HTMLAttributes<HTMLTableAdapterElement> {
+    'comData'?: ComData;
+  }
   interface TextAdapter extends JSXBase.HTMLAttributes<HTMLTextAdapterElement> {
     'comData'?: ComData;
   }
@@ -379,6 +408,7 @@ declare namespace LocalJSX {
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
     'cy-lazy-img': CyLazyImg;
+    'cy-table': CyTable;
     'datascreen-canvas': DatascreenCanvas;
     'datascreen-canvas-content': DatascreenCanvasContent;
     'datascreen-com-panel': DatascreenComPanel;
@@ -393,6 +423,7 @@ declare namespace LocalJSX {
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
     'setting-common-config': SettingCommonConfig;
+    'table-adapter': TableAdapter;
     'text-adapter': TextAdapter;
   }
 }
