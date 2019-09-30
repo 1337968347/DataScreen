@@ -136,11 +136,11 @@ export const getComponentDataById = (comId: string) => {
     })[0] || null);
 }
 
-export const updateLayerMove = (from: number, to: number) => {
+export const updateLayerMove = (from: number, to: number, isCanvasUpdate: boolean = true, isLayerUpdate: boolean = true, isLocalUpDate: boolean = true) => {
     let comOptionTemp = componentDatas[from];
     componentDatas.splice(from, 1);
     componentDatas.splice(to, 0, comOptionTemp);
-    setComponentDatas(componentDatas, true, false)
+    setComponentDatas(componentDatas, isCanvasUpdate, isLayerUpdate, isLocalUpDate)
 }
 
 

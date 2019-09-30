@@ -1,8 +1,12 @@
-const isComponentHasThisConfig = (comType: string, configName: string) => {
+import { comConfig } from "./component-interface";
+
+const isComponentHasThisConfig = (comType: string, configName: comConfig) => {
     return comConfigMap[comType] && comConfigMap[comType].indexOf(configName) > -1
 }
 
-const comConfigMap: { [comName: string]: string[] } = {
-    "media-basic-img": ["bgi"]
+
+const comConfigMap: { [comName: string]: comConfig[] } = {
+    "media-basic-img": ["bgi"],
+    "text-common": ["fontSize", "fontContent", "fontWeight", "color", "backgroundColor", "textAlign"]
 };
 export { comConfigMap, isComponentHasThisConfig }

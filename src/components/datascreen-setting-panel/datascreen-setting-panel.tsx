@@ -36,6 +36,7 @@ export class DatascreenSettingPanel {
             return (<setting-canvas-option></setting-canvas-option>)
         } else {
             const comData = this.ComDataData.data;
+            const comName = this.ComDataData.comName;
             return [
                 <ion-header>
                     <ion-segment onIonChange={(e) => { this.handleSegChange(e) }} value={this.chooseSeg}>
@@ -58,10 +59,10 @@ export class DatascreenSettingPanel {
 
                             {/* media-config */}
                             <ion-grid>
-                                {isComponentHasThisConfig(this.ComDataData.comName, "bgi") ?
+                                {isComponentHasThisConfig(comName, "bgi") ?
                                     [<ion-row>
                                         <ion-col size="4">
-                                            背景图
+                                            图片地址
                                         </ion-col>
                                         <ion-col size="8">
                                             <ion-input clearInput value={comData.config.bgi} onChange={(e) => { this.handleComConfigChange("config", "bgi", e.target['value']) }}>
@@ -76,6 +77,75 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row>] : null
                                 }
+                            </ion-grid>
+
+                            {/* text-config */}
+                            <ion-grid>
+                                {isComponentHasThisConfig(comName, "fontContent") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            内容
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input clearInput value={comData.config.fontContent} onChange={(e) => { this.handleComConfigChange("config", "fontContent", e.target['value']) }}>
+                                            </ion-input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "fontSize") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            字体大小
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input type="number" min="0" value={comData.config.fontSize} onChange={(e) => { this.handleComConfigChange("config", "fontSize", e.target['value']) }}>
+                                            </ion-input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "fontWeight") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            字体粗细
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-select value={comData.config.fontWeight} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config","fontWeight", e.detail.value) }}>
+                                                <ion-select-option value="normal">normal</ion-select-option>
+                                                <ion-select-option value="bold">bold</ion-select-option>
+                                                <ion-select-option value="bolder">bolder</ion-select-option>
+                                                <ion-select-option value="lighter">lighter</ion-select-option>
+                                            </ion-select>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+
+                                {isComponentHasThisConfig(comName, "fontSize") ?
+                                    <ion-row>
+                                    <ion-col size="4">
+                                        颜色
+                                    </ion-col>
+                                    <ion-col size="8">
+                                        <ion-input value={comData.config.color} onIonChange={(e) => { this.handleComConfigChange("config","color", e.detail.value) }}></ion-input>
+                                        <input style={{ "height": "100%" }} type="color" value={comData.config.color} onChange={(e) => { this.handleComConfigChange("config","color", e.target['value']) }}></input>
+                                    </ion-col>
+                                </ion-row>: null
+                                }
+
+                                {isComponentHasThisConfig(comName, "textAlign") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            字体粗细
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-select value={comData.config.textAlign} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config","textAlign", e.detail.value) }}>
+                                                <ion-select-option value="center">居中</ion-select-option>
+                                                <ion-select-option value="left">左对齐</ion-select-option>
+                                                <ion-select-option value="right">右对齐</ion-select-option>
+                                            </ion-select>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                    
                             </ion-grid>
                         </div>
                         : null

@@ -236,8 +236,8 @@ const componentTemplateDataMap: ComponentInitalMap = {
         view: {
             x: "0",
             y: "0",
-            w: "100",
-            h: "40",
+            w: "150",
+            h: "80",
             opacity: "1",
             deg: "0"
         }

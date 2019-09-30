@@ -82,7 +82,6 @@ export class SettingCanvasOption {
                             主题
                         </ion-col>
                         <ion-col size="8">
-                            {/* <ion-icon name="infinite"></ion-icon> */}
                             <ion-select value={this.canvasOption.theme} interface="popover" onIonChange={(e) => { this.handleCanvasChange("theme", e.detail.value) }}>
                                 <ion-select-option value="default">默认</ion-select-option>
                                 <ion-select-option value="blank">黑夜</ion-select-option>

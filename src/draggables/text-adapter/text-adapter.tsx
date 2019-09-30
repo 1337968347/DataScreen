@@ -16,9 +16,8 @@ export class TextAdapter {
                 <span style={{
                     "font-size": textConfig.fontSize + "px",
                     "line-height": Math.floor(1.5 * textConfig.fontSize) + "px",
-                    "font-weight": textConfig.fontContent || "normal",
+                    "font-weight": textConfig.fontWeight || "normal",
                     "color": textConfig.color || "#ffffff",
-                    "background-color": textConfig.backgroundColor || "transparent",
                     "text-align": textConfig.textAlign || "center"
                 }}>{textConfig.fontContent || ""}</span>
             </div>

@@ -28,7 +28,7 @@ export class DatascreenLayer {
     }
 
     handleMoveLayer(detail) {
-        updateLayerMove(detail.from, detail.to);
+        updateLayerMove(detail.from, detail.to, true, false, true);
         detail.complete();
     }
 
@@ -37,7 +37,7 @@ export class DatascreenLayer {
             <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(comData.id) }}>
                 <ion-item button color={this.chooseComId == comData.id ? "primary" : ""}>
                     <ion-thumbnail slot="start">
-                        <img src={"../../"+comData.data.icon} />
+                        <img src={"../../" + comData.data.icon} />
                     </ion-thumbnail>
                     <ion-label>
                         {comData.data.nickName || comData.data.comName || ""}

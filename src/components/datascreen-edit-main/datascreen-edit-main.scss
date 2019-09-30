@@ -9,7 +9,13 @@ datascreen-edit-main{
         flex: 1;
         width: 100%;
         padding: 10px 20px;
-        overflow: scroll;
+        overflow: hidden;
+    }
+
+    datascreen-canvas-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .datascreen-edit-footer {

@@ -1,9 +1,8 @@
 export interface TextConfig {
     fontSize?: number;
     fontContent?: string;
-    fontWeight?: "normal"|"blod"|"bloder"|"ligter";
+    fontWeight?: "normal"|"bold"|"bloder"|"lighter";
     color?: string;
-    backgroundColor?: string;
     textAlign?: "center"|"left"|"right";
 }
 
