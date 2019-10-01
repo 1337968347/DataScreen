@@ -4,9 +4,10 @@ const isComponentHasThisConfig = (comType: string, configName: comConfig) => {
     return comConfigMap[comType] && comConfigMap[comType].indexOf(configName) > -1
 }
 
-
 const comConfigMap: { [comName: string]: comConfig[] } = {
     "media-basic-img": ["bgi"],
-    "text-common": ["fontSize", "fontContent", "fontWeight", "color", "backgroundColor", "textAlign"]
+    "text-common": ["fontSize", "fontContent", "fontWeight", "color", "backgroundColor", "textAlign"],
+    "table": ["columns","headerColor","color", "fontSize", "backgroundColor", "textAlign",  "borderWidth", "borderColor"]
 };
+
 export { comConfigMap, isComponentHasThisConfig }

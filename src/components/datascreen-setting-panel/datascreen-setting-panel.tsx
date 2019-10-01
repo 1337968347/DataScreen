@@ -1,4 +1,4 @@
-import { Component, State, Method, h, Element } from '@stencil/core';
+import { Component, State, Method, h, Element, Event, EventEmitter } from '@stencil/core';
 
 import { ComData } from "../../interfaces";
 import { setComDataChange } from "../../util/datascreen-controller"
@@ -14,6 +14,7 @@ export class DatascreenSettingPanel {
     @Element() el: HTMLElement;
     @State() chooseSeg: string = "config"
     @State() ComDataData: ComData;
+    @Event() alert: EventEmitter;
 
     @Method()
     async setComponentConfigData(comData) {
@@ -31,7 +32,54 @@ export class DatascreenSettingPanel {
         this.chooseSeg = e.detail.value;
     }
 
+    handleComTableColumnChange(row) {
+        this.alert.emit({
+            header: "删除",
+            message: `确定要删除 ${row.title}？`,
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel',
+
+                }, {
+                    text: '确定',
+                    handler: () => {
+
+                        this.handleComConfigChange("config", "columns", this.ComDataData.data.config.columns.filter((column) => {
+                            return column.dataIndex !== row.dataIndex
+                        }))
+                    }
+                }
+            ]
+        })
+    }
+
+    addNewTableColumn() {
+        this.handleComConfigChange("config", "columns", [...this.ComDataData.data.config.columns, { title: "", dataIndex: "" }])
+    }
+
     render() {
+        const TableColumns = [
+            {
+                title: '名称',
+                dataIndex: 'title'
+            },
+            {
+                title: 'dataIndex',
+                dataIndex: 'dataIndex'
+            },
+            {
+                title: '操作',
+                dataIndex: 'oper',
+                render: row => (
+                    <span>
+                        <ion-button fill="clear"  onClick={() => {  }}>编辑</ion-button>
+                        <ion-button fill="clear"  onClick={() => { this.handleComTableColumnChange(row) }}>删除</ion-button>
+                    </span>
+                ),
+            }
+        ]
+
         if (!this.ComDataData || !this.ComDataData.id) {
             return (<setting-canvas-option></setting-canvas-option>)
         } else {
@@ -77,10 +125,7 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row>] : null
                                 }
-                            </ion-grid>
-
-                            {/* text-config */}
-                            <ion-grid>
+                                {/* text-config */}
                                 {isComponentHasThisConfig(comName, "fontContent") ?
                                     <ion-row>
                                         <ion-col size="4">
@@ -98,7 +143,7 @@ export class DatascreenSettingPanel {
                                             字体大小
                                         </ion-col>
                                         <ion-col size="8">
-                                            <ion-input type="number" min="0" value={comData.config.fontSize} onChange={(e) => { this.handleComConfigChange("config", "fontSize", e.target['value']) }}>
+                                            <ion-input type="number" min="0" value={comData.config.fontSize} onIonChange={(e) => { this.handleComConfigChange("config", "fontSize", e.detail.value) }}>
                                             </ion-input>
                                         </ion-col>
                                     </ion-row> : null
@@ -109,7 +154,7 @@ export class DatascreenSettingPanel {
                                             字体粗细
                                         </ion-col>
                                         <ion-col size="8">
-                                            <ion-select value={comData.config.fontWeight} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config","fontWeight", e.detail.value) }}>
+                                            <ion-select value={comData.config.fontWeight} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config", "fontWeight", e.detail.value) }}>
                                                 <ion-select-option value="normal">normal</ion-select-option>
                                                 <ion-select-option value="bold">bold</ion-select-option>
                                                 <ion-select-option value="bolder">bolder</ion-select-option>
@@ -118,26 +163,35 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
-
-                                {isComponentHasThisConfig(comName, "fontSize") ?
+                                {isComponentHasThisConfig(comName, "color") ?
                                     <ion-row>
-                                    <ion-col size="4">
-                                        颜色
-                                    </ion-col>
-                                    <ion-col size="8">
-                                        <ion-input value={comData.config.color} onIonChange={(e) => { this.handleComConfigChange("config","color", e.detail.value) }}></ion-input>
-                                        <input style={{ "height": "100%" }} type="color" value={comData.config.color} onChange={(e) => { this.handleComConfigChange("config","color", e.target['value']) }}></input>
-                                    </ion-col>
-                                </ion-row>: null
+                                        <ion-col size="4">
+                                            文本颜色
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input value={comData.config.color} onIonChange={(e) => { this.handleComConfigChange("config", "color", e.detail.value) }}></ion-input>
+                                            <input style={{ "height": "100%" }} type="color" value={comData.config.color} onChange={(e) => { this.handleComConfigChange("config", "color", e.target['value']) }}></input>
+                                        </ion-col>
+                                    </ion-row> : null
                                 }
-
+                                {isComponentHasThisConfig(comName, "backgroundColor") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            背景颜色
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input value={comData.config.backgroundColor} onIonChange={(e) => { this.handleComConfigChange("config", "backgroundColor", e.detail.value) }}></ion-input>
+                                            <input style={{ "height": "100%" }} type="color" value={comData.config.backgroundColor} onChange={(e) => { this.handleComConfigChange("config", "backgroundColor", e.target['value']) }}></input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
                                 {isComponentHasThisConfig(comName, "textAlign") ?
                                     <ion-row>
                                         <ion-col size="4">
-                                            字体粗细
+                                            文字对齐
                                         </ion-col>
                                         <ion-col size="8">
-                                            <ion-select value={comData.config.textAlign} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config","textAlign", e.detail.value) }}>
+                                            <ion-select value={comData.config.textAlign} interface="popover" onIonChange={(e) => { this.handleComConfigChange("config", "textAlign", e.detail.value) }}>
                                                 <ion-select-option value="center">居中</ion-select-option>
                                                 <ion-select-option value="left">左对齐</ion-select-option>
                                                 <ion-select-option value="right">右对齐</ion-select-option>
@@ -145,7 +199,49 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
-                    
+                                {isComponentHasThisConfig(comName, "borderWidth") ?
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            边框宽度
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input type="number" min="0" value={comData.config.borderWidth} onIonChange={(e) => { this.handleComConfigChange("config", "borderWidth", e.detail.value) }}>
+                                            </ion-input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "borderColor") ?
+                                    <ion-row class="marginTop">
+                                        <ion-col size="4">
+                                            边框颜色
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input value={comData.config.borderColor} onIonChange={(e) => { this.handleComConfigChange("config", "borderColor", e.detail.value) }}></ion-input>
+                                            <input style={{ "height": "100%" }} type="color" value={comData.config.borderColor} onChange={(e) => { this.handleComConfigChange("config", "borderColor", e.target['value']) }}></input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "headerColor") ?
+                                    <ion-row class="marginTop">
+                                        <ion-col size="4">
+                                            表头颜色
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input value={comData.config.headerColor} onIonChange={(e) => { this.handleComConfigChange("config", "headerColor", e.detail.value) }}></ion-input>
+                                            <input style={{ "height": "100%" }} type="color" value={comData.config.headerColor} onChange={(e) => { this.handleComConfigChange("config", "headerColor", e.target['value']) }}></input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "columns") ?
+                                    <ion-row class="marginTop">
+                                        <ion-col size="12">
+                                            <ion-button fill="outline" onClick={() => { this.addNewTableColumn() }}>新增</ion-button>
+                                        </ion-col>
+                                        <ion-col size="12">
+                                            <cy-table Columns={TableColumns} dataSource={comData.config.columns}></cy-table>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
                             </ion-grid>
                         </div>
                         : null

@@ -6,12 +6,23 @@ export interface ComponentInitalMap {
 }
 
 export declare type comType =
+    // media
     "media-basic-img" |
+    // chart
     "chart-base-line" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-simple" |
-    "text-common";
+    // text
+    "text-common" |
+    // table
+    "table";
 
-export declare type comConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color" 
-| "backgroundColor" | "textAlign";
+// 常用的设置
+declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color"
+    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor";
+
+// 表格设置
+declare type tableConfig = "columns"| "headerColor";
+
+export declare type comConfig = commonConfig | tableConfig;
 
 export interface ComData {
     data: DragComOption;

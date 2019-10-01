@@ -32,20 +32,22 @@ datascreen-setting-panel {
         margin: 2px 0;
         --background: var(--ion-background-shade)
     }
+    
 
     ion-content {
         width: 332px;
         --padding-start: 10px;
         --padding-end: 8px;
 
+      
 
         ion-title {
             font-size: var(--font-size);
         }
 
-        ion-grid+ion-grid {
-            margin-top: 8px;
-        }
+        .marginTop, ion-grid {
+            margin-top: 15px;
+        } 
 
         ion-grid {
             ion-col {
@@ -70,6 +72,11 @@ datascreen-setting-panel {
                 ion-input input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
                     width: 25px;
                     height: 30px;
+                }
+
+                cy-table{
+                    text-align: center;
+                    --color:var(--ion-text-color,#ffffff);
                 }
 
                 ion-select {

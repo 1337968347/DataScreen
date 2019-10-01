@@ -33,7 +33,16 @@ export class DataScreenDataController {
         await this.setDataScreenCanvasConfig(dataScreenId, dataScreen.canvasOption);
         delete dataScreen.componentsData;
         delete dataScreen.canvasOption;
-        await set(`dataScreen-${dataScreenId}`, dataScreen);
+        await this.setDataScreenOptionById(dataScreenId,dataScreen);
+    }
+    
+    /**
+     * not CanvasConfig, not componentData
+     * @param dataScreenId 
+     * @param dataScreen 
+     */
+    async setDataScreenOptionById(dataScreenId: string, dataScreen: DataScreen): Promise<void> {
+        return await set(`dataScreen-${dataScreenId}`, dataScreen)
     }
 
     async getDataScreenOptionById(dataScreenId: string): Promise<DataScreen> {

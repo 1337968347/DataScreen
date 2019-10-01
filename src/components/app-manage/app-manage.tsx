@@ -43,17 +43,17 @@ export class AppManage {
 
     async removeCanvas(dataScreen: DataScreen) {
         this.alert.emit({
-            header: "确定要删除这个可视化吗？",
-            message: dataScreen.name,
+            header: "删除",
+            message: `确定要删除 ${dataScreen.name}？`,
             buttons: [
                 {
-                    text: 'Cancel',
+                    text: '取消',
                     role: 'cancel',
                     cssClass: 'secondary',
                     handler: () => {
                     }
                 }, {
-                    text: 'Okay',
+                    text: '确定',
                     handler: () => {
                         DataScreenData.deleteDataScreen(dataScreen.id).then(() => {
                             this.getDataScreenListData()
@@ -85,7 +85,7 @@ export class AppManage {
     handleDataSCreenChange(dataScreen: DataScreen, name: string, value: string) {
         dataScreen[name] = value;
         this.dataScreenList = [...this.dataScreenList];
-        DataScreenData.setDataScreenById(dataScreen.id, dataScreen)
+        DataScreenData.setDataScreenOptionById(dataScreen.id, dataScreen)
     }
 
     render() {
@@ -129,7 +129,7 @@ export class AppManage {
                                     <ion-card-content>
                                         <ion-item onClick={(e) => { e.stopPropagation(); e.preventDefault() }} lines="none">
                                             <ion-icon name="create" slot="start"></ion-icon>
-                                            <ion-input debounce={500} onIonChange={(e) => { this.handleDataSCreenChange(dataScreen, "name", e.detail.value) }} value={dataScreen.name}></ion-input>
+                                            <ion-input debounce={800} onIonChange={(e) => { this.handleDataSCreenChange(dataScreen, "name", e.detail.value) }} value={dataScreen.name}></ion-input>
 
                                             <ion-buttons slot="end">
                                                 <ion-button color="danger" onClick={() => { this.removeCanvas(dataScreen) }} title="删除" fill="outline">

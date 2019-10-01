@@ -4,15 +4,13 @@ import { Column } from '../../interfaces';
 @Component({
     tag: 'cy-table',
     styleUrl: 'cy-table.scss',
-    shadow:true
+    shadow: true
 })
 export class CyTable {
     @Prop() Columns: Column[];
     @Prop() dataSource: any[];
 
     componentWillLoad() {
-        console.log(this.Columns);
-        console.log(this.dataSource)
     }
 
     render() {
@@ -28,8 +26,12 @@ export class CyTable {
                 <tbody>
                     {this.dataSource.map((row) =>
                         <tr key={row.key || ""}>
-                            {this.Columns.map((column) =>
-                                <td>{row[column.dataIndex] || ""}</td>
+                            {this.Columns.map((column) => {
+                                if (column.render) {
+                                    return <td>{column.render(row)}</td> 
+                                } else {
+                                    return <td>{row[column.dataIndex] || ""}</td>
+                                }}
                             )}
                         </tr>
                     )}

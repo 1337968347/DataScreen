@@ -66,7 +66,7 @@ export class AppCreate {
                         } else {
                             this.chooseTemplate.name = e.name;
                             DataScreenData.addDataScreen(this.chooseTemplate).then(() => {
-                                this.history.push(`canvas/${this.chooseTemplate.id}/edit`)
+                                this.history.replace(`canvas/${this.chooseTemplate.id}/edit`)
                             })
                         }
 

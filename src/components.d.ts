@@ -366,7 +366,9 @@ declare namespace LocalJSX {
   interface DatascreenLayer extends JSXBase.HTMLAttributes<HTMLDatascreenLayerElement> {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {}
+  interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {
+    'onAlert'?: (event: CustomEvent<any>) => void;
+  }
   interface DraggableAdapter extends JSXBase.HTMLAttributes<HTMLDraggableAdapterElement> {
     'comOptionData'?: ComData;
     'onAlert'?: (event: CustomEvent<any>) => void;
