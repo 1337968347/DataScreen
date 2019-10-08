@@ -55,7 +55,70 @@ export class DatascreenSettingPanel {
     }
 
     addNewTableColumn() {
-        this.handleComConfigChange("config", "columns", [...this.ComDataData.data.config.columns, { title: "", dataIndex: "" }])
+        this.alert.emit({
+            header: "新增",
+            inputs: [{
+                type: "text",
+                placeholder: "名称",
+                name: "title",
+            }, {
+                type: "text",
+                placeholder: "dataIndex",
+                name: "dataIndex",
+            }],
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    }
+                }, {
+                    text: '确定',
+                    handler: (e) => {
+                        this.handleComConfigChange("config", "columns", [...this.ComDataData.data.config.columns, e])
+                    }
+                }
+            ]
+        })
+    }
+
+    handleTableRowEdit(row, rowIndex) {
+        this.alert.emit({
+            header: "编辑",
+            inputs: [{
+                type: "text",
+                placeholder: "名称",
+                name: "title",
+                value: row.title || ""
+            }, {
+                type: "text",
+                placeholder: "dataIndex",
+                name: "dataIndex",
+                value: row.dataIndex || ""
+            }],
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    }
+                }, {
+                    text: '确定',
+                    handler: (e) => {
+                        this.handleComConfigChange("config", "columns", this.ComDataData.data.config.columns.map((column, index) => {
+                            if (index == rowIndex) {
+                                return e
+                            } else {
+                                return column
+                            }
+                        }))
+                    }
+                }
+            ]
+        })
+
     }
 
     render() {
@@ -71,10 +134,10 @@ export class DatascreenSettingPanel {
             {
                 title: '操作',
                 dataIndex: 'oper',
-                render: row => (
+                render: (row, rowIndex) => (
                     <span>
-                        <ion-button fill="clear"  onClick={() => {  }}>编辑</ion-button>
-                        <ion-button fill="clear"  onClick={() => { this.handleComTableColumnChange(row) }}>删除</ion-button>
+                        <ion-button fill="clear" onClick={() => { this.handleTableRowEdit(row, rowIndex) }}>编辑</ion-button>
+                        <ion-button fill="clear" onClick={() => { this.handleComTableColumnChange(row) }}>删除</ion-button>
                     </span>
                 ),
             }

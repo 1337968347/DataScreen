@@ -24,11 +24,11 @@ export class CyTable {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.dataSource.map((row) =>
+                    {this.dataSource.map((row,rowIndex) =>
                         <tr key={row.key || ""}>
                             {this.Columns.map((column) => {
                                 if (column.render) {
-                                    return <td>{column.render(row)}</td> 
+                                    return <td>{column.render(row,rowIndex)}</td> 
                                 } else {
                                     return <td>{row[column.dataIndex] || ""}</td>
                                 }}

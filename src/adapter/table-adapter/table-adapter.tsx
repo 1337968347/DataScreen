@@ -6,7 +6,7 @@ import { ComData } from "../../interfaces"
     tag: 'table-adapter',
     styleUrl: 'table-adapter.scss'
 })
-export class TableAdapter {
+export class TableAdapter{
     @Prop() comData: ComData;
 
     componentWillLoad() {
@@ -22,9 +22,9 @@ export class TableAdapter {
                 "--font-size": this.comData.data.config.fontSize+"px",
                 "--color": this.comData.data.config.color,
                 "--border-color": this.comData.data.config.borderColor,
-                "--border-width": this.comData.data.config.borderWidth || 0+"px"
+                "--border-width": this.comData.data.config.borderWidth+"px" || 0+"px"
             }}
-            dataSource={this.comData.data.api_data.dataSource}
+            dataSource={this.comData.data.api_data.staticData}
             Columns={this.comData.data.config.columns}>
             </cy-table>
         );

@@ -3,7 +3,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
     "media-basic-img": {
         nickName: "单张图片",
         config: {
-            
+
         },
         icon: "assets/com-icon/img-icon.png",
         view: {
@@ -228,7 +228,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             fontContent: "content",
             fontWeight: "normal",
             color: "#ffffff",
-            backgroundColor:"transparent",
+            backgroundColor: "transparent",
             textAlign: "center"
         },
         icon: "assets/com-icon/chart-base-line.png",
@@ -241,39 +241,40 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
-    "table":{
+    "table": {
         nickName: "表格",
-        api_data:{
-            dataSource : [
+        api_data: {
+            dataSourceType: "static",
+            staticData: [
                 {
-                  key: '1',
-                  name: '胡彦斌',
-                  age: 32,
-                  address: '西湖区湖底公园1号',
+                    key: '1',
+                    name: '胡彦斌',
+                    age: 32,
+                    address: '西湖区湖底公园1号',
                 },
                 {
-                  key: '2',
-                  name: '胡彦祖',
-                  age: 42,
-                  address: '西湖区湖底公园1号',
+                    key: '2',
+                    name: '胡彦祖',
+                    age: 42,
+                    address: '西湖区湖底公园1号',
                 },
-              ]
+            ]
         },
         config: {
-            columns : [
+            columns: [
                 {
-                  title: '姓名',
-                  dataIndex: 'name',
+                    title: '姓名',
+                    dataIndex: 'name',
                 },
                 {
-                  title: '年龄',
-                  dataIndex: 'age',
+                    title: '年龄',
+                    dataIndex: 'age',
                 },
                 {
-                  title: '住址',
-                  dataIndex: 'address',
+                    title: '住址',
+                    dataIndex: 'address',
                 },
-              ]
+            ]
         },
         icon: "assets/com-icon/chart-base-line.png",
         view: {

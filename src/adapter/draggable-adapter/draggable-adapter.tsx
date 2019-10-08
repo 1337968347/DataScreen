@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
 
 import { ComData, themeType } from "../../interfaces"
 
@@ -11,10 +11,12 @@ export class DraggableComponent {
     @Prop() theme: themeType = "default";
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
-    @Element() el: HTMLElement;
-    chartDemo: any;
 
     componentDidLoad() {
+    }
+
+    registerApiData(){
+        
     }
 
     render() {

@@ -1,4 +1,4 @@
-import { get, set,remove } from './storage';
+import { get, set,remove } from './local-storage';
 import { DataScreen, ComData } from "../interfaces"
 import { CanvasConfig } from '../util/canvas/canvas-interface';
 

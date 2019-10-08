@@ -1,7 +1,7 @@
 import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
 import { RouterHistory,MatchResults } from "@stencil/router"
 
-import { get, set } from "../../providers/storage";
+import { get, set } from "../../providers/local-storage";
 import { initLayerComponent, initSettingComponent, initDataScreen, getDataScreen } from "../../util/datascreen-controller";
 
 @Component({

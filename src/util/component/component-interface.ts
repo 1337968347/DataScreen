@@ -20,7 +20,7 @@ declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | 
     | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor";
 
 // 表格设置
-declare type tableConfig = "columns"| "headerColor";
+declare type tableConfig = "columns" | "headerColor";
 
 export declare type comConfig = commonConfig | tableConfig;
 
@@ -40,7 +40,13 @@ export interface DragComOption {
 }
 
 export interface DraggableApiData {
-    [sourceName: string]: any[]
+    dataSourceType?: "static" | "rest";
+    // static
+    staticData?: any;
+    // rest
+    restUrl?: string;
+    restType?: "get"|"post";
+    restRefreshTime?: number;
 }
 
 export interface DraggableApi {
