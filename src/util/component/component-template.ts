@@ -261,6 +261,13 @@ const componentTemplateDataMap: ComponentInitalMap = {
             ]
         },
         config: {
+            backgroundColor: "#ffffff",
+            headerColor: "#12ecf0",
+            textAlign:"center",
+            fontSize:"30",
+            color:"#261818",
+            borderColor:"#000000",
+            borderWidth: 0,
             columns: [
                 {
                     title: '姓名',
@@ -280,8 +287,8 @@ const componentTemplateDataMap: ComponentInitalMap = {
         view: {
             x: "0",
             y: "0",
-            w: "300",
-            h: "200",
+            w: "550",
+            h: "400",
             opacity: "1",
             deg: "0"
         }

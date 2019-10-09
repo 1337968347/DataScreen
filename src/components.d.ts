@@ -15,6 +15,8 @@ import {
   Column,
   ComData,
   DragComOption,
+  DraggableApiData,
+  DraggableConfig,
   themeType,
 } from './interfaces';
 
@@ -99,8 +101,12 @@ export namespace Components {
   interface SettingCommonConfig {
     'comData': DragComOption;
   }
+  interface SettingDataConfig {
+    'comDataApiData': DraggableApiData;
+  }
   interface TableAdapter {
-    'comData': ComData;
+    'comDataApiData': any;
+    'comDataConfig': DraggableConfig;
   }
   interface TextAdapter {
     'comData': ComData;
@@ -254,6 +260,12 @@ declare global {
     new (): HTMLSettingCommonConfigElement;
   };
 
+  interface HTMLSettingDataConfigElement extends Components.SettingDataConfig, HTMLStencilElement {}
+  var HTMLSettingDataConfigElement: {
+    prototype: HTMLSettingDataConfigElement;
+    new (): HTMLSettingDataConfigElement;
+  };
+
   interface HTMLTableAdapterElement extends Components.TableAdapter, HTMLStencilElement {}
   var HTMLTableAdapterElement: {
     prototype: HTMLTableAdapterElement;
@@ -290,6 +302,7 @@ declare global {
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
     'setting-common-config': HTMLSettingCommonConfigElement;
+    'setting-data-config': HTMLSettingDataConfigElement;
     'table-adapter': HTMLTableAdapterElement;
     'text-adapter': HTMLTextAdapterElement;
   }
@@ -393,8 +406,13 @@ declare namespace LocalJSX {
     'comData'?: DragComOption;
     'onCyChange'?: (event: CustomEvent<any>) => void;
   }
+  interface SettingDataConfig extends JSXBase.HTMLAttributes<HTMLSettingDataConfigElement> {
+    'comDataApiData'?: DraggableApiData;
+    'onCyChange'?: (event: CustomEvent<any>) => void;
+  }
   interface TableAdapter extends JSXBase.HTMLAttributes<HTMLTableAdapterElement> {
-    'comData'?: ComData;
+    'comDataApiData'?: any;
+    'comDataConfig'?: DraggableConfig;
   }
   interface TextAdapter extends JSXBase.HTMLAttributes<HTMLTextAdapterElement> {
     'comData'?: ComData;
@@ -425,6 +443,7 @@ declare namespace LocalJSX {
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
     'setting-common-config': SettingCommonConfig;
+    'setting-data-config': SettingDataConfig;
     'table-adapter': TableAdapter;
     'text-adapter': TextAdapter;
   }

@@ -1,10 +1,18 @@
 export class HttpClient {
 
-    static async fetch(type: "get" | "post", uri: string, obj: Object): Promise<Response> {
+    static async fetch(type: "get" | "post", uri: string, obj: Object): Promise<any> {
         if (type == "get") {
-            return this.fetchGet(uri, obj);
+             this.fetchGet(uri, obj).then((data)=>{
+                return Promise.resolve(data);
+             },(error)=>{
+                return Promise.reject(error)
+             });
         } else if (type == "post") {
-            return this.fetchPost(uri, obj);
+            this.fetchPost(uri, obj).then((data)=>{
+                return Promise.resolve(data);
+            },(error)=>{
+                return Promise.reject(error);
+            });
         }
     }
 

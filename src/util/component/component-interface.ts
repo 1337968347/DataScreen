@@ -32,7 +32,6 @@ export interface ComData {
 
 export interface DragComOption {
     api_data?: DraggableApiData;
-    apis?: DraggableApi;
     nickName: string;
     config: DraggableConfig;
     icon: string;
@@ -47,25 +46,6 @@ export interface DraggableApiData {
     restUrl?: string;
     restType?: "get"|"post";
     restRefreshTime?: number;
-}
-
-export interface DraggableApi {
-    source: DraggableApiSource;
-}
-
-export interface DraggableApiSource {
-    description: string;
-    fields: DarggableApiSourceField;
-}
-
-export interface DarggableApiSourceField {
-    [optionName: string]: DarggableApiSourceFieldOption
-}
-
-export interface DarggableApiSourceFieldOption {
-    description: string;
-    optional: boolean;
-    type: string;
 }
 
 export interface DraggableConfig {
