@@ -16,7 +16,7 @@ export class DraggableComponent {
 
     @Watch('comOptionData')
     watchHandler(newValue:ComData, oldValue:ComData) {
-        // 为了简单判断两个对象的值是否相同
+        // 为了简单判断两个对象的值是否相同 
         if( JSON.stringify(newValue.data.api_data ) !== JSON.stringify(oldValue.data.api_data) ){
             this.resignDataReceiver();
         }
