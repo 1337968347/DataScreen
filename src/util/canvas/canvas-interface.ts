@@ -6,5 +6,6 @@ export interface CanvasConfig {
     bgc: string;
     bgi: string;
     theme: themeType;
+    baseUrl: string;
 }
 

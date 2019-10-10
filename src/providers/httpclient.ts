@@ -1,19 +1,30 @@
+import { toastController } from "@ionic/core"
 export class HttpClient {
 
     static async fetch(type: "get" | "post", uri: string, obj: Object): Promise<any> {
+        let response;
+        const RESPONSE_CODE = {
+            400: '请求参数错误',
+            403: '拒绝访问',
+            404: '资源不存在',
+            500: '服务器内部错误',
+            501: '服务未实现',
+            502: '网关错误',
+            503: '服务不可用',
+            504: '网关超时',
+            505: 'HTTP版本不受支持',
+        };
         if (type == "get") {
-             this.fetchGet(uri, obj).then((data)=>{
-                return Promise.resolve(data);
-             },(error)=>{
-                return Promise.reject(error)
-             });
+            response = await this.fetchGet(uri, obj);
         } else if (type == "post") {
-            this.fetchPost(uri, obj).then((data)=>{
-                return Promise.resolve(data);
-            },(error)=>{
-                return Promise.reject(error);
-            });
+            response = await this.fetchPost(uri, obj);
         }
+        RESPONSE_CODE[response.status] && 
+        toastController.create({ message: uri+" 请求出错: "+RESPONSE_CODE[response.status], position: "bottom", duration: 4000 }).then((toast)=>{
+            toast.present()
+        })
+        let data = await response.json()
+        return data
     }
 
     // obj到？参数
@@ -36,7 +47,7 @@ export class HttpClient {
             method: 'GET',
             headers: header
         });
-        return fetch(request, { credentials: 'include' });
+        return fetch(request, { mode: 'cors' });
     }
 
     static async fetchPost(uri, obj): Promise<Response> {
@@ -48,6 +59,6 @@ export class HttpClient {
             body: JSON.stringify(obj),
             headers: header
         });
-        return fetch(request, { credentials: 'include' });
+        return fetch(request, { mode: 'cors' });
     }
 }

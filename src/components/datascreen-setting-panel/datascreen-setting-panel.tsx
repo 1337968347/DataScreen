@@ -313,7 +313,7 @@ export class DatascreenSettingPanel {
                     {this.chooseSeg == "interface" ?
                         <div>
                             {this.ComDataData.data.api_data ?
-                                <setting-data-config comDataApiData={comData.api_data} onCyChange={(e) => { this.handleComConfigChange(e.detail.type, e.detail.name, e.detail.value) }}></setting-data-config>
+                                <setting-data-config comId={this.ComDataData.id} comDataApiData={comData.api_data} onCyChange={(e) => { this.handleComConfigChange(e.detail.type, e.detail.name, e.detail.value) }}></setting-data-config>
                                 : "该组件不存在数据接口"
                             }
 

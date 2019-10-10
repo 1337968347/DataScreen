@@ -79,6 +79,17 @@ export class SettingCanvasOption {
 
                     <ion-row>
                         <ion-col size="4">
+                            环境地址
+                        </ion-col>
+                        <ion-col size="8">
+                            {/* <ion-icon name="infinite"></ion-icon> */}
+                            <ion-input debounce={500} clearInput value={this.canvasOption.baseUrl} onIonChange={(e) => { this.handleCanvasChange("baseUrl", e.detail.value) }}>
+                            </ion-input>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col size="4">
                             主题
                         </ion-col>
                         <ion-col size="8">

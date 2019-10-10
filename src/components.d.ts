@@ -103,6 +103,7 @@ export namespace Components {
   }
   interface SettingDataConfig {
     'comDataApiData': DraggableApiData;
+    'comId': string;
   }
   interface TableAdapter {
     'comDataApiData': any;
@@ -408,7 +409,9 @@ declare namespace LocalJSX {
   }
   interface SettingDataConfig extends JSXBase.HTMLAttributes<HTMLSettingDataConfigElement> {
     'comDataApiData'?: DraggableApiData;
+    'comId'?: string;
     'onCyChange'?: (event: CustomEvent<any>) => void;
+    'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface TableAdapter extends JSXBase.HTMLAttributes<HTMLTableAdapterElement> {
     'comDataApiData'?: any;
