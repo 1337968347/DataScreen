@@ -26,10 +26,34 @@ datascreen-com-panel {
         font-size: calc(0.8 * var(--font-size));
     }
 
+    .full-content{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    ion-segment{
+        width: fit-content!important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start!important;
+        border-right: 1px solid var(--ion-background-shade);
+
+        ion-segment-button{
+            min-width: 45px;
+            max-height: 70px;
+            --padding-end: 8px;
+            --padding-start: 8px;
+        }
+    }
+
     .com-box{
+        flex: 1;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        height: fit-content;
+        justify-content: space-between;
 
         .com-item{
             width: 80px;

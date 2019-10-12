@@ -6,7 +6,7 @@ const canvasDefaultConfig :CanvasConfig = {
     bgc: "#0d2a43",
     bgi: "",
     theme: "default",
-    baseUrl: ""
+    baseUrl: "https://api.myjson.com/bins"
 }
 
 export {canvasDefaultConfig}

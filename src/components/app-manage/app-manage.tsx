@@ -19,7 +19,7 @@ export class AppManage {
     componentWillLoad() {
         this.getDataScreenListData()
     }
-
+    
     async getDataScreenListData() {
         let dataScreenIds = await DataScreenData.getDataScreenIdList();
         this.dataScreenList = await Promise.all(

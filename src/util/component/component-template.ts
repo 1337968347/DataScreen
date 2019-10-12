@@ -11,7 +11,37 @@ const componentTemplateDataMap: ComponentInitalMap = {
             y: "100",
             w: "200",
             h: "150",
-            opacity: "0.8",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "media-border": {
+        nickName: "边框",
+        config: {
+
+        },
+        icon: "assets/com-icon/img-icon.png",
+        view: {
+            x: "200",
+            y: "100",
+            w: "200",
+            h: "150",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "media-iframe": {
+        nickName: "Iframe",
+        config: {
+            iframeSrc:"https://www.baidu.com/"
+        },
+        icon: "assets/com-icon/img-icon.png",
+        view: {
+            x: "200",
+            y: "100",
+            w: "200",
+            h: "150",
+            opacity: "1",
             deg: "0"
         }
     },
@@ -244,7 +274,10 @@ const componentTemplateDataMap: ComponentInitalMap = {
     "table": {
         nickName: "表格",
         api_data: {
-            dataSourceType: "static",
+            dataSourceType: "rest",
+            restType: "get",
+            restUrl:"/r40cq",
+            restRefreshTime: 0,
             staticData: [
                 {
                     key: '1',

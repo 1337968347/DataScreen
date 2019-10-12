@@ -1,7 +1,7 @@
-import { Component, Event, EventEmitter, h } from '@stencil/core';
+import { Component, State, Event, EventEmitter, h } from '@stencil/core';
 
 import uuid from "uuid";
-import { DragComOption,comType } from "../../interfaces";
+import { DragComOption, comType } from "../../interfaces";
 import { componentTemplateDataMap } from "../../util/component/component-template";
 import { addComponentData } from "../../util/datascreen-controller"
 
@@ -11,6 +11,7 @@ import { addComponentData } from "../../util/datascreen-controller"
     styleUrl: 'datascreen-com-panel.scss'
 })
 export class DatascreenComPanel {
+    @State() chooseComType: string = "chart";
     @Event() checkMenu: EventEmitter;
 
     closeThisPage() {
@@ -25,6 +26,11 @@ export class DatascreenComPanel {
         })
     }
 
+    handleComTypeChange(e: CustomEvent) {
+        this.chooseComType = e.detail.value;
+    }
+
+
     render() {
         return [
             <ion-header>
@@ -38,21 +44,34 @@ export class DatascreenComPanel {
                 </ion-toolbar>
             </ion-header>,
             <ion-content>
-                <ion-segment value="friends">
-                    <ion-segment-button layout="icon-end" value="friends">
-                        <ion-icon name="stats"></ion-icon>
-                    </ion-segment-button>
-                    <ion-segment-button value="enemies">
-                        <ion-label>Enemies</ion-label>
-                    </ion-segment-button>
-                </ion-segment>
-                <div class="com-box">
-                    {Object.keys(componentTemplateDataMap).map((comName) =>
-                        <div class="com-item" onClick={() => { this.addComToCanvas(comName as comType, componentTemplateDataMap[comName]) }}>
-                            <div style={{ "background-image": `url(../../${componentTemplateDataMap[comName].icon})` }} class="com-img"></div>
-                            <div>{componentTemplateDataMap[comName].nickName}</div>
-                        </div>
-                    )}
+                <div class="full-content">
+                    <ion-segment value={this.chooseComType} onIonChange={(e) => { this.handleComTypeChange(e) }}>
+                        <ion-segment-button value="chart" title="图表">
+                            <ion-icon name="podium"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="media" title="媒体">
+                            <ion-icon name="photos"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="table" title="表格">
+                            <ion-icon name="grid"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="text" title="文本">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                        </ion-segment-button>
+                        <ion-segment-button value="map" title="地图">
+                            <ion-icon name="globe"></ion-icon>
+                        </ion-segment-button>
+                    </ion-segment>
+                    <div class="com-box">
+                        {Object.keys(componentTemplateDataMap).filter((comName) => {
+                            return comName.split("-")[0] == this.chooseComType
+                        }).map((comName) =>
+                            <div class="com-item" onClick={() => { this.addComToCanvas(comName as comType, componentTemplateDataMap[comName]) }}>
+                                <div style={{ "background-image": `url(../../${componentTemplateDataMap[comName].icon})` }} class="com-img"></div>
+                                <div>{componentTemplateDataMap[comName].nickName}</div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </ion-content>
         ];

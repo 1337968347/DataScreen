@@ -11,7 +11,9 @@ export class DatascreenCanvasContent {
     @Event() canvasScaleChange: EventEmitter;
 
     componentDidLoad() {
-        this.resizeSCale()
+        setTimeout(()=>{
+            this.resizeSCale()
+        },500)
     }
 
     @Listen('canvasChange')

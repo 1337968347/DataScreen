@@ -9,6 +9,7 @@ import { ComData, themeType } from "../../interfaces"
 })
 export class DraggableComponent {
     @Prop() comOptionData: ComData;
+    @Prop() canModify: boolean= false;
     @Prop() theme: themeType = "default";
     @State() apiData: any;
     @Event() alert: EventEmitter;
@@ -38,7 +39,7 @@ export class DraggableComponent {
         switch (comType) {
             case "media":
                 return (
-                    <media-adapter comData={this.comOptionData}></media-adapter>
+                    <media-adapter canModify={this.canModify} comData={this.comOptionData}></media-adapter>
                 );
             case "chart":
                 return (

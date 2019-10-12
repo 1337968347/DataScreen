@@ -23,9 +23,9 @@ export class DatascreenCanvas {
 
     @Watch('scale')
     watchHandler(newScaleValue) {
-        this.upDateElSize(this.canvasOption ,newScaleValue)
+        this.upDateElSize(this.canvasOption, newScaleValue)
     }
- 
+
     componentWillLoad() {
         echarts.registerTheme('dark', dark);
         echarts.registerTheme('purple', purple);
@@ -34,7 +34,7 @@ export class DatascreenCanvas {
 
     componentDidLoad() {
         this.canvasOption = getCanvasConfig();
-        this.upDateElSize(this.canvasOption ,this.scale)
+        this.upDateElSize(this.canvasOption, this.scale)
         this.mapComDatasToState(getComponentDatas())
     }
 
@@ -44,10 +44,10 @@ export class DatascreenCanvas {
     }
 
     @Method()
-    async getCanvasSize(){
+    async getCanvasSize() {
         return {
-           w: parseInt(this.canvasOption.w) ,
-           h: parseInt(this.canvasOption.h)
+            w: parseInt(this.canvasOption.w),
+            h: parseInt(this.canvasOption.h)
         }
     }
 
@@ -64,9 +64,9 @@ export class DatascreenCanvas {
 
     @Method()
     async updateCanvasConfig(config: CanvasConfig) {
-        this.canvasOption = {...config};
+        this.canvasOption = { ...config };
         this.canvasChange.emit();
-        this.upDateElSize(this.canvasOption ,this.scale)
+        this.upDateElSize(this.canvasOption, this.scale)
     }
 
     handleDraggableDrag(e: CustomEvent, changeComponentData: ComData) {
@@ -104,7 +104,7 @@ export class DatascreenCanvas {
     }
 
     render() {
-        if(this.canvasOption){
+        if (this.canvasOption) {
             return (
                 <div class="drag_container" style={{
                     "transform": `scale(${this.scale / 100})`,
@@ -130,16 +130,17 @@ export class DatascreenCanvas {
                             <draggable-adapter
                                 key={comDarggable.id}
                                 comOptionData={comDarggable}
-                                theme= {this.canvasOption.theme}
+                                theme={this.canvasOption.theme}
+                                canModify={this.canModify}
                             ></draggable-adapter>
                         </cy-draggable>
                     )}
                 </div>
             );
-        }else{
+        } else {
             // loading
             return null;
         }
-        
+
     }
 }

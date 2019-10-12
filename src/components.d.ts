@@ -83,10 +83,12 @@ export namespace Components {
     'setComponentConfigData': (comData: any) => Promise<void>;
   }
   interface DraggableAdapter {
+    'canModify': boolean;
     'comOptionData': ComData;
     'theme': themeType;
   }
   interface MediaAdapter {
+    'canModify': boolean;
     'comData': ComData;
   }
   interface PopoverCodeModify {
@@ -384,12 +386,14 @@ declare namespace LocalJSX {
     'onAlert'?: (event: CustomEvent<any>) => void;
   }
   interface DraggableAdapter extends JSXBase.HTMLAttributes<HTMLDraggableAdapterElement> {
+    'canModify'?: boolean;
     'comOptionData'?: ComData;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
     'theme'?: themeType;
   }
   interface MediaAdapter extends JSXBase.HTMLAttributes<HTMLMediaAdapterElement> {
+    'canModify'?: boolean;
     'comData'?: ComData;
   }
   interface PopoverCodeModify extends JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement> {
