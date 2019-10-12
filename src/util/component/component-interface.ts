@@ -7,7 +7,7 @@ export interface ComponentInitalMap {
 
 export declare type comType =
     // media
-    "media-basic-img" | "media-border" | "media-iframe" |
+    "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" |
     // chart
     "chart-base-line" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-simple" |
     // text
@@ -17,7 +17,7 @@ export declare type comType =
 
 // 常用的设置
 declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color"
-    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc";
+    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc" | "swiperAutoTime";
 
 // 表格设置
 declare type tableConfig = "columns" | "headerColor";

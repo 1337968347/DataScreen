@@ -39,8 +39,8 @@ export class DraggableComponent {
         switch (comType) {
             case "media":
                 return (
-                    <media-adapter canModify={this.canModify} comData={this.comOptionData}></media-adapter>
-                );
+                    <media-adapter canModify={this.canModify} comData={this.comOptionData} comDataApiData={this.apiData}></media-adapter>
+                ); 
             case "chart":
                 return (
                     <chart-adapter comData={this.comOptionData} theme={this.theme}></chart-adapter>

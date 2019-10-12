@@ -37,10 +37,31 @@ const componentTemplateDataMap: ComponentInitalMap = {
         },
         icon: "assets/com-icon/img-icon.png",
         view: {
-            x: "200",
-            y: "100",
-            w: "200",
-            h: "150",
+            x: "0",
+            y: "0",
+            w: "300",
+            h: "200",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "media-img-slides":{
+        nickName: "轮播图",
+        api_data: {
+            dataSourceType: "static",
+            restType: "get",
+            restUrl:"/",
+            restRefreshTime: 0,
+            staticData: ["https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg","https://swiperjs.com/i/logo.svg"]
+        },
+        config: {
+        },
+        icon: "assets/com-icon/img-icon.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "300",
+            h: "300",
             opacity: "1",
             deg: "0"
         }

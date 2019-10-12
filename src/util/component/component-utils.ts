@@ -6,6 +6,7 @@ const isComponentHasThisConfig = (comType: string, configName: comConfig) => {
 
 const comConfigMap: { [comName: string]: comConfig[] } = {
     "media-basic-img": ["bgi"],
+    "media-img-slides": ["swiperAutoTime"],
     "media-iframe":   ["iframeSrc"],
     "media-border": ["backgroundColor", "borderWidth", "borderColor","borderImg"],
     

@@ -7,6 +7,7 @@ import { ComData } from "../../interfaces";
 })
 export class MediaAdapter {
     @Prop() comData: ComData;
+    @Prop() comDataApiData: any;
     @Prop() canModify: boolean = false;
 
     renderCover() {
@@ -47,7 +48,7 @@ export class MediaAdapter {
                         "background-repeat": "no-repeat",
                         "background-size": "100% 100%",
                         "image-rendering": "auto",
-                        "border-image-slice": this.comData.data.config.borderWidth || 10 + "fill",
+                        "border-image-slice": (this.comData.data.config.borderWidth || 10) + " fill",
                         "border-style": "solid",
                         "border-image-source": `url(${this.comData.data.config.borderImg &&
                             `../../assets/image/border/${this.comData.data.config.borderImg}.png`
@@ -72,7 +73,21 @@ export class MediaAdapter {
                         {this.renderCover()}
                     </div>
                 );
-
+            case "media-img-slides":
+                return [
+                    <ion-slides pager={true} options={
+                        this.comData.data.config.swiperAutoTime && !this.canModify && this.comData.data.config.swiperAutoTime !== "0" ? {
+                            autoplay: { delay: this.comData.data.config.swiperAutoTime, disableOnInteraction: false }
+                        } : null} style={{ "height": "100%" }}>
+                        {(this.comDataApiData || []).map((item) =>
+                            <ion-slide>
+                                <cy-lazy-img style={{ "width": "100%", "height": "100%" }} src={item} defaultImg="../../assets/image/img-default.png">
+                                </cy-lazy-img>
+                            </ion-slide>
+                        )}
+                    </ion-slides>,
+                    this.renderCover()
+                ];
             default:
                 break;
         }

@@ -90,6 +90,7 @@ export namespace Components {
   interface MediaAdapter {
     'canModify': boolean;
     'comData': ComData;
+    'comDataApiData': any;
   }
   interface PopoverCodeModify {
     'dataScreenId': string;
@@ -395,6 +396,7 @@ declare namespace LocalJSX {
   interface MediaAdapter extends JSXBase.HTMLAttributes<HTMLMediaAdapterElement> {
     'canModify'?: boolean;
     'comData'?: ComData;
+    'comDataApiData'?: any;
   }
   interface PopoverCodeModify extends JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement> {
     'dataScreenId'?: string;

@@ -104,13 +104,13 @@ export class SettingDataConfig {
                         </ion-col>
                     </ion-row>,
                     <ion-row>
-                        <ion-col size="4">刷新间隔(s)</ion-col>
+                        <ion-col size="4">刷新间隔(ms)</ion-col>
                         <ion-col size="8">
                             <ion-input
                                 debounce={1000}
                                 placeholder="0为只刷新一次"
                                 type="number"
-                                onIonChange={(e) => { this.handleConfigChange("api_data", "restRefreshTime", parseInt(e.detail.value) * 1000) }}
+                                onIonChange={(e) => { this.handleConfigChange("api_data", "restRefreshTime", e.detail.value||"0") }}
                                 value={this.comDataApiData.restRefreshTime + "" || "0"}>
                             </ion-input>
                         </ion-col>
