@@ -1,15 +1,53 @@
-setting-data-config{
-    ion-item,ion-col{
-        ion-radio-group{
-            display: flex;
-            margin-top: 30px;
-        }
+setting-data-config {
+
+    ion-item,
+    ion-col {
         ion-textarea {
             --background: var(--ion-background-shade) !important;
         }
-        ion-input{
+
+        ion-input {
             --background: var(--ion-background-shade) !important;
         }
     }
-    
+   
+    ion-row {
+
+        ion-col{
+            display: flex;
+            align-items: center;
+        }
+
+        ion-range {
+            padding-inline-start: 0px;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-inline-end: 0px;
+        }
+
+        ion-button {
+            --border-radius: 0;
+        }
+
+        ion-input {
+            --background: var(--ion-background-shade) !important;
+        }
+       
+        ion-input input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+            width: 25px;
+            height: 30px;
+        }
+
+        cy-table{
+            --font-size: 13px;
+            text-align: left;
+            --color: #bcc9d4;
+        }
+
+        ion-select {
+            width: 100%;
+            background: var(--ion-background-shade) !important;
+        }
+    }
+
 }

@@ -18,13 +18,13 @@ export class DatascreenSettingPanel {
 
     @Method()
     async setComponentConfigData(comData) {
-        this.ComDataData = deepCopy({}, comData);
+        this.ComDataData = deepCopy({} as ComData, comData);
         this.chooseSeg = "config";
     }
 
     handleComConfigChange(type: string, name: string, value: any) {
         this.ComDataData.data[type][name] = value;
-        this.ComDataData = { ...this.ComDataData };
+        this.ComDataData = deepCopy<ComData>({} as ComData, this.ComDataData);
         setComDataChange(this.ComDataData, true, false);
     }
 
@@ -337,6 +337,17 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                         <ion-col size="8">
                                             <ion-input debounce={1500} type="number" min="0" value={comData.config.swiperAutoTime} onIonChange={(e) => { this.handleComConfigChange("config", "swiperAutoTime", e.detail.value) }}>
+                                            </ion-input>
+                                        </ion-col>
+                                    </ion-row> : null
+                                }
+                                {isComponentHasThisConfig(comName, "videoSrc") ?
+                                    <ion-row class="marginTop">
+                                        <ion-col size="4">
+                                            video地址
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-input clearInput debounce={1500} value={comData.config.videoSrc} onIonChange={(e) => { this.handleComConfigChange("config", "videoSrc", e.detail.value) }}>
                                             </ion-input>
                                         </ion-col>
                                     </ion-row> : null

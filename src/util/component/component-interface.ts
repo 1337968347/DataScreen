@@ -7,7 +7,7 @@ export interface ComponentInitalMap {
 
 export declare type comType =
     // media
-    "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" |
+    "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" | "media-video" |
     // chart
     "chart-base-line" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-simple" |
     // text
@@ -16,7 +16,7 @@ export declare type comType =
     "table";
 
 // 常用的设置
-declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color"
+declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color" | "videoSrc"
     | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc" | "swiperAutoTime";
 
 // 表格设置
@@ -46,6 +46,12 @@ export interface DraggableApiData {
     restUrl?: string;
     restType?: "get" | "post";
     restRefreshTime?: number;
+    fieldMap?: DataFieldMap[];
+}
+
+export interface DataFieldMap {
+    name: string;
+    mapping: string;
 }
 
 export interface DraggableConfig {

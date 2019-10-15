@@ -1,7 +1,7 @@
 import { Component, Prop, State, Event, EventEmitter, h } from '@stencil/core';
 
-import { refreshComData } from "../../adapter/adapterdata-controller"
-import { DraggableApiData } from "../../interfaces"
+import { refreshComData } from "../../adapter/adapterdata-controller";
+import { DraggableApiData } from "../../interfaces";
 
 @Component({
     tag: 'setting-data-config',
@@ -26,7 +26,12 @@ export class SettingDataConfig {
         })
     }
 
-    refreshComData(comId: string){
+    handlefieldMapChange(index: number, name: string, value: string) {
+        this.comDataApiData.fieldMap[index][name] =value;
+        this.handleConfigChange("api_data", "fieldMap", this.comDataApiData.fieldMap)
+    }
+
+    refreshComData(comId: string) {
         refreshComData(comId)
     }
 
@@ -43,84 +48,108 @@ export class SettingDataConfig {
     }
 
     render() {
+        const TableColumns = [
+            {
+                title: '字段',
+                dataIndex: 'name'
+            },
+            {
+                title: '映射',
+                dataIndex: 'mapping',
+                render: (row,rowIndex: number) => (
+                    <ion-input placeholder="可自定义" debounce={1500} style={{ "width": "108px", "height": "30px", "--background": "var(--ion-background-shade)" }}
+                        onIonChange={(e)=>{this.handlefieldMapChange(rowIndex,"mapping", e.detail.value)}}
+                        value={row.mapping || ""}></ion-input>
+                ),
+            }
+        ]
         return (
             <ion-gird>
-                <ion-item>
-                    <ion-label position="floating">数据来源</ion-label>
-                    <ion-radio-group value={this.comDataApiData.dataSourceType || "static"} onIonChange={(e) => { this.dataType = e.detail.value; this.handleConfigChange("api_data", "dataSourceType", e.detail.value + "") }}>
-                        <ion-item lines="none">
-                            <ion-label>静态</ion-label>
-                            <ion-radio slot="start" value="static"></ion-radio>
-                        </ion-item>
+                <ion-row style={{ "margin-bottom": "20px" }}>
+                    <ion-col size="4">
+                        数据来源
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-select value={this.comDataApiData.dataSourceType || "static"} interface="popover" onIonChange={(e) => { this.dataType = e.detail.value; this.handleConfigChange("api_data", "dataSourceType", e.detail.value + "") }}>
+                            <ion-select-option value="static">静态</ion-select-option>
+                            <ion-select-option value="rest">动态</ion-select-option>
+                        </ion-select>
+                    </ion-col>
+                </ion-row>
 
-                        <ion-item lines="none">
-                            <ion-label>动态</ion-label>
-                            <ion-radio slot="start" value="rest"></ion-radio>
-                        </ion-item>
-                    </ion-radio-group>
-                </ion-item>
+                <ion-row>
+                    <ion-col size="12">
+                        数据映射
+                    </ion-col>
+                    <ion-col size="12">
+                        <cy-table Columns={TableColumns} dataSource={this.comDataApiData.fieldMap || []}></cy-table>
+                    </ion-col>
+                </ion-row>
+
                 {this.dataType == "static" ?
-                    <ion-item style={{ "margin-top": "20px" }}>
-                        <ion-label position="floating">静态数据</ion-label>
-                        <ion-textarea
-                            debounce={600}
-                            rows={20}
-                            wrap="soft"
-                            onIonChange={(e) => { this.checkStaticDataOJBK(e.detail.value); this.handleConfigChange("api_data", "staticData", JSON.parse(e.detail.value + "")) }}
-                            value={JSON.stringify(this.comDataApiData.staticData, null, 1)}>
-                        </ion-textarea>
-                        {!!!this.isStaticDataOJBk ?
-                            <ion-note slot="end" color="danger">数据错误</ion-note>
-                            : null
-                        }
-
-                    </ion-item> :
+                    <ion-gird>
+                        <ion-row>
+                            <ion-col>静态数据</ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-textarea
+                                    debounce={600}
+                                    rows={20}
+                                    wrap="soft"
+                                    onIonChange={(e) => { this.checkStaticDataOJBK(e.detail.value)&&this.handleConfigChange("api_data", "staticData", JSON.parse(e.detail.value + "")) }}
+                                    value={JSON.stringify(this.comDataApiData.staticData, null, 1)}>
+                                </ion-textarea>
+                                {!!!this.isStaticDataOJBk ?
+                                    <ion-note slot="end" color="danger">数据错误</ion-note>
+                                    : null
+                                }
+                            </ion-col>
+                        </ion-row>
+                    </ion-gird> :
                     null
                 }
 
                 {this.dataType == "rest" ?
-                    [<ion-item>
-                        <ion-label position="floating">接口方法</ion-label>
-                        <ion-radio-group value={this.comDataApiData.restType} onIonChange={(e) => { this.handleConfigChange("api_data", "restType", e.detail.value + "") }}>
-                            <ion-item lines="none">
-                                <ion-label>get</ion-label>
-                                <ion-radio slot="start" value="get"></ion-radio>
-                            </ion-item>
-
-                            <ion-item lines="none">
-                                <ion-label>post</ion-label>
-                                <ion-radio slot="start" value="post"></ion-radio>
-                            </ion-item>
-                        </ion-radio-group>
-                    </ion-item>,
-                    <ion-row>
-                        <ion-col size="4">接口地址</ion-col>
-                        <ion-col size="8">
-                            <ion-input
-                                debounce={1000}
-                                onIonChange={(e) => { this.handleConfigChange("api_data", "restUrl", e.detail.value + "") }}
-                                value={this.comDataApiData.restUrl || ""}>
-                            </ion-input>
-                        </ion-col>
-                    </ion-row>,
-                    <ion-row>
-                        <ion-col size="4">刷新间隔(ms)</ion-col>
-                        <ion-col size="8">
-                            <ion-input
-                                debounce={1000}
-                                placeholder="0为只刷新一次"
-                                type="number"
-                                onIonChange={(e) => { this.handleConfigChange("api_data", "restRefreshTime", e.detail.value||"0") }}
-                                value={this.comDataApiData.restRefreshTime + "" || "0"}>
-                            </ion-input>
-                        </ion-col>
-                    </ion-row>,
-                    <ion-row>
-                        <ion-col>
-                            <ion-button onClick={()=>{this.refreshComData(this.comId)}} fill="outline" expand="block">刷新数据</ion-button>
-                        </ion-col>
-                    </ion-row>
-                    ] : null
+                    <ion-gird>
+                        <ion-row>
+                            <ion-col size="4">请求类型</ion-col>
+                            <ion-col size="8">
+                                <ion-select value={this.comDataApiData.restType} interface="popover" onIonChange={(e) => { this.handleConfigChange("api_data", "restType", e.detail.value + "") }}>
+                                    <ion-select-option value="get">get</ion-select-option>
+                                    <ion-select-option value="post">post</ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="4">接口地址</ion-col>
+                            <ion-col size="8">
+                                <ion-input
+                                    debounce={1000}
+                                    onIonChange={(e) => { this.handleConfigChange("api_data", "restUrl", e.detail.value + "") }}
+                                    value={this.comDataApiData.restUrl || ""}>
+                                </ion-input>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="4">刷新间隔(ms)</ion-col>
+                            <ion-col size="8">
+                                <ion-input
+                                    debounce={1000}
+                                    placeholder="0为只刷新一次"
+                                    type="number"
+                                    onIonChange={(e) => { this.handleConfigChange("api_data", "restRefreshTime", e.detail.value || "0") }}
+                                    value={this.comDataApiData.restRefreshTime + "" || "0"}>
+                                </ion-input>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-button onClick={() => { this.refreshComData(this.comId) }} fill="outline" expand="block">刷新数据</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-gird>
+                    : null
                 }
 
             </ion-gird>

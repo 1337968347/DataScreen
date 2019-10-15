@@ -17,7 +17,7 @@
 @import "theme.css";
 
 :root {
-  --header-height: 40px;
+  --header-height: 30px;
   --font-size: 18px;
 }
 

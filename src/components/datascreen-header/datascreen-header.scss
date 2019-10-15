@@ -1,6 +1,7 @@
 datascreen-header{
     ion-toolbar{
         --ion-color-base: var(--ion-background-contrast);
+        --min-height: calc(1.4 * var(--header-height));
     }
     .header-buttons {
         

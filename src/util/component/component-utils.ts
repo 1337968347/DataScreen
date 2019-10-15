@@ -9,6 +9,7 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
     "media-img-slides": ["swiperAutoTime"],
     "media-iframe":   ["iframeSrc"],
     "media-border": ["backgroundColor", "borderWidth", "borderColor","borderImg"],
+    "media-video": ["videoSrc"],
     
     "text-common": ["fontSize", "fontContent", "fontWeight", "color", "backgroundColor", "textAlign"],
 

@@ -9,11 +9,12 @@ import { ComData,themeType } from "../../interfaces";
 export class ChartAdapter {
     @Element() el :HTMLElement;
     @Prop() comData: ComData;
+    @Prop() comDataApiData: any;
     chartObj:any;
 
     @Watch('comData')
     watchHandlerComData(newValue:ComData,oldValue:ComData) {
-        if(newValue.data.view.w!==oldValue.data.view.w || newValue.data.view.w!==oldValue.data.view.w){
+        if(newValue.data.view.w!==oldValue.data.view.w || newValue.data.view.h!==oldValue.data.view.h){
             this.chartObj.resize({ width: newValue.data.view.w, height:  newValue.data.view.h });
         }
     }

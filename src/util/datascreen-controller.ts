@@ -77,7 +77,7 @@ export const setComponentDatas = async (comList: ComData[],
     await Promise.all(
         [
             isCanvasUpdate && reduceFrequency("canvasDataCallback", async () => {
-                getCanvasComponent() && await canvasCompoennt.mapComDatasToState(componentDatas)
+                getCanvasComponent() && await canvasCompoennt.mapComDatasToState( deepCopy([],componentDatas) )
             }),
             isLayerUpdate && reduceFrequency("layerDataCallback", async () => {
                 let comIdsList = componentDatas.map((item) => { return item.id });

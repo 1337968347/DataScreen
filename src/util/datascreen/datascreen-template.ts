@@ -8,1041 +8,171 @@ const dataScreenTemplateList: DataScreen[] = [
         componentsData: []
     },
     {
-
-        scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        name: "pcDemo",
-        canvasOption: {
-            theme: "dark",
-            w: "1920",
-            h: "1080",
-            bgc: "#0d2111",
-            baseUrl: "",
-            bgi: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        },
-        componentsData: [
+        "scaleImg": "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
+        "name": "rest接口测试",
+        "componentsData": [
             {
                 "data": {
-                    "nickName": "基本折线图",
+                    "nickName": "边框",
                     "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
+                        "backgroundColor": "",
+                        "borderWidth": "4"
                     },
-                    "icon": "assets/com-icon/chart-base-line.png",
+                    "icon": "assets/com-icon/img-icon.png",
                     "view": {
-                        "x": "56",
-                        "y": "52",
-                        "w": "589",
-                        "h": "263",
+                        "x": "1293",
+                        "y": "502",
+                        "w": "617",
+                        "h": "578",
                         "opacity": "1",
                         "deg": "0"
                     }
                 },
-                "comName": "chart-base-line",
-                "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "1482",
-                        "y": "648",
-                        "w": "300",
-                        "h": "200",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
+                "comName": "media-border",
+                "id": "1492ba00-eef1-11e9-8b57-23b03d6077c5"
             },
             {
                 "data": {
                     "nickName": "单张图片",
-                    "config": {},
-                    "icon": "assets/com-icon/img-icon.png",
-                    "view": {
-                        "x": "634",
-                        "y": "340",
-                        "w": "706",
-                        "h": "460",
-                        "opacity": "0.8",
-                        "deg": "0"
-                    }
-                },
-                "comName": "media-basic-img",
-                "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
-            }
-        ]
-
-    },
-    {
-        scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        name: "mobileDemo",
-        canvasOption: {
-            theme: "purple",
-            w: "375",
-            h: "812",
-            bgc: "#0b4c84",
-            baseUrl: "",
-            bgi: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        },
-        componentsData: [
-            {
-                "data": {
-                    "nickName": "单张图片",
                     "config": {
-                        "bgi": "https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg"
+                        "bgi": "https://img.alicdn.com/tps/TB1Pg3pPXXXXXcxXpXXXXXXXXXX-1920-1080.gif"
                     },
                     "icon": "assets/com-icon/img-icon.png",
                     "view": {
-                        "x": "71",
+                        "x": "566",
                         "y": "0",
-                        "w": "205",
-                        "h": "87",
-                        "opacity": "0.8",
+                        "w": "932",
+                        "h": "232",
+                        "opacity": "1",
                         "deg": "0"
                     }
                 },
                 "comName": "media-basic-img",
-                "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
+                "id": "34b51220-ee5a-11e9-a931-b7a23d1c8c60"
             },
             {
                 "data": {
-                    "nickName": "基本折线图",
+                    "nickName": "边框",
                     "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "19",
-                        "y": "539",
-                        "w": "309",
-                        "h": "207",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "5f5eb4b0-dc74-11e9-8c89-a32b8ca97c4a"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "58",
-                        "y": "106",
-                        "w": "224",
-                        "h": "148",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "36",
-                        "y": "272",
-                        "w": "300",
-                        "h": "200",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
-            }
-        ]
-
-    },
-    {
-        scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        name: "pcDemo2",
-        canvasOption: {
-            theme: "default",
-            "w": "375",
-            "h": "812",
-            "bgc": "#25fc0d",
-            "bgi": "",
-            baseUrl: "",
-        },
-        componentsData: [
-            {
-                "data": {
-                    "nickName": "单张图片",
-                    "config": {
-                        "bgi": "https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg"
+                        "backgroundColor": "",
+                        "borderWidth": "25",
+                        "borderColor": "",
+                        "borderImg": "border-2",
+                        "textAlign": "border-2"
                     },
                     "icon": "assets/com-icon/img-icon.png",
                     "view": {
-                        "x": "51",
-                        "y": "28",
-                        "w": "205",
-                        "h": "87",
-                        "opacity": "0.8",
-                        "deg": "0"
-                    }
-                },
-                "comName": "media-basic-img",
-                "id": "2d8ae7b0-db52-11e9-a61a-cb03a0353118"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "19",
-                        "y": "539",
-                        "w": "309",
-                        "h": "207",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "5f5eb4b0-dc74-11e9-8c89-a32b8ca97c4a"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "58",
-                        "y": "106",
-                        "w": "224",
-                        "h": "148",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "098cdfe0-dad4-11e9-a61e-03cc6aa3f385"
-            },
-            {
-                "data": {
-                    "nickName": "基本折线图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ],
-                                "type": "line"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "64",
-                        "y": "269",
-                        "w": "300",
-                        "h": "200",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-base-line",
-                "id": "2b9f1d40-db52-11e9-a61a-cb03a0353118"
-            }
-        ]
-    },
-    {
-        scaleImg: "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        name: "demo1",
-        canvasOption: {
-            "w": "1920",
-            "h": "1080",
-            "bgc": "#0d2a43",
-            "bgi": "",
-            "theme": "purple",
-            baseUrl: "",
-        },
-        componentsData: [
-            {
-                "data": {
-                    "nickName": "折线图堆叠",
-                    "config": {
-                        "title": {
-                            "text": "demo"
-                        },
-                        "tooltip": {
-                            "trigger": "axis"
-                        },
-                        "legend": {
-                            "data": [
-                                "邮件营销",
-                                "联盟广告",
-                                "视频广告",
-                                "直接访问",
-                                "搜索引擎"
-                            ]
-                        },
-                        "grid": {
-                            "left": "3%",
-                            "right": "4%",
-                            "bottom": "3%",
-                            "containLabel": true
-                        },
-                        "toolbox": {
-                            "feature": {
-                                "saveAsImage": {}
-                            }
-                        },
-                        "xAxis": {
-                            "type": "category",
-                            "boundaryGap": false,
-                            "data": [
-                                "周一",
-                                "周二",
-                                "周三",
-                                "周四",
-                                "周五",
-                                "周六",
-                                "周日"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "name": "邮件营销",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    120,
-                                    132,
-                                    101,
-                                    134,
-                                    90,
-                                    230,
-                                    210
-                                ]
-                            },
-                            {
-                                "name": "联盟广告",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    220,
-                                    182,
-                                    191,
-                                    234,
-                                    290,
-                                    330,
-                                    310
-                                ]
-                            },
-                            {
-                                "name": "视频广告",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    150,
-                                    232,
-                                    201,
-                                    154,
-                                    190,
-                                    330,
-                                    410
-                                ]
-                            },
-                            {
-                                "name": "直接访问",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    320,
-                                    332,
-                                    301,
-                                    334,
-                                    390,
-                                    330,
-                                    320
-                                ]
-                            },
-                            {
-                                "name": "搜索引擎",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ]
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "44",
-                        "y": "150",
-                        "w": "914",
-                        "h": "487",
+                        "x": "0",
+                        "y": "415",
+                        "w": "1025",
+                        "h": "665",
                         "opacity": "1.00",
                         "deg": "0"
                     }
                 },
-                "comName": "chart-line-stack",
-                "id": "d34f1dc0-e06f-11e9-ad75-a5560ad09fbc"
-            },
-            {
-                "data": {
-                    "nickName": "普通饼图",
-                    "config": {
-                        "backgroundColor": "#2c343c",
-                        "title": {
-                            "text": "Customized Pie",
-                            "left": "center",
-                            "top": 20,
-                            "textStyle": {
-                                "color": "#ccc"
-                            }
-                        },
-                        "tooltip": {
-                            "trigger": "item",
-                            "formatter": "{a} <br/>{b} : {c} ({d}%)"
-                        },
-                        "visualMap": {
-                            "show": false,
-                            "min": 80,
-                            "max": 600,
-                            "inRange": {
-                                "colorLightness": [
-                                    0,
-                                    1
-                                ]
-                            }
-                        },
-                        "series": [
-                            {
-                                "name": "访问来源",
-                                "type": "pie",
-                                "radius": "55%",
-                                "center": [
-                                    "50%",
-                                    "50%"
-                                ],
-                                "data": [
-                                    {
-                                        "value": 235,
-                                        "name": "视频广告"
-                                    },
-                                    {
-                                        "value": 274,
-                                        "name": "联盟广告"
-                                    },
-                                    {
-                                        "value": 310,
-                                        "name": "邮件营销"
-                                    },
-                                    {
-                                        "value": 335,
-                                        "name": "直接访问"
-                                    },
-                                    {
-                                        "value": 400,
-                                        "name": "搜索引擎"
-                                    }
-                                ],
-                                "roseType": "radius",
-                                "label": {
-                                    "normal": {
-                                        "textStyle": {
-                                            "color": "rgba(255, 255, 255, 0.3)"
-                                        }
-                                    }
-                                },
-                                "labelLine": {
-                                    "normal": {
-                                        "lineStyle": {
-                                            "color": "rgba(255, 255, 255, 0.3)"
-                                        },
-                                        "smooth": 0.2,
-                                        "length": 10,
-                                        "length2": 20
-                                    }
-                                },
-                                "itemStyle": {
-                                    "normal": {
-                                        "color": "#c23531",
-                                        "shadowBlur": 200,
-                                        "shadowColor": "rgba(0, 0, 0, 0.5)"
-                                    }
-                                },
-                                "animationType": "scale",
-                                "animationEasing": "elasticOut"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "208",
-                        "y": "770",
-                        "w": "400",
-                        "h": "300",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-pie-custom",
-                "id": "1c7b26f0-e071-11e9-ad7d-cfff95bd12cd"
-            },
-            {
-                "data": {
-                    "nickName": "普通饼图",
-                    "config": {
-                        "title": {
-                            "text": "Customized Pie",
-                            "left": "center",
-                            "top": 20,
-                            "textStyle": {
-                                "color": "#ccc"
-                            }
-                        },
-                        "tooltip": {
-                            "trigger": "item",
-                            "formatter": "{a} <br/>{b} : {c} ({d}%)"
-                        },
-                        "visualMap": {
-                            "show": false,
-                            "min": 80,
-                            "max": 600,
-                            "inRange": {
-                                "colorLightness": [
-                                    0,
-                                    1
-                                ]
-                            }
-                        },
-                        "series": [
-                            {
-                                "name": "访问来源",
-                                "type": "pie",
-                                "radius": "55%",
-                                "center": [
-                                    "50%",
-                                    "50%"
-                                ],
-                                "data": [
-                                    {
-                                        "value": 235,
-                                        "name": "视频广告"
-                                    },
-                                    {
-                                        "value": 274,
-                                        "name": "联盟广告"
-                                    },
-                                    {
-                                        "value": 310,
-                                        "name": "邮件营销"
-                                    },
-                                    {
-                                        "value": 335,
-                                        "name": "直接访问"
-                                    },
-                                    {
-                                        "value": 400,
-                                        "name": "搜索引擎"
-                                    }
-                                ],
-                                "roseType": "radius",
-                                "label": {
-                                    "normal": {
-                                        "textStyle": {
-                                            "color": "rgba(255, 255, 255, 0.3)"
-                                        }
-                                    }
-                                },
-                                "labelLine": {
-                                    "normal": {
-                                        "lineStyle": {
-                                            "color": "rgba(255, 255, 255, 0.3)"
-                                        },
-                                        "smooth": 0.2,
-                                        "length": 10,
-                                        "length2": 20
-                                    }
-                                },
-                                "itemStyle": {
-                                    "normal": {
-                                        "color": "#c23531",
-                                        "shadowBlur": 200,
-                                        "shadowColor": "rgba(0, 0, 0, 0.5)"
-                                    }
-                                },
-                                "animationType": "scale",
-                                "animationEasing": "elasticOut"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "1177",
-                        "y": "290",
-                        "w": "400",
-                        "h": "300",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-pie-custom",
-                "id": "8f604c90-e071-11e9-b9f5-9b097a076145"
-            },
-            {
-                "data": {
-                    "nickName": "折线图堆叠",
-                    "config": {
-                        "title": {
-                            "text": "biaoti"
-                        },
-                        "tooltip": {
-                            "trigger": "axis"
-                        },
-                        "legend": {
-                            "data": [
-                                "邮件营销",
-                                "联盟广告",
-                                "视频广告",
-                                "直接访问",
-                                "搜索引擎"
-                            ]
-                        },
-                        "grid": {
-                            "left": "3%",
-                            "right": "4%",
-                            "bottom": "3%",
-                            "containLabel": true
-                        },
-                        "toolbox": {
-                            "feature": {
-                                "saveAsImage": {}
-                            }
-                        },
-                        "xAxis": {
-                            "type": "category",
-                            "boundaryGap": false,
-                            "data": [
-                                "周一",
-                                "周二",
-                                "周三",
-                                "周四",
-                                "周五",
-                                "周六",
-                                "周日"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "name": "邮件营销",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    120,
-                                    132,
-                                    101,
-                                    134,
-                                    90,
-                                    230,
-                                    210
-                                ]
-                            },
-                            {
-                                "name": "联盟广告",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    220,
-                                    182,
-                                    191,
-                                    234,
-                                    290,
-                                    330,
-                                    310
-                                ]
-                            },
-                            {
-                                "name": "视频广告",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    150,
-                                    232,
-                                    201,
-                                    154,
-                                    190,
-                                    330,
-                                    410
-                                ]
-                            },
-                            {
-                                "name": "直接访问",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    320,
-                                    332,
-                                    301,
-                                    334,
-                                    390,
-                                    330,
-                                    320
-                                ]
-                            },
-                            {
-                                "name": "搜索引擎",
-                                "type": "line",
-                                "stack": "总量",
-                                "data": [
-                                    820,
-                                    932,
-                                    901,
-                                    934,
-                                    1290,
-                                    1330,
-                                    1320
-                                ]
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "741",
-                        "y": "703",
-                        "w": "400",
-                        "h": "300",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-line-stack",
-                "id": "c8efdd40-e071-11e9-b9f5-9b097a076145"
-            },
-            {
-                "data": {
-                    "nickName": "单张图片",
-                    "config": {},
-                    "icon": "assets/com-icon/img-icon.png",
-                    "view": {
-                        "x": "1306",
-                        "y": "67",
-                        "w": "200",
-                        "h": "150",
-                        "opacity": "1.00",
-                        "deg": "0"
-                    }
-                },
-                "comName": "media-basic-img",
-                "id": "cdd9cc80-e071-11e9-b9f5-9b097a076145"
-            },
-            {
-                "data": {
-                    "nickName": "普通柱状图",
-                    "config": {
-                        "xAxis": {
-                            "type": "category",
-                            "data": [
-                                "Mon",
-                                "Tue",
-                                "Wed",
-                                "Thu",
-                                "Fri",
-                                "Sat",
-                                "Sun"
-                            ]
-                        },
-                        "yAxis": {
-                            "type": "value"
-                        },
-                        "series": [
-                            {
-                                "data": [
-                                    120,
-                                    200,
-                                    150,
-                                    80,
-                                    70,
-                                    110,
-                                    130
-                                ],
-                                "type": "bar"
-                            }
-                        ]
-                    },
-                    "icon": "assets/com-icon/chart-base-line.png",
-                    "view": {
-                        "x": "1510",
-                        "y": "94",
-                        "w": "400",
-                        "h": "300",
-                        "opacity": "1",
-                        "deg": "0"
-                    }
-                },
-                "comName": "chart-bar-simple",
-                "id": "06c9a550-e073-11e9-a6be-1d0c9e4f5934"
+                "comName": "media-border",
+                "id": "304bf860-ebf9-11e9-8e1f-5f48e7622676"
             },
             {
                 "data": {
                     "nickName": "普通文字",
                     "config": {
-                        "fontSize": 18,
-                        "fontContent": "content",
-                        "fontWeight": "normal",
+                        "fontSize": "40",
+                        "fontContent": "农机数据展示",
+                        "fontWeight": "bold",
                         "color": "#ffffff",
                         "backgroundColor": "transparent",
                         "textAlign": "center"
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
                     "view": {
-                        "x": "1290",
-                        "y": "662",
-                        "w": "427",
-                        "h": "292",
+                        "x": "799",
+                        "y": "0",
+                        "w": "466",
+                        "h": "121",
+                        "opacity": "1",
+                        "deg": "0"
+                    }
+                },
+                "comName": "text-common",
+                "id": "28b05ef0-e07a-11e9-9405-15386521428d"
+            },
+            {
+                "data": {
+                    "nickName": "表格",
+                    "api_data": {
+                        "dataSourceType": "static",
+                        "staticData": [
+                            {
+                                "key": "1",
+                                "name": "胡彦斌",
+                                "age": 32,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            }
+                        ],
+                        "restUrl": "/j0sk2",
+                        "restType": "get",
+                        "restRefreshTime": 1000
+                    },
+                    "config": {
+                        "backgroundColor": "#ffffff",
+                        "headerColor": "#12a3f0",
+                        "textAlign": "center",
+                        "fontSize": "20",
+                        "color": "#261818",
+                        "borderColor": "#000000",
+                        "borderWidth": "0",
+                        "columns": [
+                            {
+                                "title": "姓名",
+                                "dataIndex": "name"
+                            },
+                            {
+                                "title": "年龄",
+                                "dataIndex": "age"
+                            },
+                            {
+                                "title": "住址",
+                                "dataIndex": "address"
+                            }
+                        ]
+                    },
+                    "icon": "assets/com-icon/chart-base-line.png",
+                    "view": {
+                        "x": "22",
+                        "y": "521",
+                        "w": "990",
+                        "h": "542",
+                        "opacity": "1",
+                        "deg": "0"
+                    }
+                },
+                "comName": "table",
+                "id": "05ac0270-eb0a-11e9-a5c2-fd2454f79480"
+            },
+            {
+                "data": {
+                    "nickName": "普通文字",
+                    "config": {
+                        "fontSize": "40",
+                        "fontContent": "西湖区调查",
+                        "fontWeight": "bold",
+                        "color": "#ffffff",
+                        "backgroundColor": "transparent",
+                        "textAlign": "left"
+                    },
+                    "icon": "assets/com-icon/chart-base-line.png",
+                    "view": {
+                        "x": "26",
+                        "y": "425",
+                        "w": "286",
+                        "h": "101",
                         "opacity": "1",
                         "deg": "0"
                     }
@@ -1052,54 +182,82 @@ const dataScreenTemplateList: DataScreen[] = [
             },
             {
                 "data": {
-                    "nickName": "普通文字",
+                    "nickName": "单张图片",
                     "config": {
-                        "fontSize": 18,
-                        "fontContent": "content",
-                        "fontWeight": "normal",
-                        "color": "#ffffff",
-                        "backgroundColor": "transparent",
-                        "textAlign": "center"
+                        "bgi": "https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/8a4accd1623d48c7d77b7d0603dea1f2.png"
                     },
-                    "icon": "assets/com-icon/chart-base-line.png",
+                    "icon": "assets/com-icon/img-icon.png",
                     "view": {
-                        "x": "290",
-                        "y": "118",
-                        "w": "182",
-                        "h": "109",
+                        "x": "-10",
+                        "y": "144",
+                        "w": "1920",
+                        "h": "15",
                         "opacity": "1",
                         "deg": "0"
                     }
                 },
-                "comName": "text-common",
-                "id": "4a7420e0-e079-11e9-89e4-a3a607e1b712"
+                "comName": "media-basic-img",
+                "id": "8dde7880-ee5c-11e9-a931-b7a23d1c8c60"
             },
             {
                 "data": {
-                    "nickName": "普通文字",
+                    "nickName": "基本折线图",
+                    "api_data": {
+                        "dataSourceType": "static",
+                        "restType": "get",
+                        "restUrl": "/r40cq",
+                        "restRefreshTime": 0,
+                        "staticData": [
+                            {
+                                "key": "1",
+                                "name": "胡彦斌",
+                                "age": 32,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            }
+                        ]
+                    },
                     "config": {
-                        "fontSize": 25,
-                        "fontContent": "content",
-                        "fontWeight": "normal",
-                        "color": "#ffffff",
-                        "backgroundColor": "transparent",
-                        "textAlign": "center"
+                        "title": {},
+                        "xAxis": {
+                            "type": "category"
+                        },
+                        "yAxis": {
+                            "type": "value"
+                        },
+                        "series": [
+                            {
+                                "type": "line"
+                            }
+                        ]
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
                     "view": {
-                        "x": "715",
-                        "y": "0",
-                        "w": "243",
-                        "h": "153",
+                        "x": "1415",
+                        "y": "616",
+                        "w": "400",
+                        "h": "300",
                         "opacity": "1",
                         "deg": "0"
                     }
                 },
-                "comName": "text-common",
-                "id": "28b05ef0-e07a-11e9-9405-15386521428d"
+                "comName": "chart-base-line",
+                "id": "77296420-ef0f-11e9-9333-7ba77df8c3fd"
             }
         ],
-
+        "canvasOption": {
+            "w": "1920",
+            "h": "1080",
+            "bgc": "#06264e",
+            "bgi": "https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/51182f91cfa0fd0b3c8754d7ca23e877.png",
+            "theme": "default",
+            "baseUrl": "https://api.myjson.com/bins"
+        }
     }
 
 ]

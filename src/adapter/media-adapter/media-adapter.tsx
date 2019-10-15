@@ -3,7 +3,8 @@ import { Component, Prop, h } from '@stencil/core';
 import { ComData } from "../../interfaces";
 
 @Component({
-    tag: 'media-adapter'
+    tag: 'media-adapter',
+    styleUrl: 'media-adapter.scss'
 })
 export class MediaAdapter {
     @Prop() comData: ComData;
@@ -86,6 +87,14 @@ export class MediaAdapter {
                             </ion-slide>
                         )}
                     </ion-slides>,
+                    this.renderCover()
+                ];
+            case "media-video":
+                return [
+                    <video width={this.comData.data.view.w} height={this.comData.data.view.h}
+                        controls autoplay={true} loop={true}
+                        src={this.comData.data.config.videoSrc || ""}>
+                    </video>,
                     this.renderCover()
                 ];
             default:

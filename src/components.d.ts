@@ -37,6 +37,7 @@ export namespace Components {
   interface AppRoot {}
   interface ChartAdapter {
     'comData': ComData;
+    'comDataApiData': any;
     'theme': themeType;
   }
   interface CyDraggable {
@@ -335,6 +336,7 @@ declare namespace LocalJSX {
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface ChartAdapter extends JSXBase.HTMLAttributes<HTMLChartAdapterElement> {
     'comData'?: ComData;
+    'comDataApiData'?: any;
     'theme'?: themeType;
   }
   interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {

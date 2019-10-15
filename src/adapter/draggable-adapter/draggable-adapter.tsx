@@ -1,5 +1,6 @@
-import { Component, Prop, State,Watch, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Prop, State, Watch, Event, EventEmitter, h } from '@stencil/core';
 
+import { deepCopy } from "../../util/helper"
 import { registerDataReceiver } from "../adapterdata-controller";
 import { ComData, themeType } from "../../interfaces"
 
@@ -9,16 +10,16 @@ import { ComData, themeType } from "../../interfaces"
 })
 export class DraggableComponent {
     @Prop() comOptionData: ComData;
-    @Prop() canModify: boolean= false;
+    @Prop() canModify: boolean = false;
     @Prop() theme: themeType = "default";
     @State() apiData: any;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
 
     @Watch('comOptionData')
-    watchHandler(newValue:ComData, oldValue:ComData) {
+    watchHandler(newValue: ComData, oldValue: ComData) {
         // 为了简单判断两个对象的值是否相同 
-        if( JSON.stringify(newValue.data.api_data ) !== JSON.stringify(oldValue.data.api_data) ){
+        if (JSON.stringify(newValue.data.api_data) !== JSON.stringify(oldValue.data.api_data)) {
             this.resignDataReceiver();
         }
     }
@@ -27,9 +28,10 @@ export class DraggableComponent {
         this.resignDataReceiver();
     }
 
-    resignDataReceiver(){
-        this.comOptionData.data.api_data&&registerDataReceiver(this.comOptionData.id, this.comOptionData.data.api_data,
+    resignDataReceiver() {
+        this.comOptionData.data.api_data && registerDataReceiver(this.comOptionData.id, deepCopy(this.comOptionData.data.api_data, {}),
             (apiData) => {
+                console.log(apiData)
                 this.apiData = apiData;
             })
     }
@@ -40,10 +42,10 @@ export class DraggableComponent {
             case "media":
                 return (
                     <media-adapter canModify={this.canModify} comData={this.comOptionData} comDataApiData={this.apiData}></media-adapter>
-                ); 
+                );
             case "chart":
                 return (
-                    <chart-adapter comData={this.comOptionData} theme={this.theme}></chart-adapter>
+                    <chart-adapter comData={this.comOptionData} theme={this.theme} comDataApiData={this.apiData}></chart-adapter>
                 )
             case "text":
                 return (
