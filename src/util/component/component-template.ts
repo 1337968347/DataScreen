@@ -160,15 +160,39 @@ const componentTemplateDataMap: ComponentInitalMap = {
     "chart-base-line": {
         nickName: "基本折线图",
         api_data: {
-            dataSourceType: "rest",
+            dataSourceType: "static",
             restType: "get",
             restUrl: "",
             restRefreshTime: 0,
             staticData: [
-            ],
-            fieldMap:[
-                {name: "content", mapping:""},
-                {name: "value", mapping:""}
+                {
+                 "x": "2/01",
+                 "y": 375
+                },
+                {
+                 "x": "2010/02/0",
+                 "y": 200
+                },
+                {
+                 "x": "03/01",
+                 "y": 25
+                },
+                {
+                 "x": "04/01",
+                 "y": 190
+                },
+                {
+                 "x": "05/01",
+                 "y": 90
+                },
+                {
+                 "x": "2010/06/01 00:00:00",
+                 "y": 233
+                }
+               ],
+            fieldMap: [
+                { name: "content", mapping: "x" },
+                { name: "value", mapping: "y" }
             ]
         },
         config: {
@@ -179,6 +203,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             yAxis: {
                 type: 'value'
             },
+            tooltip: {},
             series: [{
                 type: 'line',
                 areaStyle: {}

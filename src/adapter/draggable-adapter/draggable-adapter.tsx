@@ -29,11 +29,8 @@ export class DraggableComponent {
     }
 
     resignDataReceiver() {
-        this.comOptionData.data.api_data && registerDataReceiver(this.comOptionData.id, deepCopy(this.comOptionData.data.api_data, {}),
-            (apiData) => {
-                console.log(apiData)
-                this.apiData = apiData;
-            })
+        this.comOptionData.data.api_data && registerDataReceiver(this.comOptionData.id, deepCopy({},this.comOptionData.data.api_data),
+            (apiData) => {this.apiData = apiData})
     }
 
     render() {
