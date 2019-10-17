@@ -6,6 +6,7 @@
     --ion-background-color: #edf3f8;
     --ion-background-contrast: #000000;
     --ion-background-shade: #d7d8da;
+    --ion-background-tint: #e7e7e7;
 
     --ion-color-primary: #0000FF;
     --ion-color-primary-rgb: 0, 0, 255;
@@ -30,6 +31,7 @@
     --ion-background-color: #c8a4f8;
     --ion-background-contrast: #000000;
     --ion-background-shade: #b090da;
+    --ion-background-tint: #dfcff5;
 
     --ion-color-primary: #6500eb;
     --ion-color-primary-rgb: 125, 40, 239;
@@ -55,7 +57,8 @@
     --ion-toolbar-background: #1C1c1c;
     --ion-background-color: #282830;
     --ion-background-contrast: #ffffff;
-    --ion-background-shade: #3f3f3f;
+    --ion-background-shade: #303030;
+    --ion-background-tint: #6b6b6b;
 
     --ion-color-primary: #3880ff;
     --ion-color-primary-rgb: 56, 128, 255;

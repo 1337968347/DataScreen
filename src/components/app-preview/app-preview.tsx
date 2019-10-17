@@ -1,4 +1,4 @@
-import { Component, Prop, Element, h } from '@stencil/core';
+import { Component, Prop, State,Listen, Element, h, Host } from '@stencil/core';
 import { MatchResults } from "@stencil/router";
 
 import { initDataScreen, getDataScreen, initCanvasComponent } from "../../util/datascreen-controller";
@@ -9,14 +9,27 @@ import { initDataScreen, getDataScreen, initCanvasComponent } from "../../util/d
 })
 export class AppPreview {
     @Prop() match: MatchResults;
+    @State() transformScale: string;
     @Element() el: HTMLElement;
+
+    @Listen('resize', { target: 'window' })
+    async resizeSCale() {
+       this.initCanvasScale()
+    }
 
     componentWillLoad() {
         this.initDataScreenOption();
     }
 
     componentDidLoad() {
-        initCanvasComponent(this.el.querySelector("datascreen-canvas"))
+        initCanvasComponent(this.el.querySelector("datascreen-canvas"));
+        this.initCanvasScale();
+    }
+
+    initCanvasScale() {
+        let canvasElement = this.el.querySelector("datascreen-canvas");
+        this.transformScale = ` ${this.el.clientWidth / parseInt(canvasElement.style.width)}, ${this.el.clientHeight / parseInt(canvasElement.style.height)}`
+    
     }
 
     async initDataScreenOption() {
@@ -29,10 +42,10 @@ export class AppPreview {
     }
     render() {
         return (
-            <datascreen-canvas-content>
-                <datascreen-canvas canModify={false}>
+            <Host class="ion-page">
+                <datascreen-canvas style={{ "transform": `scale(${this.transformScale})` }} canModify={false}>
                 </datascreen-canvas>
-            </datascreen-canvas-content>
+            </Host>
         );
     }
 }

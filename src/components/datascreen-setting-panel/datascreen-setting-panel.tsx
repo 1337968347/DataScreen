@@ -420,7 +420,7 @@ export class DatascreenSettingPanel {
                                                     水平对齐
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-select  interface="popover"  value={comData.config.title && comData.config.title.textAlign || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "textAlign", e.detail.value) }}>
+                                                    <ion-select  interface="popover"  value={comData.config.title && comData.config.title.left || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "left", e.detail.value) }}>
                                                         <ion-select-option value="auto">自适应</ion-select-option>
                                                         <ion-select-option value="center">居中</ion-select-option>
                                                         <ion-select-option value="left">左对齐</ion-select-option>

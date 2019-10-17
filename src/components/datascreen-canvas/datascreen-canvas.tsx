@@ -8,7 +8,7 @@ import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataCh
     styleUrl: 'datascreen-canvas.css',
 })
 export class DatascreenCanvas {
-    @Prop() scale: number = 35.0;
+    @Prop() scale: number = 100.0;
     @Prop() canModify: boolean = true;
     @Element() el: HTMLElement;
     @State() chooseComId: string = "";
@@ -70,8 +70,8 @@ export class DatascreenCanvas {
 
     handleDraggableScale(e: CustomEvent, changeComponentData: ComData) {
         if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
-            changeComponentData.data.view.w = e.detail.w;
-            changeComponentData.data.view.h = e.detail.h;
+            changeComponentData.data.view.w = e.detail.w+"";
+            changeComponentData.data.view.h = e.detail.h+"";
             changeComponentData.data.view.x = e.detail.x + "";
             changeComponentData.data.view.y = e.detail.y + "";
             setComDataChange(changeComponentData, true, true)

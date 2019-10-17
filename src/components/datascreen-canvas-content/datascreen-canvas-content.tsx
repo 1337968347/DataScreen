@@ -6,14 +6,12 @@ import { Component, Prop, Host, Method, Event, EventEmitter, Listen, Element, h 
 })
 export class DatascreenCanvasContent {
     @Element() el: HTMLElement;
-    @Prop() minCanvasScale: number = 10;
+    @Prop() minCanvasScale: number = 15;
     @Prop() maxCanvasSCale: number = 300;
     @Event() canvasScaleChange: EventEmitter;
 
     componentDidLoad() {
-        setTimeout(()=>{
-            this.resizeSCale()
-        },500)
+        this.resizeSCale()
     }
 
     @Listen('canvasChange')
@@ -36,14 +34,13 @@ export class DatascreenCanvasContent {
                 }
                 scale = scale > this.minCanvasScale ? scale : this.minCanvasScale;
                 scale = scale > this.maxCanvasSCale ? this.maxCanvasSCale : scale;
-                scale= Math.ceil(scale*100)/100
+                scale = Math.ceil(scale * 100) / 100
                 this.canvasScaleChange.emit(scale)
                 dataScreenCanvasEl.scale = scale;
             }
         }
-
-
     }
+    
     render() {
         return (
             <Host>

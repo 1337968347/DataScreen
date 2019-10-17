@@ -43,17 +43,25 @@ datascreen-setting-panel {
             font-size: var(--font-size);
         }
 
-        .marginTop, ion-grid {
+        .marginTop,
+        ion-grid {
             margin-top: 15px;
-        } 
-        cy-item-extend{
-            cy-item-extend{
-                --header-bg: #111417;
-                --color: #737c80;
+        }
+
+        cy-item-extend {
+            --header-bg: var(--ion-background-color);
+            --color: var(--ion-text-color);
+            --content-bg: var(--ion-background-shade);
+            
+            cy-item-extend {
+                --header-bg: var(--ion-background-shade);
+                --content-bg: var(--ion-background-shade)
             }
         }
+
         ion-grid {
             padding: 5px 0;
+
             ion-col {
                 display: flex;
                 align-items: center;
@@ -71,22 +79,23 @@ datascreen-setting-panel {
 
                 ion-input {
                     height: 32px;
-                    --background: var(--ion-background-shade) !important;
+                    --background: var(--ion-background-tint) !important;
                 }
-               
-                ion-input input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+
+                ion-input input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
                     width: 25px;
                     height: 30px;
                 }
 
-                cy-table{
+                cy-table {
                     text-align: center;
-                    --color:var(--ion-text-color,#ffffff);
+                    --color: var(--ion-text-color, #ffffff);
                 }
 
                 ion-select {
                     width: 100%;
-                    background: var(--ion-background-shade) !important;
+                    background: var(--ion-background-tint) !important;
                 }
             }
         }

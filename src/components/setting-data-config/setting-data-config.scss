@@ -41,7 +41,7 @@ setting-data-config {
         cy-table{
             --font-size: 13px;
             text-align: left;
-            --color: #bcc9d4;
+            --color: var(--ion-text-color, #ffffff);;
         }
 
         ion-select {

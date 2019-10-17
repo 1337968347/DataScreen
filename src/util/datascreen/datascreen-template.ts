@@ -9,7 +9,7 @@ const dataScreenTemplateList: DataScreen[] = [
     },
     {
         "scaleImg": "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        "name": "rest接口测试",
+        "name": "demo",
         "componentsData": [
             {
                 "data": {
@@ -39,7 +39,7 @@ const dataScreenTemplateList: DataScreen[] = [
                     },
                     "icon": "assets/com-icon/img-icon.png",
                     "view": {
-                        "x": "566",
+                        "x": "484",
                         "y": "0",
                         "w": "932",
                         "h": "232",
@@ -86,7 +86,7 @@ const dataScreenTemplateList: DataScreen[] = [
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
                     "view": {
-                        "x": "799",
+                        "x": "715",
                         "y": "0",
                         "w": "466",
                         "h": "121",
@@ -205,49 +205,85 @@ const dataScreenTemplateList: DataScreen[] = [
                     "api_data": {
                         "dataSourceType": "static",
                         "restType": "get",
-                        "restUrl": "/r40cq",
+                        "restUrl": "",
                         "restRefreshTime": 0,
                         "staticData": [
                             {
-                                "key": "1",
-                                "name": "胡彦斌",
-                                "age": 32,
-                                "address": "西湖区湖底公园1号"
+                                "x": "2/01",
+                                "y": 375
                             },
                             {
-                                "key": "2",
-                                "name": "胡彦祖",
-                                "age": 42,
-                                "address": "西湖区湖底公园1号"
+                                "x": "2010/02/0",
+                                "y": 200
+                            },
+                            {
+                                "x": "03/01",
+                                "y": 25
+                            },
+                            {
+                                "x": "04/01",
+                                "y": 190
+                            },
+                            {
+                                "x": "05/01",
+                                "y": 90
+                            },
+                            {
+                                "x": "2010/06/01 00:00:00",
+                                "y": 233
+                            }
+                        ],
+                        "fieldMap": [
+                            {
+                                "name": "content",
+                                "mapping": "x"
+                            },
+                            {
+                                "name": "value",
+                                "mapping": "y"
                             }
                         ]
                     },
                     "config": {
-                        "title": {},
                         "xAxis": {
-                            "type": "category"
+                            "type": "category",
+                            "boundaryGap": false
                         },
                         "yAxis": {
                             "type": "value"
                         },
+                        "tooltip": {},
                         "series": [
                             {
-                                "type": "line"
+                                "type": "line",
+                                "areaStyle": {}
                             }
-                        ]
+                        ],
+                        "textStyle": {
+                            "color": "#01f750",
+                            "fontSize": "60"
+                        },
+                        "title": {
+                            "text": "这个是标题",
+                            "textStyle": {
+                                "color": "#ffffff",
+                                "fontSize": "30"
+                            },
+                            "textAlign": "left"
+                        }
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
                     "view": {
-                        "x": "1415",
-                        "y": "616",
-                        "w": "400",
-                        "h": "300",
+                        "x": "1091",
+                        "y": "404",
+                        "w": "723",
+                        "h": "673",
                         "opacity": "1",
                         "deg": "0"
                     }
                 },
                 "comName": "chart-base-line",
-                "id": "77296420-ef0f-11e9-9333-7ba77df8c3fd"
+                "id": "9d63bbf0-f080-11e9-af13-1f2500a8fcc3"
             }
         ],
         "canvasOption": {
