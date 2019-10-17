@@ -8,7 +8,7 @@ import { ComData } from "../../interfaces";
 })
 export class MediaAdapter {
     @Prop() comData: ComData;
-    @Prop() comDataApiData: any;
+    @Prop() dataSource: any;
     @Prop() canModify: boolean = false;
 
     renderCover() {
@@ -80,7 +80,7 @@ export class MediaAdapter {
                         this.comData.data.config.swiperAutoTime && !this.canModify && this.comData.data.config.swiperAutoTime !== "0" ? {
                             autoplay: { delay: this.comData.data.config.swiperAutoTime, disableOnInteraction: false }
                         } : null} style={{ "height": "100%" }}>
-                        {(this.comDataApiData || []).map((item) =>
+                        {(this.dataSource || []).map((item) =>
                             <ion-slide>
                                 <cy-lazy-img style={{ "width": "100%", "height": "100%" }} src={item} defaultImg="../../assets/image/img-default.png">
                                 </cy-lazy-img>

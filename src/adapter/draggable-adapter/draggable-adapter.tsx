@@ -2,7 +2,7 @@ import { Component, Prop, State, Watch, Event, EventEmitter, h } from '@stencil/
 
 import { deepCopy } from "../../util/helper"
 import { registerDataReceiver } from "../adapterdata-controller";
-import { ComData, themeType } from "../../interfaces"
+import { ComData } from "../../interfaces"
 
 @Component({
     tag: 'draggable-adapter',
@@ -11,7 +11,6 @@ import { ComData, themeType } from "../../interfaces"
 export class DraggableComponent {
     @Prop() comOptionData: ComData;
     @Prop() canModify: boolean = false;
-    @Prop() theme: themeType = "default";
     @State() apiData: any;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
@@ -38,11 +37,11 @@ export class DraggableComponent {
         switch (comType) {
             case "media":
                 return (
-                    <media-adapter canModify={this.canModify} comData={this.comOptionData} comDataApiData={this.apiData}></media-adapter>
+                    <media-adapter canModify={this.canModify} comData={this.comOptionData} dataSource={this.apiData}></media-adapter>
                 );
             case "chart":
                 return (
-                    <chart-adapter comData={this.comOptionData} theme={this.theme} comDataApiData={this.apiData}></chart-adapter>
+                    <chart-adapter comDataView={this.comOptionData.data.view} comDataConfig={this.comOptionData.data.config} comDataApiData={this.comOptionData.data.api_data} dataSource={this.apiData}></chart-adapter>
                 )
             case "text":
                 return (
@@ -50,7 +49,7 @@ export class DraggableComponent {
                 )
             case "table":
                 return (
-                    <table-adapter comDataConfig={this.comOptionData.data.config} comDataApiData={this.apiData}></table-adapter>
+                    <table-adapter comDataConfig={this.comOptionData.data.config} dataSource={this.apiData}></table-adapter>
                 )
             default:
                 break;

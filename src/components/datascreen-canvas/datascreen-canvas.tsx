@@ -1,11 +1,7 @@
 import { Component, State, Watch, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
-import * as echarts from 'echarts/lib/echarts'
 
 import { ComData, CanvasConfig } from "../../interfaces";
 import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
-import dark from "../../util/theme/dark"
-import purple from "../../util/theme/purple"
-import common from "../../util/theme/default"
 
 @Component({
     tag: 'datascreen-canvas',
@@ -24,12 +20,6 @@ export class DatascreenCanvas {
     @Watch('scale')
     watchHandler(newScaleValue) {
         this.upDateElSize(this.canvasOption, newScaleValue)
-    }
-
-    componentWillLoad() {
-        echarts.registerTheme('dark', dark);
-        echarts.registerTheme('purple', purple);
-        echarts.registerTheme('default', common);
     }
 
     componentDidLoad() {
@@ -130,7 +120,6 @@ export class DatascreenCanvas {
                             <draggable-adapter
                                 key={comDarggable.id}
                                 comOptionData={comDarggable}
-                                theme={this.canvasOption.theme}
                                 canModify={this.canModify}
                             ></draggable-adapter>
                         </cy-draggable>

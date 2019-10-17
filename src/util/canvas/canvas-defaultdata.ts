@@ -5,7 +5,6 @@ const canvasDefaultConfig :CanvasConfig = {
     h: "1080",
     bgc: "#0d2a43",
     bgi: "",
-    theme: "default",
     baseUrl: "https://api.myjson.com/bins"
 }
 

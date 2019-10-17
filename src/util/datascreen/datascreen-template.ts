@@ -255,7 +255,6 @@ const dataScreenTemplateList: DataScreen[] = [
             "h": "1080",
             "bgc": "#06264e",
             "bgi": "https://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/51182f91cfa0fd0b3c8754d7ca23e877.png",
-            "theme": "default",
             "baseUrl": "https://api.myjson.com/bins"
         }
     }

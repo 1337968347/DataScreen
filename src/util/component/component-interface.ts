@@ -15,9 +15,12 @@ export declare type comType =
     // table
     "table";
 
+declare type echartOption = "textStyle"| "title"
+
 // 常用的设置
 declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color" | "videoSrc"
-    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc" | "swiperAutoTime";
+    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc" | "swiperAutoTime"
+    | echartOption;
 
 // 表格设置
 declare type tableConfig = "columns" | "headerColor";

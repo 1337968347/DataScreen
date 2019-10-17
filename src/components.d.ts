@@ -17,7 +17,7 @@ import {
   DragComOption,
   DraggableApiData,
   DraggableConfig,
-  themeType,
+  DraggableView,
 } from './interfaces';
 
 export namespace Components {
@@ -36,9 +36,10 @@ export namespace Components {
   }
   interface AppRoot {}
   interface ChartAdapter {
-    'comData': ComData;
-    'comDataApiData': any;
-    'theme': themeType;
+    'comDataApiData': DraggableApiData;
+    'comDataConfig': DraggableConfig;
+    'comDataView': DraggableView;
+    'dataSource': any;
   }
   interface CyDraggable {
     'canModify': boolean;
@@ -46,6 +47,10 @@ export namespace Components {
     'scale': number;
   }
   interface CyFastClick {}
+  interface CyItemExtend {
+    'header': string;
+    'isOpen': boolean;
+  }
   interface CyLazyImg {
     'alt': string;
     'defaultImg': string;
@@ -86,12 +91,11 @@ export namespace Components {
   interface DraggableAdapter {
     'canModify': boolean;
     'comOptionData': ComData;
-    'theme': themeType;
   }
   interface MediaAdapter {
     'canModify': boolean;
     'comData': ComData;
-    'comDataApiData': any;
+    'dataSource': any;
   }
   interface PopoverCodeModify {
     'dataScreenId': string;
@@ -110,8 +114,8 @@ export namespace Components {
     'comId': string;
   }
   interface TableAdapter {
-    'comDataApiData': any;
     'comDataConfig': DraggableConfig;
+    'dataSource': any;
   }
   interface TextAdapter {
     'comData': ComData;
@@ -167,6 +171,12 @@ declare global {
   var HTMLCyFastClickElement: {
     prototype: HTMLCyFastClickElement;
     new (): HTMLCyFastClickElement;
+  };
+
+  interface HTMLCyItemExtendElement extends Components.CyItemExtend, HTMLStencilElement {}
+  var HTMLCyItemExtendElement: {
+    prototype: HTMLCyItemExtendElement;
+    new (): HTMLCyItemExtendElement;
   };
 
   interface HTMLCyLazyImgElement extends Components.CyLazyImg, HTMLStencilElement {}
@@ -291,6 +301,7 @@ declare global {
     'chart-adapter': HTMLChartAdapterElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
+    'cy-item-extend': HTMLCyItemExtendElement;
     'cy-lazy-img': HTMLCyLazyImgElement;
     'cy-table': HTMLCyTableElement;
     'datascreen-canvas': HTMLDatascreenCanvasElement;
@@ -314,32 +325,33 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface AppCreate extends JSXBase.HTMLAttributes<HTMLAppCreateElement> {
+  interface AppCreate {
     'history'?: RouterHistory;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {
+  interface AppHome {
     'history'?: RouterHistory;
     'match'?: MatchResults;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface AppManage extends JSXBase.HTMLAttributes<HTMLAppManageElement> {
+  interface AppManage {
     'history'?: RouterHistory;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
-  interface AppPreview extends JSXBase.HTMLAttributes<HTMLAppPreviewElement> {
+  interface AppPreview {
     'match'?: MatchResults;
   }
-  interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
-  interface ChartAdapter extends JSXBase.HTMLAttributes<HTMLChartAdapterElement> {
-    'comData'?: ComData;
-    'comDataApiData'?: any;
-    'theme'?: themeType;
+  interface AppRoot {}
+  interface ChartAdapter {
+    'comDataApiData'?: DraggableApiData;
+    'comDataConfig'?: DraggableConfig;
+    'comDataView'?: DraggableView;
+    'dataSource'?: any;
   }
-  interface CyDraggable extends JSXBase.HTMLAttributes<HTMLCyDraggableElement> {
+  interface CyDraggable {
     'canModify'?: boolean;
     'isChoose'?: boolean;
     'onChoose'?: (event: CustomEvent<any>) => void;
@@ -347,85 +359,88 @@ declare namespace LocalJSX {
     'onCyScale'?: (event: CustomEvent<any>) => void;
     'scale'?: number;
   }
-  interface CyFastClick extends JSXBase.HTMLAttributes<HTMLCyFastClickElement> {
+  interface CyFastClick {
     'onFastClick'?: (event: CustomEvent<any>) => void;
   }
-  interface CyLazyImg extends JSXBase.HTMLAttributes<HTMLCyLazyImgElement> {
+  interface CyItemExtend {
+    'header'?: string;
+    'isOpen'?: boolean;
+  }
+  interface CyLazyImg {
     'alt'?: string;
     'defaultImg'?: string;
     'isLazy'?: boolean;
     'src'?: string;
   }
-  interface CyTable extends JSXBase.HTMLAttributes<HTMLCyTableElement> {
+  interface CyTable {
     'Columns'?: Column[];
     'dataSource'?: any[];
   }
-  interface DatascreenCanvas extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement> {
+  interface DatascreenCanvas {
     'canModify'?: boolean;
     'onCanvasChange'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
     'scale'?: number;
   }
-  interface DatascreenCanvasContent extends JSXBase.HTMLAttributes<HTMLDatascreenCanvasContentElement> {
+  interface DatascreenCanvasContent {
     'maxCanvasSCale'?: number;
     'minCanvasScale'?: number;
     'onCanvasScaleChange'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenComPanel extends JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement> {
+  interface DatascreenComPanel {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenEditMain extends JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement> {}
-  interface DatascreenHeader extends JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement> {
+  interface DatascreenEditMain {}
+  interface DatascreenHeader {
     'checkMenuControl'?: boolean[];
     'dataScreenId'?: string;
     'history'?: RouterHistory;
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenLayer extends JSXBase.HTMLAttributes<HTMLDatascreenLayerElement> {
+  interface DatascreenLayer {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenSettingPanel extends JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement> {
+  interface DatascreenSettingPanel {
     'onAlert'?: (event: CustomEvent<any>) => void;
   }
-  interface DraggableAdapter extends JSXBase.HTMLAttributes<HTMLDraggableAdapterElement> {
+  interface DraggableAdapter {
     'canModify'?: boolean;
     'comOptionData'?: ComData;
     'onAlert'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
-    'theme'?: themeType;
   }
-  interface MediaAdapter extends JSXBase.HTMLAttributes<HTMLMediaAdapterElement> {
+  interface MediaAdapter {
     'canModify'?: boolean;
     'comData'?: ComData;
-    'comDataApiData'?: any;
+    'dataSource'?: any;
   }
-  interface PopoverCodeModify extends JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement> {
+  interface PopoverCodeModify {
     'dataScreenId'?: string;
     'dismissCallBack'?: Function;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface PopoverDraggableContextmenu extends JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement> {
+  interface PopoverDraggableContextmenu {
     'comId'?: string;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface PopoverTheme extends JSXBase.HTMLAttributes<HTMLPopoverThemeElement> {}
-  interface SettingCanvasOption extends JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement> {}
-  interface SettingCommonConfig extends JSXBase.HTMLAttributes<HTMLSettingCommonConfigElement> {
+  interface PopoverTheme {}
+  interface SettingCanvasOption {}
+  interface SettingCommonConfig {
     'comData'?: DragComOption;
     'onCyChange'?: (event: CustomEvent<any>) => void;
   }
-  interface SettingDataConfig extends JSXBase.HTMLAttributes<HTMLSettingDataConfigElement> {
+  interface SettingDataConfig {
     'comDataApiData'?: DraggableApiData;
     'comId'?: string;
     'onCyChange'?: (event: CustomEvent<any>) => void;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
-  interface TableAdapter extends JSXBase.HTMLAttributes<HTMLTableAdapterElement> {
-    'comDataApiData'?: any;
+  interface TableAdapter {
     'comDataConfig'?: DraggableConfig;
+    'dataSource'?: any;
   }
-  interface TextAdapter extends JSXBase.HTMLAttributes<HTMLTextAdapterElement> {
+  interface TextAdapter {
     'comData'?: ComData;
   }
 
@@ -438,6 +453,7 @@ declare namespace LocalJSX {
     'chart-adapter': ChartAdapter;
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
+    'cy-item-extend': CyItemExtend;
     'cy-lazy-img': CyLazyImg;
     'cy-table': CyTable;
     'datascreen-canvas': DatascreenCanvas;
@@ -465,7 +481,36 @@ export { LocalJSX as JSX };
 
 declare module "@stencil/core" {
   export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+    interface IntrinsicElements {
+      'app-create': LocalJSX.AppCreate & JSXBase.HTMLAttributes<HTMLAppCreateElement>;
+      'app-home': LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
+      'app-manage': LocalJSX.AppManage & JSXBase.HTMLAttributes<HTMLAppManageElement>;
+      'app-preview': LocalJSX.AppPreview & JSXBase.HTMLAttributes<HTMLAppPreviewElement>;
+      'app-root': LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+      'chart-adapter': LocalJSX.ChartAdapter & JSXBase.HTMLAttributes<HTMLChartAdapterElement>;
+      'cy-draggable': LocalJSX.CyDraggable & JSXBase.HTMLAttributes<HTMLCyDraggableElement>;
+      'cy-fast-click': LocalJSX.CyFastClick & JSXBase.HTMLAttributes<HTMLCyFastClickElement>;
+      'cy-item-extend': LocalJSX.CyItemExtend & JSXBase.HTMLAttributes<HTMLCyItemExtendElement>;
+      'cy-lazy-img': LocalJSX.CyLazyImg & JSXBase.HTMLAttributes<HTMLCyLazyImgElement>;
+      'cy-table': LocalJSX.CyTable & JSXBase.HTMLAttributes<HTMLCyTableElement>;
+      'datascreen-canvas': LocalJSX.DatascreenCanvas & JSXBase.HTMLAttributes<HTMLDatascreenCanvasElement>;
+      'datascreen-canvas-content': LocalJSX.DatascreenCanvasContent & JSXBase.HTMLAttributes<HTMLDatascreenCanvasContentElement>;
+      'datascreen-com-panel': LocalJSX.DatascreenComPanel & JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement>;
+      'datascreen-edit-main': LocalJSX.DatascreenEditMain & JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement>;
+      'datascreen-header': LocalJSX.DatascreenHeader & JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement>;
+      'datascreen-layer': LocalJSX.DatascreenLayer & JSXBase.HTMLAttributes<HTMLDatascreenLayerElement>;
+      'datascreen-setting-panel': LocalJSX.DatascreenSettingPanel & JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement>;
+      'draggable-adapter': LocalJSX.DraggableAdapter & JSXBase.HTMLAttributes<HTMLDraggableAdapterElement>;
+      'media-adapter': LocalJSX.MediaAdapter & JSXBase.HTMLAttributes<HTMLMediaAdapterElement>;
+      'popover-code-modify': LocalJSX.PopoverCodeModify & JSXBase.HTMLAttributes<HTMLPopoverCodeModifyElement>;
+      'popover-draggable-contextmenu': LocalJSX.PopoverDraggableContextmenu & JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement>;
+      'popover-theme': LocalJSX.PopoverTheme & JSXBase.HTMLAttributes<HTMLPopoverThemeElement>;
+      'setting-canvas-option': LocalJSX.SettingCanvasOption & JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement>;
+      'setting-common-config': LocalJSX.SettingCommonConfig & JSXBase.HTMLAttributes<HTMLSettingCommonConfigElement>;
+      'setting-data-config': LocalJSX.SettingDataConfig & JSXBase.HTMLAttributes<HTMLSettingDataConfigElement>;
+      'table-adapter': LocalJSX.TableAdapter & JSXBase.HTMLAttributes<HTMLTableAdapterElement>;
+      'text-adapter': LocalJSX.TextAdapter & JSXBase.HTMLAttributes<HTMLTextAdapterElement>;
+    }
   }
 }
 

@@ -28,6 +28,26 @@ export class DatascreenSettingPanel {
         setComDataChange(this.ComDataData, true, false);
     }
 
+    handleChartConfigChange(chartOptionName: string, detailName: string, value: any) {
+        let chartConfig = this.ComDataData.data.config[chartOptionName + ""] || {};
+        chartConfig[detailName] = value;
+        this.handleComConfigChange("config", chartOptionName, chartConfig)
+    }
+
+    // 更详细的chart属性变化 such as
+    // title textStyle fontSize
+    handleChartConfigDetailChange(chartOptionName: string, detailName: string, moreDetailName: string, value: any) {
+        let chartConfig = this.ComDataData.data.config[chartOptionName] || {};
+        if (chartConfig[detailName]) {
+            chartConfig[detailName][moreDetailName] = value;
+        } else {
+            chartConfig[detailName] = {};
+            chartConfig[detailName][moreDetailName] = value;
+        }
+        this.handleComConfigChange("config", chartOptionName, chartConfig)
+    }
+
+
     handleSegChange(e) {
         this.chooseSeg = e.detail.value;
     }
@@ -352,6 +372,67 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
+                                {isComponentHasThisConfig(comName, "textStyle") ?
+                                    <cy-item-extend header="全局样式">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                文字颜色
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} value={comData.config.textStyle && comData.config.textStyle.color || ""} onIonChange={(e) => { this.handleChartConfigChange("textStyle", "color", e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.textStyle && comData.config.textStyle.color || ""} onChange={(e) => { this.handleChartConfigChange("textStyle", "color", e.target['value']) }}></input>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend> : null
+                                }
+                                {isComponentHasThisConfig(comName, "textStyle") ?
+                                    <cy-item-extend header="标题">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                内容
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} value={comData.config.title && comData.config.title.text || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "text", e.detail.value) }}></ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <cy-item-extend header="字体样式">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onIonChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "color", e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "color", e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    大小
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.fontSize || ""} onIonChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "fontSize", e.detail.value) }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    水平对齐
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select  interface="popover"  value={comData.config.title && comData.config.title.textAlign || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "textAlign", e.detail.value) }}>
+                                                        <ion-select-option value="auto">自适应</ion-select-option>
+                                                        <ion-select-option value="center">居中</ion-select-option>
+                                                        <ion-select-option value="left">左对齐</ion-select-option>
+                                                        <ion-select-option value="right">右对齐</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </cy-item-extend>
+                                    </cy-item-extend> :
+                                    null
+                                }
+
                             </ion-grid>
                         </div>
                         : null

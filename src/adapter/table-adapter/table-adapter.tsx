@@ -8,7 +8,7 @@ import { DraggableConfig } from "../../interfaces"
 })
 export class TableAdapter {
     @Prop() comDataConfig: DraggableConfig;
-    @Prop() comDataApiData: any;
+    @Prop() dataSource: any;
 
     componentWillLoad() {
     }
@@ -25,7 +25,7 @@ export class TableAdapter {
                     "--border-color": this.comDataConfig.borderColor,
                     "--border-width": this.comDataConfig.borderWidth + "px" || 0 + "px"
                 }}
-                dataSource={this.comDataApiData || []}
+                dataSource={this.dataSource || []}
                 Columns={this.comDataConfig.columns}>
             </cy-table>
         );

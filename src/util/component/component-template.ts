@@ -81,7 +81,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
-
     "text-common": {
         nickName: "文字",
         config: {
@@ -207,9 +206,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             series: [{
                 type: 'line',
                 areaStyle: {}
-            }],
-            title: {
-            }
+            }]
         },
         icon: "assets/com-icon/chart-base-line.png",
         view: {

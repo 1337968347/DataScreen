@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  --color: #ffffff;
+  --header-bg: #282830;
+  --content-bg: #111417;
+}
+
+ion-item-divider {
+  --color: var(--color);
+  --background: var(--color-white);
+  --padding-start: 0;
+  cursor: pointer;
+}
+
+ion-item-group {
+  padding: 5px;
+  color: var(--color);
+  background: var(--content-bg)
+}
+
+ion-list {
+  padding: 0 !important;
+}
+
+ion-item {
+  margin: 0;
+  --background: var(--header-bg);
+  --padding-start: 7px;
+  --inner-border-width: 0px;
+  --inner-padding-end: 0;
+
+  ion-icon {
+    color: var(--color);
+  }
+}

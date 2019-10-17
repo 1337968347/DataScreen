@@ -13,7 +13,9 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
     
     "text-common": ["fontSize", "fontContent", "fontWeight", "color", "backgroundColor", "textAlign"],
 
-    "table": ["columns","headerColor","color", "fontSize", "backgroundColor", "textAlign",  "borderWidth", "borderColor"]
+    "table": ["columns","headerColor","color", "fontSize", "backgroundColor", "textAlign",  "borderWidth", "borderColor"],
+
+    "chart-base-line": ["textStyle", "title"]
 };
 
 export { comConfigMap, isComponentHasThisConfig }
