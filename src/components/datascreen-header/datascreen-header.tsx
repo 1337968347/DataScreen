@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h } from '@stencil/core';
 import { RouterHistory } from "@stencil/router";
 
 import { getDataScreen, setDataScreen } from "../../util/datascreen-controller";
@@ -12,9 +12,15 @@ export class DatascreenHeader {
     @Prop() history: RouterHistory;
     @Prop() dataScreenId: string;
     @Prop() checkMenuControl: boolean[] = [false, false, false];
+    @State() title: string = ""
     @Event() checkMenu: EventEmitter;
     @Event() popover: EventEmitter;
 
+    componentWillLoad() {
+        getDataScreen(this.dataScreenId).then((dataScreenData) => {
+            this.title = dataScreenData.name || ""
+        })
+    }
     previewCanvas() {
         this.history.push(`/canvas/${this.dataScreenId}/preview`)
     }
@@ -31,12 +37,13 @@ export class DatascreenHeader {
             componentProps: {
                 dataScreenId: this.dataScreenId,
                 dismissCallBack: (dataScreenId) => {
-                    if(dataScreenId){
-                        getDataScreen(dataScreenId).then((dataScreenData)=>{
+                    if (dataScreenId) {
+                        getDataScreen(dataScreenId).then((dataScreenData) => {
                             setDataScreen(dataScreenId, {
                                 componentsData: dataScreenData.componentsData,
                                 canvasOption: dataScreenData.canvasOption
                             }, false)
+                            this.title = dataScreenData.name || ""
                         });
                     }
                 }
@@ -60,8 +67,12 @@ export class DatascreenHeader {
                         <ion-button title="设置面板" color={this.checkMenuControl[2] ? "primary" : "secondary"} size="large" fill="solid" class="header-btn" onClick={() => { this.handleMenuChoose(2) }}>
                             <ion-icon name="settings"></ion-icon>
                         </ion-button>
-
                     </ion-buttons>
+
+                    <ion-title>
+                        {this.title}
+                    </ion-title>
+
                     <ion-buttons slot="end" class="header-buttons">
                         <ion-button title="数据" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.talkIsCheapShowMeTheCode() }}>
                             <ion-icon name="code"></ion-icon>

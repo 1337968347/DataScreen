@@ -3,7 +3,7 @@ import { Component, State, Method, h, Element, Event, EventEmitter } from '@sten
 import { ComData } from "../../interfaces";
 import { setComDataChange } from "../../util/datascreen-controller"
 import { isComponentHasThisConfig } from "../../util/component/component-utils"
-import { deepCopy } from "../../util/helper"
+import { deepCopy, deepChangeValue } from "../../util/helper"
 
 
 @Component({
@@ -28,23 +28,10 @@ export class DatascreenSettingPanel {
         setComDataChange(this.ComDataData, true, false);
     }
 
-    handleChartConfigChange(chartOptionName: string, detailName: string, value: any) {
-        let chartConfig = this.ComDataData.data.config[chartOptionName + ""] || {};
-        chartConfig[detailName] = value;
-        this.handleComConfigChange("config", chartOptionName, chartConfig)
-    }
-
-    // 更详细的chart属性变化 such as
-    // title textStyle fontSize
-    handleChartConfigDetailChange(chartOptionName: string, detailName: string, moreDetailName: string, value: any) {
-        let chartConfig = this.ComDataData.data.config[chartOptionName] || {};
-        if (chartConfig[detailName]) {
-            chartConfig[detailName][moreDetailName] = value;
-        } else {
-            chartConfig[detailName] = {};
-            chartConfig[detailName][moreDetailName] = value;
-        }
-        this.handleComConfigChange("config", chartOptionName, chartConfig)
+    handleDeepComConfigValueChange(argList: string[], value) {
+        deepChangeValue(this.ComDataData.data, argList, value);
+        this.ComDataData = deepCopy<ComData>({} as ComData, this.ComDataData);
+        setComDataChange(this.ComDataData, true, false);
     }
 
 
@@ -372,6 +359,8 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
+
+
                                 {isComponentHasThisConfig(comName, "textStyle") ?
                                     <cy-item-extend header="全局样式">
                                         <ion-row>
@@ -379,20 +368,36 @@ export class DatascreenSettingPanel {
                                                 文字颜色
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} value={comData.config.textStyle && comData.config.textStyle.color || ""} onIonChange={(e) => { this.handleChartConfigChange("textStyle", "color", e.detail.value) }}></ion-input>
-                                                <input style={{ "height": "100%" }} type="color" value={comData.config.textStyle && comData.config.textStyle.color || ""} onChange={(e) => { this.handleChartConfigChange("textStyle", "color", e.target['value']) }}></input>
+                                                <ion-input debounce={1500} value={comData.config.textStyle && comData.config.textStyle.color || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "textStyle", "color"], e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.textStyle && comData.config.textStyle.color || ""} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "textStyle", "color"], e.target['value']) }}></input>
+                                            </ion-col>
+                                        </ion-row>
+
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                字体
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-select value={comData.config.textStyle && comData.config.textStyle.fontFamily  || ""} interface="popover"
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "textStyle", "fontFamily"], e.detail.value) }}>
+                                                    <ion-select-option value="Microsoft YaHei">Microsoft YaHei</ion-select-option>
+                                                    <ion-select-option value="Courier New">Courier New</ion-select-option>
+                                                    <ion-select-option value="Arial">Arial</ion-select-option>
+                                                    <ion-select-option value="monospace">monospace</ion-select-option>
+                                                    <ion-select-option value="serif">serif</ion-select-option>
+                                                </ion-select>
                                             </ion-col>
                                         </ion-row>
                                     </cy-item-extend> : null
                                 }
-                                {isComponentHasThisConfig(comName, "textStyle") ?
+                                {isComponentHasThisConfig(comName, "title") ?
                                     <cy-item-extend header="标题">
                                         <ion-row>
                                             <ion-col size="4">
                                                 内容
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} value={comData.config.title && comData.config.title.text || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "text", e.detail.value) }}></ion-input>
+                                                <ion-input debounce={1500} value={comData.config.title && comData.config.title.text || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "text"], e.detail.value) }}></ion-input>
                                             </ion-col>
                                         </ion-row>
                                         <cy-item-extend header="字体样式">
@@ -401,8 +406,8 @@ export class DatascreenSettingPanel {
                                                     颜色
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onIonChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "color", e.detail.value) }}></ion-input>
-                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "color", e.target['value']) }}></input>
+                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "textStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.color || ""} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "textStyle", "color"], e.target['value']) }}></input>
                                                 </ion-col>
                                             </ion-row>
                                             <ion-row>
@@ -410,17 +415,16 @@ export class DatascreenSettingPanel {
                                                     大小
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.fontSize || ""} onIonChange={(e) => { this.handleChartConfigDetailChange("title", "textStyle", "fontSize", e.detail.value) }}>
+                                                    <ion-input debounce={1500} value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.fontSize || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "textStyle", "fontSize"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
-
                                             <ion-row>
                                                 <ion-col size="4">
                                                     水平对齐
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-select  interface="popover"  value={comData.config.title && comData.config.title.left || ""} onIonChange={(e) => { this.handleChartConfigChange("title", "left", e.detail.value) }}>
+                                                    <ion-select interface="popover" value={comData.config.title && comData.config.title.left || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "left"], e.detail.value) }}>
                                                         <ion-select-option value="auto">自适应</ion-select-option>
                                                         <ion-select-option value="center">居中</ion-select-option>
                                                         <ion-select-option value="left">左对齐</ion-select-option>
@@ -428,7 +432,78 @@ export class DatascreenSettingPanel {
                                                     </ion-select>
                                                 </ion-col>
                                             </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    字体粗细
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select interface="popover" value={comData.config.title && comData.config.title.textStyle && comData.config.title.textStyle.fontWeight || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "title", "textStyle", "fontWeight"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="bold">bold</ion-select-option>
+                                                        <ion-select-option value="bolder">bolder</ion-select-option>
+                                                        <ion-select-option value="lighter">lighter</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+
                                         </cy-item-extend>
+                                    </cy-item-extend> :
+                                    null
+                                }
+                                {isComponentHasThisConfig(comName, "xAxis") ?
+                                    <cy-item-extend header="x轴">
+                                        <cy-item-extend header="文本">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    字号
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.xAxis && comData.config.xAxis.axisLabel && comData.config.xAxis.axisLabel.fontSize || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLabel", "fontSize"], e.detail.value) }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.xAxis && comData.config.xAxis.axisLabel && comData.config.xAxis.axisLabel.color || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLabel", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.xAxis && comData.config.xAxis.axisLabel && comData.config.xAxis.axisLabel.color || ""}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLabel", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    风格
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.xAxis && comData.config.xAxis.axisLabel && comData.config.xAxis.axisLabel.fontStyle || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLabel", "fontStyle"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="italic">italic</ion-select-option>
+                                                        <ion-select-option value="oblique">oblique</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    粗细
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.xAxis && comData.config.xAxis.axisLabel && comData.config.xAxis.axisLabel.fontWeight || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLabel", "fontWeight"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="bold">bold</ion-select-option>
+                                                        <ion-select-option value="bolder">bolder</ion-select-option>
+                                                        <ion-select-option value="lighter">lighter</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </cy-item-extend>
+
                                     </cy-item-extend> :
                                     null
                                 }

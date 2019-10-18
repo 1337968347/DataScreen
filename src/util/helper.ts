@@ -83,12 +83,21 @@ export const deepCopy = <T>(targetArg: any, copyArg: T): T => {
     return target;
 };
 
+// deepChangeValue({}, ["a","b","a","b",], 1)
+export const deepChangeValue = (target, argList, value) => {
+    target[argList[0]] = target[argList[0]] || {};
+    if (argList.length == 1) {
+        target[argList[0]] = value;
+    } else {
+        deepChangeValue(target[argList[0]], argList.slice(1), value)
+    }
+}
 
 let keyCallbackMap = new Map();
 export const reduceFrequency = (key: string, callback: Function, delay?: number) => {
-     keyCallbackMap.has(key)&&clearTimeout(keyCallbackMap.get(key));
-     let timerId = setTimeout(()=>{
-        callback() 
+    keyCallbackMap.has(key) && clearTimeout(keyCallbackMap.get(key));
+    let timerId = setTimeout(() => {
+        callback()
         keyCallbackMap.delete(key)
     }, delay || 500);
     keyCallbackMap.set(key, timerId);

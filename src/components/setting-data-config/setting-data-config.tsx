@@ -27,7 +27,7 @@ export class SettingDataConfig {
     }
 
     handlefieldMapChange(index: number, name: string, value: string) {
-        this.comDataApiData.fieldMap[index][name] =value;
+        this.comDataApiData.fieldMap[index][name] = value;
         this.handleConfigChange("api_data", "fieldMap", this.comDataApiData.fieldMap)
     }
 
@@ -56,9 +56,9 @@ export class SettingDataConfig {
             {
                 title: '映射',
                 dataIndex: 'mapping',
-                render: (row,rowIndex: number) => (
+                render: (row, rowIndex: number) => (
                     <ion-input placeholder="可自定义" debounce={1500} style={{ "width": "108px", "height": "30px", "--background": "var(--ion-background-shade)" }}
-                        onIonChange={(e)=>{this.handlefieldMapChange(rowIndex,"mapping", e.detail.value)}}
+                        onIonChange={(e) => { this.handlefieldMapChange(rowIndex, "mapping", e.detail.value) }}
                         value={row.mapping || ""}></ion-input>
                 ),
             }
@@ -76,15 +76,16 @@ export class SettingDataConfig {
                         </ion-select>
                     </ion-col>
                 </ion-row>
-
-                <ion-row>
-                    <ion-col size="12">
-                        数据映射
-                    </ion-col>
-                    <ion-col size="12">
-                        <cy-table Columns={TableColumns} dataSource={this.comDataApiData.fieldMap || []}></cy-table>
-                    </ion-col>
-                </ion-row>
+                {this.comDataApiData.fieldMap ?
+                    <ion-row>
+                        <ion-col size="12">
+                            数据映射
+                        </ion-col>
+                        <ion-col size="12">
+                            <cy-table Columns={TableColumns} dataSource={this.comDataApiData.fieldMap || []}></cy-table>
+                        </ion-col>
+                    </ion-row> : null
+                }
 
                 {this.dataType == "static" ?
                     <ion-gird>
@@ -97,7 +98,7 @@ export class SettingDataConfig {
                                     debounce={600}
                                     rows={20}
                                     wrap="soft"
-                                    onIonChange={(e) => { this.checkStaticDataOJBK(e.detail.value)&&this.handleConfigChange("api_data", "staticData", JSON.parse(e.detail.value + "")) }}
+                                    onIonChange={(e) => { this.checkStaticDataOJBK(e.detail.value) && this.handleConfigChange("api_data", "staticData", JSON.parse(e.detail.value + "")) }}
                                     value={JSON.stringify(this.comDataApiData.staticData, null, 1)}>
                                 </ion-textarea>
                                 {!!!this.isStaticDataOJBk ?

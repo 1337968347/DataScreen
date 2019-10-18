@@ -8,14 +8,8 @@ import { Component, Prop, State, h } from '@stencil/core';
 })
 export class CyItemExtend {
     @Prop() header: string = ""
-    @Prop() isOpen: boolean = true;
 
     @State() openTag: boolean = true;
-
-
-    componentDidLoad() {
-        this.openTag = this.isOpen;
-    }
 
     render() {
         return (

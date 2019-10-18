@@ -8,8 +8,8 @@ const dataScreenTemplateList: DataScreen[] = [
         componentsData: []
     },
     {
-        "scaleImg": "https://img.alicdn.com/tfs/TB1ZIX9OVYqK1RjSZLeXXbXppXa-2880-600.png",
-        "name": "demo",
+        "scaleImg": "",
+        "name": "标题",
         "componentsData": [
             {
                 "data": {
@@ -107,6 +107,120 @@ const dataScreenTemplateList: DataScreen[] = [
                                 "key": "1",
                                 "name": "胡彦斌",
                                 "age": 32,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
+                                "address": "西湖区湖底公园1号"
+                            },
+                            {
+                                "key": "2",
+                                "name": "胡彦祖",
+                                "age": 42,
                                 "address": "西湖区湖底公园1号"
                             },
                             {
@@ -267,23 +381,72 @@ const dataScreenTemplateList: DataScreen[] = [
                             "text": "这个是标题",
                             "textStyle": {
                                 "color": "#ffffff",
-                                "fontSize": "30"
+                                "fontSize": "50"
                             },
-                            "textAlign": "left"
+                            "textAlign": "left",
+                            "left": "center"
                         }
                     },
                     "icon": "assets/com-icon/chart-base-line.png",
                     "view": {
-                        "x": "1091",
-                        "y": "404",
-                        "w": "723",
-                        "h": "673",
+                        "x": "1325",
+                        "y": "529",
+                        "w": "564",
+                        "h": "526",
                         "opacity": "1",
                         "deg": "0"
                     }
                 },
                 "comName": "chart-base-line",
                 "id": "9d63bbf0-f080-11e9-af13-1f2500a8fcc3"
+            },
+            {
+                "data": {
+                    "nickName": "轮播图",
+                    "api_data": {
+                        "dataSourceType": "static",
+                        "restType": "get",
+                        "restUrl": "/",
+                        "restRefreshTime": 0,
+                        "staticData": [
+                            "https://fanyi.bdstatic.com/static/translation/img/header/logo_40c4f13.svg",
+                            "https://swiperjs.com/i/logo.svg"
+                        ]
+                    },
+                    "config": {
+                        "swiperAutoTime": "1000"
+                    },
+                    "icon": "assets/com-icon/img-icon.png",
+                    "view": {
+                        "x": "1331",
+                        "y": "181",
+                        "w": "300",
+                        "h": "300",
+                        "opacity": "1",
+                        "deg": "0"
+                    }
+                },
+                "comName": "media-img-slides",
+                "id": "60d18f70-f0c9-11e9-9fc9-0b58d738d480"
+            },
+            {
+                "data": {
+                    "nickName": "Iframe",
+                    "config": {
+                        "iframeSrc": "https://www.baidu.com/"
+                    },
+                    "icon": "assets/com-icon/img-icon.png",
+                    "view": {
+                        "x": "62",
+                        "y": "140",
+                        "w": "896",
+                        "h": "262",
+                        "opacity": "1",
+                        "deg": "0"
+                    }
+                },
+                "comName": "media-iframe",
+                "id": "64c84510-f0c9-11e9-9fc9-0b58d738d480"
             }
         ],
         "canvasOption": {
@@ -294,6 +457,7 @@ const dataScreenTemplateList: DataScreen[] = [
             "baseUrl": "https://api.myjson.com/bins"
         }
     }
+
 
 ]
 

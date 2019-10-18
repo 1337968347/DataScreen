@@ -49,7 +49,6 @@ export namespace Components {
   interface CyFastClick {}
   interface CyItemExtend {
     'header': string;
-    'isOpen': boolean;
   }
   interface CyLazyImg {
     'alt': string;
@@ -364,7 +363,6 @@ declare namespace LocalJSX {
   }
   interface CyItemExtend {
     'header'?: string;
-    'isOpen'?: boolean;
   }
   interface CyLazyImg {
     'alt'?: string;

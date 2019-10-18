@@ -14,7 +14,7 @@
 
 :root {
   --header-height: 30px;
-  --font-size: 18px;
+  --font-size: 12px;
 }
 
 @media screen and (max-width: 450px) {

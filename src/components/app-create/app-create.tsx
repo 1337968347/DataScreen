@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element, Host, h } from '@stencil/core';
+import { Component, Prop,State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
 import { RouterHistory } from "@stencil/router"
 import { menuController } from "@ionic/core"
 import uuid from "uuid";
@@ -16,9 +16,9 @@ import { deepCopy } from "../../util/helper"
 export class AppCreate {
     @Prop() history: RouterHistory;
     @Element() el: HTMLElement;
+    @State() chooseTemplate: DataScreen;
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
-    chooseTemplate: DataScreen;
 
     componentWillLoad() {
         this.setChooseTemplate(dataScreenTemplateList[0]);
@@ -69,7 +69,6 @@ export class AppCreate {
                                 this.history.replace(`canvas/${this.chooseTemplate.id}/edit`)
                             })
                         }
-
                     }
                 }
             ]
@@ -116,8 +115,7 @@ export class AppCreate {
                                 </ion-title>
                             </ion-toolbar>
                         </ion-header>
-                        <ion-content>
-                            <div class="canvas-content">
+                        <ion-content class="right-content">
                                 <datascreen-canvas-content>
                                     <div class="fit-box">
                                         <datascreen-canvas  canModify={false}>
@@ -127,7 +125,6 @@ export class AppCreate {
                                         </div>
                                     </div>
                                 </datascreen-canvas-content>
-                            </div>
                         </ion-content>
                     </div>
                 </ion-split-pane>

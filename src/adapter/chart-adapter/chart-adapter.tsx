@@ -52,6 +52,7 @@ export class ChartAdapter {
                 source: this.dataSource || []
             }
         }
+        console.log(chartOption)
         this.chartObj.setOption(chartOption);
     }
 
