@@ -15,7 +15,7 @@ export declare type comType =
     // table
     "table";
 
-declare type echartOption = "textStyle" | "title" | "xAxis"
+declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend";
 
 // 常用的设置
 declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color" | "videoSrc"

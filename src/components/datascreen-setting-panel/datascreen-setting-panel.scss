@@ -48,16 +48,6 @@ datascreen-setting-panel {
             margin-top: 15px;
         }
 
-        cy-item-extend {
-            --header-bg: var(--ion-background-color);
-            --color: var(--ion-text-color);
-            --content-bg: var(--ion-background-shade);
-            
-            cy-item-extend {
-                --header-bg: var(--ion-background-shade);
-                --content-bg: var(--ion-background-shade)
-            }
-        }
 
         ion-grid {
             padding: 5px 0;
@@ -96,6 +86,24 @@ datascreen-setting-panel {
                 ion-select {
                     width: 100%;
                     background: var(--ion-background-tint) !important;
+                }
+            }
+        }
+
+
+        cy-item-extend {
+            --header-bg: var(--ion-background-color);
+            --color: var(--ion-text-color);
+            --content-bg: var(--ion-background-shade);
+            
+            cy-item-extend {
+                --header-bg: var(--ion-background-shade);
+                --content-bg: var(--ion-background-tint);
+                ion-input{
+                    --background: var(--ion-background-shade) !important;
+                }
+                ion-select {
+                    background: var(--ion-background-shade) !important;
                 }
             }
         }

@@ -378,7 +378,7 @@ export class DatascreenSettingPanel {
                                                 字体
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-select value={comData.config.textStyle && comData.config.textStyle.fontFamily  || ""} interface="popover"
+                                                <ion-select value={comData.config.textStyle && comData.config.textStyle.fontFamily || ""} interface="popover"
                                                     onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "textStyle", "fontFamily"], e.detail.value) }}>
                                                     <ion-select-option value="Microsoft YaHei">Microsoft YaHei</ion-select-option>
                                                     <ion-select-option value="Courier New">Courier New</ion-select-option>
@@ -452,6 +452,16 @@ export class DatascreenSettingPanel {
                                 }
                                 {isComponentHasThisConfig(comName, "xAxis") ?
                                     <cy-item-extend header="x轴">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                显示
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.xAxis && comData.config.xAxis.show}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "show"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
                                         <cy-item-extend header="文本">
                                             <ion-row>
                                                 <ion-col size="4">
@@ -504,10 +514,329 @@ export class DatascreenSettingPanel {
                                             </ion-row>
                                         </cy-item-extend>
 
+                                        <cy-item-extend header="轴线">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    显示
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-toggle checked={comData.config.xAxis && comData.config.xAxis.axisLine && comData.config.xAxis.axisLine.show}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLine", "show"], e.detail.checked); }}>
+                                                    </ion-toggle>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.xAxis && comData.config.xAxis.axisLine && comData.config.xAxis.axisLine.lineStyle && comData.config.xAxis.axisLine.lineStyle.color}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLine", "lineStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.xAxis && comData.config.xAxis.axisLine && comData.config.xAxis.axisLine.lineStyle && comData.config.xAxis.axisLine.lineStyle.color}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLine", "lineStyle", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    线宽
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input type="number" min="0" value={comData.config.xAxis && comData.config.xAxis.axisLine && comData.config.xAxis.axisLine.lineStyle && comData.config.xAxis.axisLine.lineStyle.width}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "axisLine", "lineStyle", "width"], e.detail.value); }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                        </cy-item-extend>
+
+                                        <cy-item-extend header="网格线">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    显示
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-toggle checked={comData.config.xAxis && comData.config.xAxis.splitLine && comData.config.xAxis.splitLine.show}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "splitLine", "show"], e.detail.checked); }}>
+                                                    </ion-toggle>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.xAxis && comData.config.xAxis.splitLine && comData.config.xAxis.splitLine.lineStyle && comData.config.xAxis.splitLine.lineStyle.color}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "splitLine", "lineStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.xAxis && comData.config.xAxis.splitLine && comData.config.xAxis.splitLine.lineStyle && comData.config.xAxis.splitLine.lineStyle.color}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "splitLine", "lineStyle", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    线宽
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input type="number" min="0" value={comData.config.xAxis && comData.config.xAxis.splitLine && comData.config.xAxis.splitLine.lineStyle && comData.config.xAxis.splitLine.lineStyle.width}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "xAxis", "splitLine", "lineStyle", "width"], e.detail.value); }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                        </cy-item-extend>
                                     </cy-item-extend> :
                                     null
                                 }
+                                {isComponentHasThisConfig(comName, "yAxis") ?
+                                    <cy-item-extend header="y轴">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                显示
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.yAxis && comData.config.yAxis.show}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "show"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
+                                        <cy-item-extend header="文本">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    字号
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.yAxis && comData.config.yAxis.axisLabel && comData.config.yAxis.axisLabel.fontSize || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLabel", "fontSize"], e.detail.value) }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
 
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.yAxis && comData.config.yAxis.axisLabel && comData.config.yAxis.axisLabel.color || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLabel", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.yAxis && comData.config.yAxis.axisLabel && comData.config.yAxis.axisLabel.color || ""}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLabel", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    风格
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.yAxis && comData.config.yAxis.axisLabel && comData.config.yAxis.axisLabel.fontStyle || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLabel", "fontStyle"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="italic">italic</ion-select-option>
+                                                        <ion-select-option value="oblique">oblique</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    粗细
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.yAxis && comData.config.yAxis.axisLabel && comData.config.yAxis.axisLabel.fontWeight || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLabel", "fontWeight"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="bold">bold</ion-select-option>
+                                                        <ion-select-option value="bolder">bolder</ion-select-option>
+                                                        <ion-select-option value="lighter">lighter</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </cy-item-extend>
+
+                                        <cy-item-extend header="轴单位">
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    单位
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.yAxis && comData.config.yAxis.name}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "name"], e.detail.value); }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                        </cy-item-extend>
+
+                                        <cy-item-extend header="轴线">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    显示
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-toggle checked={comData.config.yAxis && comData.config.yAxis.axisLine && comData.config.yAxis.axisLine.show}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLine", "show"], e.detail.checked); }}>
+                                                    </ion-toggle>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.yAxis && comData.config.yAxis.axisLine && comData.config.yAxis.axisLine.lineStyle && comData.config.yAxis.axisLine.lineStyle.color}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLine", "lineStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.yAxis && comData.config.yAxis.axisLine && comData.config.yAxis.axisLine.lineStyle && comData.config.yAxis.axisLine.lineStyle.color}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLine", "lineStyle", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    线宽
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.yAxis && comData.config.yAxis.axisLine && comData.config.yAxis.axisLine.lineStyle && comData.config.yAxis.axisLine.lineStyle.width}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "axisLine", "lineStyle", "width"], e.detail.value); }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                        </cy-item-extend>
+
+                                        <cy-item-extend header="网格线">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    显示
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-toggle checked={comData.config.yAxis && comData.config.yAxis.splitLine && comData.config.yAxis.splitLine.show}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "splitLine", "show"], e.detail.checked); }}>
+                                                    </ion-toggle>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.yAxis && comData.config.yAxis.splitLine && comData.config.yAxis.splitLine.lineStyle && comData.config.yAxis.splitLine.lineStyle.color}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "splitLine", "lineStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.yAxis && comData.config.yAxis.splitLine && comData.config.yAxis.splitLine.lineStyle && comData.config.yAxis.splitLine.lineStyle.color}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "splitLine", "lineStyle", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    线宽
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input type="number" min="0" value={comData.config.yAxis && comData.config.yAxis.splitLine && comData.config.yAxis.splitLine.lineStyle && comData.config.yAxis.splitLine.lineStyle.width}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "yAxis", "splitLine", "lineStyle", "width"], e.detail.value); }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+
+                                        </cy-item-extend>
+                                    </cy-item-extend> :
+                                    null
+                                }
+                                {isComponentHasThisConfig(comName, "legend") ?
+                                    <cy-item-extend header="图例">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                显示
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.legend && comData.config.legend.show}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "show"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
+                                        <cy-item-extend header="文本">
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    字号
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.legend && comData.config.legend.textStyle && comData.config.legend.textStyle.fontSize || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "textStyle", "fontSize"], e.detail.value) }}>
+                                                    </ion-input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    颜色
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-input debounce={1500} value={comData.config.legend && comData.config.legend.textStyle && comData.config.legend.textStyle.color || ""}
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "textStyle", "color"], e.detail.value) }}></ion-input>
+                                                    <input style={{ "height": "100%" }} type="color" value={comData.config.legend && comData.config.legend.textStyle && comData.config.legend.textStyle.color || ""}
+                                                        onChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "textStyle", "color"], e.target['value']) }}></input>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    风格
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.legend && comData.config.legend.textStyle && comData.config.legend.textStyle.fontStyle || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "textStyle", "fontStyle"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="italic">italic</ion-select-option>
+                                                        <ion-select-option value="oblique">oblique</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    粗细
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.legend && comData.config.legend.textStyle && comData.config.legend.textStyle.fontWeight || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "textStyle", "fontWeight"], e.detail.value) }}>
+                                                        <ion-select-option value="normal">normal</ion-select-option>
+                                                        <ion-select-option value="bold">bold</ion-select-option>
+                                                        <ion-select-option value="bolder">bolder</ion-select-option>
+                                                        <ion-select-option value="lighter">lighter</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </cy-item-extend>
+                                        <cy-item-extend header="布局">
+                                      
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    水平
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.legend && comData.config.legend.x || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "x"], e.detail.value) }}>
+                                                        <ion-select-option value="center">center</ion-select-option>
+                                                        <ion-select-option value="left">left</ion-select-option>
+                                                        <ion-select-option value="right">right</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+
+                                            <ion-row>
+                                                <ion-col size="4">
+                                                    竖直
+                                                </ion-col>
+                                                <ion-col size="8">
+                                                    <ion-select value={comData.config.legend && comData.config.legend.y || ""} interface="popover"
+                                                        onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "legend", "y"], e.detail.value) }}>
+                                                        <ion-select-option value="center">center</ion-select-option>
+                                                        <ion-select-option value="top">top</ion-select-option>
+                                                        <ion-select-option value="bottom">bottom</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </cy-item-extend>
+
+                                    </cy-item-extend> :
+                                    null
+                                }
                             </ion-grid>
                         </div>
                         : null

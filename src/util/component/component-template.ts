@@ -200,7 +200,10 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 boundaryGap: false
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
+                axisLine:{
+                    show: false
+                }
             },
             tooltip: {},
             series: [{
