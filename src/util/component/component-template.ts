@@ -165,34 +165,110 @@ const componentTemplateDataMap: ComponentInitalMap = {
             restRefreshTime: 0,
             staticData: [
                 {
-                 "x": "2/01",
-                 "y": 375
+                    "x": "00",
+                    "y": 75,
+                    "s": "1"
                 },
                 {
-                 "x": "2010/02/0",
-                 "y": 200
+                    "x": "00",
+                    "y": 80,
+                    "s": "2"
                 },
                 {
-                 "x": "03/01",
-                 "y": 25
+                    "x": "03",
+                    "y": 100,
+                    "s": "1"
                 },
                 {
-                 "x": "04/01",
-                 "y": 190
+                    "x": "03",
+                    "y": 100,
+                    "s": "2"
                 },
                 {
-                 "x": "05/01",
-                 "y": 90
+                    "x": "06",
+                    "y": 125,
+                    "s": "1"
                 },
                 {
-                 "x": "2010/06/01 00:00:00",
-                 "y": 233
+                    "x": "06",
+                    "y": 150,
+                    "s": "2"
+                },
+                {
+                    "x": "09",
+                    "y": 290,
+                    "s": "1"
+                },
+                {
+                    "x": "09",
+                    "y": 210,
+                    "s": "2"
+                },
+                {
+                    "x": "12",
+                    "y": 390,
+                    "s": "1"
+                },
+                {
+                    "x": "12",
+                    "y": 360,
+                    "s": "2"
+                },
+                {
+                    "x": "16",
+                    "y": 690,
+                    "s": "1"
+                },
+                {
+                    "x": "16",
+                    "y": 610,
+                    "s": "2"
+                },
+                {
+                    "x": "19",
+                    "y": 990,
+                    "s": "1"
+                },
+                {
+                    "x": "19",
+                    "y": 960,
+                    "s": "2"
+                },
+                {
+                    "x": "21",
+                    "y": 1190,
+                    "s": "1"
+                },
+                {
+                    "x": "21",
+                    "y": 1110,
+                    "s": "2"
+                },
+                {
+                    "x": "23",
+                    "y": 1290,
+                    "s": "1"
+                },
+                {
+                    "x": "23",
+                    "y": 1260,
+                    "s": "2"
+                },
+                {
+                    "x": "24",
+                    "y": 2190,
+                    "s": "1"
+                },
+                {
+                    "x": "24",
+                    "y": 2260,
+                    "s": "2"
                 }
-               ],
+            ],
             fieldMap: [
-                { name: "x", mapping: "" },
-                { name: "y", mapping: "" },
-                { name: "s", mapping: "" },
+                { name: "x(类目)", mapping: "" },
+                { name: "y(值)", mapping: "" },
+                { name: "s(系列)", mapping: "" },
             ]
         },
         config: {
@@ -202,7 +278,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             yAxis: {
                 type: 'value',
-                axisLine:{
+                axisLine: {
                     show: false
                 }
             },
@@ -210,7 +286,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             series: [{
                 type: 'line',
                 areaStyle: {}
-            },{
+            }, {
                 type: 'line',
                 areaStyle: {}
             }]

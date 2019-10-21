@@ -61,8 +61,9 @@ export class ChartAdapter {
             series: this.comDataConfig.series.map((series, index) => {
                 return {
                     ...series,
+                    name: series.name || `系列${index + 1}`,
                     data: this.dataSource.filter((data) => {
-                        return data.s == (series.id || index)
+                        return data.s == (series.id || index + 1)
                     }).map((item) => item.y)
                 }
             })

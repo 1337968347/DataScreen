@@ -61,14 +61,15 @@ export class AppRoot {
     }
 
     const toast = await toastController.create({
-      message: "新的版本可用",
+      header:"新的版本可用",
+      message: "即将清空localstorage",
       showCloseButton: true,
       closeButtonText: "确定"
     });
 
     await toast.present();
     await toast.onWillDismiss();
-
+    
     registration.waiting.postMessage("skipWaiting");
     window.location.reload();
   }
