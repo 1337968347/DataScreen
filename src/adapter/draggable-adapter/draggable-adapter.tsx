@@ -11,7 +11,7 @@ import { ComData } from "../../interfaces"
 export class DraggableComponent {
     @Prop() comOptionData: ComData;
     @Prop() canModify: boolean = false;
-    @State() apiData: any;
+    @State() apiData: any[];
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
 

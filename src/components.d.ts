@@ -39,7 +39,7 @@ export namespace Components {
     'comDataApiData': DraggableApiData;
     'comDataConfig': DraggableConfig;
     'comDataView': DraggableView;
-    'dataSource': any;
+    'dataSource': any[];
   }
   interface CyDraggable {
     'canModify': boolean;
@@ -105,6 +105,9 @@ export namespace Components {
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
+  interface SettingChartSeries {
+    'series': any[];
+  }
   interface SettingCommonConfig {
     'comData': DragComOption;
   }
@@ -268,6 +271,12 @@ declare global {
     new (): HTMLSettingCanvasOptionElement;
   };
 
+  interface HTMLSettingChartSeriesElement extends Components.SettingChartSeries, HTMLStencilElement {}
+  var HTMLSettingChartSeriesElement: {
+    prototype: HTMLSettingChartSeriesElement;
+    new (): HTMLSettingChartSeriesElement;
+  };
+
   interface HTMLSettingCommonConfigElement extends Components.SettingCommonConfig, HTMLStencilElement {}
   var HTMLSettingCommonConfigElement: {
     prototype: HTMLSettingCommonConfigElement;
@@ -316,6 +325,7 @@ declare global {
     'popover-draggable-contextmenu': HTMLPopoverDraggableContextmenuElement;
     'popover-theme': HTMLPopoverThemeElement;
     'setting-canvas-option': HTMLSettingCanvasOptionElement;
+    'setting-chart-series': HTMLSettingChartSeriesElement;
     'setting-common-config': HTMLSettingCommonConfigElement;
     'setting-data-config': HTMLSettingDataConfigElement;
     'table-adapter': HTMLTableAdapterElement;
@@ -348,7 +358,7 @@ declare namespace LocalJSX {
     'comDataApiData'?: DraggableApiData;
     'comDataConfig'?: DraggableConfig;
     'comDataView'?: DraggableView;
-    'dataSource'?: any;
+    'dataSource'?: any[];
   }
   interface CyDraggable {
     'canModify'?: boolean;
@@ -424,6 +434,10 @@ declare namespace LocalJSX {
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {}
+  interface SettingChartSeries {
+    'onCyChange'?: (event: CustomEvent<any>) => void;
+    'series'?: any[];
+  }
   interface SettingCommonConfig {
     'comData'?: DragComOption;
     'onCyChange'?: (event: CustomEvent<any>) => void;
@@ -467,6 +481,7 @@ declare namespace LocalJSX {
     'popover-draggable-contextmenu': PopoverDraggableContextmenu;
     'popover-theme': PopoverTheme;
     'setting-canvas-option': SettingCanvasOption;
+    'setting-chart-series': SettingChartSeries;
     'setting-common-config': SettingCommonConfig;
     'setting-data-config': SettingDataConfig;
     'table-adapter': TableAdapter;
@@ -504,6 +519,7 @@ declare module "@stencil/core" {
       'popover-draggable-contextmenu': LocalJSX.PopoverDraggableContextmenu & JSXBase.HTMLAttributes<HTMLPopoverDraggableContextmenuElement>;
       'popover-theme': LocalJSX.PopoverTheme & JSXBase.HTMLAttributes<HTMLPopoverThemeElement>;
       'setting-canvas-option': LocalJSX.SettingCanvasOption & JSXBase.HTMLAttributes<HTMLSettingCanvasOptionElement>;
+      'setting-chart-series': LocalJSX.SettingChartSeries & JSXBase.HTMLAttributes<HTMLSettingChartSeriesElement>;
       'setting-common-config': LocalJSX.SettingCommonConfig & JSXBase.HTMLAttributes<HTMLSettingCommonConfigElement>;
       'setting-data-config': LocalJSX.SettingDataConfig & JSXBase.HTMLAttributes<HTMLSettingDataConfigElement>;
       'table-adapter': LocalJSX.TableAdapter & JSXBase.HTMLAttributes<HTMLTableAdapterElement>;

@@ -15,7 +15,7 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
 
     "table": ["columns", "headerColor", "color", "fontSize", "backgroundColor", "textAlign", "borderWidth", "borderColor"],
 
-    "chart-base-line": ["textStyle", "title", "xAxis", "yAxis", "legend"]
+    "chart-base-line": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"]
 };
 
 export { comConfigMap, isComponentHasThisConfig }

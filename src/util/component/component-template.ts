@@ -190,8 +190,9 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 }
                ],
             fieldMap: [
-                { name: "content", mapping: "x" },
-                { name: "value", mapping: "y" }
+                { name: "x", mapping: "" },
+                { name: "y", mapping: "" },
+                { name: "s", mapping: "" },
             ]
         },
         config: {
@@ -207,6 +208,9 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             tooltip: {},
             series: [{
+                type: 'line',
+                areaStyle: {}
+            },{
                 type: 'line',
                 areaStyle: {}
             }]
