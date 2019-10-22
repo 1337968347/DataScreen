@@ -1,6 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 
-import { ComData, TextConfig } from "../../interfaces"
+import { ComData } from "../../interfaces"
 
 @Component({
     tag: 'text-adapter',
@@ -10,15 +10,16 @@ export class TextAdapter {
     @Prop() comData: ComData;
 
     render() {
-        let textConfig: TextConfig = this.comData.data.config;
+        let textConfig = this.comData.data.config;
         return (
             <div class="text-box">
                 <span style={{
-                    "font-size": textConfig.fontSize + "px",
-                    "line-height": Math.floor(1.5 * textConfig.fontSize) + "px",
-                    "font-weight": textConfig.fontWeight || "normal",
-                    "color": textConfig.color || "#ffffff",
-                    "text-align": textConfig.textAlign || "center"
+                    "line-height": textConfig.commonTextStyle&&textConfig.commonTextStyle.fontSize&&Math.floor(1.5 * textConfig.commonTextStyle.fontSize) + "px" ||"",
+
+                    "font-weight": textConfig.commonTextStyle && textConfig.commonTextStyle.fontWeight || "",
+                    "text-align": textConfig.commonTextStyle && textConfig.commonTextStyle.textAlign || "",
+                    "font-size": textConfig.commonTextStyle && textConfig.commonTextStyle.fontSize + "px" || "" + "px",
+                    "color": textConfig.commonTextStyle && textConfig.commonTextStyle.color || "",
                 }}>{textConfig.fontContent || ""}</span>
             </div>
 

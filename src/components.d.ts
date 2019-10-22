@@ -117,6 +117,7 @@ export namespace Components {
   }
   interface TableAdapter {
     'comDataConfig': DraggableConfig;
+    'comDataView': DraggableView;
     'dataSource': any;
   }
   interface TextAdapter {
@@ -450,6 +451,7 @@ declare namespace LocalJSX {
   }
   interface TableAdapter {
     'comDataConfig'?: DraggableConfig;
+    'comDataView'?: DraggableView;
     'dataSource'?: any;
   }
   interface TextAdapter {

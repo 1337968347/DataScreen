@@ -49,7 +49,7 @@ export class DraggableComponent {
                 )
             case "table":
                 return (
-                    <table-adapter comDataConfig={this.comOptionData.data.config} dataSource={this.apiData}></table-adapter>
+                    <table-adapter comDataView={this.comOptionData.data.view} comDataConfig={this.comOptionData.data.config} dataSource={this.apiData}></table-adapter>
                 )
             default:
                 break;

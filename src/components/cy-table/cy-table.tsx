@@ -9,10 +9,7 @@ import { Column } from '../../interfaces';
 export class CyTable {
     @Prop() Columns: Column[];
     @Prop() dataSource: any[];
-
-    componentWillLoad() {
-    }
-
+    
     render() {
         return (
             <table>

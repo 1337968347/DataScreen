@@ -63,7 +63,12 @@ export class ChartAdapter {
                     ...series,
                     name: series.name || `系列${index + 1}`,
                     data: this.dataSource.filter((data) => {
-                        return data.s == (series.id || index + 1)
+                        // 筛选系列属性
+                        if (index == 0 && !data.s) {
+                            return true;
+                        } else {
+                            return data.s == (series.id || index + 1)
+                        }
                     }).map((item) => item.y)
                 }
             })

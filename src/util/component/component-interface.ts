@@ -17,15 +17,12 @@ export declare type comType =
 
 declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend" | "tooltip";
 
-// 常用的设置
-declare type commonConfig = "bgi" | "fontSize" | "fontContent" | "fontWeight" | "color" | "videoSrc"
-    | "backgroundColor" | "textAlign" | "borderWidth" | "borderColor" | "borderImg" | "iframeSrc" | "swiperAutoTime"
-    | echartOption;
-
 // 表格设置
-declare type tableConfig = "columns" | "headerColor";
+declare type tableConfig = "columns" | "tableHeaderOption" | "tableRowOption";
 
-export declare type comConfig = commonConfig | tableConfig;
+export declare type comConfig = "bgi" | "commonTextStyle" | "fontContent" | "videoSrc"
+    | "backgroundColor" | "borderStyle" | "borderImg" | "iframeSrc" | "swiperAutoTime"
+    | tableConfig | echartOption;
 
 export interface ComData {
     data: DragComOption;

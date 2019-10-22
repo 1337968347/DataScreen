@@ -1,6 +1,8 @@
 :host {
-    --background: transparent;
-    --header-bg: var(--background, #fafafa);
+    --header-bg: transparent;
+    --odd-bg: transparent;
+    --even-bg: transparent;
+
     --color: #000000;
     --border-width: 0px;
     --border-color: #edf2f6;
@@ -13,11 +15,25 @@ table {
     height: 100%;
     color: var(--color);
     font-size: var(--font-size);
-    background: var(--background)
+    border-width: var(--border-width) 0 0 var(--border-width);
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: var(--border-color);
+
 }
 
 thead {
-    background: var(--header-bg)
+    tr{
+        background: var(--header-bg)!important;
+    }
+}
+
+tr:nth-child(odd) {
+    background-color: var(--odd-bg)
+}
+
+tr:nth-child(even) {
+    background-color: var(--even-bg)
 }
 
 td,
