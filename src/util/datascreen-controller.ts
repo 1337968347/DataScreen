@@ -142,6 +142,3 @@ export const updateLayerMove = (from: number, to: number, isCanvasUpdate: boolea
     componentDatas.splice(to, 0, comOptionTemp);
     setComponentDatas(componentDatas, isCanvasUpdate, isLayerUpdate, isLocalUpDate)
 }
-
-
-

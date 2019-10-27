@@ -18,7 +18,7 @@ export declare type comType =
 declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend" | "tooltip";
 
 // 表格设置
-declare type tableConfig = "columns" | "tableHeaderOption" | "tableRowOption";
+declare type tableConfig = "tableAllOption"| "columns" | "tableHeaderOption" | "tableRowOption" | "tableOrderOption";
 
 export declare type comConfig = "bgi" | "commonTextStyle" | "fontContent" | "videoSrc"
     | "backgroundColor" | "borderStyle" | "borderImg" | "iframeSrc" | "swiperAutoTime"

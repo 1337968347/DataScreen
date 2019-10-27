@@ -1,5 +1,5 @@
 import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@stencil/core';
-import { RouterHistory,MatchResults } from "@stencil/router"
+import { RouterHistory, MatchResults } from "@stencil/router"
 
 import { get, set } from "../../providers/local-storage";
 import { initLayerComponent, initSettingComponent, initDataScreen, getDataScreen } from "../../util/datascreen-controller";
@@ -54,14 +54,12 @@ export class AppHome {
         return (
             <Host class="ion-page">
                 <datascreen-header history={this.history} dataScreenId={this.dataScreenId} checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>
-                <ion-content>
-                    <div class="datascreen-box">
-                        <datascreen-layer style={{ width: this.showMenuControl[0] ? "200px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>
-                        <datascreen-com-panel style={{ width: this.showMenuControl[1] ? "240px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-com-panel>
-                        <datascreen-edit-main></datascreen-edit-main>
-                        <datascreen-setting-panel style={{ width: this.showMenuControl[2] ? "332px" : "0" }}></datascreen-setting-panel>
-                    </div>
-                </ion-content>
+                <div class="datascreen-box">
+                    <datascreen-layer style={{ width: this.showMenuControl[0] ? "200px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>
+                    <datascreen-com-panel style={{ width: this.showMenuControl[1] ? "240px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-com-panel>
+                    <datascreen-edit-main></datascreen-edit-main>
+                    <datascreen-setting-panel style={{ width: this.showMenuControl[2] ? "332px" : "0" }}></datascreen-setting-panel>
+                </div>
             </Host>
         );
     }

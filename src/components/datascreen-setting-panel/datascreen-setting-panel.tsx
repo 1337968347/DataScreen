@@ -204,6 +204,38 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
+                                {isComponentHasThisConfig(comName, "tableAllOption") ?
+                                    <cy-item-extend header="全局">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                是否轮播
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.tableAllOption && comData.config.tableAllOption.isScroll}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "isScroll"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                表格行数
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.tableAllOption && comData.config.tableAllOption.rowNum} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "rowNum"], e.detail.value) }}>
+                                                </ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                轮播间隔(s)
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.tableAllOption && comData.config.tableAllOption.intervalSecond} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "intervalSecond"], e.detail.value) }}>
+                                                </ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend> : null
+                                }
                                 {isComponentHasThisConfig(comName, "commonTextStyle") ?
                                     <cy-item-extend header="文本样式">
                                         <ion-row>
@@ -287,11 +319,19 @@ export class DatascreenSettingPanel {
                                     <cy-item-extend header="表头">
                                         <ion-row >
                                             <ion-col size="4">
+                                                表头行高(%)
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" max="100" value={comData.config.tableHeaderOption && comData.config.tableHeaderOption.height} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableHeaderOption", "height"], e.detail.value) }}></ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row >
+                                            <ion-col size="4">
                                                 背景颜色
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} value={comData.config.tableHeaderOption&&comData.config.tableHeaderOption.backgroundColor} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableHeaderOption","backgroundColor"], e.detail.value) }}></ion-input>
-                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableHeaderOption&&comData.config.tableHeaderOption.backgroundColor} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableHeaderOption","backgroundColor"], e.target['value']) }}></input>
+                                                <ion-input debounce={1500} value={comData.config.tableHeaderOption && comData.config.tableHeaderOption.backgroundColor} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableHeaderOption", "backgroundColor"], e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableHeaderOption && comData.config.tableHeaderOption.backgroundColor} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableHeaderOption", "backgroundColor"], e.target['value']) }}></input>
                                             </ion-col>
                                         </ion-row>
                                     </cy-item-extend>
@@ -304,8 +344,8 @@ export class DatascreenSettingPanel {
                                                 奇行背景色
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} value={comData.config.tableRowOption&&comData.config.tableRowOption.oddBgc} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption","oddBgc"], e.detail.value) }}></ion-input>
-                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableRowOption&&comData.config.tableRowOption.oddBgc} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption","oddBgc"], e.target['value']) }}></input>
+                                                <ion-input debounce={1500} value={comData.config.tableRowOption && comData.config.tableRowOption.oddBgc} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption", "oddBgc"], e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableRowOption && comData.config.tableRowOption.oddBgc} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption", "oddBgc"], e.target['value']) }}></input>
                                             </ion-col>
                                         </ion-row>
                                         <ion-row >
@@ -313,22 +353,48 @@ export class DatascreenSettingPanel {
                                                 偶行背景色
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} value={comData.config.tableRowOption&&comData.config.tableRowOption.evenBgc} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption","evenBgc"], e.detail.value) }}></ion-input>
-                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableRowOption&&comData.config.tableRowOption.evenBgc} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption","evenBgc"], e.target['value']) }}></input>
+                                                <ion-input debounce={1500} value={comData.config.tableRowOption && comData.config.tableRowOption.evenBgc} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption", "evenBgc"], e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.tableRowOption && comData.config.tableRowOption.evenBgc} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableRowOption", "evenBgc"], e.target['value']) }}></input>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend>
+                                    : null
+                                }
+                                {isComponentHasThisConfig(comName, "tableOrderOption") ?
+                                    <cy-item-extend header="序列号">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                显示
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.tableOrderOption && comData.config.tableOrderOption.show}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableOrderOption", "show"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row >
+                                            <ion-col size="4">
+                                                列宽(%)
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" max="100" value={comData.config.tableOrderOption && comData.config.tableOrderOption.width} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableOrderOption", "width"], e.detail.value) }}></ion-input>
                                             </ion-col>
                                         </ion-row>
                                     </cy-item-extend>
                                     : null
                                 }
                                 {isComponentHasThisConfig(comName, "columns") ?
-                                    <ion-row class="marginTop">
-                                        <ion-col size="12">
-                                            <ion-button fill="outline" onClick={() => { this.addNewTableColumn() }}>新增</ion-button>
-                                        </ion-col>
-                                        <ion-col size="12">
-                                            <cy-table Columns={TableColumns} dataSource={comData.config.columns}></cy-table>
-                                        </ion-col>
-                                    </ion-row> : null
+                                    <cy-item-extend header="自定义列">
+                                        <ion-row class="marginTop">
+                                            <ion-col size="12">
+                                                <ion-button fill="outline" onClick={() => { this.addNewTableColumn() }}>新增</ion-button>
+                                            </ion-col>
+                                            <ion-col size="12">
+                                                <cy-table Columns={TableColumns} dataSource={comData.config.columns}></cy-table>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend>
+                                    : null
                                 }
                                 {isComponentHasThisConfig(comName, "borderImg") ?
                                     <ion-row>
@@ -377,6 +443,7 @@ export class DatascreenSettingPanel {
                                         </ion-col>
                                     </ion-row> : null
                                 }
+                                {/* echarts */}
                                 {isComponentHasThisConfig(comName, "textStyle") ?
                                     <cy-item-extend header="全局样式">
                                         <ion-row>

@@ -69,8 +69,8 @@ export class AppRoot {
 
     await toast.present();
     await toast.onWillDismiss();
-    localStorage.clear();
     registration.waiting.postMessage("skipWaiting");
+    localStorage.clear();
     window.location.reload();
   }
 

@@ -18,6 +18,7 @@ import {
   DraggableApiData,
   DraggableConfig,
   DraggableView,
+  TableOption,
 } from './interfaces';
 
 export namespace Components {
@@ -59,6 +60,7 @@ export namespace Components {
   interface CyTable {
     'Columns': Column[];
     'dataSource': any[];
+    'option'?: TableOption;
   }
   interface DatascreenCanvas {
     'canModify': boolean;
@@ -384,6 +386,7 @@ declare namespace LocalJSX {
   interface CyTable {
     'Columns'?: Column[];
     'dataSource'?: any[];
+    'option'?: TableOption;
   }
   interface DatascreenCanvas {
     'canModify'?: boolean;
