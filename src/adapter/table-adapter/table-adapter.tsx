@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 
 import { DraggableConfig, DraggableView, TableOrderOption } from "../../interfaces"
 
@@ -8,10 +8,6 @@ import { DraggableConfig, DraggableView, TableOrderOption } from "../../interfac
 })
 export class TableAdapter {
     @Prop() comDataConfig: DraggableConfig;
-    @Watch('comDataConfig')
-    watchHandler(newValue, oldValue) {
-        console.log(newValue);
-    }
 
     @Prop() comDataView: DraggableView;
     @Prop() dataSource: any;
@@ -31,7 +27,7 @@ export class TableAdapter {
                     "--color": this.comDataConfig.commonTextStyle && this.comDataConfig.commonTextStyle.color || "",
                 }} option={{
                     orderOption: this.comDataConfig.tableOrderOption as TableOrderOption,
-                    tableAllOption:{
+                    tableAllOption:  this.comDataConfig.tableAllOption&&{
                         rowNum: this.comDataConfig.tableAllOption.rowNum,
                         isScroll: this.comDataConfig.tableAllOption.isScroll,
                         intervalSecond: this.comDataConfig.tableAllOption.intervalSecond,

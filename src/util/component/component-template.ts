@@ -104,23 +104,53 @@ const componentTemplateDataMap: ComponentInitalMap = {
     "table": {
         nickName: "表格",
         api_data: {
-            dataSourceType: "rest",
+            dataSourceType: "static",
             restType: "get",
             restUrl: "/r40cq",
             restRefreshTime: 0,
             staticData: [
                 {
-                    key: '1',
-                    name: '胡彦斌',
-                    age: 32,
-                    address: '西湖区湖底公园1号',
+                    "key": "1",
+                    "name": "胡彦斌",
+                    "age": 32,
+                    "address": "西湖区湖底公园1号"
                 },
                 {
-                    key: '2',
-                    name: '胡彦祖',
-                    age: 42,
-                    address: '西湖区湖底公园1号',
+                    "key": "2",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
                 },
+                {
+                    "key": "3",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
+                },
+                {
+                    "key": "4",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
+                },
+                {
+                    "key": "5",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
+                },
+                {
+                    "key": "6",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
+                },
+                {
+                    "key": "7",
+                    "name": "胡彦祖",
+                    "age": 42,
+                    "address": "西湖区湖底公园1号"
+                }
             ]
         },
         config: {
@@ -129,22 +159,41 @@ const componentTemplateDataMap: ComponentInitalMap = {
             textAlign: "center",
             fontSize: "30",
             color: "#261818",
-            borderColor: "#000000",
-            borderWidth: 0,
             columns: [
                 {
-                    title: '姓名',
-                    dataIndex: 'name',
+                    "title": "姓名",
+                    "dataIndex": "name",
+                    "width": 20
                 },
                 {
-                    title: '年龄',
-                    dataIndex: 'age',
+                    "title": "年龄",
+                    "dataIndex": "age",
+                    "width": 20
                 },
                 {
-                    title: '住址',
-                    dataIndex: 'address',
-                },
-            ]
+                    "title": "住址",
+                    "dataIndex": "address",
+                    "width": 20
+                }
+            ],
+            commonTextStyle: {
+                color: "#ffffff",
+                textAlign: "center",
+                fontSize: "20"
+            },
+            tableRowOption: {
+                oddBgc: "#003b51",
+                evenBgc: "#0a2732"
+            },
+            tableAllOption: {
+                isScroll: true,
+                rowNum: "1",
+                intervalSecond: "3"
+            },
+            tableOrderOption: {
+                show: true,
+                width: "5"
+            }
         },
         icon: "assets/com-icon/chart-base-line.png",
         view: {

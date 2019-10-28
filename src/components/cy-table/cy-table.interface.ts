@@ -1,6 +1,7 @@
 export interface Column {
     title: string;
     dataIndex: string;
+    width?: number;
     render?: Function;
 }
 export interface TableOrderOption {

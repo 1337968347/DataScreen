@@ -102,6 +102,11 @@ export class DatascreenSettingPanel {
                 placeholder: "dataIndex",
                 name: "dataIndex",
                 value: row.dataIndex || ""
+            }, {
+                type: "number",
+                placeholder: "宽度百分比",
+                name: "width",
+                value: row.width || ""
             }],
             buttons: [
                 {
@@ -136,6 +141,10 @@ export class DatascreenSettingPanel {
             {
                 title: 'dataIndex',
                 dataIndex: 'dataIndex'
+            },
+            {
+                title: '宽度',
+                dataIndex: 'width'
             },
             {
                 title: '操作',
@@ -221,7 +230,7 @@ export class DatascreenSettingPanel {
                                                 表格行数
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.tableAllOption && comData.config.tableAllOption.rowNum} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "rowNum"], e.detail.value) }}>
+                                                <ion-input debounce={1500} type="number" min="1" value={comData.config.tableAllOption && comData.config.tableAllOption.rowNum} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "rowNum"], e.detail.value) }}>
                                                 </ion-input>
                                             </ion-col>
                                         </ion-row>
@@ -230,7 +239,7 @@ export class DatascreenSettingPanel {
                                                 轮播间隔(s)
                                             </ion-col>
                                             <ion-col size="8">
-                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.tableAllOption && comData.config.tableAllOption.intervalSecond} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "intervalSecond"], e.detail.value) }}>
+                                                <ion-input debounce={1500} type="number" min="1" value={comData.config.tableAllOption && comData.config.tableAllOption.intervalSecond} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "tableAllOption", "intervalSecond"], e.detail.value) }}>
                                                 </ion-input>
                                             </ion-col>
                                         </ion-row>
