@@ -8,6 +8,7 @@ export class DatascreenCanvasContent {
     @Element() el: HTMLElement;
     @Prop() minCanvasScale: number = 15;
     @Prop() maxCanvasSCale: number = 300;
+    @Prop() padding: number = 0;
     @Event() canvasScaleChange: EventEmitter;
 
     componentDidLoad() {
@@ -23,14 +24,18 @@ export class DatascreenCanvasContent {
     @Method()
     async resizeSCale() {
         let dataScreenCanvasEl = this.el.querySelector("datascreen-canvas");
+        // 这里可能为负数，但是下边已经做了控制
+        let contentCLientWidth = this.el.clientWidth - 2 * this.padding;
+        let contentCLientHeight = this.el.clientHeight - 2 * this.padding;
+
         let scale: number;
         if (dataScreenCanvasEl) {
             let dataScreenCanvasSize = await dataScreenCanvasEl.getCanvasSize();
             if (dataScreenCanvasSize) {
-                if ((dataScreenCanvasSize.w / dataScreenCanvasSize.h) > (this.el.clientWidth / this.el.clientHeight)) {
-                    scale = (this.el.clientWidth / dataScreenCanvasSize.w) * 100;
+                if ((dataScreenCanvasSize.w / dataScreenCanvasSize.h) > (contentCLientWidth / contentCLientHeight)) {
+                    scale = (contentCLientWidth / dataScreenCanvasSize.w) * 100;
                 } else {
-                    scale = (this.el.clientHeight / dataScreenCanvasSize.h) * 100;
+                    scale = (contentCLientHeight / dataScreenCanvasSize.h) * 100;
                 }
                 scale = scale > this.minCanvasScale ? scale : this.minCanvasScale;
                 scale = scale > this.maxCanvasSCale ? this.maxCanvasSCale : scale;
@@ -40,10 +45,10 @@ export class DatascreenCanvasContent {
             }
         }
     }
-    
+
     render() {
         return (
-            <Host>
+            <Host style={{ "padding": this.padding + "px" }}>
                 <slot></slot>
             </Host>
         );

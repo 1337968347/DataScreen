@@ -2,6 +2,7 @@ datascreen-canvas-content {
     width: 100%;
     height: 100%;
     display: block;
-    overflow: scroll;
+    overflow: auto;
     position: relative;
+    box-sizing: border-box;
 }

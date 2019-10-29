@@ -73,6 +73,7 @@ export namespace Components {
   interface DatascreenCanvasContent {
     'maxCanvasSCale': number;
     'minCanvasScale': number;
+    'padding': number;
     'resizeSCale': () => Promise<void>;
   }
   interface DatascreenComPanel {}
@@ -398,6 +399,7 @@ declare namespace LocalJSX {
     'maxCanvasSCale'?: number;
     'minCanvasScale'?: number;
     'onCanvasScaleChange'?: (event: CustomEvent<any>) => void;
+    'padding'?: number;
   }
   interface DatascreenComPanel {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
