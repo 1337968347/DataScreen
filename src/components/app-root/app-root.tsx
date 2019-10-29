@@ -1,4 +1,4 @@
-import { Component, Listen, h } from '@stencil/core';
+import { Component, Listen, h, State } from '@stencil/core';
 import '@stencil/router';
 import { popoverController, toastController, alertController, actionSheetController, loadingController } from '@ionic/core';
 
@@ -7,6 +7,7 @@ import { popoverController, toastController, alertController, actionSheetControl
   styleUrl: 'app-root.css'
 })
 export class AppRoot {
+  @State() isOk: boolean = false;
 
   @Listen('toast')
   async presentToast(message) {
@@ -41,6 +42,16 @@ export class AppRoot {
   }
 
   componentWillLoad() {
+    if (localStorage.getItem("password") == "15966072812") {
+      this.isOk = true;
+    } else {
+      var person = prompt("请输入密码");
+      if (person != null && person == "15966072812") {
+        this.isOk =true;
+        localStorage.setItem("password", "15966072812")
+      }
+    }
+
     this.setCurrentTheme()
   }
 
@@ -61,7 +72,7 @@ export class AppRoot {
     }
 
     const toast = await toastController.create({
-      header:"新的版本可用",
+      header: "新的版本可用",
       message: "即将清空localstorage",
       showCloseButton: true,
       closeButtonText: "确定"
@@ -75,17 +86,19 @@ export class AppRoot {
   }
 
   render() {
-    return (
-      <ion-app>
-        <main>
-          <stencil-router historyType="hash" scrollTopOffset={0}>
+    if (this.isOk) {
+      return (
+        <ion-app>
+          <main>
+            <stencil-router historyType="hash" scrollTopOffset={0}>
               <stencil-route url="/" component="app-manage" exact={true}></stencil-route>
-              <stencil-route url="/new" component="app-create"exact={true} />
-              <stencil-route url="/canvas/:dataScreenId/edit" component="app-home"exact={true} />
-              <stencil-route url="/canvas/:dataScreenId/preview" component="app-preview"exact={true}></stencil-route>
-          </stencil-router>
-        </main>
-      </ion-app>
-    );
+              <stencil-route url="/new" component="app-create" exact={true} />
+              <stencil-route url="/canvas/:dataScreenId/edit" component="app-home" exact={true} />
+              <stencil-route url="/canvas/:dataScreenId/preview" component="app-preview" exact={true}></stencil-route>
+            </stencil-router>
+          </main>
+        </ion-app>
+      );
+    }
   }
 }
