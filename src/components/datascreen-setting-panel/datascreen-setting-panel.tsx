@@ -485,7 +485,7 @@ export class DatascreenSettingPanel {
                                                     顶部
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.grid && comData.config.grid.top || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "top"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 60" value={comData.config.grid && comData.config.grid.top || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "top"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
@@ -494,7 +494,7 @@ export class DatascreenSettingPanel {
                                                     底部
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.grid && comData.config.grid.bottom || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "bottom"], e.detail.value) }}>
+                                                    <ion-input debounce={1500}  placeholder="百分比或固定值，默认 60" value={comData.config.grid && comData.config.grid.bottom || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "bottom"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
@@ -503,7 +503,7 @@ export class DatascreenSettingPanel {
                                                     左侧
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.grid && comData.config.grid.left || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "left"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%"   value={comData.config.grid && comData.config.grid.left || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "left"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
@@ -512,7 +512,7 @@ export class DatascreenSettingPanel {
                                                     右侧
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} type="number" min="0" value={comData.config.grid && comData.config.grid.right || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "right"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%"   value={comData.config.grid && comData.config.grid.right || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "right"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>

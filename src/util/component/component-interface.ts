@@ -9,7 +9,7 @@ export declare type comType =
     // media
     "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" | "media-video" |
     // chart
-    "chart-base-line" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-simple" |
+    "chart-line-base" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-base" | "chart-bar-vertical"|
     // text
     "text-common" |
     // table

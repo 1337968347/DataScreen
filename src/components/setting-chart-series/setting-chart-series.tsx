@@ -12,7 +12,8 @@ export class SettingChartSeries {
     @Event() cyChange: EventEmitter;
 
     componentWillLoad() {
-        this.handleSerieschange("0")
+        this.handleSerieschange("0");
+        console.log(this.series)
     }
 
     handleSeriesChange(argList: string[], value) {
@@ -26,8 +27,16 @@ export class SettingChartSeries {
         this.chooseSeries = { ...this.series[this.chooseSeriesIndex] };
     }
 
+    addSeries() {
+
+        this.handleSeriesChange(["config", "series"], [...this.series, {
+            type: this.series[0].type
+        }]);
+    }
+
     deleteSeries() {
-        if (this.series[0]) {
+        // 最少得剩一个吧
+        if (this.series[1]) {
             let deepSeries = deepCopy([], this.series)
             deepSeries.splice(parseInt(this.chooseSeriesIndex), 1)
             this.handleSeriesChange(["config", "series"], deepSeries);
@@ -40,7 +49,7 @@ export class SettingChartSeries {
         return [
             <ion-row>
                 <ion-col>
-                    <ion-button expand="full">添加</ion-button>
+                    <ion-button expand="full" onClick={() => { this.addSeries() }}>添加</ion-button>
                     <ion-button expand="full" onClick={() => { this.deleteSeries() }}>删除</ion-button>
                 </ion-col>
             </ion-row>,
@@ -156,7 +165,7 @@ export class SettingChartSeries {
                             <ion-row>
                                 <ion-col size="4">
                                     颜色
-                            </ion-col>
+                                </ion-col>
                                 <ion-col size="8">
                                     <ion-input debounce={1500} value={this.chooseSeries && this.chooseSeries.areaStyle && this.chooseSeries.areaStyle.color || ""}
                                         onIonChange={(e) => { this.handleSeriesChange(["config", "series", this.chooseSeriesIndex, "areaStyle", "color"], e.detail.value) }}></ion-input>
@@ -198,6 +207,20 @@ export class SettingChartSeries {
                             </ion-row>
                         </cy-item-extend>
                     ] : null
+                }
+
+                {this.chooseSeries && this.chooseSeries.type == "bar" ?
+                    <ion-row>
+                        <ion-col size="4">
+                            颜色
+                        </ion-col>
+                        <ion-col size="8">
+                            <ion-input debounce={1500} value={this.chooseSeries && this.chooseSeries.itemStyle && this.chooseSeries.itemStyle.color || ""}
+                                onIonChange={(e) => { this.handleSeriesChange(["config", "series", this.chooseSeriesIndex, "itemStyle", "color"], e.detail.value) }}></ion-input>
+                            <input style={{ "height": "100%" }} type="color" value={this.chooseSeries && this.chooseSeries.itemStyle && this.chooseSeries.itemStyle.color || ""}
+                                onChange={(e) => { this.handleSeriesChange(["config", "series", this.chooseSeriesIndex, "itemStyle", "color"], e.target['value']) }}></input>
+                        </ion-col>
+                    </ion-row> : null
                 }
 
             </ion-list>

@@ -205,7 +205,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
-    "chart-base-line": {
+    "chart-line-base": {
         nickName: "基本折线图",
         api_data: {
             dataSourceType: "static",
@@ -321,6 +321,9 @@ const componentTemplateDataMap: ComponentInitalMap = {
             ]
         },
         config: {
+            textStyle: {
+                color: "#ffffff"
+            },
             xAxis: {
                 type: 'category',
                 boundaryGap: false
@@ -350,6 +353,238 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
+    "chart-bar-base": {
+        nickName: "基本柱图",
+        api_data: {
+            dataSourceType: "static",
+            restType: "get",
+            restUrl: "",
+            restRefreshTime: 0,
+            staticData: [
+                {
+                    "x": "上海",
+                    "y": 23
+                },
+                {
+                    "x": "深圳",
+                    "y": 13
+                },
+                {
+                    "x": "合肥",
+                    "y": 2
+                },
+                {
+                    "x": "成都",
+                    "y": 9
+                },
+                {
+                    "x": "安徽",
+                    "y": 5
+                },
+                {
+                    "x": "北京",
+                    "y": 10
+                },
+                {
+                    "x": "杭州",
+                    "y": 14
+                },
+                {
+                    "x": "长沙",
+                    "y": 24
+                }
+            ],
+            fieldMap: [
+                { name: "x(类目)", mapping: "" },
+                { name: "y(值)", mapping: "" },
+                { name: "s(系列)", mapping: "" },
+            ]
+        },
+        config: {
+            textStyle: {
+                color: "#ffffff"
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value',
+                show: false,
+            },
+            tooltip: {},
+            series: [{
+                type: 'bar',
+                areaStyle: {}
+            }]
+        },
+        icon: "assets/com-icon/chart-base-line.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "400",
+            h: "300",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "chart-bar-vertical": {
+        nickName: "垂直基本柱图",
+        api_data: {
+            dataSourceType: "static",
+            restType: "get",
+            restUrl: "",
+            restRefreshTime: 0,
+            staticData: [
+                {
+                    "x": "内蒙古",
+                    "y": "375",
+                    "s": "1"
+                },
+                {
+                    "x": "内蒙古",
+                    "y": "180",
+                    "s": "2"
+                },
+                {
+                    "x": "内蒙古",
+                    "y": "200",
+                    "s": "3"
+                },
+                {
+                    "x": "浙江",
+                    "y": "200",
+                    "s": "1"
+                },
+                {
+                    "x": "浙江",
+                    "y": "100",
+                    "s": "2"
+                },
+                {
+                    "x": "浙江",
+                    "y": "200",
+                    "s": "3"
+                },
+                {
+                    "x": "辽宁",
+                    "y": "25",
+                    "s": "1"
+                },
+                {
+                    "x": "辽宁",
+                    "y": "125",
+                    "s": "2"
+                },
+                {
+                    "x": "辽宁",
+                    "y": "100",
+                    "s": "3"
+                },
+                {
+                    "x": "吉林",
+                    "y": "190",
+                    "s": "1"
+                },
+                {
+                    "x": "吉林",
+                    "y": "110",
+                    "s": "2"
+                },
+                {
+                    "x": "吉林",
+                    "y": "170",
+                    "s": "3"
+                },
+                {
+                    "x": "黑龙江",
+                    "y": "90",
+                    "s": "1"
+                },
+                {
+                    "x": "黑龙江",
+                    "y": "60",
+                    "s": "2"
+                },
+                {
+                    "x": "黑龙江",
+                    "y": "70",
+                    "s": "3"
+                },
+                {
+                    "x": "安徽",
+                    "y": "240",
+                    "s": "1"
+                },
+                {
+                    "x": "安徽",
+                    "y": "170",
+                    "s": "2"
+                },
+                {
+                    "x": "安徽",
+                    "y": "280",
+                    "s": "3"
+                },
+                {
+                    "x": "福建",
+                    "y": "420",
+                    "s": "1"
+                },
+                {
+                    "x": "福建",
+                    "y": "190",
+                    "s": "2"
+                },
+                {
+                    "x": "福建",
+                    "y": "390",
+                    "s": "3"
+                }
+            ],
+            fieldMap: [
+                { name: "x(类目)", mapping: "" },
+                { name: "y(值)", mapping: "" },
+                { name: "s(系列)", mapping: "" },
+            ]
+        },
+        config: {
+            "textStyle": {
+                "color": "#ffffff"
+            },
+            "xAxis": {
+                "type": "category",
+                "boundaryGap": false
+            },
+            "yAxis": {
+                "type": "value",
+                "show": false
+            },
+            "tooltip": {},
+            "series": [
+                {
+                    "type": "bar",
+                    "areaStyle": {}
+                },
+                {
+                    "type": "bar"
+                },
+                {
+                    "type": "bar"
+                }
+            ]
+        },
+        icon: "assets/com-icon/chart-base-line.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "400",
+            h: "300",
+            opacity: "1",
+            deg: "0"
+        }
+    }
+
 }
 
 export { componentTemplateDataMap }

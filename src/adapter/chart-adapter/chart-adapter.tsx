@@ -67,7 +67,7 @@ export class ChartAdapter {
                         if (index == 0 && !data.s) {
                             return true;
                         } else {
-                            return data.s == (series.id || index + 1)
+                            return data.s == (index + 1)
                         }
                     }).map((item) => item.y)
                 }

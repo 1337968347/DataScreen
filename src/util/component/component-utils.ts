@@ -13,9 +13,11 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
 
     "text-common": ["commonTextStyle", "fontContent", "backgroundColor",],
 
-    "table": ["columns", "tableAllOption", "tableHeaderOption","tableRowOption", "tableOrderOption", "commonTextStyle"],
-
-    "chart-base-line": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"]
+    "table": ["columns", "tableAllOption", "tableHeaderOption", "tableRowOption", "tableOrderOption", "commonTextStyle"],
+    // 中间那个是series的type
+    "chart-line-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"],
+    "chart-bar-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"],
+    "chart-bar-vertical": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"]
 };
 
 export { comConfigMap, isComponentHasThisConfig }
