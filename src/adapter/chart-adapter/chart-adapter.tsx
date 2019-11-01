@@ -43,6 +43,14 @@ export class ChartAdapter {
         this.initChart();
     }
 
+    getSeriesData(data: any,type: string){
+        if(type=="pie"){
+            return {name: data.x , value:data.y}
+        }else{
+            return data.y
+        }
+    }
+
     initChart() {
         this.chartObj && this.chartObj.dispose();
         this.chartObj = echarts.init(this.el.querySelector('#chartId'), "", { width: this.comDataView.w, height: this.comDataView.h });
@@ -53,10 +61,6 @@ export class ChartAdapter {
                 data: this.comDataConfig.series.map((series, index) => {
                     return series.name || `系列${index + 1}`
                 })
-            },
-            xAxis: {
-                ...this.comDataConfig.xAxis,
-                data: [...new Set(this.dataSource.map((item) => item.x))]
             },
             series: this.comDataConfig.series.map((series, index) => {
                 return {
@@ -69,10 +73,17 @@ export class ChartAdapter {
                         } else {
                             return data.s == (index + 1)
                         }
-                    }).map((item) => item.y)
+                    }).map((item) => this.getSeriesData(item, series.type) )
                 }
             })
         }
+        if (chartOption['xAxis']) {
+            chartOption['xAxis'] = {
+                ...this.comDataConfig.xAxis,
+                data: [...new Set(this.dataSource.map((item) => item.x))]
+            }
+        }
+
         console.log(chartOption)
         this.chartObj.setOption(chartOption);
     }

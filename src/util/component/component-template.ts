@@ -583,8 +583,186 @@ const componentTemplateDataMap: ComponentInitalMap = {
             opacity: "1",
             deg: "0"
         }
+    },
+    "chart-pie-basic": {
+        nickName: "基础款饼图",
+        api_data: {
+            dataSourceType: "static",
+            restType: "get",
+            restUrl: "",
+            restRefreshTime: 0,
+            staticData: [
+                {
+                    "x": "普货",
+                    "y": 5
+                },
+                {
+                    "x": "普货",
+                    "y": 22
+                },
+                {
+                    "x": "泡货",
+                    "y": 22
+                },
+                {
+                    "x": "设备",
+                    "y": 14
+                },
+                {
+                    "x": "矿产",
+                    "y": 15
+                },
+                {
+                    "x": "钢铁",
+                    "y": 15
+                },
+                {
+                    "x": "建材",
+                    "y": 12
+                },
+                {
+                    "x": "食品",
+                    "y": 12
+                }
+            ],
+            fieldMap: [
+                { name: "x(类目)", mapping: "" },
+                { name: "y(值)", mapping: "" }
+            ]
+        },
+        config: {
+            "textStyle": {
+                "color": "#ffffff"
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                }
+            ]
+        },
+        icon: "assets/com-icon/chart-base-line.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "400",
+            h: "300",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "chart-pie-sector": {
+        nickName: "扇形饼图",
+        api_data: {
+            dataSourceType: "static",
+            restType: "get",
+            restUrl: "",
+            restRefreshTime: 0,
+            staticData: [
+                {
+                    "x": "普货",
+                    "y": 5
+                },
+                {
+                    "x": "普货",
+                    "y": 22
+                },
+                {
+                    "x": "泡货",
+                    "y": 22
+                },
+                {
+                    "x": "设备",
+                    "y": 14
+                },
+                {
+                    "x": "矿产",
+                    "y": 15
+                },
+                {
+                    "x": "钢铁",
+                    "y": 15
+                },
+                {
+                    "x": "建材",
+                    "y": 12
+                },
+                {
+                    "x": "食品",
+                    "y": 12
+                }
+            ],
+            fieldMap: [
+                { name: "x(类目)", mapping: "" },
+                { name: "y(值)", mapping: "" }
+            ]
+        },
+        config: {
+            "textStyle": {
+                "color": "#ffffff"
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    label: {
+                        normal: {
+                            show: true,
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                }
+            ]
+        },
+        icon: "assets/com-icon/chart-base-line.png",
+        view: {
+            x: "0",
+            y: "0",
+            w: "400",
+            h: "300",
+            opacity: "1",
+            deg: "0"
+        }
     }
 
 }
+
+
+
 
 export { componentTemplateDataMap }

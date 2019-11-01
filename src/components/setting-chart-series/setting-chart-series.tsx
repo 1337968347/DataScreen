@@ -30,7 +30,7 @@ export class SettingChartSeries {
     addSeries() {
 
         this.handleSeriesChange(["config", "series"], [...this.series, {
-            type: this.series[0].type
+            ...this.series[0], name: "",
         }]);
     }
 
@@ -61,6 +61,7 @@ export class SettingChartSeries {
                 )}
             </ion-segment>,
             <ion-list>
+                {/*  相关属性设置 查阅 https://www.echartsjs.com/zh/option.html#series */}
                 <ion-row>
                     <ion-col size="4">
                         系列名
@@ -223,6 +224,20 @@ export class SettingChartSeries {
                     </ion-row> : null
                 }
 
+                {this.chooseSeries && this.chooseSeries.type == "pie" ?
+                    [
+                        <ion-row>
+                            <ion-col size="4">
+                                南丁格尔图
+                            </ion-col>
+                            <ion-col size="8">
+                                <ion-toggle checked={this.chooseSeries && this.chooseSeries.roseType}
+                                    onIonChange={(e) => { this.handleSeriesChange(["config", "series", this.chooseSeriesIndex, "roseType",], e.detail.checked); }}>
+                                </ion-toggle>
+                            </ion-col>
+                        </ion-row>
+                    ] : null
+                }
             </ion-list>
         ];
     }

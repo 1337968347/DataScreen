@@ -42,15 +42,15 @@ export class AppRoot {
   }
 
   componentWillLoad() {
-    if (localStorage.getItem("password") == "15966072812") {
+    // if (localStorage.getItem("password") == "15966072812") {
       this.isOk = true;
-    } else {
-      var person = prompt("请输入密码");
-      if (person != null && person == "15966072812") {
-        this.isOk =true;
-        localStorage.setItem("password", "15966072812")
-      }
-    }
+    // } else {
+    //   var person = prompt("请输入密码");
+    //   if (person != null && person == "15966072812") {
+    //     this.isOk =true;
+    //     localStorage.setItem("password", "15966072812")
+    //   }
+    // }
 
     this.setCurrentTheme()
   }
