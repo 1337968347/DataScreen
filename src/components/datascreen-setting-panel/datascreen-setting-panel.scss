@@ -3,16 +3,11 @@ datascreen-setting-panel {
     overflow: hidden;
     position: relative;
     transition: width .25s ease-in-out;
-    font-size: calc(0.8 * var(--font-size));
 
     ion-header {
         width: 332px;
     }
 
-    .header-box {
-        width: 100%;
-        text-align: center;
-    }
 
     ion-segment {
         background-color: var(--ion-background-color);
@@ -29,15 +24,18 @@ datascreen-setting-panel {
     }
 
     ion-toolbar {
-        margin: 2px 0;
-        --background: var(--ion-background-shade)
+        --background: var(--ion-background-shade);
+        --min-height: 30px;
+        ion-title{
+            font-size: 13px;
+        }
     }
 
     ion-content {
         width: 332px;
-        font-size: 14px;
-        --padding-start: 0px;
-        --padding-end: 0px;
+        font-size: 12px;
+        --padding-start: 12px;
+        --padding-end: 12px;
 
         ion-title {
             font-size: var(--font-size);
@@ -55,6 +53,7 @@ datascreen-setting-panel {
             ion-col {
                 display: flex;
                 align-items: center;
+                padding: 5px 10px;
 
                 ion-range {
                     padding-inline-start: 0px;
@@ -67,8 +66,8 @@ datascreen-setting-panel {
                     --border-radius: 0;
                 }
 
-                ion-input {
-                    height: 32px;
+                ion-input,input {
+                    height: 25px;
                     --background: var(--ion-background-tint) !important;
                 }
 
@@ -76,6 +75,7 @@ datascreen-setting-panel {
                 input[type=number]::-webkit-outer-spin-button {
                     width: 25px;
                     height: 30px;
+                    opacity: 1;
                 }
 
                 cy-table {
@@ -85,6 +85,8 @@ datascreen-setting-panel {
 
                 ion-select {
                     width: 100%;
+                    --padding-top:  6px;
+                    --padding-bottom: 0;
                     background: var(--ion-background-tint) !important;
                 }
             }

@@ -67,7 +67,7 @@ export class DatascreenComPanel {
                             return comName.split("-")[0] == this.chooseComType
                         }).map((comName) =>
                             <div class="com-item" onClick={() => { this.addComToCanvas(comName as comType, componentTemplateDataMap[comName]) }}>
-                                <div style={{ "background-image": `url(../../${componentTemplateDataMap[comName].icon})` }} class="com-img"></div>
+                                <cy-iconfont class="com-img" name={componentTemplateDataMap[comName].icon}></cy-iconfont>
                                 <div>{componentTemplateDataMap[comName].nickName}</div>
                             </div>
                         )}

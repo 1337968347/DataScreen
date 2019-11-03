@@ -37,9 +37,9 @@ export class SettingCanvasOption {
         return [
             <ion-header>
                 <ion-toolbar color="secondary">
-                    <div class="header-box">
+                    <ion-title>
                         页面设置
-                    </div>
+                    </ion-title>
                 </ion-toolbar>
             </ion-header>,
             <ion-content>

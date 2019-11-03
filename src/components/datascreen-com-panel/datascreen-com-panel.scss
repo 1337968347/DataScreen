@@ -64,21 +64,14 @@ datascreen-com-panel {
             cursor: pointer;
 
             .com-img{
-                background-clip: content-box;
-                background-size: 70% 70%;
-                background-position: center;
-                background-repeat: no-repeat;
-                // background-color: var(--ion-color-secondary);
-                height: 60px;
-                border-radius: 6px;
-                // filter:drop-shadow(0 0 var(--ion-color-primary));
-                border-width: 1px;
-                border-style: solid;
-                border-color: transparent;
+                width: 55px;
+                height: 55px;
             }
         }
         .com-item:hover .com-img {
             border-color: var( --ion-color-primary-shade);
+            border-width: 1px;
+            border-style: solid;
         }
     }
 }

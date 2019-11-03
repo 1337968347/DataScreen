@@ -48,8 +48,12 @@ export namespace Components {
     'scale': number;
   }
   interface CyFastClick {}
+  interface CyIconfont {
+    'name': string;
+  }
   interface CyItemExtend {
     'header': string;
+    'iconPosition': "start" | "end";
   }
   interface CyLazyImg {
     'alt': string;
@@ -177,6 +181,12 @@ declare global {
   var HTMLCyFastClickElement: {
     prototype: HTMLCyFastClickElement;
     new (): HTMLCyFastClickElement;
+  };
+
+  interface HTMLCyIconfontElement extends Components.CyIconfont, HTMLStencilElement {}
+  var HTMLCyIconfontElement: {
+    prototype: HTMLCyIconfontElement;
+    new (): HTMLCyIconfontElement;
   };
 
   interface HTMLCyItemExtendElement extends Components.CyItemExtend, HTMLStencilElement {}
@@ -313,6 +323,7 @@ declare global {
     'chart-adapter': HTMLChartAdapterElement;
     'cy-draggable': HTMLCyDraggableElement;
     'cy-fast-click': HTMLCyFastClickElement;
+    'cy-iconfont': HTMLCyIconfontElement;
     'cy-item-extend': HTMLCyItemExtendElement;
     'cy-lazy-img': HTMLCyLazyImgElement;
     'cy-table': HTMLCyTableElement;
@@ -375,8 +386,12 @@ declare namespace LocalJSX {
   interface CyFastClick {
     'onFastClick'?: (event: CustomEvent<any>) => void;
   }
+  interface CyIconfont {
+    'name'?: string;
+  }
   interface CyItemExtend {
     'header'?: string;
+    'iconPosition'?: "start" | "end";
   }
   interface CyLazyImg {
     'alt'?: string;
@@ -472,6 +487,7 @@ declare namespace LocalJSX {
     'chart-adapter': ChartAdapter;
     'cy-draggable': CyDraggable;
     'cy-fast-click': CyFastClick;
+    'cy-iconfont': CyIconfont;
     'cy-item-extend': CyItemExtend;
     'cy-lazy-img': CyLazyImg;
     'cy-table': CyTable;
@@ -510,6 +526,7 @@ declare module "@stencil/core" {
       'chart-adapter': LocalJSX.ChartAdapter & JSXBase.HTMLAttributes<HTMLChartAdapterElement>;
       'cy-draggable': LocalJSX.CyDraggable & JSXBase.HTMLAttributes<HTMLCyDraggableElement>;
       'cy-fast-click': LocalJSX.CyFastClick & JSXBase.HTMLAttributes<HTMLCyFastClickElement>;
+      'cy-iconfont': LocalJSX.CyIconfont & JSXBase.HTMLAttributes<HTMLCyIconfontElement>;
       'cy-item-extend': LocalJSX.CyItemExtend & JSXBase.HTMLAttributes<HTMLCyItemExtendElement>;
       'cy-lazy-img': LocalJSX.CyLazyImg & JSXBase.HTMLAttributes<HTMLCyLazyImgElement>;
       'cy-table': LocalJSX.CyTable & JSXBase.HTMLAttributes<HTMLCyTableElement>;

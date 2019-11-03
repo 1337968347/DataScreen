@@ -1,5 +1,5 @@
 import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
-
+import { componentTemplateDataMap } from "../../util/component/component-template";
 import { changeChooseComponent, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
 
 @Component({
@@ -37,7 +37,7 @@ export class DatascreenLayer {
             <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(comData.id) }}>
                 <ion-item button color={this.chooseComId == comData.id ? "primary" : ""}>
                     <ion-thumbnail slot="start">
-                        <img src={"../../" + comData.data.icon} />
+                        <cy-iconfont class="com-img" name={componentTemplateDataMap[comData.comName].icon}></cy-iconfont>
                     </ion-thumbnail>
                     <ion-label>
                         {comData.data.nickName || comData.data.comName || ""}

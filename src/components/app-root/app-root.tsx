@@ -1,7 +1,6 @@
 import { Component, Listen, h, State } from '@stencil/core';
 import '@stencil/router';
 import { popoverController, toastController, alertController, actionSheetController, loadingController } from '@ionic/core';
-
 @Component({
   tag: 'app-root',
   styleUrl: 'app-root.css'

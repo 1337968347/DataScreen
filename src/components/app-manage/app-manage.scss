@@ -1,15 +1,18 @@
 app-manage {
-    ion-toolbar ion-button {
-        height: var(--min-height)!important;
+    ion-toolbar{
+        height: 50px;
     }
 
-    ion-segment {
-        background-color: var(--ion-background-color);
-        --color: var(--ion-toolbar-color) !important;
-        justify-content: flex-start !important;
+    .title {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: var(--ion-text-color);
+        font-size: calc(2 * var(--font-size));
+        padding-left: 20px;
 
-        ion-label {
-            font-size: calc(1.2 * var(--font-size));
+        img {
+            width: 40px;
         }
     }
 
@@ -52,6 +55,7 @@ app-manage {
             --color: var(--ion-background-contrast);
             --background: linear-gradient(-90deg, var(--ion-background-shade) 0, var(--ion-background-color) 100%);
             color: var(--color);
+
             .add-card-content {
                 height: 100%;
                 width: 100%;

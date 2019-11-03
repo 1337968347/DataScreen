@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Host, h } from '@stencil/core';
 import { popoverController } from '@ionic/core';
 import uuid from "uuid";
 
@@ -75,20 +75,19 @@ export class PopoverCodeModify {
 
     render() {
         return (
-            <ion-content>
+            <Host style={{ "flex": "1", "display": "flex", "flex-direction": "column" }}>
                 <ion-toolbar color="secondary">
                     <ion-title>show me the code</ion-title>
                 </ion-toolbar>
-                <ion-list>
-                    <ion-item>
-                        <ion-textarea placeholder="复制大屏数据到这导入" debounce={300} rows={18} wrap="soft" onIonChange={(e) => { this.handleCodeChange(e) }} value={this.codeAll}></ion-textarea>
-                    </ion-item>
+                <div class="popover_content">
+                    <ion-textarea placeholder="复制大屏数据到这导入" debounce={300} wrap="soft" onIonChange={(e) => { this.handleCodeChange(e) }} value={this.codeAll}></ion-textarea>
                     <ion-row>
                         <ion-col><ion-button onClick={() => { this.saveComponentsData() }} color="primary" expand="block">保存</ion-button></ion-col>
                         <ion-col><ion-button onClick={() => { this.cancelModify() }} color="primary" fill="outline" expand="block">取消</ion-button></ion-col>
                     </ion-row>
-                </ion-list>
-            </ion-content>
+                </div>
+
+            </Host>
         );
     }
 }

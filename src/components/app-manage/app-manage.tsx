@@ -11,7 +11,6 @@ import { DataScreenData } from "../../providers/datascreen-data";
 export class AppManage {
     @Prop() history: RouterHistory;
     @Element() el: HTMLElement;
-    @State() chooseSeg: "my-canvas" | "my-component" | string = "my-canvas";
     @State() dataScreenList: DataScreen[] = []
     @Event() popover: EventEmitter;
     @Event() alert: EventEmitter;
@@ -19,7 +18,7 @@ export class AppManage {
     componentWillLoad() {
         this.getDataScreenListData()
     }
-    
+
     async getDataScreenListData() {
         let dataScreenIds = await DataScreenData.getDataScreenIdList();
         this.dataScreenList = await Promise.all(
@@ -93,64 +92,53 @@ export class AppManage {
             <Host class="ion-page">
                 <ion-header>
                     <ion-toolbar>
-                        <ion-segment value={this.chooseSeg} onIonChange={(e) => { this.chooseSeg = e.detail.value }}>
-                            <ion-segment-button value="my-canvas" layout="icon-start">
-                                <ion-icon name="logo-buffer"></ion-icon>
-                                <ion-label>我的可视化</ion-label>
-                            </ion-segment-button>
-                            <ion-segment-button value="my-component" layout="icon-start">
-                                <ion-icon name="cube"></ion-icon>
-                                <ion-label>我的组件</ion-label>
-                            </ion-segment-button>
-                        </ion-segment>
+                        <div slot="start" class="title"><img src="../../assets/icon/icon-192.png"/> &nbsp;DataScreen</div>
                         <ion-buttons slot="end">
-                            <ion-button title="导入" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.popoverCodeModify("") }}>
+                            <ion-button title="导入" class="header-btn" onClick={() => { this.popoverCodeModify("") }}>
                                 <ion-icon slot="icon-only" name="code"></ion-icon>
                             </ion-button>
-                            <ion-button title="主题" color="secondary" size="large" fill="solid" class="header-btn" onClick={() => { this.popoverThemeSelectBox() }}>
+                            <ion-button title="主题"  class="header-btn" onClick={() => { this.popoverThemeSelectBox() }}>
                                 <ion-icon slot="icon-only" name="color-palette"></ion-icon>
                             </ion-button>
                         </ion-buttons>
                     </ion-toolbar>
                 </ion-header>
                 <ion-content>
-                    {this.chooseSeg == "my-canvas" ?
-                        <div class="canvas-box">
-                            <ion-card button onClick={() => { this.addNewCanvas() }} class="add-canvas">
-                                <div class="add-card-content">
-                                    <ion-icon name="add"></ion-icon>
-                                    <br />
-                                    <span>新建可视化</span>
-                                </div>
+                    <div class="canvas-box">
+                        <ion-card button onClick={() => { this.addNewCanvas() }} class="add-canvas">
+                            <div class="add-card-content">
+                                <ion-icon name="add"></ion-icon>
+                                <br />
+                                <span>新建可视化</span>
+                            </div>
+                        </ion-card>
+                        {this.dataScreenList.map((dataScreen: DataScreen) =>
+                            <ion-card onClick={() => { this.jumpToCanvasEdit(dataScreen.id) }}>
+                                <div style={{ "background-image": `url(${dataScreen.scaleImg || "../../assets/image/default-canvas.png"})` }} class="canvas-preivew"></div>
+                                <ion-card-content>
+                                    <ion-item onClick={(e) => { e.stopPropagation(); e.preventDefault() }} lines="none">
+                                        <ion-icon name="create" slot="start"></ion-icon>
+                                        <ion-input debounce={800} onIonChange={(e) => { this.handleDataSCreenChange(dataScreen, "name", e.detail.value) }} value={dataScreen.name}></ion-input>
+
+                                        <ion-buttons slot="end">
+                                            <ion-button color="danger" onClick={() => { this.removeCanvas(dataScreen) }} title="删除" fill="outline">
+                                                <ion-icon slot="icon-only" name="trash"></ion-icon>
+                                            </ion-button>
+
+                                            <ion-button onClick={() => { this.popoverCodeModify(dataScreen.id) }} title="代码" fill="outline">
+                                                <ion-icon slot="icon-only" name="code"></ion-icon>
+                                            </ion-button>
+
+                                            <ion-button onClick={() => { this.jumpTOCanvasPreview(dataScreen.id) }} title="预览" fill="outline">
+                                                <ion-icon slot="icon-only" name="easel"></ion-icon>
+                                            </ion-button>
+                                        </ion-buttons>
+
+                                    </ion-item>
+                                </ion-card-content>
                             </ion-card>
-                            {this.dataScreenList.map((dataScreen: DataScreen) =>
-                                <ion-card onClick={() => { this.jumpToCanvasEdit(dataScreen.id) }}>
-                                    <div style={{ "background-image": `url(${dataScreen.scaleImg || "../../assets/image/default-canvas.png"})` }} class="canvas-preivew"></div>
-                                    <ion-card-content>
-                                        <ion-item onClick={(e) => { e.stopPropagation(); e.preventDefault() }} lines="none">
-                                            <ion-icon name="create" slot="start"></ion-icon>
-                                            <ion-input debounce={800} onIonChange={(e) => { this.handleDataSCreenChange(dataScreen, "name", e.detail.value) }} value={dataScreen.name}></ion-input>
-
-                                            <ion-buttons slot="end">
-                                                <ion-button color="danger" onClick={() => { this.removeCanvas(dataScreen) }} title="删除" fill="outline">
-                                                    <ion-icon slot="icon-only" name="trash"></ion-icon>
-                                                </ion-button>
-
-                                                <ion-button onClick={() => { this.popoverCodeModify(dataScreen.id) }} title="代码" fill="outline">
-                                                    <ion-icon slot="icon-only" name="code"></ion-icon>
-                                                </ion-button>
-
-                                                <ion-button onClick={() => { this.jumpTOCanvasPreview(dataScreen.id) }} title="预览" fill="outline">
-                                                    <ion-icon slot="icon-only" name="easel"></ion-icon>
-                                                </ion-button>
-                                            </ion-buttons>
-
-                                        </ion-item>
-                                    </ion-card-content>
-                                </ion-card>
-                            )}
-                        </div> : null
-                    }
+                        )}
+                    </div>
                 </ion-content>
             </Host>
         )

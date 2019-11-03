@@ -5,7 +5,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         config: {
 
         },
-        icon: "assets/com-icon/img-icon.png",
+        icon: "icontupian",
         view: {
             x: "200",
             y: "100",
@@ -20,7 +20,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         config: {
 
         },
-        icon: "assets/com-icon/img-icon.png",
+        icon: "iconbiankuang-wai",
         view: {
             x: "200",
             y: "100",
@@ -35,7 +35,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         config: {
             iframeSrc: "https://www.baidu.com/"
         },
-        icon: "assets/com-icon/img-icon.png",
+        icon: "iconiframe",
         view: {
             x: "0",
             y: "0",
@@ -56,7 +56,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         },
         config: {
         },
-        icon: "assets/com-icon/img-icon.png",
+        icon: "iconlunbotu",
         view: {
             x: "0",
             y: "0",
@@ -71,7 +71,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         config: {
             videoSrc: "https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm"
         },
-        icon: "assets/com-icon/img-icon.png",
+        icon: "iconvideo",
         view: {
             x: "0",
             y: "0",
@@ -91,7 +91,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             backgroundColor: "transparent",
             textAlign: "center"
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconwenben",
         view: {
             x: "0",
             y: "0",
@@ -195,7 +195,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 width: "5"
             }
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconlunbobiaoge",
         view: {
             x: "0",
             y: "0",
@@ -343,7 +343,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 areaStyle: {}
             }]
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconjibenzhexiantu",
         view: {
             x: "0",
             y: "0",
@@ -418,7 +418,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 areaStyle: {}
             }]
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconjibenzhuzhuangtu",
         view: {
             x: "0",
             y: "0",
@@ -429,7 +429,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         }
     },
     "chart-bar-vertical": {
-        nickName: "垂直基本柱图",
+        nickName: "多系列柱形图",
         api_data: {
             dataSourceType: "static",
             restType: "get",
@@ -574,7 +574,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 }
             ]
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconduoxilieezhuzhuangtu",
         view: {
             x: "0",
             y: "0",
@@ -661,7 +661,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 }
             ]
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconbingtu",
         view: {
             x: "0",
             y: "0",
@@ -672,7 +672,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         }
     },
     "chart-pie-sector": {
-        nickName: "扇形饼图",
+        nickName: "环形饼图",
         api_data: {
             dataSourceType: "static",
             restType: "get",
@@ -749,7 +749,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 }
             ]
         },
-        icon: "assets/com-icon/chart-base-line.png",
+        icon: "iconhuanxingtu",
         view: {
             x: "0",
             y: "0",

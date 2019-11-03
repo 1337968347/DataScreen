@@ -8,19 +8,21 @@ import { Component, Prop, State, h } from '@stencil/core';
 })
 export class CyItemExtend {
     @Prop() header: string = ""
-
-    @State() openTag: boolean = true;
+    @Prop() iconPosition: "start" | "end" = "end"
+    @State() openTag: boolean = false;
 
     render() {
         return (
             <ion-list>
-                <ion-item lines="inset" onClick={() => { this.openTag = !!!this.openTag }}>
+                <ion-item button lines="inset" onClick={() => { this.openTag = !!!this.openTag }}>
                     <ion-label>{this.header}</ion-label>
-                    <ion-icon slot="end" name={this.openTag ? "arrow-dropright" : "arrow-dropdown"}></ion-icon>
+                    <ion-icon slot={this.iconPosition} name={!this.openTag ? "arrow-dropright" : "arrow-dropdown"}></ion-icon>
                 </ion-item>
-                <ion-item-group style={{ "display": !this.openTag ? "inherit" : "none" }}>
-                    <slot />
-                </ion-item-group>
+                {this.openTag ?
+                    <ion-item-group>
+                        <slot />
+                    </ion-item-group> : null
+                }
             </ion-list>
         );
     }

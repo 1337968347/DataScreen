@@ -1,3 +1,13 @@
 ion-textarea{
-    font-size: var(--font-size)!important;
+    flex: 1!important;
+    display: flex!important;
+    font-size: 15px!important;
+}
+
+.popover_content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between
 }

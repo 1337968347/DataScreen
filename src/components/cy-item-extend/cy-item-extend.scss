@@ -5,6 +5,7 @@
   --color: #ffffff;
   --header-bg: #282830;
   --content-bg: #111417;
+  font-size: unset;
 }
 
 ion-item-divider {
@@ -16,7 +17,7 @@ ion-item-divider {
 
 ion-item-group {
   color: var(--color);
-  background: var(--content-bg)
+  background: var(--content-bg);
 }
 
 ion-list {
@@ -29,6 +30,7 @@ ion-item {
   --padding-start: 7px;
   --inner-border-width: 0px;
   --inner-padding-end: 0;
+  font-size: unset;
 
   ion-icon {
     color: var(--color);

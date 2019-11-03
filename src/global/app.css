@@ -13,22 +13,10 @@
 @import "theme.css";
 
 :root {
-  --header-height: 30px;
   --font-size: 12px;
 }
 
-@media screen and (max-width: 450px) {
-  :root {
-    --header-height: 50px;
-    --font-size: 12px;
-  }
-}
-
-ion-toolbar {
-  --min-height: var(--header-height);
-}
-
-ion-title{
+ion-title {
   text-align: center;
 }
 
@@ -36,13 +24,13 @@ html {
   font-size: var(--font-size);
 }
 
-main{
+main {
   height: 100%;
   width: 100%;
 }
 
-ion-range{
-  --knob-background: var( --ion-text-color , #ffffff)
+ion-range {
+  --knob-background: var(--ion-text-color, #ffffff)
 }
 
 ion-toggle {
@@ -51,7 +39,7 @@ ion-toggle {
 
 cy-draggable {
   --color: var(--ion-color-primary-contrast);
-  --choose-background: rgba(var(--ion-color-primary-rgb),0.2);
+  --choose-background: rgba(var(--ion-color-primary-rgb), 0.2);
   --border-color: var(--ion-color-primary);
   --menu-hover-color: var(--ion-color-primary)
 }
@@ -67,10 +55,11 @@ a {
 }
 
 .code-view-popover .popover-content {
-  min-width: 40%;
-  width: 700px;
+  min-width: 65%;
   max-width: 100%;
+  min-height: 50%;
 }
+
 .contextmenu-popover .popover-content {
   max-width: 150px;
 }
