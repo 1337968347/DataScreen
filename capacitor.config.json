@@ -1,6 +1,0 @@
-{
-    "appId": "com.example.cyDemo",
-    "appName": "原生渐进式应用",
-    "bundledWebRuntime": false,
-    "webDir": "www"
-  }
