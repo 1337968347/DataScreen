@@ -1,4 +1,4 @@
-import { Component, State, Element, Event, EventEmitter, Prop, Watch, h } from '@stencil/core';
+import { Component, State, Element, Event, EventEmitter, Prop, Watch,Host, h } from '@stencil/core';
 // 组件定义
 // 可以拖拽缩放
 @Component({
@@ -27,7 +27,6 @@ export class CyDraggable {
 
     @Watch('isChoose')
     watchHandler(newValue) {
-        console.log(newValue)
         this.setZindexByChoose(newValue)
     }
 
@@ -186,7 +185,9 @@ export class CyDraggable {
 
     render() {
         return (
-            <div class={this.isHover && this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
+            <Host
+                style={{ "touch-action": this.isChoose ? "none" : "auto" }}
+                class={this.isHover && this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
                 onPointerEnter={() => { this.isHover = true }}
                 onPointerLeave={() => { this.isHover = false }}
                 onClick={(e) => { this.handleDomChoose(e) }}
@@ -211,7 +212,7 @@ export class CyDraggable {
                 <div class="container">
                     <slot />
                 </div>
-            </div>
+            </Host>
         );
     }
 }

@@ -8,8 +8,14 @@ let comDataMap = new Map<string, Function>();
 let comIdMapTimerId = new Map<string, number>();
 
 
-const fetchData = async (restType: "get" | "post", restUrl: string): Promise<any> => {
-    return await HttpClient.fetch(restType, (getCanvasConfig().baseUrl || "") + restUrl, {})
+const fetchData = async (restType: "get" | "post", isSplicing: boolean, restUrl: string): Promise<any> => {
+    let finalUrl = "";
+    if (isSplicing) {
+        finalUrl = (getCanvasConfig().baseUrl || "") + restUrl
+    } else {
+        finalUrl = restUrl;
+    }
+    return await HttpClient.fetch(restType, finalUrl, {})
 }
 
 const mapData = (dataList: any[], fieldMap: DataFieldMap[]) => {
@@ -41,7 +47,7 @@ export const registerDataReceiver = (comId: string, comApiData: DraggableApiData
     } else if (comApiData.dataSourceType == "rest") {
         // 存储到map中
         comDataMap.set(comId, () => {
-            fetchData(comApiData.restType, comApiData.restUrl).then((data) => {
+            fetchData(comApiData.restType || "get", comApiData.isSplicing || false, comApiData.restUrl || "").then((data) => {
                 let dataMaped = mapData(data, comApiData.fieldMap)
                 dataCallBack(mapData(dataMaped, comApiData.fieldMap))
             })
@@ -53,7 +59,7 @@ export const registerDataReceiver = (comId: string, comApiData: DraggableApiData
             // 开启定时刷新
             let timeId = setInterval(() => {
                 comDataMap.get(comId)();
-            }, comApiData.restRefreshTime)
+            }, comApiData.restRefreshTime * 1000)
             comIdMapTimerId.set(comId, timeId);
         }
     }

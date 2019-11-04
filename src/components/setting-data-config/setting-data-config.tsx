@@ -113,31 +113,44 @@ export class SettingDataConfig {
 
                 {this.dataType == "rest" ?
                     <ion-gird>
+                        <cy-item-extend style={{ "margin-top": "15px" }} header="接口设置">
+                            <ion-row>
+                                <ion-col size="4">
+                                    拼接环境地址
+                                </ion-col>
+                                <ion-col size="8">
+                                    <ion-toggle checked={this.comDataApiData.isSplicing || false}
+                                        onIonChange={(e) => { this.handleConfigChange("api_data", "isSplicing", e.detail.checked); }}>
+                                    </ion-toggle>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="4">请求类型</ion-col>
+                                <ion-col size="8">
+                                    <ion-select value={this.comDataApiData.restType} interface="popover" onIonChange={(e) => { this.handleConfigChange("api_data", "restType", e.detail.value + "") }}>
+                                        <ion-select-option value="get">get</ion-select-option>
+                                        <ion-select-option value="post">post</ion-select-option>
+                                    </ion-select>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="4">接口地址</ion-col>
+                                <ion-col size="8">
+                                    <ion-input
+                                        debounce={1000}
+                                        onIonChange={(e) => { this.handleConfigChange("api_data", "restUrl", e.detail.value + "") }}
+                                        value={this.comDataApiData.restUrl || ""}>
+                                    </ion-input>
+                                </ion-col>
+                            </ion-row>
+                        </cy-item-extend>
                         <ion-row>
-                            <ion-col size="4">请求类型</ion-col>
-                            <ion-col size="8">
-                                <ion-select value={this.comDataApiData.restType} interface="popover" onIonChange={(e) => { this.handleConfigChange("api_data", "restType", e.detail.value + "") }}>
-                                    <ion-select-option value="get">get</ion-select-option>
-                                    <ion-select-option value="post">post</ion-select-option>
-                                </ion-select>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col size="4">接口地址</ion-col>
-                            <ion-col size="8">
-                                <ion-input
-                                    debounce={1000}
-                                    onIonChange={(e) => { this.handleConfigChange("api_data", "restUrl", e.detail.value + "") }}
-                                    value={this.comDataApiData.restUrl || ""}>
-                                </ion-input>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col size="4">刷新间隔(ms)</ion-col>
+                            <ion-col size="4">刷新间隔(s)</ion-col>
                             <ion-col size="8">
                                 <ion-input
                                     debounce={1000}
                                     placeholder="0为只刷新一次"
+                                    min="0"
                                     type="number"
                                     onIonChange={(e) => { this.handleConfigChange("api_data", "restRefreshTime", e.detail.value || "0") }}
                                     value={this.comDataApiData.restRefreshTime + "" || "0"}>

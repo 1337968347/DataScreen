@@ -106,7 +106,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         api_data: {
             dataSourceType: "static",
             restType: "get",
-            restUrl: "/r40cq",
+            restUrl: "",
             restRefreshTime: 0,
             staticData: [
                 {

@@ -10,10 +10,10 @@ setting-data-config {
             --background: var(--ion-background-shade) !important;
         }
     }
-   
+
     ion-row {
 
-        ion-col{
+        ion-col {
             display: flex;
             align-items: center;
         }
@@ -32,16 +32,18 @@ setting-data-config {
         ion-input {
             --background: var(--ion-background-shade) !important;
         }
-       
-        ion-input input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+
+        ion-input input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
             width: 25px;
             height: 30px;
         }
 
-        cy-table{
+        cy-table {
             --font-size: 13px;
             text-align: left;
-            --color: var(--ion-text-color, #ffffff);;
+            --color: var(--ion-text-color, #ffffff);
+            ;
         }
 
         ion-select {
@@ -50,4 +52,22 @@ setting-data-config {
         }
     }
 
+    cy-item-extend {
+        --header-bg: var(--ion-background-color);
+        --color: var(--ion-text-color);
+        --content-bg: var(--ion-background-shade);
+
+        ion-input,
+        input {
+            height: 25px;
+            --background: var(--ion-background-tint) !important;
+        }
+
+        ion-select {
+            width: 100%;
+            --padding-top: 6px;
+            --padding-bottom: 0;
+            background: var(--ion-background-tint) !important;
+        }
+    }
 }

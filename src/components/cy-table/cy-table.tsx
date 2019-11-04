@@ -16,7 +16,9 @@ export class CyTable {
     };
     @Watch('option')
     watchHandler(newValue, oldValue) {
-        this.initTableByOption();
+        if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+            this.initTableByOption();
+        }
     }
     @Prop() dataSource: any[];
     @State() timeNum: number = 0;
@@ -69,7 +71,8 @@ export class CyTable {
                         <thead>
                             <tr style={{
                                 "height": this.tableHeaderHeight + "px",
-                                "z-index": "2"}}>
+                                "z-index": "2"
+                            }}>
                                 {this.option.orderOption && this.option.orderOption.show ?
                                     <th></th> : null
                                 }

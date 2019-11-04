@@ -8,7 +8,6 @@ import { DraggableConfig, DraggableView, TableOrderOption } from "../../interfac
 })
 export class TableAdapter {
     @Prop() comDataConfig: DraggableConfig;
-
     @Prop() comDataView: DraggableView;
     @Prop() dataSource: any;
 

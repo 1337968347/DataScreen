@@ -13,7 +13,6 @@ export class SettingChartSeries {
 
     componentWillLoad() {
         this.handleSerieschange("0");
-        console.log(this.series)
     }
 
     handleSeriesChange(argList: string[], value) {

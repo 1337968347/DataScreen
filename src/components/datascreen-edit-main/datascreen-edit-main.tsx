@@ -31,17 +31,22 @@ export class DatascreenEditMain {
         this.changeRangeValue(this.scaleRange + this.rangeStep)
     }
 
+    fitContentSize(){
+        this.el.querySelector("datascreen-canvas-content").resizeSCale()
+    }
+
     render() {
         return [
-            <div class="canvas-box" onClick={(e) => { console.log(e); changeChooseComponent("") }}>
-                <datascreen-canvas-content padding={60} onCanvasScaleChange={(e)=>{this.scaleRange= e.detail}}>
+            <div class="canvas-box" onClick={(e) => { changeChooseComponent("") }}>
+                <datascreen-canvas-content padding={60} onCanvasScaleChange={(e) => { this.scaleRange = e.detail }}>
                     <datascreen-canvas scale={this.scaleRange}>
                     </datascreen-canvas>
                 </datascreen-canvas-content>
             </div>,
             <div class="datascreen-edit-footer">
                 <div class="right-range-control">
-                    <ion-label>{this.scaleRange}&nbsp;&nbsp;&nbsp;</ion-label>
+                    <ion-button size="small" onClick={()=>{this.fitContentSize()}}>fit</ion-button>&nbsp;
+                    <ion-label>{this.scaleRange}%&nbsp;&nbsp;&nbsp;</ion-label>
                     <ion-range value={this.scaleRange} onIonChange={(e) => { this.changeRangeValue(e.detail.value) }} min={this.minRange} pin={true} max={this.maxRange} step={this.rangeStep} >
                         <ion-icon slot="start" name="remove" onClick={() => { this.reduceRange() }}></ion-icon>
                         <ion-icon slot="end" name="add" onClick={() => { this.addRange() }}></ion-icon>

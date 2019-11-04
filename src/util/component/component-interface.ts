@@ -39,14 +39,16 @@ export interface DragComOption {
 }
 
 export interface DraggableApiData {
+    fieldMap?: DataFieldMap[];
     dataSourceType?: "static" | "rest";
     // static
     staticData?: any;
     // rest
+    // 是否拼接环境地址
+    isSplicing?: boolean;
     restUrl?: string;
     restType?: "get" | "post";
     restRefreshTime?: number;
-    fieldMap?: DataFieldMap[];
 }
 
 export interface DataFieldMap {
