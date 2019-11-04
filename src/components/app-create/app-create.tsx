@@ -116,7 +116,7 @@ export class AppCreate {
                             </ion-toolbar>
                         </ion-header>
                         <ion-content class="right-content">
-                                <datascreen-canvas-content  padding={40}>
+                                <datascreen-canvas-content  padding={0}>
                                     <div class="fit-box">
                                         <datascreen-canvas  canModify={false}>
                                         </datascreen-canvas>

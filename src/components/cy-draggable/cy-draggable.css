@@ -24,6 +24,7 @@
     height: 100%;
     position: relative;
     padding: var(--padding);
+    touch-action: none;
 }
 
 .border {
@@ -65,6 +66,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    touch-action: none;
 }
 
 .drag_tag::before {
@@ -103,9 +105,7 @@
 
 .drag_tag_leftbottom {
     left: calc(-1 * calc(0.5 * var(--point-size)));
-    ;
     bottom: calc(-1 * calc(0.5 * var(--point-size)));
-    ;
     cursor: move;
 }
 
@@ -117,9 +117,7 @@
 
 .drag_tag_lefttop {
     left: calc(-1 * calc(0.5 * var(--point-size)));
-    ;
     top: calc(-1 * calc(0.5 * var(--point-size)));
-    ;
     cursor: move;
 }
 

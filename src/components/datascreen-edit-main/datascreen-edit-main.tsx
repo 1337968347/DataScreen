@@ -33,7 +33,7 @@ export class DatascreenEditMain {
 
     render() {
         return [
-            <div class="canvas-box" onClick={() => { changeChooseComponent("") }}>
+            <div class="canvas-box" onClick={(e) => { console.log(e); changeChooseComponent("") }}>
                 <datascreen-canvas-content padding={60} onCanvasScaleChange={(e)=>{this.scaleRange= e.detail}}>
                     <datascreen-canvas scale={this.scaleRange}>
                     </datascreen-canvas>
