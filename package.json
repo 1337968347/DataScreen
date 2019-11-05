@@ -8,11 +8,14 @@
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
+  "jsnext:main": "dist/esm/index.mjs",
   "collection:main": "dist/collection/index.js",
+  "collection": "dist/collection/collection-manifest.json",
+  "types": "dist/types/index.d.ts",
+  "unpkg": "dist/data-screen/data-screen.js",
   "files": [
-    "dist/"
+    "dist/",
+    "loader/"
   ],
   "scripts": {
     "build": "stencil build  --prod",
