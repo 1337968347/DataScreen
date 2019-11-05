@@ -3,10 +3,18 @@ import { sass } from '@stencil/sass';
 // https://stenciljs.com/docs/config
 
 export const config: Config = {
+  namespace:"data-screen",
   plugins: [
     sass()
   ],
-  outputTargets: [{
+  outputTargets: [
+    {
+      type: 'dist'
+    },
+    {
+      type: 'docs-readme'
+    },
+    {
     type: 'www',
     serviceWorker: {
       swSrc: 'src/sw.js',

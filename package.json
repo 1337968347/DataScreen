@@ -4,6 +4,13 @@
   "version": "0.0.1",
   "description": "data-screen",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
   "files": [
     "dist/"
   ],
@@ -15,14 +22,15 @@
     "test.watch": "stencil test --spec --e2e --watch",
     "generate": "stencil generate"
   },
+  "dependencies":{
+    "echarts": "4.2.1",
+    "uuid": "^3.3.3"
+  },
   "devDependencies": {
     "@ionic/core": "^4.11.0",
     "@stencil/core": "^1.7.0",
     "@stencil/sass": "^1.0.1",
     "@stencil/router": "1.0.1",
-    "echarts": "4.2.1",
-    "html2canvas": "^1.0.0-rc.3",
-    "uuid": "^3.3.3",
     "workbox-build": "4.3.1"
   }
 }

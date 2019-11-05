@@ -1,8 +1,7 @@
-import { Component, State, h } from '@stencil/core';
-import html2canvas from "html2canvas"
+import { Component, State,Event,EventEmitter, h } from '@stencil/core';
 
 import { CanvasConfig } from "../../interfaces";
-import { getCanvasConfig, getCanvasComponent, saveCanvasConfig } from "../../util/datascreen-controller";
+import { getCanvasConfig, saveCanvasConfig } from "../../util/datascreen-controller";
 import { canvasDefaultConfig } from "../../util/canvas/canvas-defaultdata";
 
 @Component({
@@ -12,6 +11,7 @@ import { canvasDefaultConfig } from "../../util/canvas/canvas-defaultdata";
 export class SettingCanvasOption {
     @State() canvasOption: CanvasConfig;
     @State() imgAdress: string;
+    @Event() toast: EventEmitter;
 
     componentWillLoad() {
         this.canvasOption = getCanvasConfig();
@@ -25,12 +25,7 @@ export class SettingCanvasOption {
 
     getCanvasToImg() {
         //TODO  
-        var canvasComponent = getCanvasComponent();
-        html2canvas(canvasComponent, {
-            useCORS: true,
-        }).then(canvas => {
-            this.imgAdress = canvas.toDataURL();
-        });
+        this.toast.emit("暂且不支持");
     }
 
     render() {
