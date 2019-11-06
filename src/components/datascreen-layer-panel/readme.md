@@ -1,4 +1,4 @@
-# datascreen-layer
+# datascreen-layer-panel
 
 
 
@@ -14,7 +14,7 @@
 
 ## Methods
 
-### `chooseComponent(comId: any) => Promise<void>`
+### `chooseComponentById(comId: any) => Promise<void>`
 
 
 
@@ -61,26 +61,26 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  datascreen-layer --> cy-fast-click
-  datascreen-layer --> ion-item
-  datascreen-layer --> ion-thumbnail
-  datascreen-layer --> cy-iconfont
-  datascreen-layer --> ion-label
-  datascreen-layer --> ion-header
-  datascreen-layer --> ion-toolbar
-  datascreen-layer --> ion-title
-  datascreen-layer --> ion-buttons
-  datascreen-layer --> ion-button
-  datascreen-layer --> ion-icon
-  datascreen-layer --> ion-content
-  datascreen-layer --> ion-reorder-group
-  datascreen-layer --> ion-reorder
+  datascreen-layer-panel --> cy-fast-click
+  datascreen-layer-panel --> ion-item
+  datascreen-layer-panel --> ion-thumbnail
+  datascreen-layer-panel --> cy-iconfont
+  datascreen-layer-panel --> ion-label
+  datascreen-layer-panel --> ion-header
+  datascreen-layer-panel --> ion-toolbar
+  datascreen-layer-panel --> ion-title
+  datascreen-layer-panel --> ion-buttons
+  datascreen-layer-panel --> ion-button
+  datascreen-layer-panel --> ion-icon
+  datascreen-layer-panel --> ion-content
+  datascreen-layer-panel --> ion-reorder-group
+  datascreen-layer-panel --> ion-reorder
   ion-item --> ion-icon
   ion-item --> ion-ripple-effect
   ion-button --> ion-ripple-effect
   ion-reorder --> ion-icon
-  app-home --> datascreen-layer
-  style datascreen-layer fill:#f9f,stroke:#333,stroke-width:4px
+  app-home --> datascreen-layer-panel
+  style datascreen-layer-panel fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -11,7 +11,7 @@ let comIdMapTimerId = new Map<string, number>();
 const fetchData = async (restType: "get" | "post", isSplicing: boolean, restUrl: string): Promise<any> => {
     let finalUrl = "";
     if (isSplicing) {
-        finalUrl = (getCanvasConfig().baseUrl || "") + restUrl
+        finalUrl = (await getCanvasConfig().baseUrl || "") + restUrl
     } else {
         finalUrl = restUrl;
     }

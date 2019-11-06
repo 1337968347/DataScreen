@@ -7,62 +7,46 @@ let canvasConfig: CanvasConfig = null;
 let chooseComId: string = "";
 let dataScreenId: string = "";
 
-let canvasCompoennt = null;
-let layerComponent = null;
-let settingComponent = null;
-
-/**
- * init
- * @param DataScreenId 
- * @param dataScreen 
- * @param isLocalUpDate 是否更新localStorage 编辑时候打开
- */
-export const initDataScreen = (DataScreenId: string, dataScreen: DataScreen, isLocalUpDate: boolean = true) => {
-    changeChooseComponent("")
-    dataScreenId = DataScreenId;
-    layerComponent = null;
-    settingComponent = null;
-    setComponentDatas(dataScreen.componentsData, false, false, isLocalUpDate);
-    saveCanvasConfig(dataScreen.canvasOption, isLocalUpDate);
-}
-
 /**
  * set
  * @param DataScreenId 
  * @param dataScreen 
  * @param isLocalUpDate 是否更新localStorage 编辑时候打开
  */
-export const setDataScreen = (DataScreenId: string, dataScreen: DataScreen, isLocalUpDate: boolean = true) => {
+export const setDataScreen = async (DataScreenId: string, dataScreen: DataScreen, isLocalUpDate: boolean = true) => {
     changeChooseComponent("")
     dataScreenId = DataScreenId;
-    setComponentDatas(dataScreen.componentsData, true, true, isLocalUpDate);
-    saveCanvasConfig(dataScreen.canvasOption, isLocalUpDate);
+    await setComponentDatas(dataScreen.componentsData, true, true, isLocalUpDate);
+    await setCanvasConfig(dataScreen.canvasOption, isLocalUpDate);
 }
 
 export const getDataScreen = async (id: string): Promise<DataScreen> => {
     return await DataScreenData.getDataScreen(id)
 }
 
+let canvasComponent = null;
+let layerComponent = null;
+let settingComponent = null;
+
 export const initLayerComponent = (layerHTmlElement: HTMLElement) => { layerComponent = layerHTmlElement; }
-
 export const initSettingComponent = (settingHTmlElement: HTMLElement) => { settingComponent = settingHTmlElement; }
-
-export const initCanvasComponent = (canvasHTmlElement: HTMLElement) => { canvasCompoennt = canvasHTmlElement; }
+export const initCanvasComponent = (canvasHTmlElement: HTMLElement) => { canvasComponent = canvasHTmlElement; }
 
 // 图层组件
 const getLayerComponent = () => { return layerComponent };
 // canvas组件 
-export const getCanvasComponent = () => { return canvasCompoennt };
+export const getCanvasComponent = () => { return canvasComponent };
 // get面板组件
 const getSettingComponent = () => { return settingComponent };
-// 获取画布的设置
-export const getCanvasConfig = (): CanvasConfig => { return canvasConfig }
 
-export const saveCanvasConfig = (config: CanvasConfig, isLocalUpdate: boolean = true) => {
+// 获取画布的设置
+export const getCanvasConfig = (): CanvasConfig => { return canvasConfig };
+export const setCanvasConfig = async (config: CanvasConfig, isLocalUpdate: boolean = true) => {
     canvasConfig = config;
-    isLocalUpdate && DataScreenData.setDataScreenCanvasConfig(dataScreenId, canvasConfig)
+    isLocalUpdate && await DataScreenData.setDataScreenCanvasConfig(dataScreenId, canvasConfig)
     // 随改随保存
-    getCanvasComponent() && canvasCompoennt.updateCanvasConfig(config);
+    getCanvasComponent() && await canvasComponent.setCanvasConfig(config);
+    getSettingComponent() && settingComponent.setCanvasConfig(config);
     return canvasConfig;
 }
 
@@ -77,7 +61,7 @@ export const setComponentDatas = async (comList: ComData[],
     await Promise.all(
         [
             isCanvasUpdate && reduceFrequency("canvasDataCallback", async () => {
-                getCanvasComponent() && await canvasCompoennt.mapComDatasToState( deepCopy([],componentDatas) )
+                getCanvasComponent() && await canvasComponent.mapComDatasToState(deepCopy([], componentDatas))
             }),
             isLayerUpdate && reduceFrequency("layerDataCallback", async () => {
                 let comIdsList = componentDatas.map((item) => { return item.id });
@@ -123,8 +107,8 @@ export const removeComponentData = async (comId: string) => {
 export const changeChooseComponent = async (comId: string) => {
     if (chooseComId !== comId) {
         chooseComId = comId;
-        getLayerComponent() && await layerComponent.chooseComponent(comId)
-        getCanvasComponent() && await canvasCompoennt.chooseComponent(comId);
+        getLayerComponent() && await layerComponent.chooseComponentById(comId)
+        getCanvasComponent() && await canvasComponent.chooseComponentById(comId);
         getSettingComponent() && await settingComponent.setComponentConfigData(getComponentDataById(comId))
     }
 }

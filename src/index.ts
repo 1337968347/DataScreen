@@ -1,1 +1,1 @@
-export { initCanvasComponent, initDataScreen, getDataScreen, setDataScreen } from "./util/datascreen-controller"
+export { getDataScreen, setDataScreen } from "./util/datascreen-controller"

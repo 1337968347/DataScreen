@@ -1,7 +1,7 @@
 import { Component, State, Method, h, Element, Event, EventEmitter } from '@stencil/core';
 
-import { ComData } from "../../interfaces";
-import { setComDataChange } from "../../util/datascreen-controller"
+import { ComData,CanvasConfig } from "../../interfaces";
+import { setComDataChange, initSettingComponent } from "../../util/datascreen-controller"
 import { isComponentHasThisConfig } from "../../util/component/component-utils"
 import { deepCopy, deepChangeValue } from "../../util/helper"
 
@@ -14,12 +14,22 @@ export class DatascreenSettingPanel {
     @Element() el: HTMLElement;
     @State() chooseSeg: string = "config"
     @State() ComDataData: ComData;
+    @State() canvasOption: CanvasConfig;
     @Event() alert: EventEmitter;
+
+    componentDidLoad() {
+        initSettingComponent(this.el);
+    }
 
     @Method()
     async setComponentConfigData(comData) {
         this.ComDataData = deepCopy({} as ComData, comData);
         this.chooseSeg = "config";
+    }
+
+    @Method()
+    async setCanvasConfig(canvasConfig: CanvasConfig) {
+        this.canvasOption = deepCopy({}, canvasConfig);
     }
 
     handleComConfigChange(type: string, name: string, value: any) {
@@ -159,7 +169,7 @@ export class DatascreenSettingPanel {
         ]
 
         if (!this.ComDataData || !this.ComDataData.id) {
-            return (<setting-canvas-option></setting-canvas-option>)
+            return (<setting-canvas-option canvasOption={this.canvasOption}></setting-canvas-option>)
         } else {
             const comData = this.ComDataData.data;
             const comName = this.ComDataData.comName;
@@ -494,7 +504,7 @@ export class DatascreenSettingPanel {
                                                     底部
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500}  placeholder="百分比或固定值，默认 60" value={comData.config.grid && comData.config.grid.bottom || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "bottom"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 60" value={comData.config.grid && comData.config.grid.bottom || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "bottom"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
@@ -503,7 +513,7 @@ export class DatascreenSettingPanel {
                                                     左侧
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%"   value={comData.config.grid && comData.config.grid.left || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "left"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%" value={comData.config.grid && comData.config.grid.left || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "left"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>
@@ -512,7 +522,7 @@ export class DatascreenSettingPanel {
                                                     右侧
                                                 </ion-col>
                                                 <ion-col size="8">
-                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%"   value={comData.config.grid && comData.config.grid.right || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "right"], e.detail.value) }}>
+                                                    <ion-input debounce={1500} placeholder="百分比或固定值，默认 10%" value={comData.config.grid && comData.config.grid.right || ""} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "grid", "right"], e.detail.value) }}>
                                                     </ion-input>
                                                 </ion-col>
                                             </ion-row>

@@ -29,8 +29,8 @@ export class DatascreenCanvasContent {
         let contentCLientHeight = this.el.clientHeight - 2 * this.padding;
 
         let scale: number;
-        if (dataScreenCanvasEl) {
-            let dataScreenCanvasSize = await dataScreenCanvasEl.getCanvasSize();
+        let dataScreenCanvasSize = await dataScreenCanvasEl.getCanvasSize();
+        if (dataScreenCanvasEl && dataScreenCanvasSize) {
             if (dataScreenCanvasSize) {
                 if ((dataScreenCanvasSize.w / dataScreenCanvasSize.h) > (contentCLientWidth / contentCLientHeight)) {
                     scale = (contentCLientWidth / dataScreenCanvasSize.w) * 100;

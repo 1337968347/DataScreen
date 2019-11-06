@@ -26,7 +26,7 @@
 ### Depends on
 
 - [datascreen-header](../datascreen-header)
-- [datascreen-layer](../datascreen-layer)
+- [datascreen-layer-panel](../datascreen-layer-panel)
 - [datascreen-com-panel](../datascreen-com-panel)
 - [datascreen-edit-main](../datascreen-edit-main)
 - [datascreen-setting-panel](../datascreen-setting-panel)
@@ -35,7 +35,7 @@
 ```mermaid
 graph TD;
   app-home --> datascreen-header
-  app-home --> datascreen-layer
+  app-home --> datascreen-layer-panel
   app-home --> datascreen-com-panel
   app-home --> datascreen-edit-main
   app-home --> datascreen-setting-panel
@@ -46,20 +46,20 @@ graph TD;
   datascreen-header --> ion-icon
   datascreen-header --> ion-title
   ion-button --> ion-ripple-effect
-  datascreen-layer --> cy-fast-click
-  datascreen-layer --> ion-item
-  datascreen-layer --> ion-thumbnail
-  datascreen-layer --> cy-iconfont
-  datascreen-layer --> ion-label
-  datascreen-layer --> ion-header
-  datascreen-layer --> ion-toolbar
-  datascreen-layer --> ion-title
-  datascreen-layer --> ion-buttons
-  datascreen-layer --> ion-button
-  datascreen-layer --> ion-icon
-  datascreen-layer --> ion-content
-  datascreen-layer --> ion-reorder-group
-  datascreen-layer --> ion-reorder
+  datascreen-layer-panel --> cy-fast-click
+  datascreen-layer-panel --> ion-item
+  datascreen-layer-panel --> ion-thumbnail
+  datascreen-layer-panel --> cy-iconfont
+  datascreen-layer-panel --> ion-label
+  datascreen-layer-panel --> ion-header
+  datascreen-layer-panel --> ion-toolbar
+  datascreen-layer-panel --> ion-title
+  datascreen-layer-panel --> ion-buttons
+  datascreen-layer-panel --> ion-button
+  datascreen-layer-panel --> ion-icon
+  datascreen-layer-panel --> ion-content
+  datascreen-layer-panel --> ion-reorder-group
+  datascreen-layer-panel --> ion-reorder
   ion-item --> ion-icon
   ion-item --> ion-ripple-effect
   ion-reorder --> ion-icon

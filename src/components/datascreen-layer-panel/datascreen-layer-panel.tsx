@@ -1,12 +1,13 @@
-import { Component, State, Method, Event, EventEmitter, h } from '@stencil/core';
+import { Component, State, Method, Event, EventEmitter, Element, h } from '@stencil/core';
 import { componentTemplateDataMap } from "../../util/component/component-template";
-import { changeChooseComponent, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
+import { initLayerComponent, changeChooseComponent, updateLayerMove, getComponentDatas } from "../../util/datascreen-controller";
 
 @Component({
-    tag: 'datascreen-layer',
-    styleUrl: 'datascreen-layer.scss'
+    tag: 'datascreen-layer-panel',
+    styleUrl: 'datascreen-layer-panel.scss'
 })
 export class DatascreenLayer {
+    @Element() el: HTMLElement;
     @State() chooseComId: string = "";
     @State() comIdList: string[] = [];
     @Event() checkMenu: EventEmitter;
@@ -16,15 +17,21 @@ export class DatascreenLayer {
         this.mapComIdsToState(comIdsList)
     }
 
+    componentDidLoad() {
+        initLayerComponent(this.el);
+
+    }
     @Method()
     async mapComIdsToState(newComIdList: string[]) {
         this.comIdList = [...newComIdList];
     }
 
     @Method()
-    async chooseComponent(comId) {
-        this.chooseComId = comId;
-        await changeChooseComponent(comId)
+    async chooseComponentById(comId) {
+        if (this.chooseComId !== comId) {
+            this.chooseComId = comId;
+            await changeChooseComponent(comId)
+        }
     }
 
     handleMoveLayer(detail) {
@@ -32,20 +39,6 @@ export class DatascreenLayer {
         detail.complete();
     }
 
-    renderRender(comData) {
-        return (
-            <cy-fast-click onFastClick={(e) => { e.stopPropagation(); this.chooseComponent(comData.id) }}>
-                <ion-item button color={this.chooseComId == comData.id ? "primary" : ""}>
-                    <ion-thumbnail slot="start">
-                        <cy-iconfont class="com-img" name={componentTemplateDataMap[comData.comName].icon}></cy-iconfont>
-                    </ion-thumbnail>
-                    <ion-label>
-                        {comData.data.nickName || comData.data.comName || ""}
-                    </ion-label>
-                </ion-item>
-            </cy-fast-click>
-        )
-    }
 
     render() {
         let comDatas = getComponentDatas();
@@ -63,9 +56,17 @@ export class DatascreenLayer {
             <ion-content onClick={() => { changeChooseComponent("") }}>
                 <ion-reorder-group disabled={false} onIonItemReorder={(e) => { this.handleMoveLayer(e.detail) }}>
                     {comDatas.map((comData) =>
-                        <ion-reorder>
-                            {this.renderRender(comData)}
-                        </ion-reorder>
+
+                        <ion-item button onClick={(e) => { e.stopPropagation(); this.chooseComponentById(comData.id) }} color={this.chooseComId == comData.id ? "primary" : ""}>
+                            <ion-thumbnail slot="start">
+                                <cy-iconfont class="com-img" name={componentTemplateDataMap[comData.comName].icon}></cy-iconfont>
+                            </ion-thumbnail>
+                            <ion-label>
+                                {comData.data.nickName || ""}
+                            </ion-label>
+                            <ion-reorder slot="end"></ion-reorder>
+                        </ion-item>
+
                     )}
                 </ion-reorder-group>
             </ion-content>

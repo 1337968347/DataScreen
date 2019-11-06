@@ -1,4 +1,4 @@
-import { Component, State, Element, h } from '@stencil/core';
+import { Component,Prop, State, Element, h } from '@stencil/core';
 
 import { changeChooseComponent, initCanvasComponent } from "../../util/datascreen-controller";
 
@@ -8,6 +8,7 @@ import { changeChooseComponent, initCanvasComponent } from "../../util/datascree
 })
 export class DatascreenEditMain {
     @Element() el: HTMLElement;
+    @Prop() dataScreenId: string;
     @State() scaleRange: number = 35;
     rangeStep: number = 5;
     minRange: number = 10;
@@ -15,6 +16,16 @@ export class DatascreenEditMain {
 
     componentDidLoad() {
         initCanvasComponent(this.el.querySelector("datascreen-canvas"))
+        this.initCanvasOption()
+    }
+
+    async initCanvasOption() {
+        let canvasElement = this.el.querySelector("datascreen-canvas");
+        let dataScreenData = await canvasElement.getDataScreen(this.dataScreenId);
+        canvasElement.setDataScreen(this.dataScreenId, {
+            componentsData: dataScreenData.componentsData,
+            canvasOption: dataScreenData.canvasOption
+        }, false)
     }
 
     changeRangeValue(value) {

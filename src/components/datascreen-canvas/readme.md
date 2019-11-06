@@ -23,7 +23,7 @@
 
 ## Methods
 
-### `chooseComponent(comId: any) => Promise<void>`
+### `chooseComponentById(comId: any) => Promise<void>`
 
 
 
@@ -53,7 +53,7 @@ Type: `Promise<void>`
 
 
 
-### `updateCanvasConfig(config: CanvasConfig) => Promise<void>`
+### `setCanvasConfig(config: CanvasConfig) => Promise<void>`
 
 
 

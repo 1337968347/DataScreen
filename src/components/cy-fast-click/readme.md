@@ -16,12 +16,12 @@
 
 ### Used by
 
- - [datascreen-layer](../datascreen-layer)
+ - [datascreen-layer-panel](../datascreen-layer-panel)
 
 ### Graph
 ```mermaid
 graph TD;
-  datascreen-layer --> cy-fast-click
+  datascreen-layer-panel --> cy-fast-click
   style cy-fast-click fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

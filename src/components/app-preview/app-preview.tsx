@@ -1,7 +1,5 @@
-import { Component, Prop, State,Listen, Element, h, Host } from '@stencil/core';
+import { Component, Prop, State, Listen, Element, h, Host } from '@stencil/core';
 import { MatchResults } from "@stencil/router";
-
-import { initDataScreen, getDataScreen, initCanvasComponent } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-preview',
@@ -14,32 +12,33 @@ export class AppPreview {
 
     @Listen('resize', { target: 'window' })
     async resizeSCale() {
-       this.initCanvasScale()
+        this.initCanvasScale()
     }
 
     componentWillLoad() {
-        this.initDataScreenOption();
+
     }
 
-    componentDidLoad() {
-        initCanvasComponent(this.el.querySelector("datascreen-canvas"));
+    async componentDidLoad() {
+        await this.initDataScreenOption();
         this.initCanvasScale();
     }
 
     initCanvasScale() {
         let canvasElement = this.el.querySelector("datascreen-canvas");
         this.transformScale = ` ${this.el.clientWidth / parseInt(canvasElement.style.width)}, ${this.el.clientHeight / parseInt(canvasElement.style.height)}`
-    
     }
 
     async initDataScreenOption() {
+        let canvasElement = this.el.querySelector("datascreen-canvas");
         let dataScreenId = this.match.params.dataScreenId;
-        let dataScreenData = await getDataScreen(dataScreenId);
-        initDataScreen(dataScreenId, {
+        let dataScreenData = await canvasElement.getDataScreen(dataScreenId);
+        await canvasElement.setDataScreen(dataScreenId, {
             componentsData: dataScreenData.componentsData,
             canvasOption: dataScreenData.canvasOption
         }, false)
     }
+
     render() {
         return (
             <Host class="ion-page">

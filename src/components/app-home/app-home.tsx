@@ -2,7 +2,6 @@ import { Component, Prop, State, Event, EventEmitter, Element, Host, h } from '@
 import { RouterHistory, MatchResults } from "@stencil/router"
 
 import { get, set } from "../../providers/local-storage";
-import { initLayerComponent, initSettingComponent, initDataScreen, getDataScreen } from "../../util/datascreen-controller";
 
 @Component({
     tag: 'app-home',
@@ -15,25 +14,9 @@ export class AppHome {
     @State() showMenuControl: boolean[] = [false, false, false];
     @Event() alert: EventEmitter;
     @Event() toast: EventEmitter;
-    @State() dataScreenId: string;
 
-    async componentWillLoad() {
-        this.dataScreenId = this.match.params.dataScreenId;
+    componentWillLoad() {
         this.initMenuControl()
-        await this.initCanvasOption()
-    }
-
-    componentDidLoad() {
-        initLayerComponent(this.el.querySelector("datascreen-layer"));
-        initSettingComponent(this.el.querySelector("datascreen-setting-panel"))
-    }
-
-    async initCanvasOption() {
-        let dataScreenData = await getDataScreen(this.dataScreenId);
-        initDataScreen(this.dataScreenId, {
-            componentsData: dataScreenData.componentsData,
-            canvasOption: dataScreenData.canvasOption
-        }, true)
     }
 
     async initMenuControl() {
@@ -53,11 +36,11 @@ export class AppHome {
     render() {
         return (
             <Host class="ion-page">
-                <datascreen-header history={this.history} dataScreenId={this.dataScreenId} checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>
+                <datascreen-header history={this.history} dataScreenId={this.match.params.dataScreenId} checkMenuControl={this.showMenuControl} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-header>
                 <div class="datascreen-box">
-                    <datascreen-layer style={{ width: this.showMenuControl[0] ? "200px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer>
+                    <datascreen-layer-panel style={{ width: this.showMenuControl[0] ? "200px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-layer-panel>
                     <datascreen-com-panel style={{ width: this.showMenuControl[1] ? "240px" : "0" }} onCheckMenu={(e) => { this.handleMenuChoose(e) }}></datascreen-com-panel>
-                    <datascreen-edit-main></datascreen-edit-main>
+                    <datascreen-edit-main dataScreenId={this.match.params.dataScreenId}></datascreen-edit-main>
                     <datascreen-setting-panel style={{ width: this.showMenuControl[2] ? "332px" : "0" }}></datascreen-setting-panel>
                 </div>
             </Host>

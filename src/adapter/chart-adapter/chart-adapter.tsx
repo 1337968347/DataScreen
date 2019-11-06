@@ -84,7 +84,6 @@ export class ChartAdapter {
             }
         }
 
-        console.log(chartOption)
         this.chartObj.setOption(chartOption);
     }
 

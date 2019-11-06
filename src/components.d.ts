@@ -14,6 +14,7 @@ import {
   CanvasConfig,
   Column,
   ComData,
+  DataScreen,
   DragComOption,
   DraggableApiData,
   DraggableConfig,
@@ -68,11 +69,23 @@ export namespace Components {
   }
   interface DatascreenCanvas {
     'canModify': boolean;
-    'chooseComponent': (comId: any) => Promise<void>;
+    'chooseComponentById': (comId: any) => Promise<void>;
     'getCanvasSize': () => Promise<{ w: number; h: number; }>;
+    /**
+    * 获取大屏数据
+    * @param DataScreenId 传一个唯一id ，作为大屏的id
+    */
+    'getDataScreen': (DataScreenId: string) => Promise<DataScreen>;
     'mapComDatasToState': (comList: ComData[]) => Promise<void>;
     'scale': number;
-    'updateCanvasConfig': (config: CanvasConfig) => Promise<void>;
+    'setCanvasConfig': (config: CanvasConfig) => Promise<void>;
+    /**
+    * 初始化设置大屏数据
+    * @param DataScreenId 传一个唯一id ，作为大屏的id
+    * @param dataScreen 大屏相关数据
+    * @param isLocalUpDate 是否更新 大屏相关的数据到localstorage
+    */
+    'setDataScreen': (DataScreenId: string, dataScreen: DataScreen, isLocalUpDate?: boolean) => Promise<void>;
   }
   interface DatascreenCanvasContent {
     'maxCanvasSCale': number;
@@ -81,17 +94,20 @@ export namespace Components {
     'resizeSCale': () => Promise<void>;
   }
   interface DatascreenComPanel {}
-  interface DatascreenEditMain {}
+  interface DatascreenEditMain {
+    'dataScreenId': string;
+  }
   interface DatascreenHeader {
     'checkMenuControl': boolean[];
     'dataScreenId': string;
     'history': RouterHistory;
   }
-  interface DatascreenLayer {
-    'chooseComponent': (comId: any) => Promise<void>;
+  interface DatascreenLayerPanel {
+    'chooseComponentById': (comId: any) => Promise<void>;
     'mapComIdsToState': (newComIdList: string[]) => Promise<void>;
   }
   interface DatascreenSettingPanel {
+    'setCanvasConfig': (canvasConfig: CanvasConfig) => Promise<void>;
     'setComponentConfigData': (comData: any) => Promise<void>;
   }
   interface DraggableAdapter {
@@ -111,7 +127,9 @@ export namespace Components {
     'comId': string;
   }
   interface PopoverTheme {}
-  interface SettingCanvasOption {}
+  interface SettingCanvasOption {
+    'canvasOption': CanvasConfig;
+  }
   interface SettingChartSeries {
     'series': any[];
   }
@@ -237,10 +255,10 @@ declare global {
     new (): HTMLDatascreenHeaderElement;
   };
 
-  interface HTMLDatascreenLayerElement extends Components.DatascreenLayer, HTMLStencilElement {}
-  var HTMLDatascreenLayerElement: {
-    prototype: HTMLDatascreenLayerElement;
-    new (): HTMLDatascreenLayerElement;
+  interface HTMLDatascreenLayerPanelElement extends Components.DatascreenLayerPanel, HTMLStencilElement {}
+  var HTMLDatascreenLayerPanelElement: {
+    prototype: HTMLDatascreenLayerPanelElement;
+    new (): HTMLDatascreenLayerPanelElement;
   };
 
   interface HTMLDatascreenSettingPanelElement extends Components.DatascreenSettingPanel, HTMLStencilElement {}
@@ -332,7 +350,7 @@ declare global {
     'datascreen-com-panel': HTMLDatascreenComPanelElement;
     'datascreen-edit-main': HTMLDatascreenEditMainElement;
     'datascreen-header': HTMLDatascreenHeaderElement;
-    'datascreen-layer': HTMLDatascreenLayerElement;
+    'datascreen-layer-panel': HTMLDatascreenLayerPanelElement;
     'datascreen-setting-panel': HTMLDatascreenSettingPanelElement;
     'draggable-adapter': HTMLDraggableAdapterElement;
     'media-adapter': HTMLMediaAdapterElement;
@@ -419,7 +437,9 @@ declare namespace LocalJSX {
   interface DatascreenComPanel {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenEditMain {}
+  interface DatascreenEditMain {
+    'dataScreenId'?: string;
+  }
   interface DatascreenHeader {
     'checkMenuControl'?: boolean[];
     'dataScreenId'?: string;
@@ -427,7 +447,7 @@ declare namespace LocalJSX {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
     'onPopover'?: (event: CustomEvent<any>) => void;
   }
-  interface DatascreenLayer {
+  interface DatascreenLayerPanel {
     'onCheckMenu'?: (event: CustomEvent<any>) => void;
   }
   interface DatascreenSettingPanel {
@@ -455,6 +475,7 @@ declare namespace LocalJSX {
   }
   interface PopoverTheme {}
   interface SettingCanvasOption {
+    'canvasOption'?: CanvasConfig;
     'onToast'?: (event: CustomEvent<any>) => void;
   }
   interface SettingChartSeries {
@@ -498,7 +519,7 @@ declare namespace LocalJSX {
     'datascreen-com-panel': DatascreenComPanel;
     'datascreen-edit-main': DatascreenEditMain;
     'datascreen-header': DatascreenHeader;
-    'datascreen-layer': DatascreenLayer;
+    'datascreen-layer-panel': DatascreenLayerPanel;
     'datascreen-setting-panel': DatascreenSettingPanel;
     'draggable-adapter': DraggableAdapter;
     'media-adapter': MediaAdapter;
@@ -537,7 +558,7 @@ declare module "@stencil/core" {
       'datascreen-com-panel': LocalJSX.DatascreenComPanel & JSXBase.HTMLAttributes<HTMLDatascreenComPanelElement>;
       'datascreen-edit-main': LocalJSX.DatascreenEditMain & JSXBase.HTMLAttributes<HTMLDatascreenEditMainElement>;
       'datascreen-header': LocalJSX.DatascreenHeader & JSXBase.HTMLAttributes<HTMLDatascreenHeaderElement>;
-      'datascreen-layer': LocalJSX.DatascreenLayer & JSXBase.HTMLAttributes<HTMLDatascreenLayerElement>;
+      'datascreen-layer-panel': LocalJSX.DatascreenLayerPanel & JSXBase.HTMLAttributes<HTMLDatascreenLayerPanelElement>;
       'datascreen-setting-panel': LocalJSX.DatascreenSettingPanel & JSXBase.HTMLAttributes<HTMLDatascreenSettingPanelElement>;
       'draggable-adapter': LocalJSX.DraggableAdapter & JSXBase.HTMLAttributes<HTMLDraggableAdapterElement>;
       'media-adapter': LocalJSX.MediaAdapter & JSXBase.HTMLAttributes<HTMLMediaAdapterElement>;

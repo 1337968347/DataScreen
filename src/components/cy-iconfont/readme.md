@@ -17,13 +17,13 @@
 ### Used by
 
  - [datascreen-com-panel](../datascreen-com-panel)
- - [datascreen-layer](../datascreen-layer)
+ - [datascreen-layer-panel](../datascreen-layer-panel)
 
 ### Graph
 ```mermaid
 graph TD;
   datascreen-com-panel --> cy-iconfont
-  datascreen-layer --> cy-iconfont
+  datascreen-layer-panel --> cy-iconfont
   style cy-iconfont fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

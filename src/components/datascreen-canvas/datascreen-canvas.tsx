@@ -1,7 +1,7 @@
 import { Component, State, Watch, Method, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
 
-import { ComData, CanvasConfig } from "../../interfaces";
-import { getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
+import { ComData, CanvasConfig, DataScreen } from "../../interfaces";
+import { setDataScreen, getDataScreen, initCanvasComponent, getComponentDatas, changeChooseComponent, getCanvasConfig, setComDataChange } from "../../util/datascreen-controller"
 
 @Component({
     tag: 'datascreen-canvas',
@@ -23,8 +23,8 @@ export class DatascreenCanvas {
     }
 
     componentDidLoad() {
+        initCanvasComponent(this.el);
         this.canvasOption = getCanvasConfig();
-        this.upDateElSize(this.canvasOption, this.scale)
         this.mapComDatasToState(getComponentDatas())
     }
 
@@ -33,11 +33,35 @@ export class DatascreenCanvas {
         this.el.style.height = Math.floor((scale / 100) * parseInt(canvasOption.h)) + "px"
     }
 
+    /**
+     * 初始化设置大屏数据
+     * @param DataScreenId 传一个唯一id ，作为大屏的id
+     * @param dataScreen 大屏相关数据
+     * @param isLocalUpDate 是否更新 大屏相关的数据到localstorage
+     */
+    @Method()
+    async setDataScreen(DataScreenId: string, dataScreen: DataScreen, isLocalUpDate: boolean = true) {
+        setDataScreen(DataScreenId, dataScreen, isLocalUpDate);
+    }
+
+    /**
+     * 获取大屏数据
+     * @param DataScreenId 传一个唯一id ，作为大屏的id
+     */
+    @Method()
+    async getDataScreen(DataScreenId: string) {
+        return await getDataScreen(DataScreenId);
+    }
+
     @Method()
     async getCanvasSize() {
-        return {
-            w: parseInt(this.canvasOption.w),
-            h: parseInt(this.canvasOption.h)
+        if (this.canvasOption) {
+            return {
+                w: parseInt(this.canvasOption.w),
+                h: parseInt(this.canvasOption.h)
+            }
+        } else {
+            return null
         }
     }
 
@@ -47,16 +71,19 @@ export class DatascreenCanvas {
     }
 
     @Method()
-    async chooseComponent(comId) {
-        this.chooseComId = comId;
-        await changeChooseComponent(comId)
+    async chooseComponentById(comId) {
+        if (comId !== this.chooseComId) {
+            this.chooseComId = comId;
+            await changeChooseComponent(comId)
+        }
     }
 
     @Method()
-    async updateCanvasConfig(config: CanvasConfig) {
+    async setCanvasConfig(config: CanvasConfig) {
         this.canvasOption = { ...config };
         this.canvasChange.emit();
         this.upDateElSize(this.canvasOption, this.scale)
+
     }
 
     handleDraggableDrag(e: CustomEvent, changeComponentData: ComData) {
@@ -70,8 +97,8 @@ export class DatascreenCanvas {
 
     handleDraggableScale(e: CustomEvent, changeComponentData: ComData) {
         if (changeComponentData.data.view.w !== e.detail.w || changeComponentData.data.view.h !== e.detail.h) {
-            changeComponentData.data.view.w = e.detail.w+"";
-            changeComponentData.data.view.h = e.detail.h+"";
+            changeComponentData.data.view.w = e.detail.w + "";
+            changeComponentData.data.view.h = e.detail.h + "";
             changeComponentData.data.view.x = e.detail.x + "";
             changeComponentData.data.view.y = e.detail.y + "";
             setComDataChange(changeComponentData, true, true)
@@ -81,7 +108,7 @@ export class DatascreenCanvas {
     async popoverContextMenu(e: MouseEvent, onComId: string) {
         e.preventDefault();
         e.stopPropagation();
-        await this.chooseComponent(onComId);
+        await this.chooseComponentById(onComId);
         this.popover.emit({
             component: 'popover-draggable-contextmenu',
             cssClass: "contextmenu-popover",
@@ -110,7 +137,7 @@ export class DatascreenCanvas {
                             isChoose={this.chooseComId == comDarggable.id} canModify={this.canModify} scale={Math.round(this.scale) / 100}
                             onCyDrag={(e) => { this.handleDraggableDrag(e, comDarggable) }}
                             onCyScale={(e) => { this.handleDraggableScale(e, comDarggable) }}
-                            onChoose={() => { this.chooseComponent(comDarggable.id) }}
+                            onChoose={() => { this.chooseComponentById(comDarggable.id) }}
                             style={{
                                 "position": "absolute",
                                 "transform": `translate(${comDarggable.data.view.x}px, ${comDarggable.data.view.y}px) rotate(${comDarggable.data.view.deg}deg)`,
