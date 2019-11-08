@@ -13,6 +13,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "types": "dist/types/index.d.ts",
   "unpkg": "dist/data-screen/data-screen.js",
+  "homepage": "https://1337968347.github.io/#/",
   "files": [
     "dist/",
     "loader/"
@@ -25,9 +26,10 @@
     "test.watch": "stencil test --spec --e2e --watch",
     "generate": "stencil generate"
   },
-  "dependencies":{
+  "dependencies": {
     "echarts": "4.2.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "moment": "2.24.0"
   },
   "devDependencies": {
     "@ionic/core": "^4.11.0",

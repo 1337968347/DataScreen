@@ -9,19 +9,20 @@ export declare type comType =
     // media
     "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" | "media-video" |
     // chart
-    "chart-line-base" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-base" | "chart-bar-vertical"|
+    "chart-line-base" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-base" | "chart-bar-vertical" |
     // text
-    "text-common" |
+    "text-common" | "text-timer" |
     // table
     "table";
 
 declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend" | "tooltip";
 
 // 表格设置
-declare type tableConfig = "tableAllOption"| "columns" | "tableHeaderOption" | "tableRowOption" | "tableOrderOption";
+declare type tableConfig = "tableAllOption" | "columns" | "tableHeaderOption" | "tableRowOption" | "tableOrderOption";
 
-export declare type comConfig = "bgi" | "commonTextStyle" | "fontContent" | "videoSrc"
-    | "backgroundColor" | "borderStyle" | "borderImg" | "iframeSrc" | "swiperAutoTime"
+export declare type comConfig =
+    "bgi" | "commonTextStyle" | "fontContent" | "backgroundColor" | "borderStyle"| "timerOption"
+    | "videoSrc" | "borderImg" | "iframeSrc" | "swiperAutoTime"
     | tableConfig | echartOption;
 
 export interface ComData {

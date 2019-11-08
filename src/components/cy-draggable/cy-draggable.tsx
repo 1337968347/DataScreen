@@ -1,4 +1,4 @@
-import { Component, State, Element, Event, EventEmitter, Prop, Watch,Host, h } from '@stencil/core';
+import { Component, State, Element, Event, EventEmitter, Prop, Watch, Host, h } from '@stencil/core';
 // 组件定义
 // 可以拖拽缩放
 @Component({
@@ -157,21 +157,7 @@ export class CyDraggable {
         let clientX = e.clientX;
         let clientY = e.clientY;
         var left = (clientX - boxOffsetLeft) / this.scale,
-            top = (clientY - boxOffsetTop) / this.scale,
-            winW = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientWidth,
-            winH = this.el.closest("datascreen-canvas").querySelector(".drag_container").clientHeight,
-            maxW = winW - this.el.offsetWidth - 10,
-            maxH = winH - this.el.offsetHeight;
-        if (left < 0) {
-            left = 0;
-        } else if (left > maxW) {
-            left = maxW;
-        }
-        if (top < 0) {
-            top = 0;
-        } else if (top > maxH) {
-            top = maxH;
-        }
+            top = (clientY - boxOffsetTop) / this.scale;
         this.el.style.transform = this.el.style.transform.replace(/translate(.*px, .*px)/g, `translate(${left}px, ${top}px`);
     }
 
@@ -186,10 +172,9 @@ export class CyDraggable {
     render() {
         return (
             <Host
-                style={{ "touch-action": this.isChoose ? "none" : "auto" }}
-                class={this.isHover && this.canModify && !this.isChoose ? "sacleBox border" : "sacleBox"}
-                onPointerEnter={() => { this.isHover = true }}
-                onPointerLeave={() => { this.isHover = false }}
+                style={{ "touch-action": this.isChoose ? "none" : "auto", border: (this.isHover && this.canModify && !this.isChoose) && "1px solid var(--border-color)" || "" }}
+                onMouseEnter={() => { this.isHover = true }}
+                onMouseLeave={() => { this.isHover = false }}
                 onClick={(e) => { this.handleDomChoose(e) }}
                 onPointerDown={(e) => { this.canModify && this.isChoose && this.onDragBoxDown(e) }}>
                 {/* 编辑才显示的dom */}

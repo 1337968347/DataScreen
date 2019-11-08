@@ -12,6 +12,7 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
     "media-video": ["videoSrc"],
 
     "text-common": ["commonTextStyle", "fontContent", "backgroundColor",],
+    "text-timer": ["commonTextStyle", "backgroundColor", "timerOption"],
 
     "table": ["columns", "tableAllOption", "tableHeaderOption", "tableRowOption", "tableOrderOption", "commonTextStyle"],
     // 中间那个是series的type

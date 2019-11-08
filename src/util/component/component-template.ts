@@ -84,14 +84,37 @@ const componentTemplateDataMap: ComponentInitalMap = {
     "text-common": {
         nickName: "文字",
         config: {
-            fontSize: 25,
             fontContent: "content",
-            fontWeight: "normal",
-            color: "#ffffff",
+            commonTextStyle: {
+                textAlign: "center",
+                fontWeight: "normal",
+                color: "#ffffff",
+                fontSize: 25,
+            },
             backgroundColor: "transparent",
-            textAlign: "center"
         },
         icon: "iconwenben",
+        view: {
+            x: "0",
+            y: "0",
+            w: "150",
+            h: "80",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "text-timer": {
+        nickName: "时间器",
+        config: {
+            commonTextStyle: {
+                textAlign: "center",
+                fontWeight: "normal",
+                color: "#ffffff",
+                fontSize: 25,
+            },
+            backgroundColor: "transparent",
+        },
+        icon: "iconshijianqi",
         view: {
             x: "0",
             y: "0",
