@@ -90,8 +90,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 fontWeight: "normal",
                 color: "#ffffff",
                 fontSize: 25,
-            },
-            backgroundColor: "transparent",
+            }
         },
         icon: "iconwenben",
         view: {
@@ -121,8 +120,37 @@ const componentTemplateDataMap: ComponentInitalMap = {
             timerOption: {
                 format: "YYYY年MM月DD日",
                 interval: "1000"
+            }
+        },
+        icon: "iconshijianqi",
+        view: {
+            x: "0",
+            y: "0",
+            w: "400",
+            h: "80",
+            opacity: "1",
+            deg: "0"
+        }
+    },
+    "text-number-flop": {
+        nickName: "数字翻牌器",
+        api_data: {
+            fieldMap: [
+                { name: "value", mapping: "" },
+            ],
+            dataSourceType: "static",
+            restType: "get",
+            restUrl: "",
+            restRefreshTime: 0,
+            staticData: [{ value: 123456 }]
+        },
+        config: {
+            commonTextStyle: {
+                textAlign: "center",
+                fontWeight: "normal",
+                color: "#ffffff",
+                fontSize: 20,
             },
-            backgroundColor: "transparent",
         },
         icon: "iconshijianqi",
         view: {

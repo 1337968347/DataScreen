@@ -13,6 +13,7 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
 
     "text-common": ["commonTextStyle", "fontContent",],
     "text-timer": ["commonTextStyle", "iconStyle", "timerOption"],
+    "text-number-flop": ["commonTextStyle"],
 
     "table": ["columns", "tableAllOption", "tableHeaderOption", "tableRowOption", "tableOrderOption", "commonTextStyle"],
     // 中间那个是series的type

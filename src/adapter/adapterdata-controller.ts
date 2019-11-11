@@ -24,9 +24,13 @@ const mapData = (dataList: any[], fieldMap: DataFieldMap[]) => {
         return dataList.map((item) => {
             let itemCopy = item;
             fieldMap.map((filed) => {
-                if (itemCopy[filed.mapping]) {
+                if (filed.mapping) {
                     let temp = itemCopy[filed.mapping];
+                    delete itemCopy[filed.name];
                     delete itemCopy[filed.mapping];
+                    if (!temp) {
+                        console.error(`找不到${filed.mapping}字段,请检查映射设置，或修改数据返回.`)
+                    }
                     itemCopy[filed.name] = temp;
                 }
             })

@@ -147,6 +147,8 @@ export namespace Components {
   }
   interface TextAdapter {
     'comData': ComData;
+    'comDataConfig': DraggableConfig;
+    'dataSource': any[];
   }
 }
 
@@ -499,6 +501,8 @@ declare namespace LocalJSX {
   }
   interface TextAdapter {
     'comData'?: ComData;
+    'comDataConfig'?: DraggableConfig;
+    'dataSource'?: any[];
   }
 
   interface IntrinsicElements {

@@ -11,7 +11,7 @@ export declare type comType =
     // chart
     "chart-line-base" | "chart-line-stack" | "chart-pie-basic" | "chart-pie-sector" | "chart-bar-base" | "chart-bar-vertical" |
     // text
-    "text-common" | "text-timer" |
+    "text-common" | "text-timer" | "text-number-flop" |
     // table
     "table";
 

@@ -29,7 +29,7 @@ export class DraggableComponent {
 
     resignDataReceiver() {
         this.comOptionData.data.api_data && registerDataReceiver(this.comOptionData.id, deepCopy({},this.comOptionData.data.api_data),
-            (apiData) => {this.apiData = apiData})
+            (apiData) => {this.apiData = apiData;})
     }
 
     render() {
@@ -45,7 +45,7 @@ export class DraggableComponent {
                 )
             case "text":
                 return (
-                    <text-adapter comData={this.comOptionData}></text-adapter>
+                    <text-adapter comData={this.comOptionData} comDataConfig={this.comOptionData.data.config}  dataSource={this.apiData}></text-adapter>
                 )
             case "table":
                 return (
