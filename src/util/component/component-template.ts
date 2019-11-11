@@ -97,8 +97,8 @@ const componentTemplateDataMap: ComponentInitalMap = {
         view: {
             x: "0",
             y: "0",
-            w: "150",
-            h: "80",
+            w: "250",
+            h: "50",
             opacity: "1",
             deg: "0"
         }
@@ -110,7 +110,17 @@ const componentTemplateDataMap: ComponentInitalMap = {
                 textAlign: "center",
                 fontWeight: "normal",
                 color: "#ffffff",
-                fontSize: 25,
+                fontSize: 20,
+            },
+            iconStyle: {
+                show: true,
+                color: "#516fe4",
+                fontSize: "37",
+                margin: "10"
+            },
+            timerOption: {
+                format: "YYYY年MM月DD日",
+                interval: "1000"
             },
             backgroundColor: "transparent",
         },
@@ -118,7 +128,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         view: {
             x: "0",
             y: "0",
-            w: "150",
+            w: "400",
             h: "80",
             opacity: "1",
             deg: "0"

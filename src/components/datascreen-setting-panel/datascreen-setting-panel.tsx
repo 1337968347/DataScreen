@@ -1,6 +1,6 @@
 import { Component, State, Method, h, Element, Event, EventEmitter } from '@stencil/core';
 
-import { ComData,CanvasConfig } from "../../interfaces";
+import { ComData, CanvasConfig } from "../../interfaces";
 import { setComDataChange, initSettingComponent } from "../../util/datascreen-controller"
 import { isComponentHasThisConfig } from "../../util/component/component-utils"
 import { deepCopy, deepChangeValue } from "../../util/helper"
@@ -255,6 +255,47 @@ export class DatascreenSettingPanel {
                                         </ion-row>
                                     </cy-item-extend> : null
                                 }
+                                {isComponentHasThisConfig(comName, "iconStyle") ?
+                                    <cy-item-extend header="图标样式">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                显示
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-toggle checked={comData.config.iconStyle && comData.config.iconStyle.show}
+                                                    onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "iconStyle", "show"], e.detail.checked); }}>
+                                                </ion-toggle>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                图标颜色
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} value={comData.config.iconStyle && comData.config.iconStyle.color} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "iconStyle", "color"], e.detail.value) }}></ion-input>
+                                                <input style={{ "height": "100%" }} type="color" value={comData.config.iconStyle && comData.config.iconStyle.color} onChange={(e) => { this.handleDeepComConfigValueChange(["config", "iconStyle", "color"], e.target['value']) }}></input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                图标大小
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.iconStyle && comData.config.iconStyle.fontSize} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "iconStyle", "fontSize"], e.detail.value) }}>
+                                                </ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                边距
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.iconStyle && comData.config.iconStyle.margin} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "iconStyle", "margin"], e.detail.value) }}>
+                                                </ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend> : null
+                                }
                                 {isComponentHasThisConfig(comName, "commonTextStyle") ?
                                     <cy-item-extend header="文本样式">
                                         <ion-row>
@@ -298,6 +339,28 @@ export class DatascreenSettingPanel {
                                                     <ion-select-option value="left">left</ion-select-option>
                                                     <ion-select-option value="right">right</ion-select-option>
                                                 </ion-select>
+                                            </ion-col>
+                                        </ion-row>
+                                    </cy-item-extend> : null
+                                }
+                                {isComponentHasThisConfig(comName, "timerOption") ?
+                                    <cy-item-extend header="时间器">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                格式化
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} value={comData.config.timerOption && comData.config.timerOption.format} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "timerOption", "format"], e.detail.value) }}>
+                                                </ion-input>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                间隔时间(ms)
+                                            </ion-col>
+                                            <ion-col size="8">
+                                                <ion-input debounce={1500} type="number" min="0" value={comData.config.timerOption && comData.config.timerOption.interval} onIonChange={(e) => { this.handleDeepComConfigValueChange(["config", "timerOption", "interval"], e.detail.value) }}>
+                                                </ion-input>
                                             </ion-col>
                                         </ion-row>
                                     </cy-item-extend> : null
@@ -1090,8 +1153,7 @@ export class DatascreenSettingPanel {
                                     null
                                 }
                             </ion-grid>
-                        </div>
-                        : null
+                        </div> : null
                     }
 
                     {this.chooseSeg == "interface" ?

@@ -5,6 +5,3 @@ text-adapter .text-box{
     display: flex;
     align-items: center;
 }
-text-adapter span{
-    width: 100%;
-}

@@ -9,7 +9,7 @@ export declare type comType =
     // media
     "media-basic-img" | "media-border" | "media-iframe" | "media-img-slides" | "media-video" |
     // chart
-    "chart-line-base" | "chart-line-stack" | "chart-pie-custom" | "chart-bar-base" | "chart-bar-vertical" |
+    "chart-line-base" | "chart-line-stack" | "chart-pie-basic" | "chart-pie-sector" | "chart-bar-base" | "chart-bar-vertical" |
     // text
     "text-common" | "text-timer" |
     // table
@@ -21,7 +21,7 @@ declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend"
 declare type tableConfig = "tableAllOption" | "columns" | "tableHeaderOption" | "tableRowOption" | "tableOrderOption";
 
 export declare type comConfig =
-    "bgi" | "commonTextStyle" | "fontContent" | "backgroundColor" | "borderStyle"| "timerOption"
+    "bgi" | "commonTextStyle" | "iconStyle" | "fontContent" | "backgroundColor" | "borderStyle" | "timerOption"
     | "videoSrc" | "borderImg" | "iframeSrc" | "swiperAutoTime"
     | tableConfig | echartOption;
 

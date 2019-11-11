@@ -8,47 +8,9 @@ const dataScreenTemplateList: DataScreen[] = [
         componentsData: []
     },
     {
-        "scaleImg": "",
-        "name": "这是一个假的标题",
+        "scaleImg": "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/86047_0b867e53c1d233ce9fe49d54549a2323.png?date=1573455786132",
+        "name": "demo111",
         "componentsData": [
-         {
-          "data": {
-           "nickName": "单张图片",
-           "config": {
-            "bgi": "https://img.alicdn.com/tps/TB1Pg3pPXXXXXcxXpXXXXXXXXXX-1920-1080.gif"
-           },
-           "icon": "assets/com-icon/img-icon.png",
-           "view": {
-            "x": "484",
-            "y": "0",
-            "w": "932",
-            "h": "232",
-            "opacity": "1",
-            "deg": "0"
-           }
-          },
-          "comName": "media-basic-img",
-          "id": "34b51220-ee5a-11e9-a931-b7a23d1c8c60"
-         },
-         {
-          "data": {
-           "nickName": "单张图片",
-           "config": {
-            "bgi": "http://img.alicdn.com/tps/TB1aS9wJFXXXXaHXpXXXXXXXXXX-1380-251.png"
-           },
-           "icon": "assets/com-icon/img-icon.png",
-           "view": {
-            "x": "341",
-            "y": "0",
-            "w": "1209",
-            "h": "265",
-            "opacity": "1",
-            "deg": "0"
-           }
-          },
-          "comName": "media-basic-img",
-          "id": "6cf4ac40-f486-11e9-aea1-2b6c859a81a1"
-         },
          {
           "data": {
            "nickName": "普通文字",
@@ -68,8 +30,8 @@ const dataScreenTemplateList: DataScreen[] = [
            },
            "icon": "assets/com-icon/chart-base-line.png",
            "view": {
-            "x": "710",
-            "y": "116",
+            "x": "712",
+            "y": "27",
             "w": "466",
             "h": "121",
             "opacity": "1",
@@ -78,6 +40,25 @@ const dataScreenTemplateList: DataScreen[] = [
           },
           "comName": "text-common",
           "id": "28b05ef0-e07a-11e9-9405-15386521428d"
+         },
+         {
+          "data": {
+           "nickName": "单张图片",
+           "config": {
+            "bgi": "http://img.alicdn.com/tps/TB1aS9wJFXXXXaHXpXXXXXXXXXX-1380-251.png"
+           },
+           "icon": "assets/com-icon/img-icon.png",
+           "view": {
+            "x": "383",
+            "y": "-6",
+            "w": "1209",
+            "h": "265",
+            "opacity": "1",
+            "deg": "0"
+           }
+          },
+          "comName": "media-basic-img",
+          "id": "6cf4ac40-f486-11e9-aea1-2b6c859a81a1"
          },
          {
           "data": {
@@ -100,111 +81,10 @@ const dataScreenTemplateList: DataScreen[] = [
          },
          {
           "data": {
-           "nickName": "表格",
-           "api_data": {
-            "dataSourceType": "static",
-            "restType": "get",
-            "restUrl": "/r40cq",
-            "restRefreshTime": 0,
-            "staticData": [
-             {
-              "key": "1",
-              "name": "胡彦斌",
-              "age": 32,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "2",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "3",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "4",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "5",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "6",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "7",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             }
-            ]
-           },
-           "config": {
-            "backgroundColor": "#ffffff",
-            "headerColor": "#12ecf0",
-            "textAlign": "center",
-            "fontSize": "30",
-            "color": "#261818",
-            "columns": [
-             {
-              "title": "姓名",
-              "dataIndex": "name",
-              "width": 20
-             },
-             {
-              "title": "年龄",
-              "dataIndex": "age"
-             }
-            ],
-            "commonTextStyle": {
-             "color": "#ffffff",
-             "textAlign": "center",
-             "fontSize": "20"
-            },
-            "tableRowOption": {
-             "oddBgc": "#003b51",
-             "evenBgc": "#0a2732"
-            },
-            "tableAllOption": {
-             "isScroll": true,
-             "rowNum": "2",
-             "intervalSecond": "3"
-            },
-            "tableOrderOption": {
-             "show": false,
-             "width": "5"
-            },
-            "tableHeaderOption": {}
-           },
-           "icon": "assets/com-icon/chart-base-line.png",
-           "view": {
-            "x": "1367",
-            "y": "654",
-            "w": "543",
-            "h": "400",
-            "opacity": "1",
-            "deg": "0"
-           }
-          },
-          "comName": "table",
-          "id": "571c0550-f943-11e9-8f8e-29e7b84df46a"
-         },
-         {
-          "data": {
            "nickName": "边框",
-           "config": {},
+           "config": {
+            "borderStyle": {}
+           },
            "icon": "assets/com-icon/img-icon.png",
            "view": {
             "x": "57",
@@ -362,134 +242,6 @@ const dataScreenTemplateList: DataScreen[] = [
          },
          {
           "data": {
-           "nickName": "表格",
-           "api_data": {
-            "dataSourceType": "static",
-            "restType": "get",
-            "restUrl": "/r40cq",
-            "restRefreshTime": 0,
-            "staticData": [
-             {
-              "key": "1",
-              "name": "胡彦斌",
-              "age": 32,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "2",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "3",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "4",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "5",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "6",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             },
-             {
-              "key": "7",
-              "name": "胡彦祖",
-              "age": 42,
-              "address": "西湖区湖底公园1号"
-             }
-            ]
-           },
-           "config": {
-            "backgroundColor": "#ffffff",
-            "headerColor": "#12ecf0",
-            "textAlign": "center",
-            "fontSize": "30",
-            "color": "#261818",
-            "columns": [
-             {
-              "title": "姓名",
-              "dataIndex": "name",
-              "width": 20
-             },
-             {
-              "title": "年龄",
-              "dataIndex": "age",
-              "width": 20
-             },
-             {
-              "title": "住址",
-              "dataIndex": "address",
-              "width": 20
-             }
-            ],
-            "commonTextStyle": {
-             "color": "#ffffff",
-             "textAlign": "center",
-             "fontSize": "20"
-            },
-            "tableRowOption": {
-             "oddBgc": "#003b51",
-             "evenBgc": "#0a2732"
-            },
-            "tableAllOption": {
-             "isScroll": true,
-             "rowNum": "1",
-             "intervalSecond": "3"
-            },
-            "tableOrderOption": {
-             "show": true,
-             "width": "5"
-            },
-            "tableHeaderOption": {}
-           },
-           "icon": "assets/com-icon/chart-base-line.png",
-           "view": {
-            "x": "1393",
-            "y": "276",
-            "w": "444",
-            "h": "164",
-            "opacity": "1",
-            "deg": "0"
-           }
-          },
-          "comName": "table",
-          "id": "6569dcc0-f94f-11e9-8caa-81565bcc800e"
-         },
-         {
-          "data": {
-           "nickName": "边框",
-           "config": {
-            "borderStyle": {}
-           },
-           "icon": "assets/com-icon/img-icon.png",
-           "view": {
-            "x": "1380",
-            "y": "252",
-            "w": "472",
-            "h": "211",
-            "opacity": "1",
-            "deg": "0"
-           }
-          },
-          "comName": "media-border",
-          "id": "69c806c0-f94f-11e9-8caa-81565bcc800e"
-         },
-         {
-          "data": {
            "nickName": "文字",
            "config": {
             "fontSize": 25,
@@ -535,8 +287,8 @@ const dataScreenTemplateList: DataScreen[] = [
            },
            "icon": "assets/com-icon/chart-base-line.png",
            "view": {
-            "x": "782",
-            "y": "268",
+            "x": "771",
+            "y": "154",
             "w": "356",
             "h": "177",
             "opacity": "1",
@@ -1096,7 +848,10 @@ const dataScreenTemplateList: DataScreen[] = [
               "type": "bar",
               "areaStyle": {}
              }
-            ]
+            ],
+            "title": {
+             "text": ""
+            }
            },
            "icon": "assets/com-icon/chart-base-line.png",
            "view": {
@@ -1110,6 +865,239 @@ const dataScreenTemplateList: DataScreen[] = [
           },
           "comName": "chart-bar-base",
           "id": "432d5d90-f9ee-11e9-8e14-55b400b2a5a6"
+         },
+         {
+          "data": {
+           "nickName": "时间器",
+           "config": {
+            "commonTextStyle": {
+             "textAlign": "center",
+             "fontWeight": "normal",
+             "color": "#ffffff",
+             "fontSize": 20
+            },
+            "iconStyle": {
+             "show": true,
+             "color": "#516fe4",
+             "fontSize": "37",
+             "margin": "10"
+            },
+            "timerOption": {
+             "format": "YYYY年MM月DD日",
+             "interval": "90"
+            },
+            "backgroundColor": "transparent"
+           },
+           "icon": "iconshijianqi",
+           "view": {
+            "x": "1570",
+            "y": "64",
+            "w": "318",
+            "h": "80",
+            "opacity": "1",
+            "deg": "0"
+           }
+          },
+          "comName": "text-timer",
+          "id": "03938800-044b-11ea-af97-43d047b2acb2"
+         },
+         {
+          "data": {
+           "nickName": "基础款饼图",
+           "api_data": {
+            "dataSourceType": "static",
+            "restType": "get",
+            "restUrl": "",
+            "restRefreshTime": 0,
+            "staticData": [
+             {
+              "x": "普货",
+              "y": 5
+             },
+             {
+              "x": "普货",
+              "y": 22
+             },
+             {
+              "x": "泡货",
+              "y": 22
+             },
+             {
+              "x": "设备",
+              "y": 14
+             },
+             {
+              "x": "矿产",
+              "y": 15
+             },
+             {
+              "x": "钢铁",
+              "y": 15
+             },
+             {
+              "x": "建材",
+              "y": 12
+             },
+             {
+              "x": "食品",
+              "y": 12
+             }
+            ],
+            "fieldMap": [
+             {
+              "name": "x(类目)",
+              "mapping": ""
+             },
+             {
+              "name": "y(值)",
+              "mapping": ""
+             }
+            ]
+           },
+           "config": {
+            "textStyle": {
+             "color": "#ffffff"
+            },
+            "tooltip": {
+             "trigger": "item"
+            },
+            "series": [
+             {
+              "name": "访问来源",
+              "type": "pie",
+              "label": {
+               "normal": {
+                "show": true
+               },
+               "emphasis": {
+                "show": true,
+                "textStyle": {
+                 "fontSize": "30",
+                 "fontWeight": "bold"
+                }
+               }
+              },
+              "labelLine": {
+               "normal": {
+                "show": false
+               }
+              }
+             }
+            ]
+           },
+           "icon": "iconbingtu",
+           "view": {
+            "x": "1474",
+            "y": "369",
+            "w": "400",
+            "h": "300",
+            "opacity": "1",
+            "deg": "0"
+           }
+          },
+          "comName": "chart-pie-basic",
+          "id": "c48ad8b0-0450-11ea-ac6d-cb78c9ae955f"
+         },
+         {
+          "data": {
+           "nickName": "环形饼图",
+           "api_data": {
+            "dataSourceType": "static",
+            "restType": "get",
+            "restUrl": "",
+            "restRefreshTime": 0,
+            "staticData": [
+             {
+              "x": "普货",
+              "y": 5
+             },
+             {
+              "x": "普货",
+              "y": 22
+             },
+             {
+              "x": "泡货",
+              "y": 22
+             },
+             {
+              "x": "设备",
+              "y": 14
+             },
+             {
+              "x": "矿产",
+              "y": 15
+             },
+             {
+              "x": "钢铁",
+              "y": 15
+             },
+             {
+              "x": "建材",
+              "y": 12
+             },
+             {
+              "x": "食品",
+              "y": 12
+             }
+            ],
+            "fieldMap": [
+             {
+              "name": "x(类目)",
+              "mapping": ""
+             },
+             {
+              "name": "y(值)",
+              "mapping": ""
+             }
+            ]
+           },
+           "config": {
+            "textStyle": {
+             "color": "#ffffff"
+            },
+            "tooltip": {
+             "trigger": "item"
+            },
+            "series": [
+             {
+              "name": "访问来源",
+              "type": "pie",
+              "radius": [
+               "50%",
+               "70%"
+              ],
+              "label": {
+               "normal": {
+                "show": true
+               },
+               "emphasis": {
+                "show": true,
+                "textStyle": {
+                 "fontSize": "30",
+                 "fontWeight": "bold"
+                }
+               }
+              },
+              "labelLine": {
+               "normal": {
+                "show": false
+               }
+              }
+             }
+            ]
+           },
+           "icon": "iconhuanxingtu",
+           "view": {
+            "x": "1445",
+            "y": "720",
+            "w": "400",
+            "h": "300",
+            "opacity": "1",
+            "deg": "0"
+           }
+          },
+          "comName": "chart-pie-sector",
+          "id": "c66a2000-0450-11ea-ac6d-cb78c9ae955f"
          }
         ],
         "canvasOption": {
