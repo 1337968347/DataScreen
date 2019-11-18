@@ -1143,7 +1143,7 @@ export class DatascreenSettingPanel {
                                     </cy-item-extend> :
                                     null
                                 }
-                                {isComponentHasThisConfig(comName, "tooltip") ?
+                                {isComponentHasThisConfig(comName, "series") ?
                                     <cy-item-extend header="数据系列">
                                         {comData.config && comData.config.series && comData.config.series[0] ?
                                             <setting-chart-series series={comData.config.series} onCyChange={(e) => { this.handleDeepComConfigValueChange(e.detail.argList, e.detail.value) }}></setting-chart-series>

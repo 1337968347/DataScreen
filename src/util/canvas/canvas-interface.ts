@@ -1,4 +1,3 @@
-
 export interface CanvasConfig {
     w: string;
     h: string;

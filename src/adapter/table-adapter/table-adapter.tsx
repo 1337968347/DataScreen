@@ -31,7 +31,7 @@ export class TableAdapter {
                         isScroll: this.comDataConfig.tableAllOption.isScroll,
                         intervalSecond: this.comDataConfig.tableAllOption.intervalSecond,
                     },
-                    headerHeight: this.comDataConfig.tableHeaderOption && this.comDataConfig.tableHeaderOption.headerHeight
+                    headerHeight: this.comDataConfig.tableHeaderOption && this.comDataConfig.tableHeaderOption.height
                     
                 }}
                 dataSource={this.dataSource || []}

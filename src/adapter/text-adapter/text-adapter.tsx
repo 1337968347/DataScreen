@@ -10,12 +10,12 @@ import moment from "moment";
 export class TextAdapter {
     @Prop() comData: ComData;
     @Prop() dataSource: any[] = [];
-    @Watch('dataSource')
-    watchDataSourceHandler(newValue, oldValue) {
-        if (this.comData.comName == "text-number-flop") {
-            this.currentNumber = newValue[0].value;
-        }
-    }
+    // @Watch('dataSource')
+    // watchDataSourceHandler(newValue, oldValue) {
+    //     if (this.comData.comName == "text-number-flop") {
+    //         this.currentNumber = newValue[0].value;
+    //     }
+    // }
     @Prop() comDataConfig: DraggableConfig;
     @Watch('comDataConfig')
     watchComDataConfigHandler(newValue: DraggableConfig, oldValue: DraggableConfig) {
@@ -41,9 +41,9 @@ export class TextAdapter {
                 this.timerStr = moment().format(this.comData.data.config.timerOption.format || '');
             }, this.comData.data.config.timerOption.interval || 1000)
         }
-        if (this.comData.comName == "text-number-flop") {
-            this.currentNumber = this.dataSource[0].value;
-        }
+        // if (this.comData.comName == "text-number-flop") {
+        //     this.currentNumber = this.dataSource[0].value;
+        // }
     }
 
 
@@ -81,18 +81,18 @@ export class TextAdapter {
                         {this.timerStr || ""}
                     </div>
                 );
-            case "text-number-flop":
-                return (
-                    <div class="text-box" style={{
-                        "line-height": textConfig.commonTextStyle && textConfig.commonTextStyle.fontSize && Math.floor(1.5 * textConfig.commonTextStyle.fontSize) + "px" || "",
-                        "font-weight": textConfig.commonTextStyle && textConfig.commonTextStyle.fontWeight || "",
-                        "text-align": textConfig.commonTextStyle && textConfig.commonTextStyle.textAlign || "",
-                        "font-size": textConfig.commonTextStyle && textConfig.commonTextStyle.fontSize + "px" || "" + "px",
-                        "color": textConfig.commonTextStyle && textConfig.commonTextStyle.color || "",
-                    }}>
-                        {this.dataSource[0].value || ""}
-                    </div>
-                );
+            // case "text-number-flop":
+            //     return (
+            //         <div class="text-box" style={{
+            //             "line-height": textConfig.commonTextStyle && textConfig.commonTextStyle.fontSize && Math.floor(1.5 * textConfig.commonTextStyle.fontSize) + "px" || "",
+            //             "font-weight": textConfig.commonTextStyle && textConfig.commonTextStyle.fontWeight || "",
+            //             "text-align": textConfig.commonTextStyle && textConfig.commonTextStyle.textAlign || "",
+            //             "font-size": textConfig.commonTextStyle && textConfig.commonTextStyle.fontSize + "px" || "" + "px",
+            //             "color": textConfig.commonTextStyle && textConfig.commonTextStyle.color || "",
+            //         }}>
+            //             {this.dataSource[0].value || ""}
+            //         </div>
+            //     );
 
         }
     }

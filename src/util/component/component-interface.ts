@@ -15,7 +15,7 @@ export declare type comType =
     // table
     "table";
 
-declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend" | "tooltip";
+declare type echartOption = "textStyle" | "title" | "xAxis" | "yAxis" | "legend" | "tooltip"|"series";
 
 // 表格设置
 declare type tableConfig = "tableAllOption" | "columns" | "tableHeaderOption" | "tableRowOption" | "tableOrderOption";

@@ -16,7 +16,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
         }
     },
     "media-border": {
-        nickName: "边框",
+        nickName: "背景边框",
         config: {
 
         },
@@ -132,36 +132,36 @@ const componentTemplateDataMap: ComponentInitalMap = {
             deg: "0"
         }
     },
-    "text-number-flop": {
-        nickName: "数字翻牌器",
-        api_data: {
-            fieldMap: [
-                { name: "value", mapping: "" },
-            ],
-            dataSourceType: "static",
-            restType: "get",
-            restUrl: "",
-            restRefreshTime: 0,
-            staticData: [{ value: 123456 }]
-        },
-        config: {
-            commonTextStyle: {
-                textAlign: "center",
-                fontWeight: "normal",
-                color: "#ffffff",
-                fontSize: 20,
-            },
-        },
-        icon: "iconshijianqi",
-        view: {
-            x: "0",
-            y: "0",
-            w: "400",
-            h: "80",
-            opacity: "1",
-            deg: "0"
-        }
-    },
+    // "text-number-flop": {
+    //     nickName: "数字翻牌器",
+    //     api_data: {
+    //         fieldMap: [
+    //             { name: "value", mapping: "" },
+    //         ],
+    //         dataSourceType: "static",
+    //         restType: "get",
+    //         restUrl: "",
+    //         restRefreshTime: 0,
+    //         staticData: [{ value: 123456 }]
+    //     },
+    //     config: {
+    //         commonTextStyle: {
+    //             textAlign: "center",
+    //             fontWeight: "normal",
+    //             color: "#ffffff",
+    //             fontSize: 20,
+    //         },
+    //     },
+    //     icon: "iconshijianqi",
+    //     view: {
+    //         x: "0",
+    //         y: "0",
+    //         w: "400",
+    //         h: "80",
+    //         opacity: "1",
+    //         deg: "0"
+    //     }
+    // },
     "table": {
         nickName: "表格",
         api_data: {
@@ -215,11 +215,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             ]
         },
         config: {
-            backgroundColor: "#ffffff",
-            headerColor: "#12ecf0",
-            textAlign: "center",
-            fontSize: "30",
-            color: "#261818",
             columns: [
                 {
                     "title": "姓名",
@@ -248,7 +243,7 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             tableAllOption: {
                 isScroll: true,
-                rowNum: "1",
+                rowNum: "2",
                 intervalSecond: "3"
             },
             tableOrderOption: {

@@ -17,11 +17,11 @@ const comConfigMap: { [comName: string]: comConfig[] } = {
 
     "table": ["columns", "tableAllOption", "tableHeaderOption", "tableRowOption", "tableOrderOption", "commonTextStyle"],
     // 中间那个是series的type
-    "chart-line-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"],
-    "chart-bar-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"],
-    "chart-bar-vertical": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip"],
-    "chart-pie-basic": ["textStyle", "title", "legend", "tooltip"],
-    "chart-pie-sector": ["textStyle", "title", "legend", "tooltip"]
+    "chart-line-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip", "series"],
+    "chart-bar-base": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip", "series"],
+    "chart-bar-vertical": ["textStyle", "title", "xAxis", "yAxis", "legend", "tooltip", "series"],
+    "chart-pie-basic": ["textStyle", "title", "legend", "tooltip", "series"],
+    "chart-pie-sector": ["textStyle", "title", "legend", "tooltip", "series"]
 };
 
 export { comConfigMap, isComponentHasThisConfig }

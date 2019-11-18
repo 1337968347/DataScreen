@@ -44,16 +44,14 @@ export class MediaAdapter {
                         width: "100%",
                         height: "100%",
                         "background-color": this.comData.data.config.backgroundColor,
-                        "border-color": this.comData.data.config.borderColor,
-                        "border-width": this.comData.data.config.borderWidth + "px" || 0 + "px",
+                        "border-color": this.comData.data.config.borderStyle.color,
+                        "border-width": (this.comData.data.config.borderStyle.width || 0) + "px",
                         "background-repeat": "no-repeat",
                         "background-size": "100% 100%",
                         "image-rendering": "auto",
-                        "border-image-slice": (this.comData.data.config.borderWidth || 10) + " fill",
+                        "border-image-slice": (this.comData.data.config.borderStyle.width || 10) + " fill",
                         "border-style": "solid",
-                        "border-image-source": `url(${this.comData.data.config.borderImg &&
-                            `../../assets/image/border/${this.comData.data.config.borderImg}.png`
-                            || "../../assets/image/border/border-2.png"})`
+                        "border-image-source": this.comData.data.config.borderImg && `url(../../assets/image/border/${this.comData.data.config.borderImg}.png)` || ""
                     }}>
                     </div>
                 );

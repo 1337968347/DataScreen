@@ -2,4 +2,7 @@ media-adapter{
     ion-slide{
         width: 100%!important
     }
+    * {
+        box-sizing: border-box;
+    }
 }
