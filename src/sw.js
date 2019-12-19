@@ -1,6 +1,6 @@
 importScripts('./workbox-v4.3.1/workbox-sw.js');
 
-let version = "0.010";
+let version = "0.011";
 
 self.workbox.setConfig({
     modulePathPrefix: "./workbox-v4.3.1"
