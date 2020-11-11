@@ -16,10 +16,10 @@ export class ChartAdapter {
         this.chartObj.resize({ width: newValue.w, height: newValue.h });
     }
 
-    @Watch('theme')
-    watchHandlerTheme() {
-        this.initChart();
-    }
+    // @Watch('theme')
+    // watchHandlerTheme() {
+    //     this.initChart();
+    // }
 
     // apidata的变化会通过datascource体现出来，所以只需要监听datascource
     @Prop() comDataApiData: DraggableApiData;

@@ -27,12 +27,13 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@ionic/core": "^4.11.0",
     "echarts": "4.2.1",
-    "uuid": "^3.3.3",
-    "moment": "2.24.0"
+    "lodash": "^4.17.20",
+    "moment": "2.24.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "@ionic/core": "^4.11.0",
     "@stencil/core": "^1.7.0",
     "@stencil/sass": "^1.0.1",
     "@stencil/router": "1.0.1",

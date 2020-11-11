@@ -22,7 +22,7 @@ export class DatascreenCanvas {
         this.upDateElSize(this.canvasOption, newScaleValue)
     }
 
-    componentDidLoad() {
+    componentWillLoad() {
         initCanvasComponent(this.el);
         this.canvasOption = getCanvasConfig();
         this.mapComDatasToState(getComponentDatas())

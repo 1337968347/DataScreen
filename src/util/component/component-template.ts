@@ -382,7 +382,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             xAxis: {
                 type: 'category',
-                boundaryGap: false
             },
             yAxis: {
                 type: 'value',
@@ -462,7 +461,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             xAxis: {
                 type: 'category',
-                boundaryGap: false
             },
             yAxis: {
                 type: 'value',
@@ -610,7 +608,6 @@ const componentTemplateDataMap: ComponentInitalMap = {
             },
             "xAxis": {
                 "type": "category",
-                "boundaryGap": false
             },
             "yAxis": {
                 "type": "value",
