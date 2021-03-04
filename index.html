@@ -1,0 +1,16 @@
+<!doctype html><html dir="ltr" lang="zh-cn" mode="md"><head> <meta charset="utf-8"> <title>Data Screen</title> <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> <meta name="description" content="Data Screen"> <meta name="theme-color" content="#16161d"> <meta name="format-detection" content="telephone=no"> <meta name="msapplication-tap-highlight" content="no"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Data Screen"> <meta name="apple-mobile-web-app-status-bar-style" content="black"> <meta http-equiv="x-ua-compatible" content="IE=Edge"> <link rel="modulepreload" href="/build/p-75dd4ca6.js"><link rel="modulepreload" href="/build/p-0816246f.js"><link rel="modulepreload" href="/build/p-56a5bb59.js"><link rel="modulepreload" href="/build/p-6bae5055.js"><link rel="modulepreload" href="/build/p-9a0f8c0e.js"><link rel="modulepreload" href="/build/p-bb39a0f9.js"><link rel="modulepreload" href="/build/p-dde3564e.js"><link rel="modulepreload" href="/build/p-f7c6298e.js"><script type="module" src="/build/p-75dd4ca6.js" data-stencil data-resources-url="/build/" data-stencil-namespace="app"></script> <script nomodule="" src="/build/app.js" data-stencil></script> <script src="./assets/iconfont/iconfont.js"></script> <link href="/build/p-8c14e909.css" rel="stylesheet"> <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png"> <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico"> <link rel="manifest" href="/manifest.json"> </head> <body class="default"> <app-root></app-root> <script data-build="2021-03-04T15:00:05">if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function() {
+  navigator.serviceWorker.register('/sw.js')
+    .then(function(reg) {
+    reg.onupdatefound = function() {
+      var installingWorker = reg.installing;
+      installingWorker.onstatechange = function() {
+      if (installingWorker.state === 'installed') {
+        window.dispatchEvent(new Event('swUpdate'))
+      }
+      }
+    }
+    })
+    .catch(function(err) { console.error('service worker error', err) });
+  });
+}</script></body></html>

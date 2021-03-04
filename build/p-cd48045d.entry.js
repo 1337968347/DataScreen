@@ -1,0 +1,1 @@
+import{r as t}from"./p-6bae5055.js";import"./p-9a0f8c0e.js";import{g as o,h as s,j as e}from"./p-56a5bb59.js";const r=class{constructor(o){t(this,o)}create(t){return o("ion-action-sheet",t)}dismiss(t,o,e){return s(document,t,o,"ion-action-sheet",e)}async getTop(){return e(document,"ion-action-sheet")}};export{r as ion_action_sheet_controller}

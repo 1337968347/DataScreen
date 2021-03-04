@@ -1,0 +1,1 @@
+System.register(["./p-d0797318.system.js","./p-47c6959b.system.js","./p-ea49f7e4.system.js"],(function(e){"use strict";return{setters:[function(){},function(){},function(t){var s={};s.getDataScreen=t.g;s.setDataScreen=t.s;e(s)}],execute:function(){}}}));
