@@ -1,1 +1,1 @@
-npm 地址： https://www.npmjs.com/package/data-screen 
+实验项目，使用JSON数据实现可配置大屏
