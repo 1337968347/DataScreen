@@ -24,7 +24,9 @@
     "devWithSW": "stencil build --dev --service-worker --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watch",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d www"
   },
   "dependencies": {
     "@ionic/core": "^4.11.0",
@@ -35,8 +37,9 @@
   },
   "devDependencies": {
     "@stencil/core": "^1.7.0",
-    "@stencil/sass": "^1.0.1",
     "@stencil/router": "1.0.1",
+    "@stencil/sass": "^1.0.1",
+    "gh-pages": "^6.3.0",
     "workbox-build": "4.3.1"
   }
 }
