@@ -26,7 +26,8 @@
     "test.watch": "stencil test --spec --e2e --watch",
     "generate": "stencil generate",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d www"
+    "deploy": "gh-pages -d www --no-history",
+    "deploy:manual": "npm run build && cd www && git init && git add -A && git commit -m \"Deploy\" && git branch -M gh-pages && git remote add origin https://github.com/1337968347/DataScreen.git && git push -f origin gh-pages"
   },
   "dependencies": {
     "@ionic/core": "^4.11.0",

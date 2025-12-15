@@ -17,6 +17,7 @@ export const config: Config = {
     // },
     {
     type: 'www',
+    baseUrl: '/DataScreen/',
     serviceWorker: {
       swSrc: 'src/sw.js',
       globPatterns: [

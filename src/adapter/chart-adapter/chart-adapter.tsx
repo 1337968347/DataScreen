@@ -1,5 +1,5 @@
 import { Component, Prop, Watch, Element, h } from '@stencil/core';
-import echarts from 'echarts'
+import * as echarts from 'echarts'
 
 import { DraggableView, DraggableApiData, DraggableConfig } from "../../interfaces";
 
