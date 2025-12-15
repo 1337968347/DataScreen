@@ -9,7 +9,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "进入构建输出目录..." -ForegroundColor Green
-Set-Location www\DataScreen
+Set-Location www
 
 Write-Host "初始化 git 仓库..." -ForegroundColor Green
 git init
@@ -36,7 +36,7 @@ if ($LASTEXITCODE -eq 0) {
 }
 
 # 返回项目根目录
-Set-Location ../..
+Set-Location ..
 
 # 清理目录中的 .git
-Remove-Item -Recurse -Force www\DataScreen\.git -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force www\.git -ErrorAction SilentlyContinue
